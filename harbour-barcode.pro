@@ -10,7 +10,7 @@ QT += multimedia concurrent sql network
 LIBS += -ldl
 
 isEmpty(VERSION) {
-    VERSION = 1.0.20
+    VERSION = 1.0.21
     message("VERSION is unset, assuming $$VERSION")
 }
 
@@ -390,7 +390,7 @@ defineTest(addTrFile) {
     export(qm.files)
 }
 
-LANGUAGES = cs da de es fr hu it pl ru sv zh_CN zh_TW
+LANGUAGES = cs da de es fr hu it pl pt ru sv zh_CN zh_TW
 
 addTrFile($${NAME})
 for(l, LANGUAGES) {
