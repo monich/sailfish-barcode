@@ -46,7 +46,7 @@
     <message id="about-supported_codes-label">
         <source>Supported 1D/2D bar codes</source>
         <extracomment>About page label</extracomment>
-        <translation>Unterstützte Code Formate</translation>
+        <translation>Unterstützte 1D/2D Code Formate</translation>
     </message>
     <message id="about-supported_codes-text">
         <source>Image source: %1</source>
@@ -66,7 +66,7 @@
     <message id="scan-status-busy">
         <source>Scan in progress ...</source>
         <extracomment>Scan status label</extracomment>
-        <translation>Scannen läuft…</translation>
+        <translation>Scan läuft…</translation>
     </message>
     <message id="scan-status-nothing_found">
         <source>No code detected! Try again.</source>
@@ -96,17 +96,17 @@
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished">Speichern Barcode-Bilder</translation>
+        <translation>Barcode-Bilder speichern</translation>
     </message>
     <message id="settings-save_images-description">
         <source>This will delete all previously saved barcode images.</source>
         <extracomment>Switch button description (explanation)</extracomment>
-        <translation type="unfinished">Alle zuvor gespeicherten Barcode-Bilder werden gelöscht.</translation>
+        <translation>Alle zuvor gespeicherten Barcode-Bilder werden gelöscht.</translation>
     </message>
     <message id="settings-save_images-confirm_delete">
         <source>Confirm delete</source>
         <extracomment>Button label (confirm deletion of image files)</extracomment>
-        <translation type="unfinished">Löschen bestätigen</translation>
+        <translation>Löschen bestätigen</translation>
     </message>
     <message id="settings-history-section">
         <source>History</source>
@@ -134,12 +134,12 @@
     <message id="settings-history-confirm_resize">
         <source>Confirm resize</source>
         <extracomment>Button label</extracomment>
-        <translation>Bestätigen</translation>
+        <translation>Änerung bestätigen</translation>
     </message>
     <message id="settings-history-cancel">
         <source>Cancel</source>
         <extracomment>Button label</extracomment>
-        <translation>Abbruch</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message id="settings-marker-section">
         <source>Marker</source>
@@ -167,12 +167,12 @@
     <message id="history-menu-clear">
         <source>Clear</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Löschen</translation>
+        <translation>Löschen</translation>
     </message>
     <message id="history-menu-select">
         <source>Select</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Wählen</translation>
+        <translation>Auswählen</translation>
     </message>
     <message id="history-menu-delete">
         <source>Delete</source>
@@ -182,7 +182,7 @@
     <message id="history-menu-copy">
         <source>Copy to clipboard</source>
         <extracomment>Context menu item</extracomment>
-        <translation>Kopieren</translation>
+        <translation>In die Zwichenablage kopieren</translation>
     </message>
     <message id="history-menu-delete_remorse">
         <source>Deleting</source>
@@ -192,27 +192,27 @@
     <message id="history-remorse-deleting_all">
         <source>Deleting all codes</source>
         <extracomment>Remorse popup text</extracomment>
-        <translation type="unfinished">Alle Codes löschen</translation>
+        <translation>Alle Codes werden gelöscht</translation>
     </message>
     <message id="history-remorse-deleting_selected_code">
         <source>Deleting selected code</source>
         <extracomment>Remorse popup text (single code selected)</extracomment>
-        <translation type="unfinished">Ausgewählten Code löschen</translation>
+        <translation>Ausgewählter Code wird gelöscht</translation>
     </message>
     <message id="history-remorse-deleting_selected_codes">
         <source>Deleting selected codes</source>
         <extracomment>Remorse popup text (multiple codes selected)</extracomment>
-        <translation type="unfinished">Ausgewählten Codes löschen</translation>
+        <translation>Ausgewählte Codes werden gelöscht</translation>
     </message>
     <message id="history-code_copied-notification">
         <source>Selected code copied to clipboard</source>
         <extracomment>Notification text (single code selected)</extracomment>
-        <translation type="unfinished">Ausgewählter Code in die Zwischenablage kopiert</translation>
+        <translation>Ausgewählter Code in die Zwischenablage kopiert</translation>
     </message>
     <message id="history-codes_copied-notification">
         <source>Selected codes copied to clipboard</source>
         <extracomment>Notification text (multiple codes selected)</extracomment>
-        <translation type="unfinished">Ausgewählter Codes in die Zwischenablage kopiert</translation>
+        <translation>Ausgewählte Codes in die Zwischenablage kopiert</translation>
     </message>
     <message id="history-empty">
         <source>History is empty</source>
@@ -232,7 +232,7 @@
     <message id="text-add_to_calendar">
         <source>Add to calendar</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished">Zum Kalender hinzufügen</translation>
+        <translation>Zum Kalender hinzufügen</translation>
     </message>
     <message id="text-fetch_receipt">
         <source>Fetch receipt</source>
@@ -247,7 +247,7 @@
     <message id="text-cancel_fetching">
         <source>Cancel</source>
         <extracomment>Button label (cancel network operation)</extracomment>
-        <translation type="unfinished">Abbruch</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message id="text-fetch_contacting">
         <source>Contacting %1...</source>
@@ -262,7 +262,7 @@
     <message id="text-network_error">
         <source>Network error</source>
         <extracomment>Status label</extracomment>
-        <translation type="unfinished">Problem mit Netzwerk</translation>
+        <translation>Netzwerkproblem</translation>
     </message>
     <message id="contact-menu-save">
         <source>Save</source>
@@ -282,17 +282,17 @@
     <message id="hint-toggle-flash">
         <source>Toggle flashlight</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Taschenlampe</translation>
+        <translation>Taschenlampe umschalten</translation>
     </message>
     <message id="hint-aspect-ratio">
         <source>Switch the aspect ratio between 9:16 and 3:4</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Seitenverhältnis</translation>
+        <translation>Seitenverhältnis zwischen 9:16 und 3:4 umschalten</translation>
     </message>
     <message id="hint-aspect-ratio_landscape">
         <source>Switch the aspect ratio between 16:9 and 4:3</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Seitenverhältnis</translation>
+        <translation>Seitenverhältnis zwischen 16:9 and 4:3 umschalten</translation>
     </message>
     <message id="hint-copy-clipboard">
         <source>Copy to clipboard</source>
@@ -302,12 +302,12 @@
     <message id="hint-open_contact_card">
         <source>Open contact card</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Kontaktkarte öffnen</translation>
+        <translation>Kontaktkarte öffnen</translation>
     </message>
     <message id="hint-open_link">
         <source>Open link in browser</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Link im Browser öffnen</translation>
+        <translation>Link im Browser öffnen</translation>
     </message>
     <message id="settings-display-section">
         <source>Display</source>
@@ -317,7 +317,7 @@
     <message id="settings-display-orientation-label">
         <source>Orientation</source>
         <extracomment>Combo box label</extracomment>
-        <translation type="unfinished">Orientierung</translation>
+        <translation>Orientierung</translation>
     </message>
     <message id="settings-display-orientation-primary">
         <source>Primary</source>
@@ -337,12 +337,12 @@
     <message id="settings-display-orientation-dynamic">
         <source>Dynamic</source>
         <extracomment>Combo box value for dynamic orientation</extracomment>
-        <translation type="unfinished">Dynamisch</translation>
+        <translation>Dynamisch</translation>
     </message>
     <message id="settings-display-orientation-allow_inverted">
         <source>Allow inverted orientation</source>
         <extracomment>Text switch label</extracomment>
-        <translation type="unfinished">Erlaube umgekehrte Ausrichtung</translation>
+        <translation>Invertierte Ausrichtung erlauben</translation>
     </message>
     <message id="settings-display-orientation-allow_inverted-description">
         <source>If enabled, allows both primary and inverted landscape or portrait orientation.</source>
@@ -352,27 +352,27 @@
     <message id="select-title">
         <source>Select codes</source>
         <extracomment>Selection page title</extracomment>
-        <translation type="unfinished">Codes auswählen</translation>
+        <translation>Codes auswählen</translation>
     </message>
     <message id="select-menu-all">
         <source>Select all</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Alle auswählen</translation>
+        <translation>Alle auswählen</translation>
     </message>
     <message id="select-menu-none">
         <source>Select none</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Nichts auswählen</translation>
+        <translation>Nichts auswählen</translation>
     </message>
     <message id="hint-delete_selected_codes">
         <source>Delete selected codes</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Ausgewählte Codes löschen</translation>
+        <translation>Ausgewählte Codes löschen</translation>
     </message>
     <message id="hint-copy_selected_codes">
         <source>Copy selected codes to clipboard</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Kopieren Sie die ausgewählten Codes in die Zwischenablage</translation>
+        <translation>Ausgewählte Codes in die Zwischenablage kopieren</translation>
     </message>
 </context>
 </TS>
