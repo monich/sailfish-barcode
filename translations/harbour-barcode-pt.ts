@@ -51,7 +51,7 @@
     <message id="about-supported_codes-text">
         <source>Image source: %1</source>
         <extracomment>About page text</extracomment>
-        <translation>Fonte da imagem: %1</translation>
+        <translation>Fonte das imagens: %1</translation>
     </message>
     <message id="scan-action-scan">
         <source>Scan</source>
@@ -127,8 +127,8 @@
         <source>%1 item(s)</source>
         <extracomment>History slider value</extracomment>
         <translation>
-            <numerusform>%1 elemento</numerusform>
-            <numerusform>%1 elementos</numerusform>
+            <numerusform>%1 registo</numerusform>
+            <numerusform>%1 registos</numerusform>
         </translation>
     </message>
     <message id="settings-history-confirm_resize">
@@ -172,7 +172,7 @@
     <message id="history-menu-select">
         <source>Select</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation>Seleccionar</translation>
+        <translation>Selecionar</translation>
     </message>
     <message id="history-menu-delete">
         <source>Delete</source>
@@ -227,7 +227,7 @@
     <message id="text-contact_card">
         <source>Contact card</source>
         <extracomment>Button text</extracomment>
-        <translation>Contacto</translation>
+        <translation>Cartão de contacto</translation>
     </message>
     <message id="text-add_to_calendar">
         <source>Add to calendar</source>
@@ -302,7 +302,7 @@
     <message id="hint-open_contact_card">
         <source>Open contact card</source>
         <extracomment>Hint label</extracomment>
-        <translation>Abrir contacto</translation>
+        <translation>Abrir cartão de contacto</translation>
     </message>
     <message id="hint-open_link">
         <source>Open link in browser</source>
