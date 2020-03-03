@@ -56,7 +56,7 @@ function isVevent(text) {
 
 function isLink(text) {
     if (text !== "") {
-        var urls = text.match(/^(http[s]*:\/\/.{3,500}|www\..{3,500}|sms:.*)$/)
+        var urls = text.match(/^([a-z]{3,10}:\/\/.{3,500}|www\..{3,500}|sms:.*)$/)
         return urls && urls.length > 0
     }
     return false
