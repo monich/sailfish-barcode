@@ -31,7 +31,7 @@ import "../js/Utils.js" as Utils
 ListItem {
     id: item
 
-    highlighted: down || selected
+    highlighted: down || selected || menuOpen
     property string value
     property string timestamp
     property string format
