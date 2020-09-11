@@ -86,6 +86,7 @@ SOURCES += \
     $${HARBOUR_LIB_SRC}/HarbourPluginLoader.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSelectionListModel.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSingleImageProvider.cpp \
+    $${HARBOUR_LIB_SRC}/HarbourSystem.cpp \
     $${HARBOUR_LIB_SRC}/HarbourTask.cpp \
     $${HARBOUR_LIB_SRC}/HarbourTemporaryFile.cpp \
     $${HARBOUR_LIB_SRC}/HarbourTheme.cpp
@@ -100,6 +101,7 @@ HEADERS += \
     $${HARBOUR_LIB_INCLUDE}/HarbourTask.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourTemporaryFile.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourTheme.h \
+    $${HARBOUR_LIB_SRC}/HarbourSystem.h \
     $${HARBOUR_LIB_SRC}/HarbourMce.h
 
 HARBOUR_QML_COMPONENTS = \
@@ -424,4 +426,3 @@ for(l, LANGUAGES) {
 qm.path = $$TRANSLATIONS_PATH
 qm.CONFIG += no_check_exist
 INSTALLS += qm
-
