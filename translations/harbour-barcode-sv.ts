@@ -88,6 +88,11 @@
         <extracomment>Switch button text</extracomment>
         <translation>Detektionsljud</translation>
     </message>
+    <message id="settings-vibration-label">
+        <source>Vibrate on detection</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">Vibrera vid upptäckt</translation>
+    </message>
     <message id="settings-autoscan-label">
         <source>Scan on start</source>
         <extracomment>Switch button text</extracomment>

@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018-2019 Slava Monich
+Copyright (c) 2018-2020 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,12 +29,14 @@ THE SOFTWARE.
 #define DCONF_PATH                      "/apps/harbour-barcode/"
 
 // New keys (the ones that have only been in dconf)
+#define KEY_BUZZ_ON_SCAN               "buzz_on_scan"
 #define KEY_SAVE_IMAGES                "save_images"
 #define KEY_WIDE_MODE                  "wide_mode"
 #define KEY_ORIENTATION                "orientation"
 #define KEY_MAX_DIGITAL_ZOOM           "max_digital_zoom"
 
 #define DEFAULT_SOUND                   false
+#define DEFAULT_BUZZ_ON_SCAN            true
 #define DEFAULT_DIGITAL_ZOOM            3
 #define DEFAULT_MAX_DIGITAL_ZOOM        10
 #define DEFAULT_SCAN_DURATION           20
@@ -58,6 +60,7 @@ public:
 
 public:
     MGConfItem* iSound;
+    MGConfItem* iBuzzOnScan;
     MGConfItem* iDigitalZoom;
     MGConfItem* iMaxDigitalZoom;
     MGConfItem* iScanDuration;
@@ -74,6 +77,7 @@ const QString Settings::Private::HINTS_ROOT(DCONF_PATH "hints/");
 
 Settings::Private::Private(Settings* aSettings) :
     iSound(new MGConfItem(DCONF_PATH KEY_SOUND, aSettings)),
+    iBuzzOnScan(new MGConfItem(DCONF_PATH KEY_BUZZ_ON_SCAN, aSettings)),
     iDigitalZoom(new MGConfItem(DCONF_PATH KEY_DIGITAL_ZOOM, aSettings)),
     iMaxDigitalZoom(new MGConfItem(DCONF_PATH KEY_MAX_DIGITAL_ZOOM, aSettings)),
     iScanDuration(new MGConfItem(DCONF_PATH KEY_SCAN_DURATION, aSettings)),
@@ -86,6 +90,7 @@ Settings::Private::Private(Settings* aSettings) :
     iOrientation(new MGConfItem(DCONF_PATH KEY_ORIENTATION, aSettings))
 {
     connect(iSound, SIGNAL(valueChanged()), aSettings, SIGNAL(soundChanged()));
+    connect(iBuzzOnScan, SIGNAL(valueChanged()), aSettings, SIGNAL(buzzOnScanChanged()));
     connect(iDigitalZoom, SIGNAL(valueChanged()), aSettings, SIGNAL(digitalZoomChanged()));
     connect(iMaxDigitalZoom, SIGNAL(valueChanged()), aSettings, SIGNAL(maxDigitalZoomChanged()));
     connect(iScanDuration, SIGNAL(valueChanged()), aSettings, SIGNAL(scanDurationChanged()));
@@ -126,6 +131,16 @@ bool Settings::sound() const
 void Settings::setSound(bool aValue)
 {
     iPrivate->iSound->set(aValue);
+}
+
+bool Settings::buzzOnScan() const
+{
+    return iPrivate->iBuzzOnScan->value(DEFAULT_BUZZ_ON_SCAN).toBool();
+}
+
+void Settings::setBuzzOnScan(bool aValue)
+{
+    iPrivate->iBuzzOnScan->set(aValue);
 }
 
 int Settings::digitalZoom() const

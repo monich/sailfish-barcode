@@ -84,6 +84,13 @@ Page {
         onOrientationChanged: settingsPage.updateOrientation()
     }
 
+    Loader {
+        id: buzzLoader
+
+        active: AppSettings.buzzOnScan
+        source: "../components/Buzz.qml"
+    }
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: content.height
@@ -180,6 +187,20 @@ Page {
                 text: qsTrId("settings-sound-label")
                 icon.source: "image://theme/icon-m-speaker"
                 onCheckedChanged: AppSettings.sound = checked
+            }
+
+            IconTextSwitch {
+                checked: AppSettings.buzzOnScan
+                //: Switch button text
+                //% "Vibrate on detection"
+                text: qsTrId("settings-vibration-label")
+                icon.source: "image://theme/icon-m-vibration"
+                onCheckedChanged: {
+                    AppSettings.buzzOnScan = checked
+                    if (buzzLoader.item) {
+                        buzzLoader.item.start()
+                    }
+                }
             }
 
             IconTextSwitch {

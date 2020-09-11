@@ -88,6 +88,11 @@
         <extracomment>Switch button text</extracomment>
         <translation>Som ao detetar um código</translation>
     </message>
+    <message id="settings-vibration-label">
+        <source>Vibrate on detection</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">Vibrar na detecção de código</translation>
+    </message>
     <message id="settings-autoscan-label">
         <source>Scan on start</source>
         <extracomment>Switch button text</extracomment>

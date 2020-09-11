@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018-2019 Slava Monich
+Copyright (c) 2018-2020 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -43,6 +43,7 @@ THE SOFTWARE.
 class Settings : public QObject {
     Q_OBJECT
     Q_PROPERTY(bool sound READ sound WRITE setSound NOTIFY soundChanged)
+    Q_PROPERTY(bool buzzOnScan READ buzzOnScan WRITE setBuzzOnScan NOTIFY buzzOnScanChanged)
     Q_PROPERTY(int digitalZoom READ digitalZoom WRITE setDigitalZoom NOTIFY digitalZoomChanged)
     Q_PROPERTY(int maxDigitalZoom READ maxDigitalZoom WRITE setMaxDigitalZoom NOTIFY maxDigitalZoomChanged)
     Q_PROPERTY(int scanDuration READ scanDuration WRITE setScanDuration NOTIFY scanDurationChanged)
@@ -78,6 +79,9 @@ public:
     bool sound() const;
     void setSound(bool aValue);
 
+    bool buzzOnScan() const;
+    void setBuzzOnScan(bool aValue);
+
     int digitalZoom() const;
     void setDigitalZoom(int aValue);
 
@@ -110,6 +114,7 @@ public:
 
 Q_SIGNALS:
     void soundChanged();
+    void buzzOnScanChanged();
     void digitalZoomChanged();
     void maxDigitalZoomChanged();
     void scanDurationChanged();

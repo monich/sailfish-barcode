@@ -88,6 +88,11 @@
         <extracomment>Switch button text</extracomment>
         <translation>Dźwięk wykrywania</translation>
     </message>
+    <message id="settings-vibration-label">
+        <source>Vibrate on detection</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">Wibracje podczas rozpoznawania</translation>
+    </message>
     <message id="settings-autoscan-label">
         <source>Scan on start</source>
         <extracomment>Switch button text</extracomment>

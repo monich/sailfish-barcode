@@ -193,6 +193,13 @@ Page {
         }
     }
 
+    Loader {
+        id: buzzLoader
+
+        active: AppSettings.buzzOnScan
+        source: "../components/Buzz.qml"
+    }
+
     BarcodeScanner {
         id: scanner
 
@@ -212,6 +219,9 @@ Page {
                     scanPage.showMarker = true
                     resultViewTimer.interval = resultViewDuration * 1000
                     resultViewTimer.restart()
+                }
+                if (buzzLoader.item) {
+                    buzzLoader.item.start()
                 }
                 if (AppSettings.sound && viewFinder) {
                     viewFinder.playBeep()

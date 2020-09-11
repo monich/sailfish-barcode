@@ -86,7 +86,12 @@
     <message id="settings-sound-label">
         <source>Detection sound</source>
         <extracomment>Switch button text</extracomment>
-        <translation>Lyd ved registering</translation>
+        <translation type="unfinished">Detektionlyd</translation>
+    </message>
+    <message id="settings-vibration-label">
+        <source>Vibrate on detection</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">Vibrer ved detektion</translation>
     </message>
     <message id="settings-autoscan-label">
         <source>Scan on start</source>

@@ -83,6 +83,11 @@
         <extracomment>Switch button text</extracomment>
         <translation>掃描聲</translation>
     </message>
+    <message id="settings-vibration-label">
+        <source>Vibrate on detection</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">檢測時振動</translation>
+    </message>
     <message id="settings-autoscan-label">
         <source>Scan on start</source>
         <extracomment>Switch button text</extracomment>
