@@ -92,7 +92,7 @@ Page {
         if (cameraActive) {
             startScan()
         } else {
-            autoScan = true // start scanning when camera becomes empty
+            autoScan = true // start scanning when camera becomes active
         }
     }
 
@@ -314,6 +314,33 @@ Page {
             onYChanged: viewFinderContainer.updateViewFinderPosition()
             onWidthChanged: viewFinderContainer.updateViewFinderPosition()
             onHeightChanged: viewFinderContainer.updateViewFinderPosition()
+
+            Rectangle {
+                readonly property int thickness: Theme.paddingSmall
+                anchors {
+                    fill: viewFinderContainer
+                    margins: -thickness
+                }
+                border {
+                    color: Theme.highlightColor
+                    width: thickness
+                }
+                radius: thickness
+                smooth: true
+                color: "transparent"
+                visible: opacity > 0
+                opacity: scanner.idle ? 0 : 1
+                Behavior on opacity {
+                    enabled: scanner.idle
+                    FadeAnimation { duration: 500 }
+                }
+                SequentialAnimation on opacity {
+                    running: !scanner.idle
+                    loops: Animation.Infinite
+                    PropertyAnimation { to: 1.0; duration: 500 }
+                    PropertyAnimation { to: 0.01; duration: 500 }
+                }
+            }
 
             Rectangle {
                 id: viewFinderContainer
