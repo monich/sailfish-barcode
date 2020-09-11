@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2019 Slava Monich
+Copyright (c) 2018-2020 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -91,12 +91,11 @@ QImage HistoryImageProvider::requestImage(const QString& aId, QSize* aSize, cons
     if (aId.startsWith(Private::SAVED)) {
         // "saved/" prefix is there
         QString recId;
-        bool portrait;
+        bool portrait = true;
         const QString imageId(aId.mid(Private::SAVED.length()));
         if (imageId.startsWith(Private::PORTRAIT)) {
             // "saved/portrait/" prefix
             recId = imageId.mid(Private::PORTRAIT.length());
-            portrait = true;
         } else if (imageId.startsWith(Private::LANDSCAPE)) {
             // "saved/landscape/id" prefix
             recId = imageId.mid(Private::LANDSCAPE.length());
