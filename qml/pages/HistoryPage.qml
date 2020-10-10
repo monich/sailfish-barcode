@@ -99,7 +99,7 @@ Page {
             timestamp: model.timestamp
             format: model.format
             enabled: !model.selected || !remorsePopup.visible
-            opacity: enabled ? 1 : HarbourTheme.opacityFaint
+            opacity: enabled ? 1 : 0.2
 
             readonly property int modelIndex: index
 

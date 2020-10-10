@@ -39,7 +39,6 @@ THE SOFTWARE.
 #include "HarbourSelectionListModel.h"
 #include "HarbourSingleImageProvider.h"
 #include "HarbourTemporaryFile.h"
-#include "HarbourTheme.h"
 
 #include "BarcodeUtils.h"
 #include "ContactsPlugin.h"
@@ -69,7 +68,6 @@ static void register_types(QQmlEngine* engine, const char* uri, int v1, int v2)
     qmlRegisterUncreatableType<Settings>(uri, v1, v2, "Settings", "Use AppSettings context property");
     qmlRegisterSingletonType<HistoryModel>(uri, v1, v2, "HistoryModel", HistoryModel::createSingleton);
     qmlRegisterSingletonType<BarcodeUtils>(uri, v1, v2, "BarcodeUtils", BarcodeUtils::createSingleton);
-    qmlRegisterSingletonType<HarbourTheme>(uri, v1, v2, "HarbourTheme", HarbourTheme::createSingleton);
 }
 
 static QSize toSize(QVariant var)
