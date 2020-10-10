@@ -98,10 +98,10 @@ HEADERS += \
     $${HARBOUR_LIB_INCLUDE}/HarbourPluginLoader.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSelectionListModel.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSingleImageProvider.h \
+    $${HARBOUR_LIB_INCLUDE}/HarbourSystem.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourTask.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourTemporaryFile.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourTheme.h \
-    $${HARBOUR_LIB_SRC}/HarbourSystem.h \
     $${HARBOUR_LIB_SRC}/HarbourMce.h
 
 HARBOUR_QML_COMPONENTS = \
