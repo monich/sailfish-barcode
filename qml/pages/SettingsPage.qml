@@ -107,142 +107,171 @@ Page {
             //% "Display"
             SectionHeader { text: qsTrId("settings-display-section") }
 
-            ComboBox {
-                id: orientationComboBox
+            Grid {
+                width: parent.width
+                columns: isLandscape ? 2 : 1
 
-                //: Combo box label
-                //% "Orientation"
-                label: qsTrId("settings-display-orientation-label")
-                value: currentItem ? currentItem.text : ""
-                menu: ContextMenu {
-                    id: orientationMenu
+                readonly property real columnWidth: width/columns
 
-                    readonly property int defaultIndex: 0
-                    MenuItem {
-                        //: Combo box value for primary orientation
-                        //% "Primary"
-                        text: qsTrId("settings-display-orientation-primary")
-                        readonly property int index: 0
-                        readonly property int primary: Settings.OrientationPrimary
-                        readonly property int invertable: primary
-                        readonly property bool canInvert: false
-                        readonly property bool isMenuItem: true
-                    }
-                    MenuItem {
-                        //: Combo box value for portrait orientation
-                        //% "Portrait"
-                        text: qsTrId("settings-display-orientation-portrait")
-                        readonly property int index: 1
-                        readonly property int primary: Settings.OrientationPortrait
-                        readonly property int invertable: Settings.OrientationPortraitAny
-                        readonly property bool canInvert: true
-                        readonly property bool isMenuItem: true
-                    }
-                    MenuItem {
-                        //: Combo box value for landscape orientation
-                        //% "Landscape"
-                        text: qsTrId("settings-display-orientation-landscape")
-                        readonly property int index: 2
-                        readonly property int primary: Settings.OrientationLandscape
-                        readonly property int invertable: Settings.OrientationLandscapeAny
-                        readonly property bool canInvert: true
-                        readonly property bool isMenuItem: true
-                    }
-                    MenuItem {
-                        //: Combo box value for dynamic orientation
-                        //% "Dynamic"
-                        text: qsTrId("settings-display-orientation-dynamic")
-                        readonly property int index: 3
-                        readonly property int primary: Settings.OrientationAny
-                        readonly property int invertable: primary
-                        readonly property bool canInvert: true
-                        readonly property bool isMenuItem: true
-                    }
-                    onActivated: {
-                        orientationComboBox.currentIndex = index
-                        settingsPage.applyOrientation()
+                ComboBox {
+                    id: orientationComboBox
+
+                    //: Combo box label
+                    //% "Orientation"
+                    label: qsTrId("settings-display-orientation-label")
+                    width: parent.columnWidth
+                    value: currentItem ? currentItem.text : ""
+                    menu: ContextMenu {
+                        id: orientationMenu
+
+                        readonly property int defaultIndex: 0
+                        MenuItem {
+                            //: Combo box value for primary orientation
+                            //% "Primary"
+                            text: qsTrId("settings-display-orientation-primary")
+                            readonly property int index: 0
+                            readonly property int primary: Settings.OrientationPrimary
+                            readonly property int invertable: primary
+                            readonly property bool canInvert: false
+                            readonly property bool isMenuItem: true
+                        }
+                        MenuItem {
+                            //: Combo box value for portrait orientation
+                            //% "Portrait"
+                            text: qsTrId("settings-display-orientation-portrait")
+                            readonly property int index: 1
+                            readonly property int primary: Settings.OrientationPortrait
+                            readonly property int invertable: Settings.OrientationPortraitAny
+                            readonly property bool canInvert: true
+                            readonly property bool isMenuItem: true
+                        }
+                        MenuItem {
+                            //: Combo box value for landscape orientation
+                            //% "Landscape"
+                            text: qsTrId("settings-display-orientation-landscape")
+                            readonly property int index: 2
+                            readonly property int primary: Settings.OrientationLandscape
+                            readonly property int invertable: Settings.OrientationLandscapeAny
+                            readonly property bool canInvert: true
+                            readonly property bool isMenuItem: true
+                        }
+                        MenuItem {
+                            //: Combo box value for dynamic orientation
+                            //% "Dynamic"
+                            text: qsTrId("settings-display-orientation-dynamic")
+                            readonly property int index: 3
+                            readonly property int primary: Settings.OrientationAny
+                            readonly property int invertable: primary
+                            readonly property bool canInvert: true
+                            readonly property bool isMenuItem: true
+                        }
+                        onActivated: {
+                            orientationComboBox.currentIndex = index
+                            settingsPage.applyOrientation()
+                        }
                     }
                 }
-            }
 
-            TextSwitch {
-                id: orientationInvertSwitch
-                //: Text switch label
-                //% "Allow inverted orientation"
-                text: qsTrId("settings-display-orientation-allow_inverted")
-                //: Text switch description
-                //% "If enabled, allows both primary and inverted landscape or portrait orientation."
-                description: qsTrId("settings-display-orientation-allow_inverted-description")
-                onClicked: settingsPage.applyOrientation()
+                TextSwitch {
+                    id: orientationInvertSwitch
+
+                    //: Text switch label
+                    //% "Allow inverted orientation"
+                    text: qsTrId("settings-display-orientation-allow_inverted")
+                    //: Text switch description
+                    //% "If enabled, allows both primary and inverted landscape or portrait orientation."
+                    description: qsTrId("settings-display-orientation-allow_inverted-description")
+                    width: parent.columnWidth
+                    visible: opacity > 0
+                    opacity: orientationMenu.active ? 0.0 : 1.0
+                    onClicked: settingsPage.applyOrientation()
+
+                    Behavior on opacity { FadeAnimation { } }
+                }
             }
 
             //: Section header
             //% "Scan"
             SectionHeader { text: qsTrId("settings-scan-section") }
 
-            IconTextSwitch {
-                checked: AppSettings.sound
-                //: Switch button text
-                //% "Detection sound"
-                text: qsTrId("settings-sound-label")
-                icon.source: "image://theme/icon-m-speaker"
-                onCheckedChanged: AppSettings.sound = checked
-            }
+            Grid {
+                width: parent.width
+                columns: isLandscape ? 2 : 1
 
-            IconTextSwitch {
-                checked: AppSettings.buzzOnScan
-                //: Switch button text
-                //% "Vibrate on detection"
-                text: qsTrId("settings-vibration-label")
-                icon.source: "image://theme/icon-m-vibration"
-                onCheckedChanged: {
-                    AppSettings.buzzOnScan = checked
-                    if (buzzLoader.item) {
-                        buzzLoader.item.start()
-                    }
+                readonly property real columnWidth: width/columns
+
+                IconTextSwitch {
+                    checked: AppSettings.sound
+                    //: Switch button text
+                    //% "Detection sound"
+                    text: qsTrId("settings-sound-label")
+                    icon.source: isLandscape ? "" : "image://theme/icon-m-speaker"
+                    width: parent.columnWidth
+                    automaticCheck: false
+                    onClicked: AppSettings.sound = !checked
                 }
-            }
 
-            IconTextSwitch {
-                checked: AppSettings.scanOnStart
-                //: Switch button text
-                //% "Scan on start"
-                text: qsTrId("settings-autoscan-label")
-                icon.source: "image://theme/icon-m-play"
-                onCheckedChanged: AppSettings.scanOnStart = checked
-            }
-
-            IconTextSwitch {
-                id: saveImagesSwitch
-                checked: AppSettings.saveImages
-                //: Switch button text
-                //% "Save barcode images"
-                text: qsTrId("settings-save_images-label")
-                icon.source: "image://theme/icon-m-camera"
-                automaticCheck: false
-                busy: picturesConfirmButtons.visible
-                onClicked: {
-                    if (checked) {
-                        if (picturesConfirmButtons.visible) {
-                            // Cancel the previous click
-                            picturesConfirmButtons.visible = false
-                            description = ""
-                        } else if (HistoryModel.hasImages) {
-                            //: Switch button description (explanation)
-                            //% "This will delete all previously saved barcode images."
-                            description = qsTrId("settings-save_images-description")
-                            picturesConfirmButtons.visible = true
-                        } else {
-                            // No need to confirm
-                            AppSettings.saveImages = false
+                IconTextSwitch {
+                    checked: AppSettings.buzzOnScan
+                    //: Switch button text
+                    //% "Vibrate on detection"
+                    text: qsTrId("settings-vibration-label")
+                    icon.source: isLandscape ? "" : "image://theme/icon-m-vibration"
+                    width: parent.columnWidth
+                    automaticCheck: false
+                    onClicked: {
+                        AppSettings.buzzOnScan = !checked
+                        if (buzzLoader.item) {
+                            buzzLoader.item.start()
                         }
-                    } else {
-                        AppSettings.saveImages = true
                     }
                 }
-                onCheckedChanged: {
-                    picturesConfirmButtons.visible = false
-                    description = ""
+
+                IconTextSwitch {
+                    checked: AppSettings.scanOnStart
+                    //: Switch button text
+                    //% "Scan on start"
+                    text: qsTrId("settings-autoscan-label")
+                    icon.source: isLandscape ? "" : "image://theme/icon-m-play"
+                    width: parent.columnWidth
+                    automaticCheck: false
+                    onClicked: AppSettings.scanOnStart = !checked
+                }
+
+                IconTextSwitch {
+                    id: saveImagesSwitch
+
+                    checked: AppSettings.saveImages
+                    //: Switch button text
+                    //% "Save barcode images"
+                    text: qsTrId("settings-save_images-label")
+                    icon.source: isLandscape ? "" : "image://theme/icon-m-camera"
+                    width: parent.columnWidth
+                    automaticCheck: false
+                    busy: picturesConfirmButtons.visible
+                    onClicked: {
+                        if (checked) {
+                            if (picturesConfirmButtons.visible) {
+                                // Cancel the previous click
+                                picturesConfirmButtons.visible = false
+                                description = ""
+                            } else if (HistoryModel.hasImages) {
+                                //: Switch button description (explanation)
+                                //% "This will delete all previously saved barcode images."
+                                description = qsTrId("settings-save_images-description")
+                                picturesConfirmButtons.visible = true
+                            } else {
+                                // No need to confirm
+                                AppSettings.saveImages = false
+                            }
+                        } else {
+                            AppSettings.saveImages = true
+                        }
+                    }
+                    onCheckedChanged: {
+                        picturesConfirmButtons.visible = false
+                        description = ""
+                    }
                 }
             }
 
