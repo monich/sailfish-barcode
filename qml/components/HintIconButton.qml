@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018 Slava Monich
+Copyright (c) 2018-2020 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,13 +25,50 @@ THE SOFTWARE.
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-IconButton {
+import "../harbour"
+
+MouseArea {
+    property alias icon: image
+    property bool down: pressed && containsMouse
+    property bool highlighted: down
     property string hint
+
     signal showHint(var text)
     signal hideHint()
 
+    width: Theme.itemSizeSmall
+    height: Theme.itemSizeSmall
+
+    readonly property bool _showPress: highlighted || pressTimer.running
+
+    onPressedChanged: {
+        if (pressed) {
+            pressTimer.start()
+        }
+    }
+
     onClicked: hideHint()
+
     onReleased: hideHint()
-    onCanceled: hideHint()
+
     onPressAndHold: if (hint !== "") showHint(hint)
+
+    onCanceled: {
+        pressTimer.stop()
+        hideHint()
+    }
+
+    Timer {
+        id: pressTimer
+
+        interval: 50
+    }
+
+    HarbourHighlightIcon {
+        id: image
+
+        highlightColor: _showPress ? Theme.highlightColor : Theme.primaryColor
+        anchors.centerIn: parent
+        opacity: parent.enabled ? 1.0 : 0.4
+    }
 }

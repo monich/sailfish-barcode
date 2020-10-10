@@ -44,8 +44,6 @@ Page {
     property int scanTimeout: 60
 
     readonly property bool cameraActive: viewFinder && viewFinder.cameraActive
-    readonly property string imageProvider: HarbourTheme.darkOnLight ? HarbourImageProviderDarkOnLight : HarbourImageProviderDefault
-    readonly property string iconSourcePrefix: "image://" + imageProvider + "/"
     readonly property bool landscapeLayout: isLandscape && Screen.sizeCategory < Screen.ExtraLarge
 
     function createScanner() {
@@ -456,8 +454,8 @@ Page {
             HintIconButton {
                 id: ratioButton
 
-                readonly property string icon_16_9: iconSourcePrefix + Qt.resolvedUrl("img/resolution_16_9.svg")
-                readonly property string icon_4_3: iconSourcePrefix +  Qt.resolvedUrl("img/resolution_4_3.svg")
+                readonly property url icon_16_9: Qt.resolvedUrl("img/resolution_16_9.svg")
+                readonly property url icon_4_3: Qt.resolvedUrl("img/resolution_4_3.svg")
                 anchors {
                     right: parent.right
                     verticalCenter: parent.verticalCenter
@@ -597,9 +595,9 @@ Page {
                         id: linkButton
                         anchors.verticalCenter: parent.verticalCenter
                         icon {
-                            source: iconSourcePrefix + (clickableResult.isLink ?
+                            source: clickableResult.isLink ?
                                 Qt.resolvedUrl("img/open_link.svg") :
-                                Qt.resolvedUrl("img/open_url.svg"))
+                                Qt.resolvedUrl("img/open_url.svg")
                             sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
                         }
                         visible: !clickableResult.haveContact && clickableResult.isUrl
@@ -628,7 +626,7 @@ Page {
                         id: vcardButton
                         anchors.verticalCenter: parent.verticalCenter
                         icon {
-                            source: iconSourcePrefix + Qt.resolvedUrl("img/open_vcard.svg")
+                            source: "img/open_vcard.svg"
                             sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
                         }
                         visible: clickableResult.haveContact && !clickableResult.isLink

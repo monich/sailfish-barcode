@@ -36,7 +36,6 @@ THE SOFTWARE.
 
 #include "HarbourDebug.h"
 #include "HarbourDisplayBlanking.h"
-#include "HarbourImageProvider.h"
 #include "HarbourSelectionListModel.h"
 #include "HarbourSingleImageProvider.h"
 #include "HarbourTemporaryFile.h"
@@ -66,10 +65,11 @@ static void register_types(QQmlEngine* engine, const char* uri, int v1, int v2)
     qmlRegisterType<HarbourTemporaryFile>(uri, v1, v2, "TemporaryFile");
     qmlRegisterType<BarcodeScanner>(uri, v1, v2, "BarcodeScanner");
     qmlRegisterType<OfdReceiptFetcher>(uri, v1, v2, "ReceiptFetcher");
-    qmlRegisterType<Settings>(uri, v1, v2, "Settings");
     qmlRegisterType<MeCardConverter>(uri, v1, v2, "MeCardConverter");
+    qmlRegisterUncreatableType<Settings>(uri, v1, v2, "Settings", "Use AppSettings context property");
     qmlRegisterSingletonType<HistoryModel>(uri, v1, v2, "HistoryModel", HistoryModel::createSingleton);
     qmlRegisterSingletonType<BarcodeUtils>(uri, v1, v2, "BarcodeUtils", BarcodeUtils::createSingleton);
+    qmlRegisterSingletonType<HarbourTheme>(uri, v1, v2, "HarbourTheme", HarbourTheme::createSingleton);
 }
 
 static QSize toSize(QVariant var)
@@ -141,15 +141,9 @@ int main(int argc, char *argv[])
 
     QScopedPointer<QQuickView> view(SailfishApp::createView());
 
-    // Register our image provider (two sets - one for light-on-dark and
-    // one for dark-on-light, doesn't really matter which one)
-    QString providerDefault("harbour");
-    QString providerDarkOnLight("harbour-dark");
     QQmlEngine* engine = view->engine();
     register_types(engine, "harbour.barcode", 1, 0);
     engine->addImageProvider("scanner", new HistoryImageProvider);
-    engine->addImageProvider(providerDefault, new HarbourImageProvider);
-    engine->addImageProvider(providerDarkOnLight, new HarbourImageProvider);
 
     Settings* settings = new Settings(app.data());
     Database::initialize(engine, settings);
@@ -158,9 +152,6 @@ int main(int argc, char *argv[])
     root->setContextProperty("AppVersion", APP_VERSION);
     root->setContextProperty("AppSettings", settings);
     root->setContextProperty("TorchSupported", torchSupported);
-    root->setContextProperty("HarbourTheme", new HarbourTheme(app.data()));
-    root->setContextProperty("HarbourImageProviderDefault", providerDefault);
-    root->setContextProperty("HarbourImageProviderDarkOnLight", providerDarkOnLight);
     if (res_4_3.isValid()) {
         root->setContextProperty("ViewfinderResolution_4_3", res_4_3);
     }

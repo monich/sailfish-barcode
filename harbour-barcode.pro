@@ -81,7 +81,6 @@ HARBOUR_LIB_QML = $${HARBOUR_LIB_DIR}/qml
 
 SOURCES += \
     $${HARBOUR_LIB_SRC}/HarbourDisplayBlanking.cpp \
-    $${HARBOUR_LIB_SRC}/HarbourImageProvider.cpp \
     $${HARBOUR_LIB_SRC}/HarbourMce.cpp \
     $${HARBOUR_LIB_SRC}/HarbourPluginLoader.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSelectionListModel.cpp \
@@ -94,7 +93,6 @@ SOURCES += \
 HEADERS += \
     $${HARBOUR_LIB_INCLUDE}/HarbourDebug.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourDisplayBlanking.h \
-    $${HARBOUR_LIB_INCLUDE}/HarbourImageProvider.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourPluginLoader.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSelectionListModel.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSingleImageProvider.h \
@@ -107,6 +105,7 @@ HEADERS += \
 HARBOUR_QML_COMPONENTS = \
     $${HARBOUR_LIB_QML}/HarbourBadge.qml \
     $${HARBOUR_LIB_QML}/HarbourFitLabel.qml \
+    $${HARBOUR_LIB_QML}/HarbourHighlightIcon.qml \
     $${HARBOUR_LIB_QML}/HarbourHorizontalSwipeHint.qml
 
 OTHER_FILES += $${HARBOUR_QML_COMPONENTS}

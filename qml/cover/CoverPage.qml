@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018 Slava Monich
+Copyright (c) 2018-2020 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,8 @@ THE SOFTWARE.
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../harbour"
+
 CoverBackground {
     id: cover
     readonly property real actionAreaHeight: Theme.itemSizeSmall
@@ -36,9 +38,10 @@ CoverBackground {
         spacing: Theme.paddingLarge
         width: parent.width
 
-        Image {
+        HarbourHighlightIcon {
             readonly property int size: Math.floor(cover.width * 0.56) & (-2)
-            source: HarbourTheme.darkOnLight ? Qt.resolvedUrl("cover-image-dark.svg") :  Qt.resolvedUrl("cover-image.svg")
+            highlightColor: Theme.primaryColor
+            source: "cover-image.svg"
             fillMode: Image.PreserveAspectFit
             anchors.horizontalCenter: parent.horizontalCenter
             asynchronous: true
