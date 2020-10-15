@@ -549,7 +549,7 @@ QVariantMap HistoryModel::get(int aRow)
 
 QString HistoryModel::getValue(int aRow)
 {
-    return iPrivate->valueAt(aRow, Private::FIELD_VALUE).toString();
+    return data(index(aRow, Private::FIELD_VALUE)).toString();
 }
 
 QString HistoryModel::insert(QImage aImage, QString aText, QString aFormat)
