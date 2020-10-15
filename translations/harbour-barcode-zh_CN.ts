@@ -91,7 +91,7 @@
     <message id="settings-vibration-label">
         <source>Vibrate on detection</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished">检测时振动</translation>
+        <translation>检测时振动</translation>
     </message>
     <message id="settings-autoscan-label">
         <source>Scan on start</source>
@@ -170,12 +170,12 @@
     <message id="history-menu-clear">
         <source>Clear</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">删除所有</translation>
+        <translation>删除所有</translation>
     </message>
     <message id="history-menu-select">
         <source>Select</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">选择</translation>
+        <translation>选择</translation>
     </message>
     <message id="history-menu-delete">
         <source>Delete</source>
@@ -195,27 +195,27 @@
     <message id="history-remorse-deleting_all">
         <source>Deleting all codes</source>
         <extracomment>Remorse popup text</extracomment>
-        <translation type="unfinished">正在删除所有</translation>
+        <translation>正在删除所有</translation>
     </message>
     <message id="history-remorse-deleting_selected_code">
         <source>Deleting selected code</source>
         <extracomment>Remorse popup text (single code selected)</extracomment>
-        <translation type="unfinished">删除所选代码</translation>
+        <translation>删除所选条码</translation>
     </message>
     <message id="history-remorse-deleting_selected_codes">
         <source>Deleting selected codes</source>
         <extracomment>Remorse popup text (multiple codes selected)</extracomment>
-        <translation type="unfinished">删除所选代码</translation>
+        <translation>删除所选条码</translation>
     </message>
     <message id="history-code_copied-notification">
         <source>Selected code copied to clipboard</source>
         <extracomment>Notification text (single code selected)</extracomment>
-        <translation type="unfinished">所选代码已复制到剪贴板</translation>
+        <translation>所选条码已复制到剪贴板</translation>
     </message>
     <message id="history-codes_copied-notification">
         <source>Selected codes copied to clipboard</source>
         <extracomment>Notification text (multiple codes selected)</extracomment>
-        <translation type="unfinished">所选代码已复制到剪贴板</translation>
+        <translation>所选条码已复制到剪贴板</translation>
     </message>
     <message id="history-empty">
         <source>History is empty</source>
@@ -230,7 +230,7 @@
     <message id="text-open_url">
         <source>Open URL</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished">打开网址</translation>
+        <translation>打开链接</translation>
     </message>
     <message id="text-contact_card">
         <source>Contact card</source>
@@ -240,12 +240,12 @@
     <message id="text-add_to_calendar">
         <source>Add to calendar</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished">添加到日历</translation>
+        <translation>添加到日历</translation>
     </message>
     <message id="text-fetch_receipt">
         <source>Fetch receipt</source>
         <extracomment>Button text</extracomment>
-        <translation>按键文本</translation>
+        <translation>获取凭据</translation>
     </message>
     <message id="text-fetching_receipt">
         <source>Fetching...</source>
@@ -320,7 +320,7 @@
     <message id="hint-open_url">
         <source>Open URL in default application</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">在默认应用程序中打开URL</translation>
+        <translation>用默认软件打开</translation>
     </message>
     <message id="settings-display-section">
         <source>Display</source>
@@ -365,32 +365,32 @@
     <message id="select-title">
         <source>Select codes</source>
         <extracomment>Selection page title</extracomment>
-        <translation type="unfinished">选择代码</translation>
+        <translation>选择条码</translation>
     </message>
     <message id="select-menu-all">
         <source>Select all</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">全选</translation>
+        <translation>全选</translation>
     </message>
     <message id="select-menu-none">
         <source>Select none</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">选择无</translation>
+        <translation>全不选</translation>
     </message>
     <message id="hint-delete_selected_codes">
         <source>Delete selected codes</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">删除所选代码</translation>
+        <translation>删除所选代码</translation>
     </message>
     <message id="hint-copy_selected_codes">
         <source>Copy selected codes to clipboard</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">将所选代码复制到剪贴板</translation>
+        <translation>将所选代码复制到剪贴板</translation>
     </message>
     <message id="hint-history_swipe">
         <source>Swipe to see other history entries</source>
         <extracomment>Hint text for a swipe (either left or right)</extracomment>
-        <translation type="unfinished">滑动即可查看其他历史记录条目</translation>
+        <translation>滑动即可查看其他历史记录条目</translation>
     </message>
 </context>
 </TS>
