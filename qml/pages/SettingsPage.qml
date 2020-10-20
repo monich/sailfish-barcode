@@ -183,7 +183,7 @@ Page {
                     description: qsTrId("settings-display-orientation-allow_inverted-description")
                     width: parent.columnWidth
                     visible: opacity > 0
-                    opacity: orientationMenu.active ? 0.0 : 1.0
+                    opacity: (orientationMenu.active && isLandscape) ? 0.0 : 1.0
                     onClicked: settingsPage.applyOrientation()
 
                     Behavior on opacity { FadeAnimation { } }
