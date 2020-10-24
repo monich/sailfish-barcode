@@ -57,7 +57,7 @@ Item {
 
         x: Math.floor(panel.width/4 - width/2)
         anchors.verticalCenter: parent.verticalCenter
-        icon.source: "image://theme/icon-m-clipboard"
+        icon.source: "img/clipboard.svg"
         onClicked: panel.copySelected()
         onShowHint: panel.showHint(text)
         onHideHint: panel.hideHint()
