@@ -44,6 +44,7 @@ Page {
     property bool autoScan
     property int scanTimeout: 60
 
+    readonly property bool hintActive: hint && hint.visible
     readonly property bool cameraActive: viewFinder && viewFinder.cameraActive
     readonly property bool landscapeLayout: isLandscape && Screen.sizeCategory < Screen.ExtraLarge
 
@@ -276,8 +277,7 @@ Page {
         anchors.fill: parent
 
         PullDownMenu {
-            id: menu
-            enabled: scanner.idle
+            enabled: scanner.idle && !hintActive
             visible: enabled
             onActiveChanged: if (active) statusText.text = ""
 
