@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2019 Slava Monich
+Copyright (c) 2019-2020 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "../components"
+import "../harbour"
 
 Item {
     id: panel
@@ -51,28 +52,22 @@ Item {
         right: parent.right
     }
 
-    HintIconButton {
+    HarbourHintIconButton {
         id: copyButton
 
         x: Math.floor(panel.width/4 - width/2)
-        anchors {
-            top: parent.top
-            topMargin: Theme.paddingMedium
-        }
+        anchors.verticalCenter: parent.verticalCenter
         icon.source: "image://theme/icon-m-clipboard"
         onClicked: panel.copySelected()
         onShowHint: panel.showHint(text)
         onHideHint: panel.hideHint()
     }
 
-    HintIconButton {
+    HarbourHintIconButton {
         id: deleteButton
 
         x: Math.floor(3*panel.width/4 - width/2)
-        anchors {
-            top: parent.top
-            topMargin: Theme.paddingMedium
-        }
+        anchors.verticalCenter: parent.verticalCenter
         icon.source: "image://theme/icon-m-delete"
         onClicked: panel.deleteSelected()
         onShowHint: panel.showHint(text)

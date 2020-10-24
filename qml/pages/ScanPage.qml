@@ -31,6 +31,7 @@ import harbour.barcode 1.0
 
 import "../js/Utils.js" as Utils
 import "../components"
+import "../harbour"
 
 Page {
     id: scanPage
@@ -402,7 +403,7 @@ Page {
                 bottom: actionButton.top
             }
 
-            HintIconButton {
+            HarbourHintIconButton {
                 id: flashButton
 
                 anchors {
@@ -451,7 +452,7 @@ Page {
                 }
             }
 
-            HintIconButton {
+            HarbourHintIconButton {
                 id: ratioButton
 
                 readonly property url icon_16_9: Qt.resolvedUrl("img/resolution_16_9.svg")
@@ -576,7 +577,7 @@ Page {
                     visible: clickableResult.text.length > 0
                     anchors.verticalCenter: parent.verticalCenter
 
-                    HintIconButton {
+                    HarbourHintIconButton {
                         anchors.verticalCenter: parent.verticalCenter
                         icon.source: "image://theme/icon-m-clipboard"
                         visible: !linkButton.visible && !vcardButton.visible
@@ -591,7 +592,7 @@ Page {
                         onHideHint: scanPage.hideHint()
                     }
 
-                    HintIconButton {
+                    HarbourHintIconButton {
                         id: linkButton
                         anchors.verticalCenter: parent.verticalCenter
                         icon {
@@ -622,7 +623,7 @@ Page {
                         }
                     }
 
-                    HintIconButton {
+                    HarbourHintIconButton {
                         id: vcardButton
                         anchors.verticalCenter: parent.verticalCenter
                         icon {
