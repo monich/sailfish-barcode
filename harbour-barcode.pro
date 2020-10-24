@@ -133,7 +133,6 @@ HEADERS += \
 
 SOURCES += \
     src/zxing/zxing/common/BitArray.cpp \
-    src/zxing/zxing/common/BitArrayIO.cpp \
     src/zxing/zxing/common/BitMatrix.cpp \
     src/zxing/zxing/common/BitSource.cpp \
     src/zxing/zxing/common/CharacterSetECI.cpp \

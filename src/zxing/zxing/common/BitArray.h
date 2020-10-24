@@ -22,65 +22,33 @@
 #include <zxing/common/Counted.h>
 #include <zxing/common/IllegalArgumentException.h>
 #include <zxing/common/Array.h>
-#include <vector>
-#include <limits>
-#include <iostream>
 
 namespace zxing {
 
 class BitArray : public Counted {
-public:
-    static const int bitsPerWord = std::numeric_limits<unsigned int>::digits;
-
 private:
     int size;
     ArrayRef<int> bits;
-    static const int logBits = ZX_LOG_DIGITS(bitsPerWord);
-    static const int bitsMask = (1 << logBits) - 1;
+    static const unsigned int logBits = 5;
+    static const unsigned int bitsMask = 0x1F;
 
 public:
     BitArray();
     BitArray(int size);
-    BitArray(std::vector<int> other);
     ~BitArray();
-    int getSize() const;
-    int getSizeInBytes() const;
 
-    bool get(int i) const {
-        return (bits[i / 32] & (1 << (i & 0x1F))) != 0;
-    }
-
-    void set(int i) {
-        bits[i / 32] |= 1 << (i & 0x1F);
-    }
-
-    void flip(int i) {
-        bits[i / 32] ^= 1 << (i & 0x1F);
-      }
+    int getSize() const { return size; }
+    int getSizeInBytes() const { return (size + 7)/8; }
+    bool get(int i) const { return (bits[i / 32] & (1 << (i & bitsMask))) != 0; }
+    void set(int i) { bits[i / 32] |= 1 << (i & bitsMask); }
+    void setBulk(int i, int newBits) { bits[i / 32] = newBits; }
+    void flip(int i) { bits[i / 32] ^= 1 << (i & bitsMask); }
 
     int getNextSet(int from);
     int getNextUnset(int from);
 
-    void setBulk(int i, int newBits);
-    void setRange(int start, int end);
     void clear();
     bool isRange(int start, int end, bool value);
-    std::vector<int>& getBitArray();
-
-    void appendBit(bool bit);
-    void appendBits(int value, int numBits);
-    void appendBitArray(const BitArray& other);
-    void ensureCapacity(int size);
-
-    void xor_(const BitArray& other);
-
-    void toBytes(int bitOffset, std::vector<byte>& array, int offset, int numBytes) const;
-
-    const std::string toString() const;
-
-    static ArrayRef<int> makeArray(int size) {
-        return ArrayRef<int>((size + 31) / 32);
-      }
 
     void reverse();
 
@@ -94,9 +62,8 @@ public:
 
 private:
     static int makeArraySize(int size);
+    static ArrayRef<int> makeArray(int size);
 };
-
-std::ostream& operator << (std::ostream&, BitArray const&);
 
 }
 
