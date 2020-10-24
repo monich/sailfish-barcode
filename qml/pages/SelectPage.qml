@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2019 Slava Monich
+Copyright (c) 2019-2020 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -141,8 +141,6 @@ Page {
         id: toolPanel
 
         active: model.selectionCount > 0
-        canCopy: active
-        canDelete: active
         //: Hint label
         //% "Delete selected codes"
         deleteHint: qsTrId("hint-delete_selected_codes")
