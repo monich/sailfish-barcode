@@ -6,13 +6,14 @@ Name:       harbour-barcode
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 
 Summary:    Code Reader
-Version:    1.0.25
+Version:    1.0.26
 Release:    1
 Group:      Applications/Productivity
 License:    Mixed
 URL:        https://github.com/monich/sailfish-barcode
 Source0:    %{name}-%{version}.tar.bz2
 Requires:   sailfishsilica-qt5 >= 0.10.9
+Requires:   qt5-qtsvg-plugin-imageformat-svg
 Requires:   qt5-qtfeedback
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
