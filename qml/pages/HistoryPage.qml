@@ -69,7 +69,6 @@ Page {
         id: historyList
 
         anchors.fill: parent
-        spacing: 0
 
         header: PageHeader {
             id: header
