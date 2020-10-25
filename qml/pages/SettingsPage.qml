@@ -32,12 +32,15 @@ Page {
 
     allowedOrientations: window.allowedOrientations
 
+    readonly property bool landscapeLayout: (width > height && Screen.sizeCategory > Screen.Small) || Screen.sizeCategory > Screen.Medium
+
     readonly property var colors: [
         "#FF0080", "#FF0000", "#FF8000", "#FFFF00",
         "#00FF00", "#8000FF", "#00FFFF", "#0000FF"
     ]
 
     property int currentColor: getColorFromSettings()
+
 
     function getColorFromSettings() {
         var savedColor = AppSettings.markerColor
@@ -109,7 +112,7 @@ Page {
 
             Grid {
                 width: parent.width
-                columns: isLandscape ? 2 : 1
+                columns: landscapeLayout ? 2 : 1
 
                 readonly property real columnWidth: width/columns
 
@@ -183,7 +186,7 @@ Page {
                     description: qsTrId("settings-display-orientation-allow_inverted-description")
                     width: parent.columnWidth
                     visible: opacity > 0
-                    opacity: (orientationMenu.active && isLandscape) ? 0.0 : 1.0
+                    opacity: (orientationMenu.active && landscapeLayout) ? 0.0 : 1.0
                     onClicked: settingsPage.applyOrientation()
 
                     Behavior on opacity { FadeAnimation { } }
@@ -196,7 +199,7 @@ Page {
 
             Grid {
                 width: parent.width
-                columns: isLandscape ? 2 : 1
+                columns: landscapeLayout ? 2 : 1
 
                 readonly property real columnWidth: width/columns
 
@@ -205,7 +208,7 @@ Page {
                     //: Switch button text
                     //% "Detection sound"
                     text: qsTrId("settings-sound-label")
-                    icon.source: isLandscape ? "" : "image://theme/icon-m-speaker"
+                    icon.source: landscapeLayout ? "" : "image://theme/icon-m-speaker"
                     width: parent.columnWidth
                     automaticCheck: false
                     onClicked: AppSettings.sound = !checked
@@ -216,7 +219,7 @@ Page {
                     //: Switch button text
                     //% "Vibrate on detection"
                     text: qsTrId("settings-vibration-label")
-                    icon.source: isLandscape ? "" : "image://theme/icon-m-vibration"
+                    icon.source: landscapeLayout ? "" : "image://theme/icon-m-vibration"
                     width: parent.columnWidth
                     automaticCheck: false
                     onClicked: {
@@ -232,7 +235,7 @@ Page {
                     //: Switch button text
                     //% "Scan on start"
                     text: qsTrId("settings-autoscan-label")
-                    icon.source: isLandscape ? "" : "image://theme/icon-m-play"
+                    icon.source: landscapeLayout ? "" : "image://theme/icon-m-play"
                     width: parent.columnWidth
                     automaticCheck: false
                     onClicked: AppSettings.scanOnStart = !checked
@@ -245,7 +248,7 @@ Page {
                     //: Switch button text
                     //% "Save barcode images"
                     text: qsTrId("settings-save_images-label")
-                    icon.source: isLandscape ? "" : "image://theme/icon-m-camera"
+                    icon.source: landscapeLayout ? "" : "image://theme/icon-m-camera"
                     width: parent.columnWidth
                     automaticCheck: false
                     busy: picturesConfirmButtons.visible

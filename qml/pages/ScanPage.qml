@@ -46,7 +46,7 @@ Page {
 
     readonly property bool hintActive: hint && hint.visible
     readonly property bool cameraActive: viewFinder && viewFinder.cameraActive
-    readonly property bool landscapeLayout: isLandscape && Screen.sizeCategory < Screen.ExtraLarge
+    readonly property bool landscapeLayout: width > height
 
     function createScanner() {
         if (viewFinder) {
