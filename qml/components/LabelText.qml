@@ -2,6 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
+Copyright (c) 2018-2020 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,45 +22,52 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
+
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Column {
     property alias label: label.text
     property alias text: text.text
-    property alias font: text.font
+    property alias description: description.text
     property alias separator: separator.visible
     property alias color: text.color
 
     spacing: Theme.paddingMedium
-
-    anchors {
-        right: parent.right
-        left: parent.left
-    }
+    width: parent.width
 
     Label {
         id: label
-        anchors {
-            left: parent.left
-        }
+
         width: parent.width
-        color: Theme.highlightColor
         font.pixelSize: Theme.fontSizeExtraSmall
+        color: Theme.highlightColor
+        truncationMode: TruncationMode.Fade
+        visible: label.text.length > 0
     }
+
     Label {
         id: text
-        anchors {
-            left: parent.left
-        }
-        color: Theme.primaryColor
+
+        width: parent.width
         font.pixelSize: Theme.fontSizeSmall
         wrapMode: Text.Wrap
-        width: parent.width - (2 * Theme.paddingLarge)
     }
+
+    Label {
+        id: description
+
+        width: parent.width
+        font.pixelSize: Theme.fontSizeExtraSmall
+        wrapMode: Text.Wrap
+        visible: description.text.length > 0
+        opacity: 0.6
+    }
+
     Separator {
         id: separator
-        width:parent.width;
+
+        width:parent.width
         color: Theme.highlightColor
     }
 }

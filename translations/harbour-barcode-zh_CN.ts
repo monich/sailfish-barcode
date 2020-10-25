@@ -28,10 +28,20 @@
         <extracomment>About page label</extracomment>
         <translation>贡献者</translation>
     </message>
+    <message id="about-contributors-text">
+        <source>%1 and others.</source>
+        <extracomment>About page text</extracomment>
+        <translation type="unfinished">%1 和其他。</translation>
+    </message>
     <message id="about-source_code-label">
         <source>Source code</source>
         <extracomment>About page label</extracomment>
         <translation>源代码</translation>
+    </message>
+    <message id="about-source_code-description">
+        <source>You can also file issues and bug reports there.</source>
+        <extracomment>About page description for source code URL</extracomment>
+        <translation type="unfinished">您也可以在此处提交问题和错误报告。</translation>
     </message>
     <message id="about-references-label">
         <source>References</source>

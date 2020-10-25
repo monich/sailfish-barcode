@@ -28,10 +28,20 @@
         <extracomment>About page label</extracomment>
         <translation>Colaboradores</translation>
     </message>
+    <message id="about-contributors-text">
+        <source>%1 and others.</source>
+        <extracomment>About page text</extracomment>
+        <translation type="unfinished">%1 e outros.</translation>
+    </message>
     <message id="about-source_code-label">
         <source>Source code</source>
         <extracomment>About page label</extracomment>
         <translation>Código fonte</translation>
+    </message>
+    <message id="about-source_code-description">
+        <source>You can also file issues and bug reports there.</source>
+        <extracomment>About page description for source code URL</extracomment>
+        <translation type="unfinished">Você também pode enviar problemas e relatórios de bug lá.</translation>
     </message>
     <message id="about-references-label">
         <source>References</source>

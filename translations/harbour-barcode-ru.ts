@@ -11,7 +11,7 @@
     <message id="about-description">
         <source>This app demonstrates a bar code reader for Sailfish OS. I hope it is useful for other projects. CodeReader is open source and licensed under the MIT License.</source>
         <extracomment>About page text</extracomment>
-        <translation>Эта программа представляет собой считыватель баркодов для Sailfish OS. Я надеюсь, она будет полезна для других проектов. Исходный код доступен под MIT-лицензией.</translation>
+        <translation>Эта программа представляет собой считыватель разнообразных баркодов для Sailfish OS. Хочется надеяться, что она будет кому-то полезна. Исходный код доступен под MIT-лицензией.</translation>
     </message>
     <message id="about-version-label">
         <source>Version</source>
@@ -28,10 +28,20 @@
         <extracomment>About page label</extracomment>
         <translation>Участники</translation>
     </message>
+    <message id="about-contributors-text">
+        <source>%1 and others.</source>
+        <extracomment>About page text</extracomment>
+        <translation>%1 и другие.</translation>
+    </message>
     <message id="about-source_code-label">
         <source>Source code</source>
         <extracomment>About page label</extracomment>
         <translation>Исходный код</translation>
+    </message>
+    <message id="about-source_code-description">
+        <source>You can also file issues and bug reports there.</source>
+        <extracomment>About page description for source code URL</extracomment>
+        <translation>Там же можно пожаловаться на ошибку или предложить изменить что-нибудь в программе. Есть шанс, что это будет прочитано и даже, возможно, исправлено или реализовано.</translation>
     </message>
     <message id="about-references-label">
         <source>References</source>
