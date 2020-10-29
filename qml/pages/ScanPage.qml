@@ -579,7 +579,7 @@ Page {
 
                     HarbourHintIconButton {
                         anchors.verticalCenter: parent.verticalCenter
-                        icon.source: "image://theme/icon-m-clipboard"
+                        icon.source: "img/clipboard.svg"
                         visible: !linkButton.visible && !vcardButton.visible
                         onClicked: {
                             Clipboard.text = clickableResult.text
