@@ -131,6 +131,7 @@ Item {
                 labelVisible: true
                 readOnly: false
                 wrapMode: TextEdit.Wrap
+                inputMethodHints: Qt.ImhNoPredictiveText
                 property int lastCursorPosition
                 property int currentCursorPosition
                 property bool settingTextFromTextChangedHandler
