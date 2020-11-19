@@ -128,6 +128,8 @@ Page {
                         id: orientationMenu
 
                         readonly property int defaultIndex: 0
+                        x: 0
+                        width: orientationComboBox.width
                         MenuItem {
                             //: Combo box value for primary orientation
                             //% "Primary"
@@ -185,11 +187,7 @@ Page {
                     //% "If enabled, allows both primary and inverted landscape or portrait orientation."
                     description: qsTrId("settings-display-orientation-allow_inverted-description")
                     width: parent.columnWidth
-                    visible: opacity > 0
-                    opacity: (orientationMenu.active && landscapeLayout) ? 0.0 : 1.0
                     onClicked: settingsPage.applyOrientation()
-
-                    Behavior on opacity { FadeAnimation { } }
                 }
             }
 
