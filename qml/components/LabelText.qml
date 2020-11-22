@@ -34,7 +34,8 @@ Column {
     property alias color: text.color
 
     spacing: Theme.paddingMedium
-    width: parent.width
+    x: Theme.horizontalPageMargin
+    width: parent.width - 2 * x
 
     Label {
         id: label
@@ -69,5 +70,6 @@ Column {
 
         width:parent.width
         color: Theme.highlightColor
+        horizontalAlignment: Qt.AlignHCenter
     }
 }

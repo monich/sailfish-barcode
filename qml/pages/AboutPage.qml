@@ -33,23 +33,21 @@ Page {
 
     allowedOrientations: window.allowedOrientations
 
-    SilicaFlickable {
-        id: aboutPageFlickable
-
+    Flickable {
         anchors.fill: parent
         contentHeight: aboutColumn.height
+        boundsBehavior: Flickable.StopAtBounds
 
         Column {
-            PageHeader {
-                //: About page title, label and menu item
-                //% "About CodeReader"
-                title: qsTrId("about-title")
-            }
-
             id: aboutColumn
-            x: Theme.horizontalPageMargin
-            width: parent.width - 2 * x
+
+            width: parent.width
             height: childrenRect.height
+
+            PageHeader {
+                // No need to translate this one
+                title: "CodeReader"
+            }
 
             LabelText {
                 //: About page text
@@ -82,6 +80,7 @@ Page {
 
             BackgroundItem {
                 id: clickableUrl
+
                 contentHeight: labelUrl.height
                 height: contentHeight
                 width: parent.width
@@ -130,7 +129,8 @@ Page {
                 readonly property int cellWidth: Math.floor((width - spacing * (columns - 1))/columns)
                 readonly property int cellHeight: Math.floor(cellWidth * 5 / 8)
 
-                width: parent.width
+                x: Theme.horizontalPageMargin
+                width: parent.width - 2 * x
                 spacing: Theme.paddingLarge
                 columns: Math.max(Math.floor((width + spacing)/(Theme.itemSizeExtraLarge + spacing)), 1)
 
@@ -222,7 +222,7 @@ Page {
                 height: Theme.paddingLarge
             }
         }
-    }
 
-    VerticalScrollDecorator { flickable: aboutPageFlickable }
+        VerticalScrollDecorator { }
+    }
 }
