@@ -79,8 +79,7 @@ VideoOutput {
         playingBeep = true
         // The beep starts playing when the camera stops and
         // audio becomes available. When playback is stopped,
-        // (playback state becomes Audio.StoppedState) the
-        // camera is restarted.
+        // the camera is restarted.
         camera.stop()
     }
 
@@ -154,6 +153,14 @@ VideoOutput {
                 // Camera doesn't emit maximumDigitalZoomChanged signal
                 viewFinder.maximumDigitalZoom(maximumDigitalZoom)
                 digitalZoom = viewFinder.digitalZoom
+            } else if (viewFinder.playingBeep) {
+                // Try to play when camera actually gets into inactive state
+                beep.play()
+                if (beep.playing) {
+                    // Yey, it's playing! Clear the request. Camera will be
+                    // restarted when the beep stops playing.
+                    viewFinder.playingBeep = false
+                }
             }
         }
         onCameraStateChanged: {
@@ -215,17 +222,9 @@ VideoOutput {
         onTriggered: camera.unlock()
     }
 
-    Audio {
+    SoundEffect {
         id: beep
-        volume: 1.0
-        readonly property bool canPlay: source !== "" && availability == Audio.Available && playingBeep
 
-        onCanPlayChanged: if (canPlay) play()
-
-        onPlaybackStateChanged: {
-            if (playbackState === Audio.StoppedState) {
-                camera.start()
-            }
-        }
+        onPlayingChanged: if (!playing) camera.start()
     }
 }
