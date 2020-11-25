@@ -103,16 +103,11 @@ Page {
             readonly property int modelIndex: index
 
             function deleteItem() {
-                var item = delegate
-                var remorse = remorseComponent.createObject(null)
-                remorse.z = delegate.z + 1
                 //: Remorse popup text
                 //% "Deleting"
-                remorse.execute(delegate, qsTrId("history-menu-delete_remorse"),
-                    function() {
-                        HistoryModel.remove(item.modelIndex)
-                        remorse.destroy()
-                    })
+                remorseAction(qsTrId("history-menu-delete_remorse"), function() {
+                    HistoryModel.remove(modelIndex)
+                })
             }
 
             onClicked: {
@@ -207,12 +202,6 @@ Page {
                     })
                 }
             }
-        }
-
-        Component {
-            id: remorseComponent
-
-            RemorseItem { }
         }
 
         RemorsePopup {
