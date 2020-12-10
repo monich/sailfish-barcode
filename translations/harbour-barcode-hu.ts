@@ -26,12 +26,12 @@
     <message id="about-contributors-label">
         <source>Contributors</source>
         <extracomment>About page label</extracomment>
-        <translation>Hozzájárulók</translation>
+        <translation>Közreműködtek</translation>
     </message>
     <message id="about-contributors-text">
         <source>%1 and others.</source>
         <extracomment>About page text</extracomment>
-        <translation type="unfinished">%1 és mások.</translation>
+        <translation>%1 és még sokan mások.</translation>
     </message>
     <message id="about-source_code-label">
         <source>Source code</source>
@@ -41,7 +41,7 @@
     <message id="about-source_code-description">
         <source>You can also file issues and bug reports there.</source>
         <extracomment>About page description for source code URL</extracomment>
-        <translation type="unfinished">A problémákat és hibajelentéseket is beírhatja oda.</translation>
+        <translation>Itt lehetőséged van hibákat bejelenteni, észrevételeket tenni.</translation>
     </message>
     <message id="about-references-label">
         <source>References</source>
@@ -101,7 +101,7 @@
     <message id="settings-vibration-label">
         <source>Vibrate on detection</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished">Rezgés észleléskor</translation>
+        <translation>Rezgés beolvasáskor</translation>
     </message>
     <message id="settings-autoscan-label">
         <source>Scan on start</source>
@@ -111,17 +111,17 @@
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Kép mentése beolvasáskor</translation>
     </message>
     <message id="settings-save_images-description">
         <source>This will delete all previously saved barcode images.</source>
         <extracomment>Switch button description (explanation)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Minden előzőleg készített kép törlődni fog.</translation>
     </message>
     <message id="settings-save_images-confirm_delete">
         <source>Confirm delete</source>
         <extracomment>Button label (confirm deletion of image files)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Törlés megerősítése</translation>
     </message>
     <message id="settings-history-section">
         <source>History</source>
@@ -131,7 +131,7 @@
     <message id="settings-history-slider_label">
         <source>Max history size (saved values: %1)</source>
         <extracomment>Slider label</extracomment>
-        <translation type="unfinished">Tárolt beolvasások száma (%1 jelenleg)</translation>
+        <translation>Tárolt beolvasások száma (jelenleg %1)</translation>
     </message>
     <message id="settings-value-deactivated">
         <source>deactivated</source>
@@ -141,7 +141,7 @@
     <message id="settings-history-slider_value" numerus="yes">
         <source>%1 item(s)</source>
         <extracomment>History slider value</extracomment>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%1 elem</numerusform>
         </translation>
     </message>
@@ -168,7 +168,7 @@
     <message id="settings-marker-slider_value" numerus="yes">
         <source>%1 second(s)</source>
         <extracomment>Marker slider value</extracomment>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%1 másodperc</numerusform>
         </translation>
     </message>
@@ -180,12 +180,12 @@
     <message id="history-menu-clear">
         <source>Clear</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Összes törlése</translation>
+        <translation>Összes törlése</translation>
     </message>
     <message id="history-menu-select">
         <source>Select</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Választ</translation>
+        <translation>Kiválasztás</translation>
     </message>
     <message id="history-menu-delete">
         <source>Delete</source>
@@ -195,7 +195,7 @@
     <message id="history-menu-copy">
         <source>Copy to clipboard</source>
         <extracomment>Context menu item</extracomment>
-        <translation type="unfinished">Vágólapra másolás</translation>
+        <translation>Vágólapra másolás</translation>
     </message>
     <message id="history-menu-delete_remorse">
         <source>Deleting</source>
@@ -205,27 +205,27 @@
     <message id="history-remorse-deleting_all">
         <source>Deleting all codes</source>
         <extracomment>Remorse popup text</extracomment>
-        <translation type="unfinished">Összes törlése</translation>
+        <translation>Összes törlése</translation>
     </message>
     <message id="history-remorse-deleting_selected_code">
         <source>Deleting selected code</source>
         <extracomment>Remorse popup text (single code selected)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Kiválasztottak törlése</translation>
     </message>
     <message id="history-remorse-deleting_selected_codes">
         <source>Deleting selected codes</source>
         <extracomment>Remorse popup text (multiple codes selected)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Kiválasztott beolvasások törlése</translation>
     </message>
     <message id="history-code_copied-notification">
         <source>Selected code copied to clipboard</source>
         <extracomment>Notification text (single code selected)</extracomment>
-        <translation type="unfinished">A vágólapra másolva</translation>
+        <translation>A vágólapra másolva</translation>
     </message>
     <message id="history-codes_copied-notification">
         <source>Selected codes copied to clipboard</source>
         <extracomment>Notification text (multiple codes selected)</extracomment>
-        <translation type="unfinished">A vágólapra másolva</translation>
+        <translation>A vágólapra másolva</translation>
     </message>
     <message id="history-empty">
         <source>History is empty</source>
@@ -250,37 +250,37 @@
     <message id="text-add_to_calendar">
         <source>Add to calendar</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished">Hozzáadás a naptárhoz</translation>
+        <translation>Hozzáadás a naptárhoz</translation>
     </message>
     <message id="text-fetch_receipt">
         <source>Fetch receipt</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés</translation>
     </message>
     <message id="text-fetching_receipt">
         <source>Fetching...</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés...</translation>
     </message>
     <message id="text-cancel_fetching">
         <source>Cancel</source>
         <extracomment>Button label (cancel network operation)</extracomment>
-        <translation type="unfinished">Mégsem</translation>
+        <translation>Mégsem</translation>
     </message>
     <message id="text-fetch_contacting">
         <source>Contacting %1...</source>
         <extracomment>Progress label</extracomment>
-        <translation type="unfinished">Csatlakozás ehhez: %1</translation>
+        <translation>Csatlakozás ehhez: %1</translation>
     </message>
     <message id="text-receipt_not_found">
         <source>Receipt not found</source>
         <extracomment>Status label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Recept letöltése</translation>
     </message>
     <message id="text-network_error">
         <source>Network error</source>
         <extracomment>Status label</extracomment>
-        <translation type="unfinished">Probléma a hálózattal</translation>
+        <translation>Probléma a hálózattal</translation>
     </message>
     <message id="contact-menu-save">
         <source>Save</source>
@@ -300,107 +300,107 @@
     <message id="hint-toggle-flash">
         <source>Toggle flashlight</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Zseblámpa</translation>
+        <translation>Zseblámpa</translation>
     </message>
     <message id="hint-aspect-ratio">
         <source>Switch the aspect ratio between 9:16 and 3:4</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Képarány váltása 9:16 és 3:4 között</translation>
     </message>
     <message id="hint-aspect-ratio_landscape">
         <source>Switch the aspect ratio between 16:9 and 4:3</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Képarány váltása 16:9 és 4:3 között</translation>
     </message>
     <message id="hint-copy-clipboard">
         <source>Copy to clipboard</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Vágólapra másolás</translation>
+        <translation>Vágólapra másolás</translation>
     </message>
     <message id="hint-open_contact_card">
         <source>Open contact card</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Nyissa meg a névjegykártyát</translation>
+        <translation>Névjegy megnyitása</translation>
     </message>
     <message id="hint-open_link">
         <source>Open link in browser</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Megnyitás böngészőben</translation>
+        <translation>Link megnyitása böngészőben</translation>
     </message>
     <message id="hint-open_url">
         <source>Open URL in default application</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>URL megnyitása az alapértelmezett alkalmazással</translation>
     </message>
     <message id="settings-display-section">
         <source>Display</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Kijelző</translation>
+        <translation>Megjelenítés</translation>
     </message>
     <message id="settings-display-orientation-label">
         <source>Orientation</source>
         <extracomment>Combo box label</extracomment>
-        <translation type="unfinished">Képernyőforgatás</translation>
+        <translation>Képernyőforgatás</translation>
     </message>
     <message id="settings-display-orientation-primary">
         <source>Primary</source>
         <extracomment>Combo box value for primary orientation</extracomment>
-        <translation type="unfinished">Elsődleges</translation>
+        <translation>Elsődleges</translation>
     </message>
     <message id="settings-display-orientation-portrait">
         <source>Portrait</source>
         <extracomment>Combo box value for portrait orientation</extracomment>
-        <translation type="unfinished">Álló</translation>
+        <translation>Álló</translation>
     </message>
     <message id="settings-display-orientation-landscape">
         <source>Landscape</source>
         <extracomment>Combo box value for landscape orientation</extracomment>
-        <translation type="unfinished">Fekvő</translation>
+        <translation>Fekvő</translation>
     </message>
     <message id="settings-display-orientation-dynamic">
         <source>Dynamic</source>
         <extracomment>Combo box value for dynamic orientation</extracomment>
-        <translation type="unfinished">Automatikus</translation>
+        <translation>Automatikus</translation>
     </message>
     <message id="settings-display-orientation-allow_inverted">
         <source>Allow inverted orientation</source>
         <extracomment>Text switch label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Tükrözés engedélyezése</translation>
     </message>
     <message id="settings-display-orientation-allow_inverted-description">
         <source>If enabled, allows both primary and inverted landscape or portrait orientation.</source>
         <extracomment>Text switch description</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Ha bekapcsolod mind az elsődleges, a tükrözött álló és fekvő mód is elérhető lesz.</translation>
     </message>
     <message id="select-title">
         <source>Select codes</source>
         <extracomment>Selection page title</extracomment>
-        <translation type="unfinished">Válasszon kódokat</translation>
+        <translation>Beolvasások kiválasztása</translation>
     </message>
     <message id="select-menu-all">
         <source>Select all</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Összes kijelölése</translation>
+        <translation>Összes kiválasztása</translation>
     </message>
     <message id="select-menu-none">
         <source>Select none</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Nincs kiválasztás</translation>
+        <translation>Kiválasztás törlése</translation>
     </message>
     <message id="hint-delete_selected_codes">
         <source>Delete selected codes</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Kiválasztott beolvasások törlése</translation>
     </message>
     <message id="hint-copy_selected_codes">
         <source>Copy selected codes to clipboard</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Kiválasztott beolvasások másolása vágólapra</translation>
     </message>
     <message id="hint-history_swipe">
         <source>Swipe to see other history entries</source>
         <extracomment>Hint text for a swipe (either left or right)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Lapozz a további beolvasások megjelenítéséhez</translation>
     </message>
 </context>
 </TS>
