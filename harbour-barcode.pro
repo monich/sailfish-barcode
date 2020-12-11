@@ -10,7 +10,7 @@ QT += multimedia concurrent sql network
 LIBS += -ldl
 
 isEmpty(VERSION) {
-    VERSION = 1.0.28
+    VERSION = 1.0.29
     message("VERSION is unset, assuming $$VERSION")
 }
 
@@ -409,7 +409,7 @@ defineTest(addTrFile) {
     export($${lrelease_target}.depends)
     export($${lrelease_target}.commands)
     export(QMAKE_EXTRA_TARGETS)
-    export(PRE_TARGETDEPS)
+    #export(PRE_TARGETDEPS)
     export(qm.files)
 }
 
