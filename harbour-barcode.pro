@@ -393,7 +393,7 @@ defineTest(addTrFile) {
     lrelease_target = lrelease_$$s
 
     $${lupdate_target}.commands = lupdate -noobsolete $${TRANSLATION_SOURCES} -ts \"$${in}.ts\" && \
-        mkdir -p \"$${OUT_PWD}/translations\" &&  [ \"$${in}.ts\" != \"$${out}.ts\" ] && \
+        mkdir -p \"$${_PRO_FILE_PWD_}/translations\" &&  [ \"$${in}.ts\" != \"$${out}.ts\" ] && \
         cp -af \"$${in}.ts\" \"$${out}.ts\" || :
 
     $${lrelease_target}.target = $${out}.qm
@@ -402,14 +402,14 @@ defineTest(addTrFile) {
 
     QMAKE_EXTRA_TARGETS += $${lrelease_target} $${lupdate_target}
     PRE_TARGETDEPS += $${out}.qm
-    qm.files += $${out}.qm
+    qm.files += \"$$relative_path($${out},$${_PRO_FILE_PWD_}).qm\"
 
     export($${lupdate_target}.commands)
     export($${lrelease_target}.target)
     export($${lrelease_target}.depends)
     export($${lrelease_target}.commands)
     export(QMAKE_EXTRA_TARGETS)
-    #export(PRE_TARGETDEPS)
+    export(PRE_TARGETDEPS)
     export(qm.files)
 }
 
