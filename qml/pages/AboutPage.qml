@@ -66,7 +66,7 @@ Page {
                 //: About page label
                 //% "Author"
                 label: qsTrId("about-author-label")
-                text: "Steffen Förster"
+                text: "Steffen\u00A0Förster, Slava\u00A0Monich"
             }
 
             LabelText {
@@ -75,7 +75,7 @@ Page {
                 label: qsTrId("about-contributors-label")
                 //: About page text
                 //% "%1 and others."
-                text: qsTrId("about-contributors-text").arg("Diego\u00A0Russo, Åke\u00A0Engelbrektson, Dominik\u00A0Chrástecký, Miklós\u00A0Márton, Hauke\u00A0Schade, Slava\u00A0Monich")
+                text: qsTrId("about-contributors-text").arg("Diego\u00A0Russo, Åke\u00A0Engelbrektson, Dominik\u00A0Chrástecký, Miklós\u00A0Márton, Hauke\u00A0Schade")
             }
 
             BackgroundItem {
