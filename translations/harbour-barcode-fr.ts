@@ -18,10 +18,10 @@
         <extracomment>About page label</extracomment>
         <translation>Version</translation>
     </message>
-    <message id="about-author-label">
-        <source>Author</source>
+    <message id="about-author-labels">
+        <source>Authors</source>
         <extracomment>About page label</extracomment>
-        <translation>Auteur</translation>
+        <translation type="unfinished">Auteurs</translation>
     </message>
     <message id="about-contributors-label">
         <source>Contributors</source>

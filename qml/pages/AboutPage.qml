@@ -64,8 +64,8 @@ Page {
 
             LabelText {
                 //: About page label
-                //% "Author"
-                label: qsTrId("about-author-label")
+                //% "Authors"
+                label: qsTrId("about-author-labels")
                 text: "Steffen\u00A0Förster, Slava\u00A0Monich"
             }
 
