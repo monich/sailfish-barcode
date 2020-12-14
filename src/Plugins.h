@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018 Slava Monich
+Copyright (c) 2020 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,40 +22,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-#include "ContactsPlugin.h"
+#ifndef BARCODE_PLUGINS_H
+#define BARCODE_PLUGINS_H
 
-// Workaround for org.nemomobile.contacts not being allowed in harbour apps
+// Certain plugins are not allowed in harbour apps, can't be used
+// directly, have to be loaded in a weird way
 
-// ==========================================================================
-// ContactsPlugin
-// ==========================================================================
+class QQmlEngine;
 
-ContactsPlugin* ContactsPlugin::gInstance = NULL;
+class Plugins {
+    class Gallery;      // QtDocGallery
+    class Contacts;     // org.nemomobile.contacts
+    class Thumbnailer;  // org.nemomobile.thumbnailer
+public:
+    static void registerTypes(QQmlEngine* aEngine, const char* aModule, int v1, int v2);
+};
 
-ContactsPlugin::ContactsPlugin(
-    QQmlEngine* aEngine) :
-    HarbourPluginLoader(aEngine, "org.nemomobile.contacts", 1, 0)
-{
-}
-
-void
-ContactsPlugin::registerTypes(
-    const char* aModule,
-    int aMajor,
-    int aMinor)
-{
-    reRegisterType("PeopleVCardModel", aModule, aMajor, aMinor);
-}
-
-void
-ContactsPlugin::registerTypes(
-    QQmlEngine* aEngine,
-    const char* aModule,
-    int aMajor,
-    int aMinor)
-{
-    if (!gInstance) {
-        gInstance = new ContactsPlugin(aEngine);
-    }
-    gInstance->registerTypes(aModule, aMajor, aMinor);
-}
+#endif // BARCODE_PLUGINS_H

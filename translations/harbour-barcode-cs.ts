@@ -63,6 +63,11 @@
         <extracomment>About page text</extracomment>
         <translation>Zdroj obrázků: %1</translation>
     </message>
+    <message id="scan-slider-zoom">
+        <source>Zoom</source>
+        <extracomment>Slider label</extracomment>
+        <translation type="unfinished">Přiblížení</translation>
+    </message>
     <message id="scan-action-scan">
         <source>Scan</source>
         <extracomment>Scan button label</extracomment>
@@ -405,6 +410,31 @@
         <source>Swipe to see other history entries</source>
         <extracomment>Hint text for a swipe (either left or right)</extracomment>
         <translation type="unfinished">Pomocí gesta můžete přejít na další záznam</translation>
+    </message>
+    <message id="scan-gallery-menu">
+        <source>Scan from Gallery</source>
+        <extracomment>Pulley menu item</extracomment>
+        <translation type="unfinished">Skenovat z galerie</translation>
+    </message>
+    <message id="gallery-title">
+        <source>Select image</source>
+        <extracomment>Page header</extracomment>
+        <translation type="unfinished">Vyberte obrázek</translation>
+    </message>
+    <message id="gallery-empty">
+        <source>No images found in the gallery</source>
+        <extracomment>Placeholder text</extracomment>
+        <translation type="unfinished">Zdá se, že v galerii není nic</translation>
+    </message>
+    <message id="gallery-thumbnail-error">
+        <source>Error</source>
+        <extracomment>Thumbnail image loading failed</extracomment>
+        <translation type="unfinished">Chyba</translation>
+    </message>
+    <message id="gallery-rotate">
+        <source>Rotate</source>
+        <extracomment>Rotation widget</extracomment>
+        <translation type="unfinished">Otáčení</translation>
     </message>
 </context>
 </TS>

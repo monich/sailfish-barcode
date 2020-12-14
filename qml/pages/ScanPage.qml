@@ -38,6 +38,7 @@ Page {
 
     allowedOrientations: window.allowedOrientations
 
+    property Item galleryImage
     property Item viewFinder
     property Item hint
     property bool showMarker
@@ -47,34 +48,21 @@ Page {
     readonly property bool hintActive: hint && hint.visible
     readonly property bool cameraActive: viewFinder && viewFinder.cameraActive
     readonly property bool landscapeLayout: width > height
+    readonly property bool mustShowViewFinder: (scanPage.status === PageStatus.Active) && Qt.application.active && !scanningGalleryImage && !showMarker
+    readonly property bool scanningGalleryImage: galleryImage && galleryImage.visible
 
-    function createScanner() {
+    function destroyViewFinder() {
         if (viewFinder) {
-            return
-        }
-
-        console.log("creating viewfinder ...")
-        viewFinder = viewFinderComponent.createObject(viewFinderContainer, {
-            viewfinderResolution: viewFinderContainer.viewfinderResolution,
-            digitalZoom: AppSettings.digitalZoom,
-            orientation: orientationAngle()
-        })
-
-        if (viewFinder.source.availability === Camera.Available) {
-            viewFinder.source.start()
+            console.log("destroying viewfinder ...")
+            viewFinder.source.stop()
+            viewFinder.destroy()
+            viewFinder = null
         }
     }
 
     function destroyScanner() {
-        if (!viewFinder) {
-            return
-        }
-
-        console.log("destroying viewfinder ...")
+        destroyViewFinder()
         scanner.stopScanning()
-        viewFinder.source.stop()
-        viewFinder.destroy()
-        viewFinder = null
     }
 
     function applyResult(image,result) {
@@ -97,9 +85,49 @@ Page {
     }
 
     function startScan() {
+        hideGalleryImage()
         showMarker = false
         markerImageProvider.clear()
         scanner.startScanning(scanTimeout * 1000)
+    }
+
+    function hideGalleryImage() {
+        if (galleryImage) {
+            galleryImage.visible = false
+            galleryImage.source = ""
+        }
+        zoomSlider.value = AppSettings.digitalZoom
+        if (viewFinder) {
+            viewFinder.visible = true
+        }
+    }
+
+    function scanFromGallery(url, orientation) {
+        if (url) {
+            console.log("Scanning", url)
+            if (!galleryImage) {
+                galleryImage = galleryImageComponent.createObject(viewFinderContainer)
+            }
+            if (galleryImage) {
+                destroyViewFinder()
+                galleryImage.angle = 0
+                galleryImage.source = url
+                galleryImage.orientation = orientation ? orientation : 0
+                galleryImage.centerContent()
+                // Give user a chance to move the image before it gets scanned
+                galleryScanTimer.restart()
+                galleryImage.visible = true
+                // Loading the image resets the actual zoom
+                zoomSlider.value = galleryImage.actualZoom
+                scanner.startScanning(0)
+            }
+        }
+    }
+
+    Timer {
+        id: galleryScanTimer
+
+        interval: 1000
     }
 
     onCameraActiveChanged: {
@@ -147,37 +175,41 @@ Page {
         }
     }
 
-    onStatusChanged: {
-        if (scanPage.status === PageStatus.Active) {
-            console.log("Page is ACTIVE")
-            if (Qt.application.active) {
-                createScanner()
+    onMustShowViewFinderChanged: {
+        if (mustShowViewFinder && !viewFinder) {
+            console.log("creating viewfinder ...")
+            viewFinder = viewFinderComponent.createObject(viewFinderContainer, {
+                viewfinderResolution: viewFinderContainer.viewfinderResolution,
+                digitalZoom: AppSettings.digitalZoom,
+                orientation: orientationAngle()
+            })
+            if (viewFinder.source.availability === Camera.Available) {
+                viewFinder.source.start()
             }
-        } else if (scanPage.status === PageStatus.Inactive) {
+        }
+    }
+
+    onStatusChanged: {
+        if (scanPage.status === PageStatus.Inactive) {
             console.log("Page is INACTIVE")
             // stop scanning if page is not active
             destroyScanner()
         }
     }
 
-    // Pause blanking while scanning
-    DisplayBlanking {
-        pauseRequested: scanner.scanState === BarcodeScanner.Scanning
-    }
-
     Connections {
         target: Qt.application
         onActiveChanged: {
-            if (Qt.application.active) {
-                console.log("Application is ACTIVE")
-                if (scanPage.status === PageStatus.Active) {
-                    createScanner()
-                }
-            } else if (!Qt.application.active) {
+            if (!Qt.application.active) {
                 console.log("Application is INACTIVE")
                 destroyScanner()
             }
         }
+    }
+
+    // Pause blanking while scanning
+    DisplayBlanking {
+        pauseRequested: scanner.scanState === BarcodeScanner.Scanning
     }
 
     Notification {
@@ -209,15 +241,14 @@ Page {
         viewFinderItem: viewFinderContainer
         markerColor: AppSettings.markerColor
         rotation: orientationAngle()
+        canGrab: (!galleryImage || !galleryImage.moving) && !galleryScanTimer.running
 
         onDecodingFinished: {
             if (result.ok) {
                 statusText.text = ""
                 applyResult(image, result)
-                var resultViewDuration = AppSettings.resultViewDuration
-                if (resultViewDuration > 0) {
+                if (AppSettings.resultViewDuration > 0) {
                     scanPage.showMarker = true
-                    resultViewTimer.interval = resultViewDuration * 1000
                     resultViewTimer.restart()
                 }
                 if (buzzLoader.item) {
@@ -236,6 +267,7 @@ Page {
             switch (scanState) {
             case BarcodeScanner.Idle:
                 statusText.text = ""
+                hideGalleryImage()
                 break
             case BarcodeScanner.Scanning:
                 //: Scan status label
@@ -259,6 +291,7 @@ Page {
     Timer {
         id: resultViewTimer
 
+        interval: AppSettings.resultViewDuration * 1000
         onTriggered: scanPage.showMarker = false
     }
 
@@ -268,6 +301,16 @@ Page {
         ViewFinder {
             beepSource: "sound/beep.wav"
             onMaximumDigitalZoom: AppSettings.maxDigitalZoom = value
+        }
+    }
+
+    Component {
+        id: galleryImageComponent
+
+        GalleryImage {
+            visible: false
+            isLandscape: scanPage.isLandscape
+            z: 1
         }
     }
 
@@ -288,10 +331,69 @@ Page {
                 onClicked: pageStack.push("AboutPage.qml")
             }
             MenuItem {
+                //: Pulley menu item
+                //% "Scan from Gallery"
+                text: qsTrId("scan-gallery-menu")
+                onClicked: {
+                    var picker = pageStack.push("GalleryPage.qml", {
+                        //: Page header
+                        //% "Select image"
+                        title: qsTrId("gallery-title"),
+                        allowedOrientations: scanPage.allowedOrientations
+                    })
+                    var imageUrl, imageOrientation
+                    picker.imageSelected.connect(function(url, orientation) {
+                        imageUrl = url
+                        imageOrientation = orientation
+                        pageStack.pop()
+                    })
+                    // Don't start scanning until the transition is finished
+                    // to avoid scanning a code from a gallery page thumbnail.
+                    picker.statusChanged.connect(function() {
+                        if (picker.status === PageStatus.Inactive && imageUrl) {
+                            scanFromGallery(imageUrl, imageOrientation)
+                        }
+                    })
+                }
+            }
+            MenuItem {
                 //: Setting page title and menu item
                 //% "Settings"
                 text: qsTrId("settings-title")
                 onClicked: pageStack.push("SettingsPage.qml")
+            }
+        }
+
+        Loader {
+            y: viewFinderArea.y
+            width: Theme.itemSizeSmall
+            height: viewFinderArea.height
+            active: opacity > 0
+            opacity: isNeeded ? 1 : 0
+            readonly property bool isNeeded: scanningGalleryImage && scanner.scanState === BarcodeScanner.Scanning
+            Behavior on opacity { FadeAnimation { } }
+            sourceComponent: Component {
+                Rotator {
+                    onRotateUp: galleryImage.angle += degrees
+                    onRotateDown: galleryImage.angle -= degrees
+                }
+            }
+        }
+
+        Loader {
+            x: parent.width - width
+            y: viewFinderArea.y
+            height: viewFinderArea.height
+            active: opacity > 0
+            opacity: isNeeded ? 1 : 0
+            readonly property bool isNeeded: scanningGalleryImage && scanner.scanState === BarcodeScanner.Scanning
+            Behavior on opacity { FadeAnimation { } }
+            sourceComponent: Component {
+                Rotator {
+                    inverted: true
+                    onRotateUp: galleryImage.angle -= degrees
+                    onRotateDown: galleryImage.angle += degrees
+                }
             }
         }
 
@@ -304,10 +406,12 @@ Page {
                 bottom: cameraControls.top
                 bottomMargin: Theme.paddingLarge
                 left: parent.left
-                leftMargin: Theme.horizontalPageMargin
+                leftMargin: horizontalMargin
                 right: parent.right
-                rightMargin: Theme.horizontalPageMargin
+                rightMargin: horizontalMargin
             }
+
+            readonly property real horizontalMargin: scanningGalleryImage ? Theme.itemSizeSmall : Theme.horizontalPageMargin
 
             onXChanged: viewFinderContainer.updateViewFinderPosition()
             onYChanged: viewFinderContainer.updateViewFinderPosition()
@@ -360,8 +464,8 @@ Page {
                 readonly property int landscapeHeight: Math.floor((parent.width/parent.height > ratio) ? parent.height : (parent.width / ratio))
 
                 anchors.centerIn: parent
-                width: scanPage.isPortrait ? portraitWidth : landscapeWidth
-                height: scanPage.isPortrait ? portraitHeight : landscapeHeight
+                width: scanningGalleryImage ? parent.width : (scanPage.isPortrait ? portraitWidth : landscapeWidth)
+                height: scanningGalleryImage ? parent.height : (scanPage.isPortrait ? portraitHeight : landscapeHeight)
                 color: "#20000000"
 
                 onWidthChanged: updateViewFinderPosition()
@@ -383,7 +487,7 @@ Page {
             Image {
                 id: markerImage
 
-                anchors.fill: viewFinderContainer
+                anchors.centerIn: viewFinderContainer
                 z: 2
                 source: scanPage.showMarker ? markerImageProvider.source : ""
                 visible: status === Image.Ready
@@ -410,7 +514,9 @@ Page {
                     left: parent.left
                     verticalCenter: parent.verticalCenter
                 }
-                visible: TorchSupported
+                opacity: (TorchSupported && !scanningGalleryImage) ? 1.0 : 0.0
+                visible: TorchSupported && opacity > 0.0
+                Behavior on opacity { FadeAnimation { } }
                 icon.source: viewFinder && viewFinder.flashOn ?
                         "image://theme/icon-camera-flash-on" :
                         "image://theme/icon-camera-flash-off"
@@ -434,21 +540,45 @@ Page {
                 }
                 leftMargin: 0
                 rightMargin: 0
-                minimumValue: 1.0
-                maximumValue: AppSettings.maxDigitalZoom
+                minimumValue: scanningGalleryImage ? 0.1 : 1.0
+                maximumValue: scanningGalleryImage ? 10.0 : AppSettings.maxDigitalZoom
                 value: 1
-                stepSize: 1
-                onValueChanged: {
-                    AppSettings.digitalZoom = zoomSlider.value
-                    if (viewFinder) {
-                        viewFinder.digitalZoom = value
+                stepSize: scanningGalleryImage ? 0.1 : 1
+                //: Slider label
+                //% "Zoom"
+                label: qsTrId("scan-slider-zoom")
+
+                property int blockGalleryZoomUpdates
+
+                onSliderValueChanged: {
+                    if (scanningGalleryImage) {
+                        if (!blockGalleryZoomUpdates) {
+                            var galleryZoomRange = galleryImage.maxZoom - galleryImage.minZoom
+                            if (galleryZoomRange > 0 && maximumValue > minimumValue) {
+                                var newValue = galleryImage.minZoom + (sliderValue - minimumValue) * galleryZoomRange / (maximumValue - minimumValue)
+                                if (galleryImage.zoom !== newValue) {
+                                    console.log("galleryImage.zoom:", galleryImage.zoom, "=>", newValue)
+                                    galleryImage.zoom = newValue
+                                }
+                            }
+                        }
+                    } else {
+                        AppSettings.digitalZoom = sliderValue
+                        if (viewFinder) {
+                            viewFinder.digitalZoom = sliderValue
+                        }
                     }
                 }
                 Component.onCompleted: {
                     value = AppSettings.digitalZoom
                     if (viewFinder) {
-                        viewFinder.digitalZoom = value
+                        viewFinder.digitalZoom = sliderValue
                     }
+                }
+                function updateValueFromGallery(newValue) {
+                    blockGalleryZoomUpdates++
+                    value = newValue
+                    blockGalleryZoomUpdates--
                 }
             }
 
@@ -466,6 +596,9 @@ Page {
                     sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
                     rotation: isLandscape ? 90 : 0
                 }
+                opacity: scanningGalleryImage ? 0.0 : 1.0
+                visible: opacity > 0.0
+                Behavior on opacity { FadeAnimation { } }
                 onClicked: AppSettings.wideMode = !AppSettings.wideMode
                 hint: isLandscape ?
                     //: Hint label

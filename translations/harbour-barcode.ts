@@ -63,6 +63,11 @@
         <extracomment>About page text</extracomment>
         <translation>Image source: %1</translation>
     </message>
+    <message id="scan-slider-zoom">
+        <source>Zoom</source>
+        <extracomment>Slider label</extracomment>
+        <translation>Zoom</translation>
+    </message>
     <message id="scan-action-scan">
         <source>Scan</source>
         <extracomment>Scan button label</extracomment>
@@ -403,6 +408,31 @@
         <source>Swipe to see other history entries</source>
         <extracomment>Hint text for a swipe (either left or right)</extracomment>
         <translation>Swipe to see other history entries</translation>
+    </message>
+    <message id="scan-gallery-menu">
+        <source>Scan from Gallery</source>
+        <extracomment>Pulley menu item</extracomment>
+        <translation>Scan from Gallery</translation>
+    </message>
+    <message id="gallery-title">
+        <source>Select image</source>
+        <extracomment>Page header</extracomment>
+        <translation>Select image</translation>
+    </message>
+    <message id="gallery-empty">
+        <source>No images found in the gallery</source>
+        <extracomment>Placeholder text</extracomment>
+        <translation>No images found in the gallery</translation>
+    </message>
+    <message id="gallery-thumbnail-error">
+        <source>Error</source>
+        <extracomment>Thumbnail image loading failed</extracomment>
+        <translation>Error</translation>
+    </message>
+    <message id="gallery-rotate">
+        <source>Rotate</source>
+        <extracomment>Rotation widget</extracomment>
+        <translation>Rotate</translation>
     </message>
 </context>
 </TS>

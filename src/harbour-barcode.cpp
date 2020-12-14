@@ -28,6 +28,8 @@ THE SOFTWARE.
 #include <QCameraExposure>
 #include <QGuiApplication>
 #include <QQuickView>
+#include <QOpenGLContext>
+#include <QOffscreenSurface>
 #include <QtQml>
 
 #include <MGConfItem>
@@ -41,7 +43,7 @@ THE SOFTWARE.
 #include "HarbourTemporaryFile.h"
 
 #include "BarcodeUtils.h"
-#include "ContactsPlugin.h"
+#include "Plugins.h"
 #include "Database.h"
 #include "HistoryImageProvider.h"
 #include "HistoryModel.h"
@@ -57,7 +59,7 @@ THE SOFTWARE.
 
 static void register_types(QQmlEngine* engine, const char* uri, int v1, int v2)
 {
-    ContactsPlugin::registerTypes(engine, uri, v1, v2);
+    Plugins::registerTypes(engine, uri, v1, v2);
     qmlRegisterType<HarbourSelectionListModel>(uri, v1, v2, "HarbourSelectionListModel");
     qmlRegisterType<HarbourSingleImageProvider>(uri, v1, v2, "SingleImageProvider");
     qmlRegisterType<HarbourDisplayBlanking>(uri, v1, v2, "DisplayBlanking");
@@ -156,6 +158,23 @@ int main(int argc, char *argv[])
     if (res_16_9.isValid()) {
         root->setContextProperty("ViewfinderResolution_16_9", res_16_9);
     }
+
+    QOpenGLContext ctx;
+    int maxTextureSize = 0;
+    if (ctx.create()) {
+        GLint maxSize = 0;
+        QOffscreenSurface surface;
+        surface.setFormat( ctx.format() );
+        surface.create();
+        ctx.makeCurrent(&surface);
+        glEnable(GL_TEXTURE_2D);
+        glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxSize);
+        if (maxSize > 0) {
+            maxTextureSize = maxSize;
+        }
+    }
+    HDEBUG("Max texture size" << maxTextureSize);
+    root->setContextProperty("MaxTextureSize", maxTextureSize);
 
     view->setSource(SailfishApp::pathTo("qml/harbour-barcode.qml"));
     view->setTitle("CodeReader");

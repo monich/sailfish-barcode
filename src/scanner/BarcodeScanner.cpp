@@ -69,6 +69,7 @@ public:
     bool setRotation(int aDegrees);
     void startScanning(int aTimeout);
     void stopScanning();
+    void grabImage();
     void decodingThread();
     void updateScanState();
 
@@ -82,8 +83,10 @@ public Q_SLOTS:
     void onGrabImage();
 
 public:
+    bool iCanGrab;
     bool iGrabbing;
     bool iScanning;
+    bool iNeedImage;
     bool iAbortScan;
     bool iTimedOut;
     int iRotation;
@@ -103,8 +106,10 @@ public:
 
 BarcodeScanner::Private::Private(BarcodeScanner* aParent) :
     QObject(aParent),
+    iCanGrab(true),
     iGrabbing(false),
     iScanning(false),
+    iNeedImage(false),
     iAbortScan(false),
     iTimedOut(false),
     iRotation(0),
@@ -189,7 +194,12 @@ void BarcodeScanner::Private::startScanning(int aTimeout)
         iScanning = true;
         iAbortScan = false;
         iTimedOut = false;
-        iScanTimeout->start(aTimeout);
+        if (aTimeout) {
+            HDEBUG("timeout" << aTimeout);
+            iScanTimeout->start(aTimeout);
+        } else {
+            HDEBUG("no timeout");
+        }
         iCaptureImage = QImage();
         iDecodingFuture = QtConcurrent::run(this, &Private::decodingThread);
         updateScanState();
@@ -201,6 +211,7 @@ void BarcodeScanner::Private::stopScanning()
     // stopping a running scanning process
     iDecodingMutex.lock();
     if (iScanning) {
+        HDEBUG("aborting");
         iAbortScan = true;
         iDecodingEvent.wakeAll();
     }
@@ -208,25 +219,36 @@ void BarcodeScanner::Private::stopScanning()
     updateScanState();
 }
 
+void BarcodeScanner::Private::grabImage()
+{
+    QQuickWindow* window = iViewFinderItem->window();
+    if (window) {
+        BarcodeScanner* parent = scanner();
+        HDEBUG("grabbing image");
+        iNeedImage = false;
+        iGrabbing = true;
+        Q_EMIT parent->grabbingChanged();
+        QImage image = window->grabWindow();
+        iGrabbing = false;
+        Q_EMIT parent->grabbingChanged();
+        if (!image.isNull() && iScanning) {
+            HDEBUG(image);
+            iDecodingMutex.lock();
+            iCaptureImage = image;
+            iDecodingEvent.wakeAll();
+            iDecodingMutex.unlock();
+        }
+    }
+}
+
 void BarcodeScanner::Private::onGrabImage()
 {
     if (iViewFinderItem && iScanning) {
-        QQuickWindow* window = iViewFinderItem->window();
-        if (window) {
-            BarcodeScanner* parent = scanner();
-            HDEBUG("grabbing image");
-            iGrabbing = true;
-            Q_EMIT parent->grabbingChanged();
-            QImage image = window->grabWindow();
-            iGrabbing = false;
-            Q_EMIT parent->grabbingChanged();
-            if (!image.isNull() && iScanning) {
-                HDEBUG(image);
-                iDecodingMutex.lock();
-                iCaptureImage = image;
-                iDecodingEvent.wakeAll();
-                iDecodingMutex.unlock();
-            }
+        if (iCanGrab) {
+            grabImage();
+        } else {
+            HDEBUG("not right now");
+            iNeedImage = true;
         }
     }
 }
@@ -450,6 +472,7 @@ void BarcodeScanner::Private::onDecodingDone(QImage aImage, Decoder::Result aRes
     iCaptureImage = QImage();
     iScanTimeout->stop();
     iScanning = false;
+    iNeedImage = false;
 
     QVariantMap result;
     result.insert("ok", QVariant::fromValue(aResult.isValid()));
@@ -561,6 +584,25 @@ void BarcodeScanner::stopScanning()
 BarcodeScanner::ScanState BarcodeScanner::scanState() const
 {
     return iPrivate->iLastKnownState;
+}
+
+bool BarcodeScanner::canGrab() const
+{
+    return iPrivate->iCanGrab;
+}
+
+void BarcodeScanner::setCanGrab(bool aCanGrab)
+{
+    if (iPrivate->iCanGrab != aCanGrab) {
+        iPrivate->iCanGrab = aCanGrab;
+        HDEBUG(iPrivate->iCanGrab);
+        Q_EMIT canGrabChanged();
+        if (iPrivate->iCanGrab &&
+            iPrivate->iScanning &&
+            iPrivate->iNeedImage) {
+            iPrivate->grabImage();
+        }
+    }
 }
 
 bool BarcodeScanner::grabbing() const

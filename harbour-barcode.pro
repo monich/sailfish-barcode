@@ -32,13 +32,13 @@ CONFIG(debug, debug|release) {
 
 SOURCES += \
     src/BarcodeUtils.cpp \
-    src/ContactsPlugin.cpp \
     src/Database.cpp \
     src/harbour-barcode.cpp \
     src/HistoryImageProvider.cpp \
     src/HistoryModel.cpp \
     src/MeCardConverter.cpp \
     src/OfdReceiptFetcher.cpp \
+    src/Plugins.cpp \
     src/Settings.cpp \
     src/scanner/BarcodeScanner.cpp \
     src/scanner/Decoder.cpp \
@@ -46,12 +46,12 @@ SOURCES += \
 
 HEADERS += \
     src/BarcodeUtils.h \
-    src/ContactsPlugin.h \
     src/Database.h \
     src/HistoryImageProvider.h \
     src/HistoryModel.h \
     src/MeCardConverter.h \
     src/OfdReceiptFetcher.h \
+    src/Plugins.h \
     src/Settings.h \
     src/scanner/BarcodeScanner.h \
     src/scanner/Decoder.h \
@@ -66,6 +66,7 @@ OTHER_FILES += \
     harbour-barcode.desktop \
     qml/harbour-barcode.qml \
     qml/components/*.qml \
+    qml/components/img/*.svg \
     qml/cover/*.svg \
     qml/pages/img/*.png \
     qml/pages/img/*.svg \

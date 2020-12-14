@@ -63,6 +63,11 @@
         <extracomment>About page text</extracomment>
         <translation>Источник изображений: %1</translation>
     </message>
+    <message id="scan-slider-zoom">
+        <source>Zoom</source>
+        <extracomment>Slider label</extracomment>
+        <translation>Масштаб</translation>
+    </message>
     <message id="scan-action-scan">
         <source>Scan</source>
         <extracomment>Scan button label</extracomment>
@@ -405,6 +410,31 @@
         <source>Swipe to see other history entries</source>
         <extracomment>Hint text for a swipe (either left or right)</extracomment>
         <translation>Можно перейти к соседней записи при помощи жеста</translation>
+    </message>
+    <message id="scan-gallery-menu">
+        <source>Scan from Gallery</source>
+        <extracomment>Pulley menu item</extracomment>
+        <translation>Сканирование из галереи</translation>
+    </message>
+    <message id="gallery-title">
+        <source>Select image</source>
+        <extracomment>Page header</extracomment>
+        <translation>Выберите картинку</translation>
+    </message>
+    <message id="gallery-empty">
+        <source>No images found in the gallery</source>
+        <extracomment>Placeholder text</extracomment>
+        <translation>Кажется, в галерее ничего нет</translation>
+    </message>
+    <message id="gallery-thumbnail-error">
+        <source>Error</source>
+        <extracomment>Thumbnail image loading failed</extracomment>
+        <translation>Ашипка!</translation>
+    </message>
+    <message id="gallery-rotate">
+        <source>Rotate</source>
+        <extracomment>Rotation widget</extracomment>
+        <translation>Вращение</translation>
     </message>
 </context>
 </TS>

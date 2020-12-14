@@ -63,6 +63,11 @@
         <extracomment>About page text</extracomment>
         <translation>Kép forrása: %1</translation>
     </message>
+    <message id="scan-slider-zoom">
+        <source>Zoom</source>
+        <extracomment>Slider label</extracomment>
+        <translation type="unfinished">Nagyítás</translation>
+    </message>
     <message id="scan-action-scan">
         <source>Scan</source>
         <extracomment>Scan button label</extracomment>
@@ -401,6 +406,31 @@
         <source>Swipe to see other history entries</source>
         <extracomment>Hint text for a swipe (either left or right)</extracomment>
         <translation>Lapozz a további beolvasások megjelenítéséhez</translation>
+    </message>
+    <message id="scan-gallery-menu">
+        <source>Scan from Gallery</source>
+        <extracomment>Pulley menu item</extracomment>
+        <translation type="unfinished">Szkennelés a Galériából</translation>
+    </message>
+    <message id="gallery-title">
+        <source>Select image</source>
+        <extracomment>Page header</extracomment>
+        <translation type="unfinished">Kép kiválasztása</translation>
+    </message>
+    <message id="gallery-empty">
+        <source>No images found in the gallery</source>
+        <extracomment>Placeholder text</extracomment>
+        <translation type="unfinished">Nincs kép a galériában</translation>
+    </message>
+    <message id="gallery-thumbnail-error">
+        <source>Error</source>
+        <extracomment>Thumbnail image loading failed</extracomment>
+        <translation type="unfinished">Hiba</translation>
+    </message>
+    <message id="gallery-rotate">
+        <source>Rotate</source>
+        <extracomment>Rotation widget</extracomment>
+        <translation type="unfinished">Forog</translation>
     </message>
 </context>
 </TS>

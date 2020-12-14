@@ -63,6 +63,11 @@
         <extracomment>About page text</extracomment>
         <translation>圖片來源: %1</translation>
     </message>
+    <message id="scan-slider-zoom">
+        <source>Zoom</source>
+        <extracomment>Slider label</extracomment>
+        <translation type="unfinished">放大</translation>
+    </message>
     <message id="scan-action-scan">
         <source>Scan</source>
         <extracomment>Scan button label</extracomment>
@@ -401,6 +406,31 @@
         <source>Swipe to see other history entries</source>
         <extracomment>Hint text for a swipe (either left or right)</extracomment>
         <translation type="unfinished">滑動即可查看其他歷史記錄條目</translation>
+    </message>
+    <message id="scan-gallery-menu">
+        <source>Scan from Gallery</source>
+        <extracomment>Pulley menu item</extracomment>
+        <translation type="unfinished">從圖庫掃描</translation>
+    </message>
+    <message id="gallery-title">
+        <source>Select image</source>
+        <extracomment>Page header</extracomment>
+        <translation type="unfinished">選擇圖片</translation>
+    </message>
+    <message id="gallery-empty">
+        <source>No images found in the gallery</source>
+        <extracomment>Placeholder text</extracomment>
+        <translation type="unfinished">在圖庫中找不到圖像</translation>
+    </message>
+    <message id="gallery-thumbnail-error">
+        <source>Error</source>
+        <extracomment>Thumbnail image loading failed</extracomment>
+        <translation type="unfinished">錯誤</translation>
+    </message>
+    <message id="gallery-rotate">
+        <source>Rotate</source>
+        <extracomment>Rotation widget</extracomment>
+        <translation type="unfinished">旋轉</translation>
     </message>
 </context>
 </TS>
