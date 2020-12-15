@@ -68,10 +68,10 @@
         <extracomment>Scan button label</extracomment>
         <translation>掃描</translation>
     </message>
-    <message id="scan-action-abort">
-        <source>Abort</source>
+    <message id="scan-action-cancel">
+        <source>Cancel</source>
         <extracomment>Scan button label</extracomment>
-        <translation>停止</translation>
+        <translation type="unfinished">取消</translation>
     </message>
     <message id="scan-status-busy">
         <source>Scan in progress ...</source>

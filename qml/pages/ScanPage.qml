@@ -737,8 +737,8 @@ Page {
                 //% "Scan"
                 qsTrId("scan-action-scan") :
                 //: Scan button label
-                //% "Abort"
-                qsTrId("scan-action-abort")
+                //% "Cancel"
+                qsTrId("scan-action-cancel")
         }
     }
 

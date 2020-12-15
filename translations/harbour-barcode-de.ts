@@ -68,8 +68,8 @@
         <extracomment>Scan button label</extracomment>
         <translation>Scannen</translation>
     </message>
-    <message id="scan-action-abort">
-        <source>Abort</source>
+    <message id="scan-action-cancel">
+        <source>Cancel</source>
         <extracomment>Scan button label</extracomment>
         <translation>Abbrechen</translation>
     </message>

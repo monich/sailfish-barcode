@@ -68,10 +68,10 @@
         <extracomment>Scan button label</extracomment>
         <translation>Beolvasás</translation>
     </message>
-    <message id="scan-action-abort">
-        <source>Abort</source>
+    <message id="scan-action-cancel">
+        <source>Cancel</source>
         <extracomment>Scan button label</extracomment>
-        <translation>Megszakítás</translation>
+        <translation type="unfinished">Mégsem</translation>
     </message>
     <message id="scan-status-busy">
         <source>Scan in progress ...</source>
