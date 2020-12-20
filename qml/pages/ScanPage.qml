@@ -419,6 +419,8 @@ Page {
             onHeightChanged: viewFinderContainer.updateViewFinderPosition()
 
             Rectangle {
+                id: viewFinderScanBorder
+
                 readonly property int thickness: Theme.paddingSmall
                 anchors {
                     fill: viewFinderContainer
@@ -498,7 +500,7 @@ Page {
         Item {
             id: cameraControls
 
-            height: Math.max(flashButton.height, zoomSlider.height, ratioButton.height)
+            height: Theme.itemSizeMedium
             anchors {
                 left: parent.left
                 leftMargin: Theme.horizontalPageMargin
@@ -533,9 +535,9 @@ Page {
 
                 anchors {
                     left: parent.left
-                    leftMargin: Theme.horizontalPageMargin + Theme.itemSizeSmall
+                    leftMargin: Theme.paddingLarge + Theme.iconSizeMedium
                     right: parent.right
-                    rightMargin: Theme.horizontalPageMargin + Theme.itemSizeSmall
+                    rightMargin: Theme.paddingLarge + Theme.iconSizeMedium
                     verticalCenter: parent.verticalCenter
                 }
                 leftMargin: 0
@@ -618,6 +620,7 @@ Page {
             anchors {
                 top: cameraControls.bottom
                 left: cameraControls.left
+                bottomMargin: Theme.paddingLarge
             }
 
             Label {
@@ -850,7 +853,7 @@ Page {
             }
         }
 
-        Button {
+        RoundedButton {
             id: actionButton
 
             anchors {
@@ -864,6 +867,9 @@ Page {
                     startScan()
                 }
             }
+            backgroundColor: scanner.idle ?
+                Theme.rgba(Theme.primaryColor, 0.2) :
+                Theme.rgba(Theme.highlightColor, viewFinderScanBorder.opacity * Theme.highlightBackgroundOpacity)
             enabled: scanner.scanState !== BarcodeScanner.Aborting
             text: scanner.idle ?
                 //: Scan button label
@@ -887,7 +893,7 @@ Page {
             changes: [
                 PropertyChanges {
                     target: cameraControls
-                    anchors.bottomMargin: Theme.itemSizeSmall + 2 * Theme.paddingLarge
+                    anchors.bottomMargin: Theme.itemSizeSmall + Theme.paddingLarge
                 },
                 AnchorChanges {
                     target: statusArea
@@ -924,7 +930,7 @@ Page {
             changes: [
                 PropertyChanges {
                     target: cameraControls
-                    anchors.bottomMargin: Theme.paddingLarge
+                    anchors.bottomMargin: 0
                 },
                 AnchorChanges {
                     target: statusArea
