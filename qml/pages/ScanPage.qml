@@ -520,8 +520,8 @@ Page {
                 visible: TorchSupported && opacity > 0.0
                 Behavior on opacity { FadeAnimation { } }
                 icon.source: viewFinder && viewFinder.flashOn ?
-                        "image://theme/icon-camera-flash-on" :
-                        "image://theme/icon-camera-flash-off"
+                        Qt.resolvedUrl("img/flash-on.svg") :
+                        Qt.resolvedUrl("img/flash-off.svg")
                 onClicked: if (viewFinder) viewFinder.toggleFlash()
                 //: Hint label
                 //% "Toggle flashlight"
