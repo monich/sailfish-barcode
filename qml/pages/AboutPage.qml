@@ -33,10 +33,9 @@ Page {
 
     allowedOrientations: window.allowedOrientations
 
-    Flickable {
+    SilicaFlickable {
         anchors.fill: parent
         contentHeight: aboutColumn.height
-        boundsBehavior: Flickable.StopAtBounds
 
         Column {
             id: aboutColumn
@@ -186,31 +185,35 @@ Page {
                         }
                     }
 
-                    delegate: Item {
+                    delegate: ShaderEffectSource {
                         width: grid.cellWidth
                         height: grid.cellHeight
+                        sourceItem: Item {
+                            width: grid.cellWidth
+                            height: grid.cellHeight
 
-                        Rectangle {
-                            color: "white"
-                            anchors.fill: parent
-                        }
+                            Rectangle {
+                                color: "white"
+                                anchors.fill: parent
+                            }
 
-                        Image {
-                            source: "img/" + model.imgSrc
-                            width: parent.width - 2 * Theme.paddingSmall
-                            anchors.centerIn: parent
-                            fillMode: Image.PreserveAspectFit
-                            smooth: true
-                        }
+                            Image {
+                                source: "img/" + model.imgSrc
+                                width: parent.width - 2 * Theme.paddingSmall
+                                anchors.centerIn: parent
+                                fillMode: Image.PreserveAspectFit
+                                smooth: true
+                            }
 
-                        Text {
-                            text: name;
-                            font.pixelSize: Theme.fontSizeTiny
-                            color: "black"
-                            anchors {
-                                horizontalCenter: parent.horizontalCenter
-                                baselineOffset: -Theme.paddingSmall
-                                baseline: parent.bottom
+                            Text {
+                                text: name;
+                                font.pixelSize: Theme.fontSizeTiny
+                                color: "black"
+                                anchors {
+                                    horizontalCenter: parent.horizontalCenter
+                                    baselineOffset: -Theme.paddingSmall
+                                    baseline: parent.bottom
+                                }
                             }
                         }
                     }
