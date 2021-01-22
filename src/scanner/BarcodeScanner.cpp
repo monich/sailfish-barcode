@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ THE SOFTWARE.
 #include <QPainter>
 #include <QBrush>
 
-#ifdef HARBOUR_DEBUG
+#if HARBOUR_DEBUG
 #include <QStandardPaths>
 static const QDir debugImageDir(QStandardPaths::writableLocation(QStandardPaths::PicturesLocation) + "/codereader");
 static void saveDebugImage(const QImage& aImage, const QString& aFileName)
