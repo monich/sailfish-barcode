@@ -4,12 +4,16 @@
 
 Barcode reader for Sailfish OS.
 
+Scans 1D and 2D barcodes (e.g. QR codes). Decoded barcodes can be copied
+to the clipboard, URLs can be opened in the browser, contacts and calendar
+events in various formats can be decoded and saved, and so on.
+
 ## License
 
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster\
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
