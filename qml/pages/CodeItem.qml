@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -127,34 +127,9 @@ Item {
             TextArea {
                 id: textArea
                 width: parent.width
-                selectionMode: TextEdit.SelectWords
-                labelVisible: true
                 readOnly: false
                 wrapMode: TextEdit.Wrap
-                inputMethodHints: Qt.ImhNoPredictiveText
-                property int lastCursorPosition
-                property int currentCursorPosition
-                property bool settingTextFromTextChangedHandler
-                onCursorPositionChanged: {
-                    lastCursorPosition = currentCursorPosition
-                    currentCursorPosition = cursorPosition
-                }
-                onTextChanged: {
-                    if (settingTextFromTextChangedHandler) {
-                        // TextArea isn't just accepting the text, sometimes
-                        // it internally mutates it which can send us into
-                        // an infinite setText/textChanged/setText recursion.
-                        // We don't want that to happen.
-                        console.warn("refusing to recurse!")
-                    } else if (text !== codeItem.normalizedText) {
-                        settingTextFromTextChangedHandler = true
-                        text = codeItem.normalizedText
-                        settingTextFromTextChangedHandler = false
-                        // The text doesn't actually get updated until the
-                        // cursor position changes
-                        cursorPosition = lastCursorPosition
-                    }
-                }
+                softwareInputPanelEnabled: false
             }
 
             Button {
