@@ -380,6 +380,10 @@ for(s, ICON_SIZES) {
     INSTALLS += $${icon_target}
 }
 
+app_icon.files = icons/harbour-barcode.svg
+app_icon.path = /usr/share/$${TARGET}/qml/pages/img/
+INSTALLS += app_icon
+
 # Translations
 TRANSLATIONS_PATH = /usr/share/$${TARGET}/translations
 TRANSLATION_SOURCES = \

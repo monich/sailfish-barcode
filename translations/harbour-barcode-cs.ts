@@ -9,9 +9,9 @@
         <translation>O CodeReaderu</translation>
     </message>
     <message id="about-description">
-        <source>This app demonstrates a bar code reader for Sailfish OS. I hope it is useful for other projects. CodeReader is open source and licensed under the MIT License.</source>
+        <source>This app demonstrates a bar code reader for Sailfish OS. We hope it is useful for other projects. CodeReader is open source and licensed under the MIT License.</source>
         <extracomment>About page text</extracomment>
-        <translation>Tato aplikace umožňuje číst čárové kódy v Sailfish OS. Snad bude užitečná i pro další projekty. CodeReader je open source a je licencován pod licencí MIT.</translation>
+        <translation type="unfinished">Tato aplikace umožňuje číst čárové kódy v Sailfish OS. Snad bude užitečná i pro další projekty. CodeReader je open source a je licencován pod licencí MIT.</translation>
     </message>
     <message id="about-version-label">
         <source>Version</source>

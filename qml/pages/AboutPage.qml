@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -48,9 +48,21 @@ Page {
                 title: "CodeReader"
             }
 
+            Image {
+                readonly property int size: Theme.itemSizeHuge
+                source: "img/harbour-barcode.svg"
+                anchors.horizontalCenter: parent.horizontalCenter
+                sourceSize: Qt.size(size, size)
+            }
+
+            Item {
+                width: 1
+                height: Theme.paddingLarge
+            }
+
             LabelText {
                 //: About page text
-                //% "This app demonstrates a bar code reader for Sailfish OS. I hope it is useful for other projects. CodeReader is open source and licensed under the MIT License."
+                //% "This app demonstrates a bar code reader for Sailfish OS. We hope it is useful for other projects. CodeReader is open source and licensed under the MIT License."
                 text: qsTrId("about-description")
             }
 
@@ -77,11 +89,11 @@ Page {
                 text: qsTrId("about-contributors-text").arg("Diego\u00A0Russo, Åke\u00A0Engelbrektson, Dominik\u00A0Chrástecký, Miklós\u00A0Márton, Hauke\u00A0Schade")
             }
 
-            BackgroundItem {
+            ListItem {
                 id: clickableUrl
 
                 contentHeight: labelUrl.height
-                height: contentHeight
+                height: contentHeight + (menuOpen ? openUrlMenu.height : 0)
                 width: parent.width
 
                 LabelText {
@@ -94,8 +106,26 @@ Page {
                     //% "You can also file issues and bug reports there."
                     description: qsTrId("about-source_code-description")
                     color: clickableUrl.highlighted ? Theme.highlightColor : Theme.primaryColor
+                    separator: false // It's below the menu
                 }
                 onClicked: Qt.openUrlExternally(labelUrl.text);
+                menu: ContextMenu {
+                    id: openUrlMenu
+                    MenuItem {
+                        //: Button text
+                        //% "Open link"
+                        text: qsTrId("text-open_link")
+                        onClicked: Qt.openUrlExternally(labelUrl.text);
+                    }
+                }
+            }
+
+            Separator {
+                id: separator
+
+                width:parent.width
+                color: Theme.highlightColor
+                horizontalAlignment: Qt.AlignHCenter
             }
 
             LabelText {
@@ -113,13 +143,7 @@ Page {
                 label: qsTrId("about-supported_codes-label")
                 //: About page text
                 //% "Image source: %1"
-                text: qsTrId("about-supported_codes-text").arg("http://wikipedia.de")
-                separator: false
-            }
-
-            Item {
-                width: 1
-                height: Theme.paddingLarge
+                text: qsTrId("about-supported_codes-text").arg("http://wikipedia.org")
             }
 
             Grid {

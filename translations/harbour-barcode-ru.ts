@@ -9,7 +9,7 @@
         <translation>О программе</translation>
     </message>
     <message id="about-description">
-        <source>This app demonstrates a bar code reader for Sailfish OS. I hope it is useful for other projects. CodeReader is open source and licensed under the MIT License.</source>
+        <source>This app demonstrates a bar code reader for Sailfish OS. We hope it is useful for other projects. CodeReader is open source and licensed under the MIT License.</source>
         <extracomment>About page text</extracomment>
         <translation>Эта программа представляет собой считыватель разнообразных баркодов для Sailfish OS. Хочется надеяться, что она будет кому-то полезна. Исходный код доступен под MIT-лицензией.</translation>
     </message>

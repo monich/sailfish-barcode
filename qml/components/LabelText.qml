@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,8 +30,8 @@ Column {
     property alias label: label.text
     property alias text: text.text
     property alias description: description.text
-    property alias separator: separator.visible
     property alias color: text.color
+    property bool separator: true
 
     spacing: Theme.paddingMedium
     x: Theme.horizontalPageMargin
@@ -66,10 +66,9 @@ Column {
     }
 
     Separator {
-        id: separator
-
-        width:parent.width
+        width: parent.width
         color: Theme.highlightColor
         horizontalAlignment: Qt.AlignHCenter
+        opacity: separator ? 1 : 0 // Keep is visible to apply spacing above it
     }
 }
