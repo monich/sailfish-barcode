@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,30 +30,33 @@ import "../harbour"
 
 CoverBackground {
     id: cover
-    readonly property real actionAreaHeight: Theme.itemSizeSmall
 
-    Column {
-        id: content
-        y: Math.floor((cover.height - content.height - actionAreaHeight)/2)
-        spacing: Theme.paddingLarge
-        width: parent.width
+    HarbourHighlightIcon {
+        id: icon
 
-        HarbourHighlightIcon {
-            readonly property int size: Math.floor(cover.width * 0.56) & (-2)
-            highlightColor: Theme.primaryColor
-            source: "cover-image.svg"
-            fillMode: Image.PreserveAspectFit
-            anchors.horizontalCenter: parent.horizontalCenter
-            asynchronous: true
-            sourceSize: Qt.size(size, size)
+        y: x
+        readonly property int size: Math.floor(cover.width * 0.56) & (-2)
+        highlightColor: Theme.secondaryColor
+        source: "cover-image.svg"
+        fillMode: Image.PreserveAspectFit
+        anchors.horizontalCenter: parent.horizontalCenter
+        sourceSize: Qt.size(size, size)
+    }
+
+    Label {
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            top: icon.bottom
+            bottom: parent.bottom
+            bottomMargin: (Theme.itemSizeSmall + Theme.iconSizeSmall)/2/cover.parent.scale
         }
-
-        Label {
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: Theme.primaryColor
-            text: "CodeReader"
-            font.bold: true
-        }
+        verticalAlignment: Text.AlignVCenter
+        truncationMode: TruncationMode.Fade
+        minimumPixelSize: Theme.fontSizeTiny
+        wrapMode: Text.NoWrap
+        color: Theme.highlightColor
+        text: "CodeReader"
+        font.bold: true
     }
 
     CoverActionList {
