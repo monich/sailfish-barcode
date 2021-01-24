@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -172,6 +172,8 @@ int main(int argc, char *argv[])
         if (maxSize > 0) {
             maxTextureSize = maxSize;
         }
+        ctx.doneCurrent();
+        surface.destroy();
     }
     HDEBUG("Max texture size" << maxTextureSize);
     root->setContextProperty("MaxTextureSize", maxTextureSize);
