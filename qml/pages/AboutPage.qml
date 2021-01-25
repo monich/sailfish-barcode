@@ -121,8 +121,6 @@ Page {
             }
 
             Separator {
-                id: separator
-
                 width:parent.width
                 color: Theme.highlightColor
                 horizontalAlignment: Qt.AlignHCenter
@@ -144,6 +142,7 @@ Page {
                 //: About page text
                 //% "Image source: %1"
                 text: qsTrId("about-supported_codes-text").arg("http://wikipedia.org")
+                separator: false
             }
 
             Grid {
