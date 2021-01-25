@@ -110,6 +110,11 @@ Item {
             }
         }
 
+        MouseArea {
+            anchors.fill: parent
+            onClicked: codeItem.focus = true
+        }
+
         Column {
             id: column
 
@@ -126,6 +131,7 @@ Item {
 
             TextArea {
                 id: textArea
+
                 width: parent.width
                 readOnly: false
                 wrapMode: TextEdit.Wrap
