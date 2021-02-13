@@ -469,6 +469,8 @@ Page {
                 width: scanningGalleryImage ? parent.width : (scanPage.isPortrait ? portraitWidth : landscapeWidth)
                 height: scanningGalleryImage ? parent.height : (scanPage.isPortrait ? portraitHeight : landscapeHeight)
                 color: "#20000000"
+                opacity: markerImage.visible ? 0 : 1
+                Behavior on opacity { FadeAnimation { } }
 
                 onWidthChanged: updateViewFinderPosition()
                 onHeightChanged: updateViewFinderPosition()
