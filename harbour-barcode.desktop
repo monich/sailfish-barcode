@@ -4,7 +4,7 @@ X-Nemo-Application-Type=silica-qt5
 Icon=harbour-barcode
 Exec=harbour-barcode
 Name=CodeReader
-# translation example:
-# your app name in German locale (de)
-#Name[de]=harbour-barcode
 
+[X-HarbourBackup]
+BackupPathList=.local/share/harbour-barcode/
+BackupConfigList=/apps/harbour-barcode/
