@@ -41,6 +41,7 @@ THE SOFTWARE.
 #include "HarbourSelectionListModel.h"
 #include "HarbourSingleImageProvider.h"
 #include "HarbourTemporaryFile.h"
+#include "HarbourSystemInfo.h"
 
 #include "BarcodeUtils.h"
 #include "Plugins.h"
@@ -64,6 +65,7 @@ static void register_types(QQmlEngine* engine, const char* uri, int v1, int v2)
     qmlRegisterType<HarbourSingleImageProvider>(uri, v1, v2, "SingleImageProvider");
     qmlRegisterType<HarbourDisplayBlanking>(uri, v1, v2, "DisplayBlanking");
     qmlRegisterType<HarbourTemporaryFile>(uri, v1, v2, "TemporaryFile");
+    qmlRegisterSingletonType<HarbourSystemInfo>(uri, v1, v2, "SystemInfo", HarbourSystemInfo::createSingleton);
     qmlRegisterType<BarcodeScanner>(uri, v1, v2, "BarcodeScanner");
     qmlRegisterType<OfdReceiptFetcher>(uri, v1, v2, "ReceiptFetcher");
     qmlRegisterType<MeCardConverter>(uri, v1, v2, "MeCardConverter");

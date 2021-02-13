@@ -47,7 +47,6 @@ Item {
     readonly property bool isVCard: (meCardConverter.vcard.length > 0 || Utils.isVcard(normalizedText)) && !isVEvent
     readonly property bool isVEvent: Utils.isVevent(normalizedText)
     readonly property bool haveContact: vcard ? (vcard.count > 0) : false
-    readonly property bool haveEvent: !!calendarEvent.fileName
     property var vcard
 
     signal deleteEntry()
@@ -84,7 +83,7 @@ Item {
     TemporaryFile {
         id: calendarEvent
 
-        content: isVEvent ? Utils.calendarText(normalizedText) : ""
+        location: SystemInfo.osVersionCompare("4.0") >= 0 ? TemporaryFile.Downloads : TemporaryFile.Tmp
         fileTemplate: isVEvent ? "barcodeXXXXXX.vcs" : ""
     }
 
@@ -156,7 +155,7 @@ Item {
                         //: Button text
                         //% "Contact card"
                         return qsTrId("text-contact_card")
-                    } else if (haveEvent) {
+                    } else if (isVEvent) {
                         //: Button text
                         //% "Add to calendar"
                         return qsTrId("text-add_to_calendar")
@@ -183,7 +182,9 @@ Item {
                         console.log("opening", codeItem.text)
                         Qt.openUrlExternally(codeItem.text)
                         holdOffTimer.restart()
-                    } else if (haveEvent) {
+                    } else if (isVEvent) {
+                        // This actually creates a temporary file
+                        calendarEvent.content = Utils.calendarText(normalizedText)
                         console.log("importing", calendarEvent.url)
                         Qt.openUrlExternally(calendarEvent.url)
                         holdOffTimer.restart()

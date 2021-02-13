@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018 Slava Monich
+Copyright (c) 2018-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,17 @@ Item {
     property alias content: file.content
 
     function importContact() {
-        contactsDbusIface.call("importContactFile", ["" + file.url])
+        var url
+        if (SystemInfo.osVersionCompare("4.0") >= 0) {
+            // Newer Contacts app can't access /tmp
+            importFile.content = file.content
+            url = importFile.url
+        } else {
+            // Didn't have to litter ~/Downloads in earlier versions of Sailfish OS
+            url = file.url
+        }
+
+        contactsDbusIface.call("importContactFile", ["" + url])
         notification.publish()
     }
 
@@ -67,6 +77,15 @@ Item {
 
     TemporaryFile {
         id: file
+
+        location: TemporaryFile.Tmp
+        fileTemplate: "barcodeXXXXXX.vcf"
+    }
+
+    TemporaryFile {
+        id: importFile
+
+        location: TemporaryFile.Downloads
         fileTemplate: "barcodeXXXXXX.vcf"
     }
 }
