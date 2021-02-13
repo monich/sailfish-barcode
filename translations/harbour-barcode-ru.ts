@@ -244,12 +244,12 @@
     <message id="text-open_link">
         <source>Open link</source>
         <extracomment>Button text</extracomment>
-        <translation>Открыть ссылку</translation>
+        <translation>Открыть в браузере</translation>
     </message>
     <message id="text-open_url">
         <source>Open URL</source>
         <extracomment>Button text</extracomment>
-        <translation>Открыть URL</translation>
+        <translation>Открыть ссылку</translation>
     </message>
     <message id="text-contact_card">
         <source>Contact card</source>
