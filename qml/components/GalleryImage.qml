@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2020 Slava Monich
+Copyright (c) 2020-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 SilicaFlickable {
-    id: flickable
+    id: galleryImage
 
     property real zoom: 1.0
     property real angle
@@ -61,6 +61,15 @@ SilicaFlickable {
         contentY = originY + Math.ceil((contentWidth - width)/2.0)
     }
 
+    function resetZoom() {
+        var w = transpose ? image.height : image.width
+        var h = transpose ? image.width : image.height
+        var viewportWidth = isLandscape ? galleryImage.height : galleryImage.width
+        var viewportHeight = isLandscape ? galleryImage.width : galleryImage.height
+        console.log(viewportWidth, w, viewportHeight, h, viewportWidth/w, viewportHeight/h)
+        zoom = Math.min(viewportWidth/w, viewportHeight/h)
+    }
+
     onContentWidthChanged: {
         if (visible && !moving) {
             contentX -= (lastContentWidth - contentWidth)/2
@@ -76,7 +85,7 @@ SilicaFlickable {
     }
 
     Behavior on angle {
-        enabled: flickable.visible
+        enabled: galleryImage.visible
         SmoothedAnimation {
             duration: 500
         }
@@ -85,13 +94,13 @@ SilicaFlickable {
     Item {
         id: container
 
-        width: Math.max(flickable.width, (transpose ? image.ySize : image.xSize) * image.scale)
-        height: Math.max(flickable.height, (transpose ? image.xSize : image.ySize) * image.scale)
+        width: Math.max(galleryImage.width, (transpose ? image.ySize : image.xSize) * image.scale)
+        height: Math.max(galleryImage.height, (transpose ? image.xSize : image.ySize) * image.scale)
 
         Image {
             id: image
 
-            readonly property real r: flickable.angle * Math.PI / 180
+            readonly property real r: galleryImage.angle * Math.PI / 180
             readonly property real d: Math.sqrt(height * height + width * width)
             readonly property real a: width ? Math.atan(height/width) : 0
             readonly property real xSize: d * Math.max(Math.abs(Math.cos(r - a)), Math.abs(Math.cos(r + a)))
@@ -100,18 +109,8 @@ SilicaFlickable {
             anchors.centerIn: parent
             scale: actualZoom
             smooth: true
-            rotation: (flickable.angle - flickable.orientation) % 360
+            rotation: (galleryImage.angle - galleryImage.orientation) % 360
             transformOrigin: Item.Center
-            onStatusChanged: {
-                if (status === Image.Ready) {
-                    angle = 0
-                    var w = transpose ? height : width
-                    var h = transpose ? width : height
-                    var screenWidth = isLandscape ? Screen.height : Screen.width
-                    var screenHeight = isLandscape ? Screen.width : Screen.height
-                    zoom = Math.max(screenWidth/w, screenHeight/h)
-                }
-            }
         }
     }
 }

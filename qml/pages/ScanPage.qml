@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -111,13 +111,13 @@ Page {
             if (galleryImage) {
                 destroyViewFinder()
                 galleryImage.angle = 0
-                galleryImage.source = url
                 galleryImage.orientation = orientation ? orientation : 0
-                galleryImage.centerContent()
+                galleryImage.source = url
                 // Give user a chance to move the image before it gets scanned
                 galleryScanTimer.restart()
                 galleryImage.visible = true
-                // Loading the image resets the actual zoom
+                galleryImage.resetZoom()
+                galleryImage.centerContent()
                 zoomSlider.value = galleryImage.actualZoom
                 scanner.startScanning(0)
             }
@@ -535,6 +535,8 @@ Page {
             Slider {
                 id: zoomSlider
 
+                property bool completed
+
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingLarge + Theme.iconSizeMedium
@@ -544,32 +546,23 @@ Page {
                 }
                 leftMargin: 0
                 rightMargin: 0
-                minimumValue: scanningGalleryImage ? 0.1 : 1.0
-                maximumValue: scanningGalleryImage ? 10.0 : AppSettings.maxDigitalZoom
+                minimumValue: scanningGalleryImage ? galleryImage.minZoom : 1.0
+                maximumValue: scanningGalleryImage ? galleryImage.maxZoom : AppSettings.maxDigitalZoom
                 value: 1
                 stepSize: scanningGalleryImage ? 0.1 : 1
                 //: Slider label
                 //% "Zoom"
                 label: qsTrId("scan-slider-zoom")
-
-                property int blockGalleryZoomUpdates
-
+                enabled: !markerImage.visible
                 onSliderValueChanged: {
-                    if (scanningGalleryImage) {
-                        if (!blockGalleryZoomUpdates) {
-                            var galleryZoomRange = galleryImage.maxZoom - galleryImage.minZoom
-                            if (galleryZoomRange > 0 && maximumValue > minimumValue) {
-                                var newValue = galleryImage.minZoom + (sliderValue - minimumValue) * galleryZoomRange / (maximumValue - minimumValue)
-                                if (galleryImage.zoom !== newValue) {
-                                    console.log("galleryImage.zoom:", galleryImage.zoom, "=>", newValue)
-                                    galleryImage.zoom = newValue
-                                }
+                    if (enabled && completed) {
+                        if (scanningGalleryImage) {
+                            galleryImage.zoom = sliderValue
+                        } else {
+                            AppSettings.digitalZoom = sliderValue
+                            if (viewFinder) {
+                                viewFinder.digitalZoom = sliderValue
                             }
-                        }
-                    } else {
-                        AppSettings.digitalZoom = sliderValue
-                        if (viewFinder) {
-                            viewFinder.digitalZoom = sliderValue
                         }
                     }
                 }
@@ -578,11 +571,12 @@ Page {
                     if (viewFinder) {
                         viewFinder.digitalZoom = sliderValue
                     }
+                    completed = true
                 }
-                function updateValueFromGallery(newValue) {
-                    blockGalleryZoomUpdates++
-                    value = newValue
-                    blockGalleryZoomUpdates--
+                onEnabledChanged: {
+                    if (!enabled) {
+                        zoomSlider.cancel()
+                    }
                 }
             }
 
