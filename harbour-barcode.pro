@@ -387,44 +387,48 @@ app_icon.path = /usr/share/$${TARGET}/qml/pages/img/
 INSTALLS += app_icon
 
 # Translations
+TRANSLATION_IDBASED=-idbased
 TRANSLATIONS_PATH = /usr/share/$${TARGET}/translations
 TRANSLATION_SOURCES = \
   $${_PRO_FILE_PWD_}/qml
 
 defineTest(addTrFile) {
-    in = $${_PRO_FILE_PWD_}/translations/harbour-$$1
-    out = $${OUT_PWD}/translations/$${PREFIX}-$$1
+    rel = translations/$${1}
+    OTHER_FILES += $${rel}.ts
+    export(OTHER_FILES)
+
+    in = $${_PRO_FILE_PWD_}/$$rel
+    out = $${OUT_PWD}/$$rel
 
     s = $$replace(1,-,_)
     lupdate_target = lupdate_$$s
-    lrelease_target = lrelease_$$s
+    qm_target = qm_$$s
 
-    $${lupdate_target}.commands = lupdate -noobsolete $${TRANSLATION_SOURCES} -ts \"$${in}.ts\" && \
-        mkdir -p \"$${_PRO_FILE_PWD_}/translations\" &&  [ \"$${in}.ts\" != \"$${out}.ts\" ] && \
+    $${lupdate_target}.commands = lupdate -noobsolete -locations none $${TRANSLATION_SOURCES} -ts \"$${in}.ts\" && \
+        mkdir -p \"$${OUT_PWD}/translations\" &&  [ \"$${in}.ts\" != \"$${out}.ts\" ] && \
         cp -af \"$${in}.ts\" \"$${out}.ts\" || :
 
-    $${lrelease_target}.target = $${out}.qm
-    $${lrelease_target}.depends = $${lupdate_target}
-    $${lrelease_target}.commands = lrelease -idbased \"$${out}.ts\"
+    $${qm_target}.path = $$TRANSLATIONS_PATH
+    $${qm_target}.depends = $${lupdate_target}
+    $${qm_target}.commands = lrelease $$TRANSLATION_IDBASED \"$${out}.ts\" && \
+        $(INSTALL_FILE) \"$${out}.qm\" $(INSTALL_ROOT)$${TRANSLATIONS_PATH}/
 
-    QMAKE_EXTRA_TARGETS += $${lrelease_target} $${lupdate_target}
-    PRE_TARGETDEPS += $${out}.qm
-    qm.files += \"$$relative_path($${out},$${_PRO_FILE_PWD_}).qm\"
+    QMAKE_EXTRA_TARGETS += $${lupdate_target} $${qm_target}
+    INSTALLS += $${qm_target}
 
     export($${lupdate_target}.commands)
-    export($${lrelease_target}.target)
-    export($${lrelease_target}.depends)
-    export($${lrelease_target}.commands)
+    export($${qm_target}.path)
+    export($${qm_target}.depends)
+    export($${qm_target}.commands)
     export(QMAKE_EXTRA_TARGETS)
-    export(PRE_TARGETDEPS)
-    export(qm.files)
+    export(INSTALLS)
 }
 
 LANGUAGES = cs da de es fr hu it pl pt ru sv zh_CN zh_TW
 
-addTrFile($${NAME})
+addTrFile($${TARGET})
 for(l, LANGUAGES) {
-    addTrFile($${NAME}-$$l)
+    addTrFile($${TARGET}-$$l)
 }
 
 qm.path = $$TRANSLATIONS_PATH
