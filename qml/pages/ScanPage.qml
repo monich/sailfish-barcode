@@ -301,6 +301,7 @@ Page {
         ViewFinder {
             beepSource: "sound/beep.wav"
             onMaximumDigitalZoom: AppSettings.maxDigitalZoom = value
+            showFocusArea: !scanner.grabbing
         }
     }
 

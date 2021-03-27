@@ -13,6 +13,7 @@ VideoOutput {
     property bool playingBeep: false
     property size viewfinderResolution
     property bool completed
+    property bool showFocusArea: true
     property real digitalZoom: 1.0
 
     readonly property bool cameraActive: camera.cameraState === Camera.ActiveState
@@ -185,7 +186,7 @@ VideoOutput {
     Repeater {
         model: camera.focus.focusZones
         delegate: Rectangle {
-            visible: !scanner.grabbing &&
+            visible: viewFinder.showFocusArea &&
                      status !== Camera.FocusAreaUnused &&
                      camera.focus.focusPointMode === Camera.FocusPointCustom &&
                      camera.cameraStatus === Camera.ActiveStatus
