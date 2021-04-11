@@ -113,6 +113,11 @@
         <extracomment>Switch button text</extracomment>
         <translation>Skanuj przy starcie</translation>
     </message>
+    <message id="settings-volume_zoom-label">
+        <source>Zoom with volume keys</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">Zoom przyciskami głośności</translation>
+    </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>
@@ -155,7 +160,7 @@
     <message id="settings-history-confirm_resize">
         <source>Confirm resize</source>
         <extracomment>Button label</extracomment>
-        <translation>Potwierdź zmianę rozmiaru</translation>
+        <translation type="unfinished">Potwierdź zmianę</translation>
     </message>
     <message id="settings-history-cancel">
         <source>Cancel</source>

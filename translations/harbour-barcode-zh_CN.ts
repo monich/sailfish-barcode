@@ -113,6 +113,11 @@
         <extracomment>Switch button text</extracomment>
         <translation>开启时自动开始扫描</translation>
     </message>
+    <message id="settings-volume_zoom-label">
+        <source>Zoom with volume keys</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">使用音量键缩放</translation>
+    </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>

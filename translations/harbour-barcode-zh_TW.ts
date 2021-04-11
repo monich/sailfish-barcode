@@ -108,20 +108,25 @@
         <extracomment>Switch button text</extracomment>
         <translation>開啟時自動掃描</translation>
     </message>
+    <message id="settings-volume_zoom-label">
+        <source>Zoom with volume keys</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">使用音量鍵縮放</translation>
+    </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存條形碼圖片</translation>
     </message>
     <message id="settings-save_images-description">
         <source>This will delete all previously saved barcode images.</source>
         <extracomment>Switch button description (explanation)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">此操作將會刪除先前保存的圖片。</translation>
     </message>
     <message id="settings-save_images-confirm_delete">
         <source>Confirm delete</source>
         <extracomment>Button label (confirm deletion of image files)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">確定刪除</translation>
     </message>
     <message id="settings-history-section">
         <source>History</source>

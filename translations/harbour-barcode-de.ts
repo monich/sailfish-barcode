@@ -113,6 +113,11 @@
         <extracomment>Switch button text</extracomment>
         <translation>Scannen beim Programmstart</translation>
     </message>
+    <message id="settings-volume_zoom-label">
+        <source>Zoom with volume keys</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">Zoomen mit den Lautstärketasten</translation>
+    </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>

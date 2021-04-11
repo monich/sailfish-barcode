@@ -34,6 +34,7 @@ THE SOFTWARE.
 #define KEY_WIDE_MODE                  "wide_mode"
 #define KEY_ORIENTATION                "orientation"
 #define KEY_MAX_DIGITAL_ZOOM           "max_digital_zoom"
+#define KEY_VOLUME_ZOOM                "volume_zoom"
 
 #define DEFAULT_SOUND                   false
 #define DEFAULT_BUZZ_ON_SCAN            true
@@ -45,6 +46,7 @@ THE SOFTWARE.
 #define DEFAULT_HISTORY_SIZE            50
 #define DEFAULT_SCAN_ON_START           false
 #define DEFAULT_SAVE_IMAGES             true
+#define DEFAULT_VOLUME_ZOOM             true
 #define DEFAULT_WIDE_MODE               false
 #define DEFAULT_ORIENTATION             (Settings::OrientationAny)
 
@@ -69,6 +71,7 @@ public:
     MGConfItem* iHistorySize;
     MGConfItem* iScanOnStart;
     MGConfItem* iSaveImages;
+    MGConfItem* iVolumeZoom;
     MGConfItem* iWideMode;
     MGConfItem* iOrientation;
 };
@@ -86,6 +89,7 @@ Settings::Private::Private(Settings* aSettings) :
     iHistorySize(new MGConfItem(DCONF_PATH KEY_HISTORY_SIZE, aSettings)),
     iScanOnStart(new MGConfItem(DCONF_PATH KEY_SCAN_ON_START, aSettings)),
     iSaveImages(new MGConfItem(DCONF_PATH KEY_SAVE_IMAGES, aSettings)),
+    iVolumeZoom(new MGConfItem(DCONF_PATH KEY_VOLUME_ZOOM, aSettings)),
     iWideMode(new MGConfItem(DCONF_PATH KEY_WIDE_MODE, aSettings)),
     iOrientation(new MGConfItem(DCONF_PATH KEY_ORIENTATION, aSettings))
 {
@@ -99,6 +103,7 @@ Settings::Private::Private(Settings* aSettings) :
     connect(iHistorySize, SIGNAL(valueChanged()), aSettings, SIGNAL(historySizeChanged()));
     connect(iScanOnStart, SIGNAL(valueChanged()), aSettings, SIGNAL(scanOnStartChanged()));
     connect(iSaveImages, SIGNAL(valueChanged()), aSettings, SIGNAL(saveImagesChanged()));
+    connect(iVolumeZoom, SIGNAL(valueChanged()), aSettings, SIGNAL(volumeZoomChanged()));
     connect(iWideMode, SIGNAL(valueChanged()), aSettings, SIGNAL(wideModeChanged()));
     connect(iOrientation, SIGNAL(valueChanged()), aSettings, SIGNAL(orientationChanged()));
 }
@@ -221,6 +226,16 @@ bool Settings::saveImages() const
 void Settings::setSaveImages(bool aValue)
 {
     iPrivate->iSaveImages->set(aValue);
+}
+
+bool Settings::volumeZoom() const
+{
+    return iPrivate->iVolumeZoom->value(DEFAULT_VOLUME_ZOOM).toBool();
+}
+
+void Settings::setVolumeZoom(bool aValue)
+{
+    iPrivate->iVolumeZoom->set(aValue);
 }
 
 bool Settings::wideMode() const

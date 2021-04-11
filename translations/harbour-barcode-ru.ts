@@ -113,6 +113,11 @@
         <extracomment>Switch button text</extracomment>
         <translation>Сканировать при запуске</translation>
     </message>
+    <message id="settings-volume_zoom-label">
+        <source>Zoom with volume keys</source>
+        <extracomment>Switch button text</extracomment>
+        <translation>Регулирование масштаба кнопками громкости</translation>
+    </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>
@@ -160,7 +165,7 @@
     <message id="settings-history-cancel">
         <source>Cancel</source>
         <extracomment>Button label</extracomment>
-        <translation>Отмена</translation>
+        <translation>Отменить</translation>
     </message>
     <message id="settings-marker-section">
         <source>Marker</source>
@@ -170,7 +175,7 @@
     <message id="settings-marker-slider_label">
         <source>Mark detected code</source>
         <extracomment>Slider label</extracomment>
-        <translation>Пометка распознанного кода</translation>
+        <translation>Отметка распознанного кода</translation>
     </message>
     <message id="settings-marker-slider_value" numerus="yes">
         <source>%1 second(s)</source>

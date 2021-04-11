@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -240,39 +240,50 @@ Page {
                 }
 
                 IconTextSwitch {
-                    id: saveImagesSwitch
-
-                    checked: AppSettings.saveImages
+                    checked: AppSettings.volumeZoom
                     //: Switch button text
-                    //% "Save barcode images"
-                    text: qsTrId("settings-save_images-label")
-                    icon.source: landscapeLayout ? "" : "image://theme/icon-m-camera"
+                    //% "Zoom with volume keys"
+                    text: qsTrId("settings-volume_zoom-label")
+                    icon.source: landscapeLayout ? "" : "image://theme/icon-m-transfer"
                     width: parent.columnWidth
                     automaticCheck: false
-                    busy: picturesConfirmButtons.visible
-                    onClicked: {
-                        if (checked) {
-                            if (picturesConfirmButtons.visible) {
-                                // Cancel the previous click
-                                picturesConfirmButtons.visible = false
-                                description = ""
-                            } else if (HistoryModel.hasImages) {
-                                //: Switch button description (explanation)
-                                //% "This will delete all previously saved barcode images."
-                                description = qsTrId("settings-save_images-description")
-                                picturesConfirmButtons.visible = true
-                            } else {
-                                // No need to confirm
-                                AppSettings.saveImages = false
-                            }
+                    onClicked: AppSettings.volumeZoom = !checked
+                }
+            }
+
+            IconTextSwitch {
+                id: saveImagesSwitch
+
+                checked: AppSettings.saveImages
+                //: Switch button text
+                //% "Save barcode images"
+                text: qsTrId("settings-save_images-label")
+                icon.source: landscapeLayout ? "" : "image://theme/icon-m-camera"
+                width: parent.width
+                automaticCheck: false
+                busy: picturesConfirmButtons.visible
+                onClicked: {
+                    if (checked) {
+                        if (picturesConfirmButtons.visible) {
+                            // Cancel the previous click
+                            picturesConfirmButtons.visible = false
+                            description = ""
+                        } else if (HistoryModel.hasImages) {
+                            //: Switch button description (explanation)
+                            //% "This will delete all previously saved barcode images."
+                            description = qsTrId("settings-save_images-description")
+                            picturesConfirmButtons.visible = true
                         } else {
-                            AppSettings.saveImages = true
+                            // No need to confirm
+                            AppSettings.saveImages = false
                         }
+                    } else {
+                        AppSettings.saveImages = true
                     }
-                    onCheckedChanged: {
-                        picturesConfirmButtons.visible = false
-                        description = ""
-                    }
+                }
+                onCheckedChanged: {
+                    picturesConfirmButtons.visible = false
+                    description = ""
                 }
             }
 

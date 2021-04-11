@@ -83,7 +83,9 @@ HARBOUR_LIB_QML = $${HARBOUR_LIB_DIR}/qml
 SOURCES += \
     $${HARBOUR_LIB_SRC}/HarbourDisplayBlanking.cpp \
     $${HARBOUR_LIB_SRC}/HarbourMce.cpp \
+    $${HARBOUR_LIB_SRC}/HarbourMediaPlugin.cpp \
     $${HARBOUR_LIB_SRC}/HarbourPluginLoader.cpp \
+    $${HARBOUR_LIB_SRC}/HarbourPolicyPlugin.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSelectionListModel.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSingleImageProvider.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSystem.cpp \
@@ -94,7 +96,9 @@ SOURCES += \
 HEADERS += \
     $${HARBOUR_LIB_INCLUDE}/HarbourDebug.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourDisplayBlanking.h \
+    $${HARBOUR_LIB_INCLUDE}/HarbourMediaPlugin.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourPluginLoader.h \
+    $${HARBOUR_LIB_INCLUDE}/HarbourPolicyPlugin.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSelectionListModel.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSingleImageProvider.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSystem.h \

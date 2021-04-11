@@ -50,6 +50,7 @@ Page {
     readonly property bool landscapeLayout: width > height
     readonly property bool mustShowViewFinder: (scanPage.status === PageStatus.Active) && Qt.application.active && !scanningGalleryImage && !showMarker
     readonly property bool scanningGalleryImage: galleryImage && galleryImage.visible
+    readonly property bool useVolumeKeys: AppSettings.volumeZoom && (scanPage.status === PageStatus.Active) && Qt.application.active
 
     function destroyViewFinder() {
         if (viewFinder) {
@@ -579,6 +580,26 @@ Page {
                         zoomSlider.cancel()
                     }
                 }
+                function zoomIn() {
+                    if (value < maximumValue) {
+                        var newValue = value + stepSize
+                        if (newValue < maximumValue) {
+                            value = newValue
+                        } else {
+                            value = maximumValue
+                        }
+                    }
+                }
+                function zoomOut() {
+                    if (value > minimumValue) {
+                        var newValue = value - stepSize
+                        if (newValue > minimumValue) {
+                            value = newValue
+                        } else {
+                            value = minimumValue
+                        }
+                    }
+                }
             }
 
             HarbourHintIconButton {
@@ -881,6 +902,32 @@ Page {
     Component {
         id: remorseComponent
         RemorseItem { }
+    }
+
+    MediaKey {
+        enabled: useVolumeKeys
+        key: Qt.Key_VolumeUp
+        onPressed: zoomSlider.zoomIn()
+        onRepeat: zoomSlider.zoomIn()
+    }
+
+    MediaKey {
+        enabled: useVolumeKeys
+        key: Qt.Key_VolumeDown
+        onPressed: zoomSlider.zoomOut()
+        onRepeat: zoomSlider.zoomOut()
+    }
+
+    Permissions {
+        enabled: useVolumeKeys
+        autoRelease: true
+        applicationClass: "camera"
+
+        Resource {
+            id: volumeKeysResource
+            type: Resource.ScaleButton
+            optional: true
+        }
     }
 
     states: [

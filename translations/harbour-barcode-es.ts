@@ -113,6 +113,11 @@
         <extracomment>Switch button text</extracomment>
         <translation>Iniciar escaneo al abrir</translation>
     </message>
+    <message id="settings-volume_zoom-label">
+        <source>Zoom with volume keys</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">Zoom con teclas de volumen</translation>
+    </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>
