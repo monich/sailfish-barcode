@@ -66,7 +66,7 @@
     <message id="scan-slider-zoom">
         <source>Zoom</source>
         <extracomment>Slider label</extracomment>
-        <translation>Piiblíženie</translation>
+        <translation>Priblíženie</translation>
     </message>
     <message id="scan-action-scan">
         <source>Scan</source>
@@ -101,12 +101,12 @@
     <message id="settings-sound-label">
         <source>Detection sound</source>
         <extracomment>Switch button text</extracomment>
-        <translation>Zvuk objavenia</translation>
+        <translation>Zvuk objavenia kódu</translation>
     </message>
     <message id="settings-vibration-label">
         <source>Vibrate on detection</source>
         <extracomment>Switch button text</extracomment>
-        <translation>Vibrácie objavenia</translation>
+        <translation>Vibrácie objavenia kódu</translation>
     </message>
     <message id="settings-autoscan-label">
         <source>Scan on start</source>
