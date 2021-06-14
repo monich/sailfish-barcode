@@ -6,12 +6,12 @@
     <message id="about-title">
         <source>About CodeReader</source>
         <extracomment>About page title, label and menu item</extracomment>
-        <translation>Om CodeReader</translation>
+        <translation>Om BarCode</translation>
     </message>
     <message id="about-description">
         <source>This app demonstrates a bar code reader for Sailfish OS. We hope it is useful for other projects. CodeReader is open source and licensed under the MIT License.</source>
         <extracomment>About page text</extracomment>
-        <translation type="unfinished">Den här appen är en kodläsare för SailfishOS. Vi hoppas att den skall vara användbar i andra projekt. CodeReader är öppen källkod och licencierad under MIT License.</translation>
+        <translation>Den här appen är en kodläsare för SailfishOS. Vi hoppas att den skall vara användbar i andra projekt. BarCode är öppen källkod och licencierad under MIT License.</translation>
     </message>
     <message id="about-version-label">
         <source>Version</source>
@@ -21,7 +21,7 @@
     <message id="about-author-labels">
         <source>Authors</source>
         <extracomment>About page label</extracomment>
-        <translation type="unfinished">Utvecklarna</translation>
+        <translation>Utvecklare</translation>
     </message>
     <message id="about-contributors-label">
         <source>Contributors</source>
@@ -31,7 +31,7 @@
     <message id="about-contributors-text">
         <source>%1 and others.</source>
         <extracomment>About page text</extracomment>
-        <translation type="unfinished">%1 och andra.</translation>
+        <translation>%1 och andra.</translation>
     </message>
     <message id="about-source_code-label">
         <source>Source code</source>
@@ -41,7 +41,7 @@
     <message id="about-source_code-description">
         <source>You can also file issues and bug reports there.</source>
         <extracomment>About page description for source code URL</extracomment>
-        <translation type="unfinished">Du kan också arkivera problem och felrapporter där.</translation>
+        <translation>Du kan också rapportera problem och felrapporter där.</translation>
     </message>
     <message id="about-references-label">
         <source>References</source>
@@ -56,7 +56,7 @@
     <message id="about-supported_codes-label">
         <source>Supported 1D/2D bar codes</source>
         <extracomment>About page label</extracomment>
-        <translation>1D/2D koder som stöds</translation>
+        <translation>1D-/2D-koder som stöds</translation>
     </message>
     <message id="about-supported_codes-text">
         <source>Image source: %1</source>
@@ -66,7 +66,7 @@
     <message id="scan-slider-zoom">
         <source>Zoom</source>
         <extracomment>Slider label</extracomment>
-        <translation type="unfinished">Zoom</translation>
+        <translation>Zoom</translation>
     </message>
     <message id="scan-action-scan">
         <source>Scan</source>
@@ -81,7 +81,7 @@
     <message id="scan-status-busy">
         <source>Scan in progress ...</source>
         <extracomment>Scan status label</extracomment>
-        <translation>Skanning pågår…</translation>
+        <translation>Skanning pågår...</translation>
     </message>
     <message id="scan-status-nothing_found">
         <source>No code detected! Try again.</source>
@@ -101,12 +101,12 @@
     <message id="settings-sound-label">
         <source>Detection sound</source>
         <extracomment>Switch button text</extracomment>
-        <translation>Detektionsljud</translation>
+        <translation>Identifieringssljud</translation>
     </message>
     <message id="settings-vibration-label">
         <source>Vibrate on detection</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished">Vibrera vid upptäckt</translation>
+        <translation>Vibrera vid identifiering</translation>
     </message>
     <message id="settings-autoscan-label">
         <source>Scan on start</source>
@@ -116,22 +116,22 @@
     <message id="settings-volume_zoom-label">
         <source>Zoom with volume keys</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished">Zooma med volymknapparna</translation>
+        <translation>Zooma med volymknapparna</translation>
     </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished">Spara streckkoder bilder</translation>
+        <translation>Spara streckkodsbilder</translation>
     </message>
     <message id="settings-save_images-description">
         <source>This will delete all previously saved barcode images.</source>
         <extracomment>Switch button description (explanation)</extracomment>
-        <translation type="unfinished">Alla tidigare sparade streckkodsbilder kommer att raderas.</translation>
+        <translation>Alla tidigare sparade streckkodsbilder kommer att raderas.</translation>
     </message>
     <message id="settings-save_images-confirm_delete">
         <source>Confirm delete</source>
         <extracomment>Button label (confirm deletion of image files)</extracomment>
-        <translation type="unfinished">Bekräfta radering</translation>
+        <translation>Bekräfta borttagning</translation>
     </message>
     <message id="settings-history-section">
         <source>History</source>
@@ -151,7 +151,7 @@
     <message id="settings-history-slider_value" numerus="yes">
         <source>%1 item(s)</source>
         <extracomment>History slider value</extracomment>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%1 objekt</numerusform>
             <numerusform>%1 objekt</numerusform>
         </translation>
@@ -179,7 +179,7 @@
     <message id="settings-marker-slider_value" numerus="yes">
         <source>%1 second(s)</source>
         <extracomment>Marker slider value</extracomment>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%1 sekund</numerusform>
             <numerusform>%1 sekunder</numerusform>
         </translation>
@@ -192,12 +192,12 @@
     <message id="history-menu-clear">
         <source>Clear</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Rensa</translation>
+        <translation>Rensa</translation>
     </message>
     <message id="history-menu-select">
         <source>Select</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Välj</translation>
+        <translation>Markera</translation>
     </message>
     <message id="history-menu-delete">
         <source>Delete</source>
@@ -207,7 +207,7 @@
     <message id="history-menu-copy">
         <source>Copy to clipboard</source>
         <extracomment>Context menu item</extracomment>
-        <translation>Kopiera</translation>
+        <translation>Kopiera till urklipp</translation>
     </message>
     <message id="history-menu-delete_remorse">
         <source>Deleting</source>
@@ -217,27 +217,27 @@
     <message id="history-remorse-deleting_all">
         <source>Deleting all codes</source>
         <extracomment>Remorse popup text</extracomment>
-        <translation type="unfinished">Tar bort alla koder</translation>
+        <translation>Tar bort alla koder</translation>
     </message>
     <message id="history-remorse-deleting_selected_code">
         <source>Deleting selected code</source>
         <extracomment>Remorse popup text (single code selected)</extracomment>
-        <translation type="unfinished">Tar bort vald kod</translation>
+        <translation>Tar bort markerad kod</translation>
     </message>
     <message id="history-remorse-deleting_selected_codes">
         <source>Deleting selected codes</source>
         <extracomment>Remorse popup text (multiple codes selected)</extracomment>
-        <translation type="unfinished">Tar bort valda koder</translation>
+        <translation>Tar bort markerade koder</translation>
     </message>
     <message id="history-code_copied-notification">
         <source>Selected code copied to clipboard</source>
         <extracomment>Notification text (single code selected)</extracomment>
-        <translation type="unfinished">Vald kod kopierat till urklipp</translation>
+        <translation>Markerad kod kopierad till urklipp</translation>
     </message>
     <message id="history-codes_copied-notification">
         <source>Selected codes copied to clipboard</source>
         <extracomment>Notification text (multiple codes selected)</extracomment>
-        <translation type="unfinished">Valda koder kopierat till urklipp</translation>
+        <translation>Markerade koder kopierade till urklipp</translation>
     </message>
     <message id="history-empty">
         <source>History is empty</source>
@@ -262,37 +262,37 @@
     <message id="text-add_to_calendar">
         <source>Add to calendar</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished">Lägg till i kalendern</translation>
+        <translation>Lägg till i kalendern</translation>
     </message>
     <message id="text-fetch_receipt">
         <source>Fetch receipt</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Hämta kvitto</translation>
     </message>
     <message id="text-fetching_receipt">
         <source>Fetching...</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Hämtar...</translation>
     </message>
     <message id="text-cancel_fetching">
         <source>Cancel</source>
         <extracomment>Button label (cancel network operation)</extracomment>
-        <translation type="unfinished">Avbryt</translation>
+        <translation>Avbryt</translation>
     </message>
     <message id="text-fetch_contacting">
         <source>Contacting %1...</source>
         <extracomment>Progress label</extracomment>
-        <translation type="unfinished">Ansluter till %1…</translation>
+        <translation>Kontaktar %1…</translation>
     </message>
     <message id="text-receipt_not_found">
         <source>Receipt not found</source>
         <extracomment>Status label</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Inget kvitto hittades</translation>
     </message>
     <message id="text-network_error">
         <source>Network error</source>
         <extracomment>Status label</extracomment>
-        <translation type="unfinished">Nätverksproblem</translation>
+        <translation>Nätverksproblem</translation>
     </message>
     <message id="contact-menu-save">
         <source>Save</source>
@@ -312,17 +312,17 @@
     <message id="hint-toggle-flash">
         <source>Toggle flashlight</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Ficklampa</translation>
+        <translation>Ficklampa på/av</translation>
     </message>
     <message id="hint-aspect-ratio">
         <source>Switch the aspect ratio between 9:16 and 3:4</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Bildförhållande</translation>
+        <translation>Växla bildförhållande mellan 9:16 och 3:4</translation>
     </message>
     <message id="hint-aspect-ratio_landscape">
         <source>Switch the aspect ratio between 16:9 and 4:3</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Bildförhållande</translation>
+        <translation>Växla bildförhållandet mellan 16:9 och 4:3</translation>
     </message>
     <message id="hint-copy-clipboard">
         <source>Copy to clipboard</source>
@@ -332,62 +332,62 @@
     <message id="hint-open_contact_card">
         <source>Open contact card</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Öppna kontaktkort</translation>
+        <translation>Öppna kontaktkort</translation>
     </message>
     <message id="hint-open_link">
         <source>Open link in browser</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Öppna länken i webbläsaren</translation>
+        <translation>Öppna länk i webbläsaren</translation>
     </message>
     <message id="hint-open_url">
         <source>Open URL in default application</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Öppna URL:en i standardapplikationen</translation>
+        <translation>Öppna URL i standardappen</translation>
     </message>
     <message id="settings-display-section">
         <source>Display</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Skärm</translation>
+        <translation>Skärm</translation>
     </message>
     <message id="settings-display-orientation-label">
         <source>Orientation</source>
         <extracomment>Combo box label</extracomment>
-        <translation type="unfinished">Orientering</translation>
+        <translation>Orientering</translation>
     </message>
     <message id="settings-display-orientation-primary">
         <source>Primary</source>
         <extracomment>Combo box value for primary orientation</extracomment>
-        <translation type="unfinished">Primär</translation>
+        <translation>Primär</translation>
     </message>
     <message id="settings-display-orientation-portrait">
         <source>Portrait</source>
         <extracomment>Combo box value for portrait orientation</extracomment>
-        <translation type="unfinished">Stående</translation>
+        <translation>Stående</translation>
     </message>
     <message id="settings-display-orientation-landscape">
         <source>Landscape</source>
         <extracomment>Combo box value for landscape orientation</extracomment>
-        <translation type="unfinished">Liggande</translation>
+        <translation>Liggande</translation>
     </message>
     <message id="settings-display-orientation-dynamic">
         <source>Dynamic</source>
         <extracomment>Combo box value for dynamic orientation</extracomment>
-        <translation type="unfinished">Dynamisk</translation>
+        <translation>Dynamisk</translation>
     </message>
     <message id="settings-display-orientation-allow_inverted">
         <source>Allow inverted orientation</source>
         <extracomment>Text switch label</extracomment>
-        <translation type="unfinished">Låt inverterad orientering</translation>
+        <translation>Tillåt inverterad orientering</translation>
     </message>
     <message id="settings-display-orientation-allow_inverted-description">
         <source>If enabled, allows both primary and inverted landscape or portrait orientation.</source>
         <extracomment>Text switch description</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Vid aktivering tillåts både primär och inverterad liggande eller stående orientering.</translation>
     </message>
     <message id="select-title">
         <source>Select codes</source>
         <extracomment>Selection page title</extracomment>
-        <translation type="unfinished">Välj koder</translation>
+        <translation>Välj koder</translation>
     </message>
     <message id="select-menu-all">
         <source>Select all</source>
@@ -402,42 +402,42 @@
     <message id="hint-delete_selected_codes">
         <source>Delete selected codes</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Radera valda koder</translation>
+        <translation>Ta bort valda koder</translation>
     </message>
     <message id="hint-copy_selected_codes">
         <source>Copy selected codes to clipboard</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Kopiera valda koder till urklipp</translation>
+        <translation>Kopiera valda koder till urklipp</translation>
     </message>
     <message id="hint-history_swipe">
         <source>Swipe to see other history entries</source>
         <extracomment>Hint text for a swipe (either left or right)</extracomment>
-        <translation type="unfinished">Svep för att se andra historikposter</translation>
+        <translation>Svep för att se andra historikposter</translation>
     </message>
     <message id="scan-gallery-menu">
         <source>Scan from Gallery</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Skanna från Galleri</translation>
+        <translation>Skanna från Galleri</translation>
     </message>
     <message id="gallery-title">
         <source>Select image</source>
         <extracomment>Page header</extracomment>
-        <translation type="unfinished">Välj bild</translation>
+        <translation>Välj bild</translation>
     </message>
     <message id="gallery-empty">
         <source>No images found in the gallery</source>
         <extracomment>Placeholder text</extracomment>
-        <translation type="unfinished">Inga bilder hittades i galleriet</translation>
+        <translation>Inga bilder hittades i galleriet</translation>
     </message>
     <message id="gallery-thumbnail-error">
         <source>Error</source>
         <extracomment>Thumbnail image loading failed</extracomment>
-        <translation type="unfinished">Fel</translation>
+        <translation>Fel</translation>
     </message>
     <message id="gallery-rotate">
         <source>Rotate</source>
         <extracomment>Rotation widget</extracomment>
-        <translation type="unfinished">Rotera</translation>
+        <translation>Rotera</translation>
     </message>
 </context>
 </TS>
