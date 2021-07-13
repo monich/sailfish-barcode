@@ -73,6 +73,12 @@ Item {
         }
     }
 
+    DGCertRecognizer {
+        id: dgCert
+
+        text: normalizedText
+    }
+
     MeCardConverter {
         id: meCardConverter
 
@@ -143,34 +149,38 @@ Item {
                 readonly property bool isNeeded: text.length > 0
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: {
-                    if (isLink) {
+                    if (dgCert.valid) {
+                        //: Button text
+                        //% "COVID Certificate"
+                        return qsTrId("button-eu_covid_cert")
+                    } else if (isLink) {
                         //: Button text
                         //% "Open link"
-                        return qsTrId("text-open_link")
+                        return qsTrId("button-open_link")
                     } else if (isUrl) {
                         //: Button text
                         //% "Open URL"
-                        return qsTrId("text-open_url")
+                        return qsTrId("button-open_url")
                     } else if (haveContact) {
                         //: Button text
                         //% "Contact card"
-                        return qsTrId("text-contact_card")
+                        return qsTrId("button-contact_card")
                     } else if (isVEvent) {
                         //: Button text
                         //% "Add to calendar"
-                        return qsTrId("text-add_to_calendar")
+                        return qsTrId("button-add_to_calendar")
                     } else if (receiptFetcher.state === ReceiptFetcher.StateChecking) {
                         return holdOffTimer.running ?
                             //: Button text
                             //% "Fetching..."
-                            qsTrId("text-fetching_receipt") :
+                            qsTrId("button-fetching_receipt") :
                             //: Button label (cancel network operation)
                             //% "Cancel"
-                            qsTrId("text-cancel_fetching")
+                            qsTrId("button-cancel_fetching")
                     } else if (receiptFetcher.state !== ReceiptFetcher.StateIdle) {
                         //: Button text
                         //% "Fetch receipt"
-                        return qsTrId("text-fetch_receipt")
+                        return qsTrId("button-fetch_receipt")
                     } else {
                         return ""
                     }
@@ -178,7 +188,12 @@ Item {
                 visible: isNeeded
                 enabled: !holdOffTimer.running
                 onClicked: {
-                    if (isUrl) {
+                    if (dgCert.valid) {
+                        pageStack.push("CovidPage.qml", {
+                            allowedOrientations: window.allowedOrientations,
+                            text: dgCert.text
+                        })
+                    } else if (isUrl) {
                         console.log("opening", codeItem.text)
                         Qt.openUrlExternally(codeItem.text)
                         holdOffTimer.restart()

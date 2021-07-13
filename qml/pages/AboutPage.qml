@@ -114,7 +114,7 @@ Page {
                     MenuItem {
                         //: Button text
                         //% "Open link"
-                        text: qsTrId("text-open_link")
+                        text: qsTrId("button-open_link")
                         onClicked: Qt.openUrlExternally(labelUrl.text);
                     }
                 }

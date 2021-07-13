@@ -3,7 +3,7 @@ PREFIX = harbour
 TARGET = $${PREFIX}-$${NAME}
 
 CONFIG += sailfishapp link_pkgconfig
-PKGCONFIG += sailfishapp mlite5 glib-2.0
+PKGCONFIG += sailfishapp mlite5 glib-2.0 zlib
 
 QT += multimedia concurrent sql network
 
@@ -33,6 +33,9 @@ CONFIG(debug, debug|release) {
 SOURCES += \
     src/BarcodeUtils.cpp \
     src/Database.cpp \
+    src/DGCertModel.cpp \
+    src/DGCertParser.cpp \
+    src/DGCertRecognizer.cpp \
     src/harbour-barcode.cpp \
     src/HistoryImageProvider.cpp \
     src/HistoryModel.cpp \
@@ -47,6 +50,9 @@ SOURCES += \
 HEADERS += \
     src/BarcodeUtils.h \
     src/Database.h \
+    src/DGCertModel.h \
+    src/DGCertParser.h \
+    src/DGCertRecognizer.h \
     src/HistoryImageProvider.h \
     src/HistoryModel.h \
     src/MeCardConverter.h \
@@ -71,7 +77,7 @@ OTHER_FILES += \
     qml/pages/img/*.png \
     qml/pages/img/*.svg \
     qml/pages/*.qml \
-    qml/js/Utils.js
+    qml/js/*.js
 
 # harbour-lib
 
@@ -81,6 +87,7 @@ HARBOUR_LIB_SRC = $${HARBOUR_LIB_DIR}/src
 HARBOUR_LIB_QML = $${HARBOUR_LIB_DIR}/qml
 
 SOURCES += \
+    $${HARBOUR_LIB_SRC}/HarbourBase45.cpp \
     $${HARBOUR_LIB_SRC}/HarbourDisplayBlanking.cpp \
     $${HARBOUR_LIB_SRC}/HarbourMce.cpp \
     $${HARBOUR_LIB_SRC}/HarbourMediaPlugin.cpp \
@@ -94,6 +101,7 @@ SOURCES += \
     $${HARBOUR_LIB_SRC}/HarbourTemporaryFile.cpp
 
 HEADERS += \
+    $${HARBOUR_LIB_INCLUDE}/HarbourBase45.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourDebug.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourDisplayBlanking.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourMediaPlugin.h \

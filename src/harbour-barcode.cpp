@@ -46,6 +46,8 @@ THE SOFTWARE.
 #include "BarcodeUtils.h"
 #include "Plugins.h"
 #include "Database.h"
+#include "DGCertModel.h"
+#include "DGCertRecognizer.h"
 #include "HistoryImageProvider.h"
 #include "HistoryModel.h"
 #include "MeCardConverter.h"
@@ -67,6 +69,8 @@ static void register_types(QQmlEngine* engine, const char* uri, int v1, int v2)
     qmlRegisterType<HarbourTemporaryFile>(uri, v1, v2, "TemporaryFile");
     qmlRegisterSingletonType<HarbourSystemInfo>(uri, v1, v2, "SystemInfo", HarbourSystemInfo::createSingleton);
     qmlRegisterType<BarcodeScanner>(uri, v1, v2, "BarcodeScanner");
+    qmlRegisterType<DGCertModel>(uri, v1, v2, "DGCertModel");
+    qmlRegisterType<DGCertRecognizer>(uri, v1, v2, "DGCertRecognizer");
     qmlRegisterType<OfdReceiptFetcher>(uri, v1, v2, "ReceiptFetcher");
     qmlRegisterType<MeCardConverter>(uri, v1, v2, "MeCardConverter");
     qmlRegisterUncreatableType<Settings>(uri, v1, v2, "Settings", "Use AppSettings context property");

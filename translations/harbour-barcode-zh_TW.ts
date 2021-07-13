@@ -242,37 +242,42 @@
         <extracomment>Slider label</extracomment>
         <translation type="unfinished"></translation>
     </message>
-    <message id="text-open_link">
+    <message id="button-eu_covid_cert">
+        <source>COVID Certificate</source>
+        <extracomment>Button text</extracomment>
+        <translation type="unfinished">COVID證書</translation>
+    </message>
+    <message id="button-open_link">
         <source>Open link</source>
         <extracomment>Button text</extracomment>
         <translation type="unfinished">開啟連結</translation>
     </message>
-    <message id="text-open_url">
+    <message id="button-open_url">
         <source>Open URL</source>
         <extracomment>Button text</extracomment>
         <translation type="unfinished">開啟網址</translation>
     </message>
-    <message id="text-contact_card">
+    <message id="button-contact_card">
         <source>Contact card</source>
         <extracomment>Button text</extracomment>
         <translation>名片</translation>
     </message>
-    <message id="text-add_to_calendar">
+    <message id="button-add_to_calendar">
         <source>Add to calendar</source>
         <extracomment>Button text</extracomment>
         <translation type="unfinished">添加到日曆</translation>
     </message>
-    <message id="text-fetch_receipt">
+    <message id="button-fetch_receipt">
         <source>Fetch receipt</source>
         <extracomment>Button text</extracomment>
         <translation type="unfinished"></translation>
     </message>
-    <message id="text-fetching_receipt">
+    <message id="button-fetching_receipt">
         <source>Fetching...</source>
         <extracomment>Button text</extracomment>
         <translation type="unfinished"></translation>
     </message>
-    <message id="text-cancel_fetching">
+    <message id="button-cancel_fetching">
         <source>Cancel</source>
         <extracomment>Button label (cancel network operation)</extracomment>
         <translation type="unfinished">取消</translation>
@@ -436,6 +441,206 @@
         <source>Rotate</source>
         <extracomment>Rotation widget</extracomment>
         <translation type="unfinished">旋轉</translation>
+    </message>
+    <message id="dgcert-page_header">
+        <source>EU Digital COVID Certificate</source>
+        <extracomment>Page header</extracomment>
+        <translation type="unfinished">歐盟數字COVID證書</translation>
+    </message>
+    <message id="dgcert-schema_version">
+        <source>Schema version %1</source>
+        <extracomment>Page description</extracomment>
+        <translation type="unfinished">架構版本 %1</translation>
+    </message>
+    <message id="dgcert-common-issuer">
+        <source>Issuer</source>
+        <extracomment>Detail label (common field)</extracomment>
+        <translation type="unfinished">發行人</translation>
+    </message>
+    <message id="dgcert-common-issue_date">
+        <source>Issue date</source>
+        <extracomment>Detail label (common field)</extracomment>
+        <translation type="unfinished">發行日期</translation>
+    </message>
+    <message id="dgcert-common-expiration_date">
+        <source>Expiration date</source>
+        <extracomment>Detail label (common field)</extracomment>
+        <translation type="unfinished">截止日期</translation>
+    </message>
+    <message id="dgcert-personal-name">
+        <source>Name</source>
+        <extracomment>Detail label (personal details)</extracomment>
+        <translation type="unfinished">名稱</translation>
+    </message>
+    <message id="dgcert-personal-standardized_name">
+        <source>Standardized name</source>
+        <extracomment>Detail label (personal details)</extracomment>
+        <translation type="unfinished">標準化名稱</translation>
+    </message>
+    <message id="dgcert-personal-date_of_birth">
+        <source>Date of birth</source>
+        <extracomment>Detail label (personal details)</extracomment>
+        <translation type="unfinished">出生日期</translation>
+    </message>
+    <message id="dgcert-signature_disclaimer">
+        <source>The signature is not checked and therefore the validity of the certificate is not guaranteed.</source>
+        <extracomment>Disclaimer</extracomment>
+        <translation type="unfinished">不檢查簽名，不保證證書的有效性。</translation>
+    </message>
+    <message id="dgcert-vaccination-header">
+        <source>Vaccination certificate</source>
+        <extracomment>Section header</extracomment>
+        <translation type="unfinished">疫苗接種證</translation>
+    </message>
+    <message id="dgcert-vaccination-tg">
+        <source>Disease or agent targeted</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">感染</translation>
+    </message>
+    <message id="dgcert-vaccination-vp">
+        <source>Type of the vaccine</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">疫苗類型</translation>
+    </message>
+    <message id="dgcert-vaccination-mp">
+        <source>Vaccine product</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">疫苗</translation>
+    </message>
+    <message id="dgcert-vaccination-ma">
+        <source>Vaccine manufacturer</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">疫苗生產商</translation>
+    </message>
+    <message id="dgcert-vaccination-dn_sd">
+        <source>Number of doses</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">劑量數</translation>
+    </message>
+    <message id="dgcert-vaccination-dt">
+        <source>Date of vaccination</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">接種日期</translation>
+    </message>
+    <message id="dgcert-vaccination-co">
+        <source>Country of vaccination</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">接種國家</translation>
+    </message>
+    <message id="dgcert-vaccination-is">
+        <source>Certificate issuer</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">證書頒發者</translation>
+    </message>
+    <message id="dgcert-vaccination-ci">
+        <source>Unique certificate identifier</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">唯一證書標識符</translation>
+    </message>
+    <message id="dgcert-test-header">
+        <source>Test certificate</source>
+        <extracomment>Section header</extracomment>
+        <translation type="unfinished">測試證書</translation>
+    </message>
+    <message id="dgcert-test-tg">
+        <source>Disease or agent</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">感染</translation>
+    </message>
+    <message id="dgcert-test-tt">
+        <source>The type of test</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">測試類型</translation>
+    </message>
+    <message id="dgcert-test-nm">
+        <source>Test name</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">測試</translation>
+    </message>
+    <message id="dgcert-test-ma">
+        <source>Test device identifier</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">測驗設備</translation>
+    </message>
+    <message id="dgcert-test-sc">
+        <source>Date and time of the sample</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">樣品的日期和時間</translation>
+    </message>
+    <message id="dgcert-test-tr">
+        <source>Result of the test</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">測試結果</translation>
+    </message>
+    <message id="dgcert-test-tc">
+        <source>Testing centre or facility</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">檢測實驗室</translation>
+    </message>
+    <message id="dgcert-test-co">
+        <source>Country where the test was carried out</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">國家</translation>
+    </message>
+    <message id="dgcert-test-is">
+        <source>Certificate issuer</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">證書頒發者</translation>
+    </message>
+    <message id="dgcert-test-ci">
+        <source>Unique certificate identifier</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">唯一證書標識符</translation>
+    </message>
+    <message id="dgcert-recovery-header">
+        <source>Recovery certificate</source>
+        <extracomment>Section header</extracomment>
+        <translation type="unfinished">恢復證書</translation>
+    </message>
+    <message id="dgcert-recovery-tg">
+        <source>Disease or agent</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">感染</translation>
+    </message>
+    <message id="dgcert-recovery-fr">
+        <source>Date of the first positive test</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">第一次陽性測試的日期</translation>
+    </message>
+    <message id="dgcert-recovery-co">
+        <source>Country where the test was carried out</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">國家</translation>
+    </message>
+    <message id="dgcert-recovery-is">
+        <source>Certificate issuer</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">證書頒發者</translation>
+    </message>
+    <message id="dgcert-recovery-df">
+        <source>Certificate valid from</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">有效期自</translation>
+    </message>
+    <message id="dgcert-recovery-du">
+        <source>Certificate valid until</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">有效期至</translation>
+    </message>
+    <message id="dgcert-recovery-ci">
+        <source>Unique certificate identifier</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">唯一證書標識符</translation>
+    </message>
+    <message id="dgcert-test_result-not_detected">
+        <source>Not detected</source>
+        <extracomment>Test result</extracomment>
+        <translation type="unfinished">沒有檢測到</translation>
+    </message>
+    <message id="dgcert-test_result-detected">
+        <source>Detected</source>
+        <extracomment>Test result</extracomment>
+        <translation type="unfinished">檢測到</translation>
     </message>
 </context>
 </TS>

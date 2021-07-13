@@ -244,37 +244,42 @@
         <extracomment>Placeholder text</extracomment>
         <translation type="unfinished"></translation>
     </message>
-    <message id="text-open_link">
+    <message id="button-eu_covid_cert">
+        <source>COVID Certificate</source>
+        <extracomment>Button text</extracomment>
+        <translation type="unfinished">Certificato COVID</translation>
+    </message>
+    <message id="button-open_link">
         <source>Open link</source>
         <extracomment>Button text</extracomment>
         <translation>Apri link</translation>
     </message>
-    <message id="text-open_url">
+    <message id="button-open_url">
         <source>Open URL</source>
         <extracomment>Button text</extracomment>
         <translation>Apri URL</translation>
     </message>
-    <message id="text-contact_card">
+    <message id="button-contact_card">
         <source>Contact card</source>
         <extracomment>Button text</extracomment>
         <translation>Scheda contatto</translation>
     </message>
-    <message id="text-add_to_calendar">
+    <message id="button-add_to_calendar">
         <source>Add to calendar</source>
         <extracomment>Button text</extracomment>
         <translation type="unfinished">Aggiungi al calendario</translation>
     </message>
-    <message id="text-fetch_receipt">
+    <message id="button-fetch_receipt">
         <source>Fetch receipt</source>
         <extracomment>Button text</extracomment>
         <translation type="unfinished"></translation>
     </message>
-    <message id="text-fetching_receipt">
+    <message id="button-fetching_receipt">
         <source>Fetching...</source>
         <extracomment>Button text</extracomment>
         <translation type="unfinished"></translation>
     </message>
-    <message id="text-cancel_fetching">
+    <message id="button-cancel_fetching">
         <source>Cancel</source>
         <extracomment>Button label (cancel network operation)</extracomment>
         <translation type="unfinished">Annulla</translation>
@@ -438,6 +443,206 @@
         <source>Rotate</source>
         <extracomment>Rotation widget</extracomment>
         <translation type="unfinished">Ruotare</translation>
+    </message>
+    <message id="dgcert-page_header">
+        <source>EU Digital COVID Certificate</source>
+        <extracomment>Page header</extracomment>
+        <translation>Certificato COVID digitale dell&apos;UE</translation>
+    </message>
+    <message id="dgcert-schema_version">
+        <source>Schema version %1</source>
+        <extracomment>Page description</extracomment>
+        <translation type="unfinished">Schema versione %1</translation>
+    </message>
+    <message id="dgcert-common-issuer">
+        <source>Issuer</source>
+        <extracomment>Detail label (common field)</extracomment>
+        <translation type="unfinished">Emittente</translation>
+    </message>
+    <message id="dgcert-common-issue_date">
+        <source>Issue date</source>
+        <extracomment>Detail label (common field)</extracomment>
+        <translation type="unfinished">Data di rilascio</translation>
+    </message>
+    <message id="dgcert-common-expiration_date">
+        <source>Expiration date</source>
+        <extracomment>Detail label (common field)</extracomment>
+        <translation type="unfinished">Data di scadenza</translation>
+    </message>
+    <message id="dgcert-personal-name">
+        <source>Name</source>
+        <extracomment>Detail label (personal details)</extracomment>
+        <translation type="unfinished">Nome</translation>
+    </message>
+    <message id="dgcert-personal-standardized_name">
+        <source>Standardized name</source>
+        <extracomment>Detail label (personal details)</extracomment>
+        <translation type="unfinished">Nome standardizzato</translation>
+    </message>
+    <message id="dgcert-personal-date_of_birth">
+        <source>Date of birth</source>
+        <extracomment>Detail label (personal details)</extracomment>
+        <translation type="unfinished">Data di nascita</translation>
+    </message>
+    <message id="dgcert-signature_disclaimer">
+        <source>The signature is not checked and therefore the validity of the certificate is not guaranteed.</source>
+        <extracomment>Disclaimer</extracomment>
+        <translation type="unfinished">La firma non viene verificata e la validità del certificato non è garantita.</translation>
+    </message>
+    <message id="dgcert-vaccination-header">
+        <source>Vaccination certificate</source>
+        <extracomment>Section header</extracomment>
+        <translation type="unfinished">Certificato di vaccinazione</translation>
+    </message>
+    <message id="dgcert-vaccination-tg">
+        <source>Disease or agent targeted</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">Infezione</translation>
+    </message>
+    <message id="dgcert-vaccination-vp">
+        <source>Type of the vaccine</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">Tipo di vaccino</translation>
+    </message>
+    <message id="dgcert-vaccination-mp">
+        <source>Vaccine product</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">Vaccino</translation>
+    </message>
+    <message id="dgcert-vaccination-ma">
+        <source>Vaccine manufacturer</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">Produttore di vaccini</translation>
+    </message>
+    <message id="dgcert-vaccination-dn_sd">
+        <source>Number of doses</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">Numero di dosi</translation>
+    </message>
+    <message id="dgcert-vaccination-dt">
+        <source>Date of vaccination</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">Data della vaccinazione</translation>
+    </message>
+    <message id="dgcert-vaccination-co">
+        <source>Country of vaccination</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">Paese di vaccinazione</translation>
+    </message>
+    <message id="dgcert-vaccination-is">
+        <source>Certificate issuer</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">Emittente del certificato</translation>
+    </message>
+    <message id="dgcert-vaccination-ci">
+        <source>Unique certificate identifier</source>
+        <extracomment>Detail label (vaccination group)</extracomment>
+        <translation type="unfinished">Identificatore univoco del certificato</translation>
+    </message>
+    <message id="dgcert-test-header">
+        <source>Test certificate</source>
+        <extracomment>Section header</extracomment>
+        <translation type="unfinished">Certificato di prova</translation>
+    </message>
+    <message id="dgcert-test-tg">
+        <source>Disease or agent</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Infezione</translation>
+    </message>
+    <message id="dgcert-test-tt">
+        <source>The type of test</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Il tipo di prova</translation>
+    </message>
+    <message id="dgcert-test-nm">
+        <source>Test name</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Test</translation>
+    </message>
+    <message id="dgcert-test-ma">
+        <source>Test device identifier</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Apparecchiature di prova</translation>
+    </message>
+    <message id="dgcert-test-sc">
+        <source>Date and time of the sample</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Data e ora del campione</translation>
+    </message>
+    <message id="dgcert-test-tr">
+        <source>Result of the test</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Risultato del test</translation>
+    </message>
+    <message id="dgcert-test-tc">
+        <source>Testing centre or facility</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Laboratorio di prova</translation>
+    </message>
+    <message id="dgcert-test-co">
+        <source>Country where the test was carried out</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Nazione</translation>
+    </message>
+    <message id="dgcert-test-is">
+        <source>Certificate issuer</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Emittente del certificato</translation>
+    </message>
+    <message id="dgcert-test-ci">
+        <source>Unique certificate identifier</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Identificatore univoco del certificato</translation>
+    </message>
+    <message id="dgcert-recovery-header">
+        <source>Recovery certificate</source>
+        <extracomment>Section header</extracomment>
+        <translation type="unfinished">Certificato di recupero</translation>
+    </message>
+    <message id="dgcert-recovery-tg">
+        <source>Disease or agent</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Infezione</translation>
+    </message>
+    <message id="dgcert-recovery-fr">
+        <source>Date of the first positive test</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Data del primo test positivo</translation>
+    </message>
+    <message id="dgcert-recovery-co">
+        <source>Country where the test was carried out</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Nazione</translation>
+    </message>
+    <message id="dgcert-recovery-is">
+        <source>Certificate issuer</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Emittente del certificato</translation>
+    </message>
+    <message id="dgcert-recovery-df">
+        <source>Certificate valid from</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Valido dal</translation>
+    </message>
+    <message id="dgcert-recovery-du">
+        <source>Certificate valid until</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Valido fino a</translation>
+    </message>
+    <message id="dgcert-recovery-ci">
+        <source>Unique certificate identifier</source>
+        <extracomment>Detail label (test group)</extracomment>
+        <translation type="unfinished">Identificatore univoco del certificato</translation>
+    </message>
+    <message id="dgcert-test_result-not_detected">
+        <source>Not detected</source>
+        <extracomment>Test result</extracomment>
+        <translation type="unfinished">Negativo</translation>
+    </message>
+    <message id="dgcert-test_result-detected">
+        <source>Detected</source>
+        <extracomment>Test result</extracomment>
+        <translation type="unfinished">Positivo</translation>
     </message>
 </context>
 </TS>
