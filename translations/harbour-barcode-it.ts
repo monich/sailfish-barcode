@@ -349,6 +349,11 @@
         <extracomment>Hint label</extracomment>
         <translation type="unfinished">Apri l&apos;URL nell&apos;applicazione predefinita</translation>
     </message>
+    <message id="hint-covid_certificate">
+        <source>Show EU digital COVID certificate</source>
+        <extracomment>Hint label</extracomment>
+        <translation type="unfinished">Mostra certificato COVID digitale dell&apos;UE</translation>
+    </message>
     <message id="settings-display-section">
         <source>Display</source>
         <extracomment>Section header</extracomment>

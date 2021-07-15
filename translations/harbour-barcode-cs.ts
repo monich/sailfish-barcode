@@ -351,6 +351,11 @@
         <extracomment>Hint label</extracomment>
         <translation type="unfinished">Otevřít URL ve výchozí aplikaci</translation>
     </message>
+    <message id="hint-covid_certificate">
+        <source>Show EU digital COVID certificate</source>
+        <extracomment>Hint label</extracomment>
+        <translation type="unfinished">Zobrazit digitální certifikát EU COVID</translation>
+    </message>
     <message id="settings-display-section">
         <source>Display</source>
         <extracomment>Section header</extracomment>

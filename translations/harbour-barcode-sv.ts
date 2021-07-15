@@ -349,6 +349,11 @@
         <extracomment>Hint label</extracomment>
         <translation>Öppna URL i standardappen</translation>
     </message>
+    <message id="hint-covid_certificate">
+        <source>Show EU digital COVID certificate</source>
+        <extracomment>Hint label</extracomment>
+        <translation type="unfinished">Visa EU:s digitala covidintyg</translation>
+    </message>
     <message id="settings-display-section">
         <source>Display</source>
         <extracomment>Section header</extracomment>

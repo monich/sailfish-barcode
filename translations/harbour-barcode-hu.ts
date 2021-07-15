@@ -347,6 +347,11 @@
         <extracomment>Hint label</extracomment>
         <translation>URL megnyitása az alapértelmezett alkalmazással</translation>
     </message>
+    <message id="hint-covid_certificate">
+        <source>Show EU digital COVID certificate</source>
+        <extracomment>Hint label</extracomment>
+        <translation type="unfinished">Uniós digitális Covid-igazolvány megjelenítése</translation>
+    </message>
     <message id="settings-display-section">
         <source>Display</source>
         <extracomment>Section header</extracomment>

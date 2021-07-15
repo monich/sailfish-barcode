@@ -347,6 +347,11 @@
         <extracomment>Hint label</extracomment>
         <translation>用默认软件打开</translation>
     </message>
+    <message id="hint-covid_certificate">
+        <source>Show EU digital COVID certificate</source>
+        <extracomment>Hint label</extracomment>
+        <translation type="unfinished">显示欧盟数字 COVID 证书</translation>
+    </message>
     <message id="settings-display-section">
         <source>Display</source>
         <extracomment>Section header</extracomment>

@@ -670,11 +670,13 @@ Page {
                 property var vcard: null
                 readonly property bool haveContact: vcard && vcard.count > 0
                 readonly property string normalizedText: Utils.convertLineBreaks(text)
-                readonly property string vcardText: (meCardConverter.vcard.length > 0) ? meCardConverter.vcard :
+                readonly property bool isCovidCertificate: dgCert.valid
+                readonly property string vcardText: isCovidCertificate ? "" :
+                    (meCardConverter.vcard.length > 0) ? meCardConverter.vcard :
                     Utils.isVcard(normalizedText) ? normalizedText : ""
-                readonly property bool isVCard: vcardText.length > 0
-                readonly property bool isLink: Utils.isLink(text)
-                readonly property bool isUrl: Utils.isUrl(text)
+                readonly property bool isVCard: !isCovidCertificate && vcardText.length > 0
+                readonly property bool isLink: !isCovidCertificate && Utils.isLink(text)
+                readonly property bool isUrl: !isCovidCertificate && Utils.isUrl(text)
 
                 function setValue(recId, text, format) {
                     clickableResult.recordId = recId
@@ -720,6 +722,12 @@ Page {
                     mecard: clickableResult.normalizedText
                 }
 
+                DGCertRecognizer {
+                    id: dgCert
+
+                    text: clickableResult.text
+                }
+
                 // Clear results when the first history item gets deleted
                 Connections {
                     target: HistoryModel
@@ -732,18 +740,26 @@ Page {
                     anchors.verticalCenter: parent.verticalCenter
 
                     HarbourHintIconButton {
+                        id: covidButton
+
                         anchors.verticalCenter: parent.verticalCenter
-                        icon.source: "img/clipboard.svg"
-                        visible: !linkButton.visible && !vcardButton.visible
-                        onClicked: {
-                            Clipboard.text = clickableResult.text
-                            clipboardNotification.publish()
+                        icon {
+                            source: clickableResult.isCovidCertificate ? "img/covid.svg" : ""
+                            sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
                         }
+                        visible: clickableResult.isCovidCertificate
+                        enabled: visible
                         //: Hint label
-                        //% "Copy to clipboard"
-                        hint: qsTrId("hint-copy-clipboard")
+                        //% "Show EU digital COVID certificate"
+                        hint: qsTrId("hint-covid_certificate")
                         onShowHint: scanPage.showHint(hint)
                         onHideHint: scanPage.hideHint()
+                        onClicked: {
+                            pageStack.push("CovidPage.qml", {
+                                allowedOrientations: window.allowedOrientations,
+                                text: dgCert.text
+                            })
+                        }
                     }
 
                     HarbourHintIconButton {
@@ -755,7 +771,7 @@ Page {
                                 Qt.resolvedUrl("img/open_url.svg")
                             sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
                         }
-                        visible: !clickableResult.haveContact && clickableResult.isUrl
+                        visible: !covidButton.visible && !clickableResult.haveContact && clickableResult.isUrl
                         enabled: visible && !holdOffTimer.running
                         hint: clickableResult.isLink ?
                             //: Hint label
@@ -784,7 +800,7 @@ Page {
                             source: "img/open_vcard.svg"
                             sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
                         }
-                        visible: clickableResult.haveContact && !clickableResult.isLink
+                        visible: !covidButton.visible && clickableResult.haveContact && !clickableResult.isLink
                         //: Hint label
                         //% "Open contact card"
                         hint: qsTrId("hint-open_contact_card")
@@ -807,6 +823,21 @@ Page {
                                 clickableResult.vcard.importContact()
                             })
                         }
+                    }
+
+                    HarbourHintIconButton {
+                        anchors.verticalCenter: parent.verticalCenter
+                        icon.source: "img/clipboard.svg"
+                        visible: !covidButton.visible && !linkButton.visible && !vcardButton.visible
+                        onClicked: {
+                            Clipboard.text = clickableResult.text
+                            clipboardNotification.publish()
+                        }
+                        //: Hint label
+                        //% "Copy to clipboard"
+                        hint: qsTrId("hint-copy-clipboard")
+                        onShowHint: scanPage.showHint(hint)
+                        onHideHint: scanPage.hideHint()
                     }
                 }
             }
