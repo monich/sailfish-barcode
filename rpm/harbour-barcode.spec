@@ -6,7 +6,7 @@ Name:       harbour-barcode
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 
 Summary:    Bar code reader for Sailfish OS
-Version:    1.0.39
+Version:    1.0.40
 Release:    1
 Group:      Applications/Productivity
 License:    Mixed
@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  pkgconfig(mlite5)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  desktop-file-utils
+BuildRequires:  zlib-devel
 BuildRequires:  qt5-qttools-linguist
 
 %description
