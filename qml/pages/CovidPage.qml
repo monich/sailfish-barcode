@@ -62,6 +62,25 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: "img/eu-flag.svg"
                 sourceSize.width: Theme.itemSizeHuge
+
+                Label {
+                    id: euIssuerCountryCode
+
+                    readonly property int defaultSize: parent.height / 3
+                    visible: DGCert.isEUCountryCode(certModel.issuer)
+                    text: certModel.issuer
+                    anchors.centerIn: parent
+                    minimumPixelSize: Theme.fontSizeSmall
+                    fontSizeMode: Text.Fit
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    width: defaultSize
+                    color: "white"
+                    font {
+                        family: Theme.fontFamilyHeading
+                        bold: true
+                    }
+                }
             }
 
             VerticalGap { }
@@ -80,6 +99,7 @@ Page {
                     //% "Issuer"
                     label: qsTrId("dgcert-common-issuer")
                     value: certModel.issuer
+                    visible: !euIssuerCountryCode.visible
                 }
 
                 DetailItem {

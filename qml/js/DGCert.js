@@ -81,6 +81,37 @@ var testResultDisplayNames = {
     "260373001": qsTrId("dgcert-test_result-detected")
 }
 
+// 2- and 3-letter country codes for the EU member states
+var euCountryCodes = [
+    "AT", "AUT", // Austria
+    "BE", "BEL", // Belgium
+    "BG", "BGR", // Bulgaria
+    "HR", "HRV", // Croatia
+    "CY", "CYP", // Cyprus
+    "CZ", "CZE", // Czech Republic
+    "DK", "DNK", // Denmark
+    "EE", "EST", // Estonia
+    "FI", "FIN", // Finland
+    "FR", "FRA", // France
+    "DE", "DEU", // Germany
+    "GR", "GRC", // Greece
+    "HU", "HUN", // Hungary
+    "IE", "IRL", // Ireland
+    "IT", "ITA", // Italy
+    "LV", "LVA", // Latvia
+    "LT", "LTU", // Lithuania
+    "LU", "LUX", // Luxembourg
+    "MT", "MLT", // Malta
+    "NL", "NLD", // Netherlands
+    "PL", "POL", // Poland
+    "PT", "PRT", // Portugal
+    "RO", "ROU", // Romania
+    "SK", "SVK", // Slovakia
+    "SI", "SVN", // Slovenia
+    "ES", "ESP", // Spain
+    "SE", "SWE"  // Sweden
+]
+
 function dateString(date) {
     return date.toLocaleDateString(Qt.locale(), "yyyy-MM-dd")
 }
@@ -116,4 +147,8 @@ function vaccineManufacturerDisplayName(code) {
 function testResultDisplayName(code) {
     var name = testResultDisplayNames[code]
     return name ? name : code
+}
+
+function isEUCountryCode(country) {
+    return euCountryCodes.indexOf(country.toUpperCase()) >= 0
 }
