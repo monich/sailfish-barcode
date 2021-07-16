@@ -150,5 +150,8 @@ function testResultDisplayName(code) {
 }
 
 function isEUCountryCode(country) {
-    return euCountryCodes.indexOf(country.toUpperCase()) >= 0
+    var uppercased = country.toUpperCase()
+    return euCountryCodes.indexOf(uppercased) >= 0 ||
+        uppercased === "CH" || uppercased === "CHE" || // Switzerland
+        uppercased === "NO" || uppercased === "NOR"    // Norway
 }
