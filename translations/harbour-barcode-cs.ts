@@ -356,6 +356,11 @@
         <extracomment>Hint label</extracomment>
         <translation type="unfinished">Zobrazit digitální certifikát EU COVID</translation>
     </message>
+    <message id="hint-add_to_calendar">
+        <source>Add event to calendar</source>
+        <extracomment>Hint label</extracomment>
+        <translation type="unfinished">Přidat událost do kalendáře</translation>
+    </message>
     <message id="settings-display-section">
         <source>Display</source>
         <extracomment>Section header</extracomment>

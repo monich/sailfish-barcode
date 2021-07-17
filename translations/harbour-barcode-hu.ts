@@ -352,6 +352,11 @@
         <extracomment>Hint label</extracomment>
         <translation type="unfinished">Uniós digitális Covid-igazolvány megjelenítése</translation>
     </message>
+    <message id="hint-add_to_calendar">
+        <source>Add event to calendar</source>
+        <extracomment>Hint label</extracomment>
+        <translation type="unfinished">Esemény hozzáadása a naptárhoz</translation>
+    </message>
     <message id="settings-display-section">
         <source>Display</source>
         <extracomment>Section header</extracomment>

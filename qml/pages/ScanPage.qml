@@ -671,9 +671,10 @@ Page {
                 readonly property bool haveContact: vcard && vcard.count > 0
                 readonly property string normalizedText: Utils.convertLineBreaks(text)
                 readonly property bool isCovidCertificate: dgCert.valid
-                readonly property string vcardText: isCovidCertificate ? "" :
+                readonly property string vcardText: (isCovidCertificate || isVEvent) ? "" :
                     (meCardConverter.vcard.length > 0) ? meCardConverter.vcard :
                     Utils.isVcard(normalizedText) ? normalizedText : ""
+                readonly property bool isVEvent: !isCovidCertificate && Utils.isVevent(normalizedText)
                 readonly property bool isVCard: !isCovidCertificate && vcardText.length > 0
                 readonly property bool isLink: !isCovidCertificate && Utils.isLink(text)
                 readonly property bool isUrl: !isCovidCertificate && Utils.isUrl(text)
@@ -728,6 +729,14 @@ Page {
                     text: clickableResult.text
                 }
 
+                TemporaryFile {
+                    id: calendarEvent
+
+                    // Calendar app can't access /tmp in Sailfish OS >= 4.0
+                    location: SystemInfo.osVersionCompare("4.0") >= 0 ? TemporaryFile.Downloads : TemporaryFile.Tmp
+                    fileTemplate: clickableResult.isVEvent ? "barcodeXXXXXX.vcs" : ""
+                }
+
                 // Clear results when the first history item gets deleted
                 Connections {
                     target: HistoryModel
@@ -743,10 +752,7 @@ Page {
                         id: covidButton
 
                         anchors.verticalCenter: parent.verticalCenter
-                        icon {
-                            source: clickableResult.isCovidCertificate ? "img/covid.svg" : ""
-                            sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
-                        }
+                        icon.source: visible ? "img/covid.svg" : ""
                         visible: clickableResult.isCovidCertificate
                         enabled: visible
                         //: Hint label
@@ -763,44 +769,11 @@ Page {
                     }
 
                     HarbourHintIconButton {
-                        id: linkButton
-                        anchors.verticalCenter: parent.verticalCenter
-                        icon {
-                            source: clickableResult.isLink ?
-                                Qt.resolvedUrl("img/open_link.svg") :
-                                Qt.resolvedUrl("img/open_url.svg")
-                            sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
-                        }
-                        visible: !covidButton.visible && !clickableResult.haveContact && clickableResult.isUrl
-                        enabled: visible && !holdOffTimer.running
-                        hint: clickableResult.isLink ?
-                            //: Hint label
-                            //% "Open link in browser"
-                            qsTrId("hint-open_link") :
-                            //: Hint label
-                            //% "Open URL in default application"
-                            qsTrId("hint-open_url")
-                        onShowHint: scanPage.showHint(hint)
-                        onHideHint: scanPage.hideHint()
-                        onClicked: {
-                            console.log("opening", clickableResult.text)
-                            Qt.openUrlExternally(clickableResult.text)
-                            holdOffTimer.restart()
-                        }
-                        Timer {
-                            id: holdOffTimer
-                            interval: 2000
-                        }
-                    }
-
-                    HarbourHintIconButton {
                         id: vcardButton
+
                         anchors.verticalCenter: parent.verticalCenter
-                        icon {
-                            source: "img/open_vcard.svg"
-                            sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
-                        }
-                        visible: !covidButton.visible && clickableResult.haveContact && !clickableResult.isLink
+                        icon.source: visible ? "img/open_vcard.svg" : ""
+                        visible: !covidButton.visible && clickableResult.haveContact
                         //: Hint label
                         //% "Open contact card"
                         hint: qsTrId("hint-open_contact_card")
@@ -826,9 +799,58 @@ Page {
                     }
 
                     HarbourHintIconButton {
+                        id: veventButton
+
+                        anchors.verticalCenter: parent.verticalCenter
+                        icon.source: visible ? "img/calendar.svg" : ""
+                        visible: !covidButton.visible && !vcardButton.visible && clickableResult.isVEvent
+                        enabled: visible && !holdOffTimer.running
+                        onClicked: {
+                            // This actually creates a temporary file
+                            calendarEvent.content = Utils.calendarText(clickableResult.normalizedText)
+                            console.log("importing", calendarEvent.url)
+                            Qt.openUrlExternally(calendarEvent.url)
+                            holdOffTimer.restart()
+                        }
+                        //: Hint label
+                        //% "Add event to calendar"
+                        hint: qsTrId("hint-add_to_calendar")
+                        onShowHint: scanPage.showHint(hint)
+                        onHideHint: scanPage.hideHint()
+                    }
+
+                    HarbourHintIconButton {
+                        id: linkButton
+                        anchors.verticalCenter: parent.verticalCenter
+                        icon {
+                            source: !visible ? "" :
+                                clickableResult.isLink ?
+                                Qt.resolvedUrl("img/open_link.svg") :
+                                Qt.resolvedUrl("img/open_url.svg")
+                            sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
+                        }
+                        visible: !covidButton.visible && !vcardButton.visible && !veventButton.visible && clickableResult.isUrl
+                        enabled: visible && !holdOffTimer.running
+                        hint: clickableResult.isLink ?
+                            //: Hint label
+                            //% "Open link in browser"
+                            qsTrId("hint-open_link") :
+                            //: Hint label
+                            //% "Open URL in default application"
+                            qsTrId("hint-open_url")
+                        onShowHint: scanPage.showHint(hint)
+                        onHideHint: scanPage.hideHint()
+                        onClicked: {
+                            console.log("opening", clickableResult.text)
+                            Qt.openUrlExternally(clickableResult.text)
+                            holdOffTimer.restart()
+                        }
+                    }
+
+                    HarbourHintIconButton {
                         anchors.verticalCenter: parent.verticalCenter
                         icon.source: "img/clipboard.svg"
-                        visible: !covidButton.visible && !linkButton.visible && !vcardButton.visible
+                        visible: !covidButton.visible && !linkButton.visible && !vcardButton.visible && !veventButton.visible
                         onClicked: {
                             Clipboard.text = clickableResult.text
                             clipboardNotification.publish()
@@ -838,6 +860,11 @@ Page {
                         hint: qsTrId("hint-copy-clipboard")
                         onShowHint: scanPage.showHint(hint)
                         onHideHint: scanPage.hideHint()
+                    }
+
+                    Timer {
+                        id: holdOffTimer
+                        interval: 2000
                     }
                 }
             }

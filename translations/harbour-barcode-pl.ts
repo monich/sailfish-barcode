@@ -356,6 +356,11 @@
         <extracomment>Hint label</extracomment>
         <translation type="unfinished">Pokaż Unijne cyfrowe zaświadczenie COVID</translation>
     </message>
+    <message id="hint-add_to_calendar">
+        <source>Add event to calendar</source>
+        <extracomment>Hint label</extracomment>
+        <translation type="unfinished">Dodaj wydarzenie do kalendarza</translation>
+    </message>
     <message id="settings-display-section">
         <source>Display</source>
         <extracomment>Section header</extracomment>

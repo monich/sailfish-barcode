@@ -356,6 +356,11 @@
         <extracomment>Hint label</extracomment>
         <translation>Показать ковид-сертификат</translation>
     </message>
+    <message id="hint-add_to_calendar">
+        <source>Add event to calendar</source>
+        <extracomment>Hint label</extracomment>
+        <translation>Добавить событие в календарь</translation>
+    </message>
     <message id="settings-display-section">
         <source>Display</source>
         <extracomment>Section header</extracomment>

@@ -352,7 +352,12 @@
     <message id="hint-covid_certificate">
         <source>Show EU digital COVID certificate</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Afficher le certificat COVID numérique de l'UE</translation>
+        <translation type="unfinished">Afficher le certificat COVID numérique de l&apos;UE</translation>
+    </message>
+    <message id="hint-add_to_calendar">
+        <source>Add event to calendar</source>
+        <extracomment>Hint label</extracomment>
+        <translation type="unfinished">Ajouter un événement au calendrier</translation>
     </message>
     <message id="settings-display-section">
         <source>Display</source>
