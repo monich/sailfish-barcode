@@ -247,7 +247,7 @@
     <message id="button-eu_covid_cert">
         <source>COVID Certificate</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished">Covid certifikat</translation>
+        <translation>Covid-certifikat</translation>
     </message>
     <message id="button-open_link">
         <source>Open link</source>
@@ -352,12 +352,12 @@
     <message id="hint-covid_certificate">
         <source>Show EU digital COVID certificate</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Visa EU:s digitala covidintyg</translation>
+        <translation>Visa EU:s digitala covidintyg</translation>
     </message>
     <message id="hint-add_to_calendar">
         <source>Add event to calendar</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Lägg till händelse i kalendern</translation>
+        <translation>Lägg till händelse i kalendern</translation>
     </message>
     <message id="settings-display-section">
         <source>Display</source>
@@ -462,197 +462,197 @@
     <message id="dgcert-schema_version">
         <source>Schema version %1</source>
         <extracomment>Page description</extracomment>
-        <translation type="unfinished">Schemaversion %1</translation>
+        <translation>Schemaversion %1</translation>
     </message>
     <message id="dgcert-common-issuer">
         <source>Issuer</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Emittent</translation>
+        <translation>Utfärdare</translation>
     </message>
     <message id="dgcert-common-issue_date">
         <source>Issue date</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Utgivningsdatum</translation>
+        <translation>Utfärdandedatum</translation>
     </message>
     <message id="dgcert-common-expiration_date">
         <source>Expiration date</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Utgångsdatum</translation>
+        <translation>Utgångsdatum</translation>
     </message>
     <message id="dgcert-personal-name">
         <source>Name</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Namn</translation>
+        <translation>Namn</translation>
     </message>
     <message id="dgcert-personal-standardized_name">
         <source>Standardized name</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Standardiserat namn</translation>
+        <translation>Standardiserat namn</translation>
     </message>
     <message id="dgcert-personal-date_of_birth">
         <source>Date of birth</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Födelsedatum</translation>
+        <translation>Födelsedatum</translation>
     </message>
     <message id="dgcert-signature_disclaimer">
         <source>The signature is not checked and therefore the validity of the certificate is not guaranteed.</source>
         <extracomment>Disclaimer</extracomment>
-        <translation type="unfinished">Underskriften kontrolleras inte och certifikatets giltighet garanteras inte.</translation>
+        <translation>Underskriften kontrolleras inte och certifikatets giltighet garanteras inte.</translation>
     </message>
     <message id="dgcert-vaccination-header">
         <source>Vaccination certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Vaccinationsintyg</translation>
+        <translation>Vaccinationsintyg</translation>
     </message>
     <message id="dgcert-vaccination-tg">
         <source>Disease or agent targeted</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Infektion</translation>
+        <translation>Sjukdom eller infektion</translation>
     </message>
     <message id="dgcert-vaccination-vp">
         <source>Type of the vaccine</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Typ av vaccin</translation>
+        <translation>Vaccintyp</translation>
     </message>
     <message id="dgcert-vaccination-mp">
         <source>Vaccine product</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Vaccin</translation>
+        <translation>Vaccin</translation>
     </message>
     <message id="dgcert-vaccination-ma">
         <source>Vaccine manufacturer</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Vaccintillverkare</translation>
+        <translation>Vaccintillverkare</translation>
     </message>
     <message id="dgcert-vaccination-dn_sd">
         <source>Number of doses</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Antal doser</translation>
+        <translation>Antal doser</translation>
     </message>
     <message id="dgcert-vaccination-dt">
         <source>Date of vaccination</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Vaccinationsdatum</translation>
+        <translation>Vaccinationsdatum</translation>
     </message>
     <message id="dgcert-vaccination-co">
         <source>Country of vaccination</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Land för vaccination</translation>
+        <translation>Vaccinationsland</translation>
     </message>
     <message id="dgcert-vaccination-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Certifikatutfärdare</translation>
+        <translation>Certifikatutfärdare</translation>
     </message>
     <message id="dgcert-vaccination-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Unikt certifikatidentifierare</translation>
+        <translation>Unik certifikatidentifierare</translation>
     </message>
     <message id="dgcert-test-header">
         <source>Test certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Test certifikat</translation>
+        <translation>Testcertifikat</translation>
     </message>
     <message id="dgcert-test-tg">
         <source>Disease or agent</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Infektion</translation>
+        <translation>Sjukdom eller infektion</translation>
     </message>
     <message id="dgcert-test-tt">
         <source>The type of test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Typ av test</translation>
+        <translation>Testtyp</translation>
     </message>
     <message id="dgcert-test-nm">
         <source>Test name</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Testa</translation>
+        <translation>Testnamn</translation>
     </message>
     <message id="dgcert-test-ma">
         <source>Test device identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Testutrustning</translation>
+        <translation>Identifierare för testenhet</translation>
     </message>
     <message id="dgcert-test-sc">
         <source>Date and time of the sample</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Provets datum och tid</translation>
+        <translation>Provets datum och tid</translation>
     </message>
     <message id="dgcert-test-tr">
         <source>Result of the test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Resultat av testet</translation>
+        <translation>Testresultat</translation>
     </message>
     <message id="dgcert-test-tc">
         <source>Testing centre or facility</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Testanläggning</translation>
+        <translation>Testanläggning</translation>
     </message>
     <message id="dgcert-test-co">
         <source>Country where the test was carried out</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Land</translation>
+        <translation>Land där testet urfördes</translation>
     </message>
     <message id="dgcert-test-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Certifikatutfärdare</translation>
+        <translation>Certifikatutfärdare</translation>
     </message>
     <message id="dgcert-test-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Unikt certifikatidentifierare</translation>
+        <translation>Unik certifikatidentifierare</translation>
     </message>
     <message id="dgcert-recovery-header">
         <source>Recovery certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Återställningsintyg</translation>
+        <translation>Återställningsintyg</translation>
     </message>
     <message id="dgcert-recovery-tg">
         <source>Disease or agent</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Infektion</translation>
+        <translation>Sjukdom eller infektion</translation>
     </message>
     <message id="dgcert-recovery-fr">
         <source>Date of the first positive test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Datum för det första positiva testet</translation>
+        <translation>Datum för första positiva test</translation>
     </message>
     <message id="dgcert-recovery-co">
         <source>Country where the test was carried out</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Land</translation>
+        <translation>Land där testet urfördes</translation>
     </message>
     <message id="dgcert-recovery-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Certifikatutfärdare</translation>
+        <translation>Certifikatutfärdare</translation>
     </message>
     <message id="dgcert-recovery-df">
         <source>Certificate valid from</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Giltig från</translation>
+        <translation>Certifikat giltigt från</translation>
     </message>
     <message id="dgcert-recovery-du">
         <source>Certificate valid until</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Giltig till</translation>
+        <translation>Certifikat giltigt till</translation>
     </message>
     <message id="dgcert-recovery-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Unikt certifikatidentifierare</translation>
+        <translation>Unik certifikatidentifierare</translation>
     </message>
     <message id="dgcert-test_result-not_detected">
         <source>Not detected</source>
         <extracomment>Test result</extracomment>
-        <translation type="unfinished">Negativt</translation>
+        <translation>Negativt</translation>
     </message>
     <message id="dgcert-test_result-detected">
         <source>Detected</source>
         <extracomment>Test result</extracomment>
-        <translation type="unfinished">Positivt</translation>
+        <translation>Positivt</translation>
     </message>
 </context>
 </TS>
