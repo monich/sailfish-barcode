@@ -552,7 +552,7 @@
     <message id="dgcert-test-header">
         <source>Test certificate</source>
         <extracomment>Section header</extracomment>
-        <translation>Section header</translation>
+        <translation>Test certificate</translation>
     </message>
     <message id="dgcert-test-tg">
         <source>Disease or agent</source>
