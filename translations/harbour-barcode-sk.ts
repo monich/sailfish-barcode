@@ -444,7 +444,7 @@
     <message id="gallery-empty">
         <source>No images found in the gallery</source>
         <extracomment>Placeholder text</extracomment>
-        <translation type="unfinished">V galérii nie je žiaden obrázok</translation>
+        <translation>V galérii nie je žiaden obrázok</translation>
     </message>
     <message id="gallery-thumbnail-error">
         <source>Error</source>
