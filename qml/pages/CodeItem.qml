@@ -64,7 +64,7 @@ Item {
 
     onIsVCardChanged: {
         if (isVCard && !vcard) {
-            var component = Qt.createComponent("VCard.qml");
+            var component = Qt.createComponent("../components/VCard.qml");
             if (component.status === Component.Ready) {
                 vcard = component.createObject(codeItem, {
                     content: meCardConverter.vcard ? meCardConverter.vcard : normalizedText

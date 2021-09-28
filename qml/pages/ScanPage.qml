@@ -698,7 +698,7 @@ Page {
                         if (vcard) {
                             vcard.content = vcardText
                         } else {
-                            var component = Qt.createComponent("VCard.qml")
+                            var component = Qt.createComponent("../components/VCard.qml")
                             if (component.status === Component.Ready) {
                                 vcard = component.createObject(scanPage, { content: vcardText })
                             }
