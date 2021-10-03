@@ -299,15 +299,30 @@
         <extracomment>Status label</extracomment>
         <translation type="unfinished">Problema con la red</translation>
     </message>
-    <message id="contact-menu-save">
-        <source>Save</source>
+    <message id="contact-menu-save_contact">
+        <source>Save contact</source>
         <extracomment>Pulley menu item (saves contact)</extracomment>
-        <translation>Guardar</translation>
+        <translation type="unfinished">Guardar contacto</translation>
     </message>
     <message id="contact-notification-saved">
-        <source>Saved contact</source>
+        <source>Contact saved</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation>Contacto guardado</translation>
+        <translation type="unfinished">Contacto guardado</translation>
+    </message>
+    <message id="contact-notification-maybe_saved">
+        <source>Contact saved (or at least we tried)</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">Contacto guardado (al menos lo intentamos)</translation>
+    </message>
+    <message id="contact-notification-failed">
+        <source>Failed to save the contact</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">No se pudo guardar el contacto</translation>
+    </message>
+    <message id="contact-notification-failed_jailed">
+        <source>Failed to save the contact (blocked by sandboxing?)</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">No se pudo guardar el contacto (¿bloqueado por la zona de pruebas?)</translation>
     </message>
     <message id="notification-copied_to_clipboard">
         <source>Copied to clipboard</source>

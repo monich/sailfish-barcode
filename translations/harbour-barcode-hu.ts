@@ -297,15 +297,30 @@
         <extracomment>Status label</extracomment>
         <translation>Probléma a hálózattal</translation>
     </message>
-    <message id="contact-menu-save">
-        <source>Save</source>
+    <message id="contact-menu-save_contact">
+        <source>Save contact</source>
         <extracomment>Pulley menu item (saves contact)</extracomment>
-        <translation>Mentés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message id="contact-notification-saved">
-        <source>Saved contact</source>
+        <source>Contact saved</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation>Névjegy mentve</translation>
+        <translation type="unfinished">Névjegy mentve</translation>
+    </message>
+    <message id="contact-notification-maybe_saved">
+        <source>Contact saved (or at least we tried)</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">Névjegy mentve (legalább megpróbáltuk)</translation>
+    </message>
+    <message id="contact-notification-failed">
+        <source>Failed to save the contact</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">Névjegy nem lehetett megmenteni</translation>
+    </message>
+    <message id="contact-notification-failed_jailed">
+        <source>Failed to save the contact (blocked by sandboxing?)</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">Névjegy nem lehetett megmenteni (a homokozó által blokkolt?)</translation>
     </message>
     <message id="notification-copied_to_clipboard">
         <source>Copied to clipboard</source>

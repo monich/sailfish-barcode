@@ -47,8 +47,35 @@ Item {
             url = file.url
         }
 
-        contactsDbusIface.call("importContactFile", ["" + url])
-        notification.publish()
+        contactsDbusIface.call("importContactFile", ["" + url],
+            function(result) {
+                //: Pop-up notification
+                //% "Contact saved"
+                notification.previewBody = qsTrId("contact-notification-saved")
+                notification.publish()
+            },
+            function(error, message) {
+                console.log(error)
+                // org.freedesktop.DBus.Error.ServiceUnknown convers both D-Bus API break
+                // and sandboxing. The rest (e.g. org.freedesktop.DBus.Error.NoReply) is
+                // considerd to be a success
+                if (error === "org.freedesktop.DBus.Error.ServiceUnknown") {
+                    if (ProcessState.jailedApp) {
+                        //: Pop-up notification
+                        //% "Failed to save the contact (blocked by sandboxing?)"
+                        notification.previewBody = qsTrId("contact-notification-failed_jailed")
+                    } else {
+                        //: Pop-up notification
+                        //% "Failed to save the contact"
+                        notification.previewBody = qsTrId("contact-notification-failed")
+                    }
+                } else {
+                    //: Pop-up notification
+                    //% "Contact saved (or at least we tried)"
+                    notification.previewBody = qsTrId("contact-notification-maybe_saved")
+                }
+                notification.publish()
+            })
     }
 
     function contact() {
@@ -69,9 +96,6 @@ Item {
 
     Notification {
         id: notification
-        //: Pop-up notification
-        //% "Saved contact"
-        previewBody: qsTrId("contact-notification-saved")
         expireTimeout: 2000
     }
 

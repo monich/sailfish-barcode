@@ -93,6 +93,7 @@ SOURCES += \
     $${HARBOUR_LIB_SRC}/HarbourMediaPlugin.cpp \
     $${HARBOUR_LIB_SRC}/HarbourPluginLoader.cpp \
     $${HARBOUR_LIB_SRC}/HarbourPolicyPlugin.cpp \
+    $${HARBOUR_LIB_SRC}/HarbourProcessState.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSelectionListModel.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSingleImageProvider.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSystem.cpp \
@@ -107,6 +108,7 @@ HEADERS += \
     $${HARBOUR_LIB_INCLUDE}/HarbourMediaPlugin.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourPluginLoader.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourPolicyPlugin.h \
+    $${HARBOUR_LIB_INCLUDE}/HarbourProcessState.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSelectionListModel.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSingleImageProvider.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSystem.h \

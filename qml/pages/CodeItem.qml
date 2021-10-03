@@ -213,8 +213,8 @@ Item {
                             allowedOrientations: window.allowedOrientations,
                             contact: codeItem.vcard.contact(),
                             //: Pulley menu item (saves contact)
-                            //% "Save"
-                            saveText: qsTrId("contact-menu-save")
+                            //% "Save contact"
+                            saveText: qsTrId("contact-menu-save_contact")
                         }).saveContact.connect(function() {
                            pageStack.pop()
                            codeItem.vcard.importContact()

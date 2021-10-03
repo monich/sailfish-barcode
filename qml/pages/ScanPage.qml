@@ -789,8 +789,8 @@ Page {
                                 allowedOrientations: window.allowedOrientations,
                                 contact: clickableResult.vcard.contact(),
                                 //: Pulley menu item (saves contact)
-                                //% "Save"
-                                saveText: qsTrId("contact-menu-save")
+                                //% "Save contact"
+                                saveText: qsTrId("contact-menu-save_contact")
                             }).saveContact.connect(function() {
                                 pageStack.pop()
                                 clickableResult.vcard.importContact()

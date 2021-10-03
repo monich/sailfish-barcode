@@ -299,15 +299,30 @@
         <extracomment>Status label</extracomment>
         <translation type="unfinished">Der er problemer med netværket</translation>
     </message>
-    <message id="contact-menu-save">
-        <source>Save</source>
+    <message id="contact-menu-save_contact">
+        <source>Save contact</source>
         <extracomment>Pulley menu item (saves contact)</extracomment>
-        <translation>Gem</translation>
+        <translation type="unfinished">Gem kontakt</translation>
     </message>
     <message id="contact-notification-saved">
-        <source>Saved contact</source>
+        <source>Contact saved</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation>Kontakten er gemt</translation>
+        <translation type="unfinished">Kontakt gemmes</translation>
+    </message>
+    <message id="contact-notification-maybe_saved">
+        <source>Contact saved (or at least we tried)</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">Kontakt gemmes (vi prøvede i det mindste)</translation>
+    </message>
+    <message id="contact-notification-failed">
+        <source>Failed to save the contact</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">Kunne ikke gemme kontakten</translation>
+    </message>
+    <message id="contact-notification-failed_jailed">
+        <source>Failed to save the contact (blocked by sandboxing?)</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">Kunne ikke gemme kontakten (blokeret af sandboxing?)</translation>
     </message>
     <message id="notification-copied_to_clipboard">
         <source>Copied to clipboard</source>

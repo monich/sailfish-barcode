@@ -38,6 +38,7 @@ THE SOFTWARE.
 
 #include "HarbourDebug.h"
 #include "HarbourDisplayBlanking.h"
+#include "HarbourProcessState.h"
 #include "HarbourSelectionListModel.h"
 #include "HarbourSingleImageProvider.h"
 #include "HarbourTemporaryFile.h"
@@ -68,6 +69,7 @@ static void register_types(QQmlEngine* engine, const char* uri, int v1, int v2)
     qmlRegisterType<HarbourDisplayBlanking>(uri, v1, v2, "DisplayBlanking");
     qmlRegisterType<HarbourTemporaryFile>(uri, v1, v2, "TemporaryFile");
     qmlRegisterSingletonType<HarbourSystemInfo>(uri, v1, v2, "SystemInfo", HarbourSystemInfo::createSingleton);
+    qmlRegisterSingletonType<HarbourProcessState>(uri, v1, v2, "ProcessState", HarbourProcessState::createSingleton);
     qmlRegisterType<BarcodeScanner>(uri, v1, v2, "BarcodeScanner");
     qmlRegisterType<DGCertModel>(uri, v1, v2, "DGCertModel");
     qmlRegisterType<DGCertRecognizer>(uri, v1, v2, "DGCertRecognizer");

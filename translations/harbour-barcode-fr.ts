@@ -299,15 +299,30 @@
         <extracomment>Status label</extracomment>
         <translation type="unfinished">Problème de réseau</translation>
     </message>
-    <message id="contact-menu-save">
-        <source>Save</source>
+    <message id="contact-menu-save_contact">
+        <source>Save contact</source>
         <extracomment>Pulley menu item (saves contact)</extracomment>
-        <translation>Enregistrer</translation>
+        <translation type="unfinished">Enregistrer le contact</translation>
     </message>
     <message id="contact-notification-saved">
-        <source>Saved contact</source>
+        <source>Contact saved</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation>Contact enregistré</translation>
+        <translation type="unfinished">Le contact est enregistré</translation>
+    </message>
+    <message id="contact-notification-maybe_saved">
+        <source>Contact saved (or at least we tried)</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">Le contact est enregistré (ou du moins nous avons essayé)</translation>
+    </message>
+    <message id="contact-notification-failed">
+        <source>Failed to save the contact</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">Échec de l&apos;enregistrement du contact</translation>
+    </message>
+    <message id="contact-notification-failed_jailed">
+        <source>Failed to save the contact (blocked by sandboxing?)</source>
+        <extracomment>Pop-up notification</extracomment>
+        <translation type="unfinished">Échec de l&apos;enregistrement du contact (bloqué par le sandbox?)</translation>
     </message>
     <message id="notification-copied_to_clipboard">
         <source>Copied to clipboard</source>
