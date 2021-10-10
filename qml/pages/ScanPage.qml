@@ -616,7 +616,7 @@ Page {
                     sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
                     rotation: isLandscape ? 90 : 0
                 }
-                opacity: scanningGalleryImage ? 0.0 : 1.0
+                opacity: (scanningGalleryImage || !viewFinderContainer.canSwitchResolutions)? 0.0 : 1.0
                 visible: opacity > 0.0
                 Behavior on opacity { FadeAnimation { } }
                 onClicked: AppSettings.wideMode = !AppSettings.wideMode
