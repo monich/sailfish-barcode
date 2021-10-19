@@ -249,7 +249,7 @@
     <message id="button-eu_covid_cert">
         <source>COVID Certificate</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished">Covid certifikát</translation>
+        <translation>Certifikát COVID</translation>
     </message>
     <message id="button-open_link">
         <source>Open link</source>
@@ -304,27 +304,27 @@
     <message id="contact-menu-save_contact">
         <source>Save contact</source>
         <extracomment>Pulley menu item (saves contact)</extracomment>
-        <translation type="unfinished">Uložiť kontakt</translation>
+        <translation>Uložiť kontakt</translation>
     </message>
     <message id="contact-notification-saved">
         <source>Contact saved</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Kontakt bol uložený</translation>
+        <translation>Kontakt bol uložený</translation>
     </message>
     <message id="contact-notification-maybe_saved">
         <source>Contact saved (or at least we tried)</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Kontakt bol uložený (aspoň sme sa snažili)</translation>
+        <translation>Kontakt bol uložený (aspoň sme sa snažili)</translation>
     </message>
     <message id="contact-notification-failed">
         <source>Failed to save the contact</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Nepodarilo sa uložiť kontakt</translation>
+        <translation>Uloženie kontaktu zlyhalo</translation>
     </message>
     <message id="contact-notification-failed_jailed">
         <source>Failed to save the contact (blocked by sandboxing?)</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Nepodarilo sa uložiť kontakt (blokovaný pieskovníkom?)</translation>
+        <translation>Nepodarilo sa uložiť kontakt (zablokovaný sandboxom?)</translation>
     </message>
     <message id="notification-copied_to_clipboard">
         <source>Copied to clipboard</source>
@@ -369,12 +369,12 @@
     <message id="hint-covid_certificate">
         <source>Show EU digital COVID certificate</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Zobraziť digitálny COVID preukaz EÚ</translation>
+        <translation>Zobraziť digitálny COVID preukaz EÚ</translation>
     </message>
     <message id="hint-add_to_calendar">
         <source>Add event to calendar</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Pridajte udalosť do kalendára</translation>
+        <translation>Pridať pripomienku do kalendára</translation>
     </message>
     <message id="settings-display-section">
         <source>Display</source>
@@ -479,197 +479,197 @@
     <message id="dgcert-schema_version">
         <source>Schema version %1</source>
         <extracomment>Page description</extracomment>
-        <translation type="unfinished">Verzia schémy %1</translation>
+        <translation>Verzia schémy %1</translation>
     </message>
     <message id="dgcert-common-issuer">
         <source>Issuer</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Vydavateľ</translation>
+        <translation>Vydavateľ</translation>
     </message>
     <message id="dgcert-common-issue_date">
         <source>Issue date</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Datum vydání</translation>
+        <translation>Dátum vydania</translation>
     </message>
     <message id="dgcert-common-expiration_date">
         <source>Expiration date</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Dátum spotreby</translation>
+        <translation>Dátum platnosti</translation>
     </message>
     <message id="dgcert-personal-name">
         <source>Name</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Názov</translation>
+        <translation>Meno</translation>
     </message>
     <message id="dgcert-personal-standardized_name">
         <source>Standardized name</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Štandardizovaný názov</translation>
+        <translation>Priezvisko</translation>
     </message>
     <message id="dgcert-personal-date_of_birth">
         <source>Date of birth</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Dátum narodenia</translation>
+        <translation>Dátum narodenia</translation>
     </message>
     <message id="dgcert-signature_disclaimer">
         <source>The signature is not checked and therefore the validity of the certificate is not guaranteed.</source>
         <extracomment>Disclaimer</extracomment>
-        <translation type="unfinished">Digitálny podpis nie je overený, takže nie je zaručená presnosť informácií.</translation>
+        <translation>Digitálny podpis nie je overený a preto nie je zaručená platnosť certifikátu.</translation>
     </message>
     <message id="dgcert-vaccination-header">
         <source>Vaccination certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Očkovací preukaz</translation>
+        <translation>Očkovací preukaz</translation>
     </message>
     <message id="dgcert-vaccination-tg">
         <source>Disease or agent targeted</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Infekcia</translation>
+        <translation>Infekcia</translation>
     </message>
     <message id="dgcert-vaccination-vp">
         <source>Type of the vaccine</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Typ vakcíny</translation>
+        <translation>Typ očkovacej látky</translation>
     </message>
     <message id="dgcert-vaccination-mp">
         <source>Vaccine product</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Vakcína</translation>
+        <translation>Očkovacia látka</translation>
     </message>
     <message id="dgcert-vaccination-ma">
         <source>Vaccine manufacturer</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Výrobca</translation>
+        <translation>Výrobca očkovacej látky</translation>
     </message>
     <message id="dgcert-vaccination-dn_sd">
         <source>Number of doses</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Počet dávok</translation>
+        <translation>Počet dávok</translation>
     </message>
     <message id="dgcert-vaccination-dt">
         <source>Date of vaccination</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Dátum očkovania</translation>
+        <translation>Dátum očkovania</translation>
     </message>
     <message id="dgcert-vaccination-co">
         <source>Country of vaccination</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Krajina očkovania</translation>
+        <translation>Krajina očkovania</translation>
     </message>
     <message id="dgcert-vaccination-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Vydávajúca organizácia</translation>
+        <translation>Vydávajúca organizácia</translation>
     </message>
     <message id="dgcert-vaccination-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Jedinečný identifikátor certifikátu</translation>
+        <translation>Jedinečný identifikátor certifikátu</translation>
     </message>
     <message id="dgcert-test-header">
         <source>Test certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Osvedčenie o skúške</translation>
+        <translation>Osvedčenie o skúške</translation>
     </message>
     <message id="dgcert-test-tg">
         <source>Disease or agent</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Infekcia</translation>
+        <translation>Infekcia</translation>
     </message>
     <message id="dgcert-test-tt">
         <source>The type of test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Typ skúšky</translation>
+        <translation>Typ testu</translation>
     </message>
     <message id="dgcert-test-nm">
         <source>Test name</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Test</translation>
+        <translation>Názov testu</translation>
     </message>
     <message id="dgcert-test-ma">
         <source>Test device identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Testovacie vybavenie</translation>
+        <translation>Identifikátor testovacieho zariadenia</translation>
     </message>
     <message id="dgcert-test-sc">
         <source>Date and time of the sample</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Dátum a čas vzorky</translation>
+        <translation>Dátum a čas vzorky</translation>
     </message>
     <message id="dgcert-test-tr">
         <source>Result of the test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Výsledok skúšky</translation>
+        <translation>Výsledok testu</translation>
     </message>
     <message id="dgcert-test-tc">
         <source>Testing centre or facility</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Skúšobné laboratórium</translation>
+        <translation>Skúšobné laboratórium</translation>
     </message>
     <message id="dgcert-test-co">
         <source>Country where the test was carried out</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Krajina</translation>
+        <translation>Krajina, v ktorej bol test vykonaný</translation>
     </message>
     <message id="dgcert-test-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Vydávajúca organizácia</translation>
+        <translation>Vydávajúca organizácia</translation>
     </message>
     <message id="dgcert-test-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Jedinečný identifikátor certifikátu</translation>
+        <translation>Jedinečný identifikátor certifikátu</translation>
     </message>
     <message id="dgcert-recovery-header">
         <source>Recovery certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Osvedčenie o rekonvalescencii</translation>
+        <translation>Potvrdenie o prekonaní</translation>
     </message>
     <message id="dgcert-recovery-tg">
         <source>Disease or agent</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Infekcia</translation>
+        <translation>Infekcia</translation>
     </message>
     <message id="dgcert-recovery-fr">
         <source>Date of the first positive test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Dátum prvého pozitívneho testu</translation>
+        <translation>Dátum prvého pozitívneho testu</translation>
     </message>
     <message id="dgcert-recovery-co">
         <source>Country where the test was carried out</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Krajina</translation>
+        <translation>Krajina, v ktorej bol test vykonaný</translation>
     </message>
     <message id="dgcert-recovery-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Vydávajúca organizácia</translation>
+        <translation>Vydávajúca organizácia</translation>
     </message>
     <message id="dgcert-recovery-df">
         <source>Certificate valid from</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Platnosť od</translation>
+        <translation>Platnosť certifikátu od</translation>
     </message>
     <message id="dgcert-recovery-du">
         <source>Certificate valid until</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Platné do</translation>
+        <translation>Platnosť certifikátu do</translation>
     </message>
     <message id="dgcert-recovery-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Jedinečný identifikátor certifikátu</translation>
+        <translation>Jedinečný identifikátor certifikátu</translation>
     </message>
     <message id="dgcert-test_result-not_detected">
         <source>Not detected</source>
         <extracomment>Test result</extracomment>
-        <translation type="unfinished">Negatívny</translation>
+        <translation>Negatívny</translation>
     </message>
     <message id="dgcert-test_result-detected">
         <source>Detected</source>
         <extracomment>Test result</extracomment>
-        <translation type="unfinished">Pozitívny</translation>
+        <translation>Pozitívny</translation>
     </message>
 </context>
 </TS>
