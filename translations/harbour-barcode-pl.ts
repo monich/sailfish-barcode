@@ -11,7 +11,7 @@
     <message id="about-description">
         <source>This app demonstrates a bar code reader for Sailfish OS. We hope it is useful for other projects. CodeReader is open source and licensed under the MIT License.</source>
         <extracomment>About page text</extracomment>
-        <translation type="unfinished">Ta aplikacja prezentuje czytnik kodów kreskowych dla Sailfish OS. Mamy nadzieję, że przyda się w innych projektach. CodeReader jest oprogramowaniem typu open source i licencjonowanym na licencji MIT.</translation>
+        <translation>Ta aplikacja prezentuje czytnik kodów kreskowych dla Sailfish OS. Mamy nadzieję, że przyda się w innych projektach. CodeReader jest oprogramowaniem typu open source i licencjonowanym na licencji MIT.</translation>
     </message>
     <message id="about-version-label">
         <source>Version</source>
@@ -21,7 +21,7 @@
     <message id="about-author-labels">
         <source>Authors</source>
         <extracomment>About page label</extracomment>
-        <translation type="unfinished">Autorski</translation>
+        <translation>Autorzy</translation>
     </message>
     <message id="about-contributors-label">
         <source>Contributors</source>
@@ -31,7 +31,7 @@
     <message id="about-contributors-text">
         <source>%1 and others.</source>
         <extracomment>About page text</extracomment>
-        <translation type="unfinished">%1 i inni.</translation>
+        <translation>%1 i inni.</translation>
     </message>
     <message id="about-source_code-label">
         <source>Source code</source>
@@ -41,7 +41,7 @@
     <message id="about-source_code-description">
         <source>You can also file issues and bug reports there.</source>
         <extracomment>About page description for source code URL</extracomment>
-        <translation type="unfinished">Tam też możesz zgłosić błąd lub zasugerować zmianę czegoś w programie.</translation>
+        <translation>Tam też możesz zgłosić błąd lub zasugerować zmianę czegoś w programie.</translation>
     </message>
     <message id="about-references-label">
         <source>References</source>
@@ -66,7 +66,7 @@
     <message id="scan-slider-zoom">
         <source>Zoom</source>
         <extracomment>Slider label</extracomment>
-        <translation type="unfinished">Powiększenie</translation>
+        <translation>Powiększenie</translation>
     </message>
     <message id="scan-action-scan">
         <source>Scan</source>
@@ -76,7 +76,7 @@
     <message id="scan-action-cancel">
         <source>Cancel</source>
         <extracomment>Scan button label</extracomment>
-        <translation type="unfinished">Anuluj</translation>
+        <translation>Anuluj</translation>
     </message>
     <message id="scan-status-busy">
         <source>Scan in progress ...</source>
@@ -106,7 +106,7 @@
     <message id="settings-vibration-label">
         <source>Vibrate on detection</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished">Wibracje podczas rozpoznawania</translation>
+        <translation>Wibracje podczas rozpoznawania</translation>
     </message>
     <message id="settings-autoscan-label">
         <source>Scan on start</source>
@@ -116,7 +116,7 @@
     <message id="settings-volume_zoom-label">
         <source>Zoom with volume keys</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished">Zoom przyciskami głośności</translation>
+        <translation>Powiększenie przyciskami głośności</translation>
     </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
@@ -160,7 +160,7 @@
     <message id="settings-history-confirm_resize">
         <source>Confirm resize</source>
         <extracomment>Button label</extracomment>
-        <translation type="unfinished">Potwierdź zmianę</translation>
+        <translation>Potwierdź zmianę</translation>
     </message>
     <message id="settings-history-cancel">
         <source>Cancel</source>
@@ -194,12 +194,12 @@
     <message id="history-menu-clear">
         <source>Clear</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Wyczyścić</translation>
+        <translation>Wyczyść</translation>
     </message>
     <message id="history-menu-select">
         <source>Select</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Wybierz</translation>
+        <translation>Wybierz</translation>
     </message>
     <message id="history-menu-delete">
         <source>Delete</source>
@@ -219,27 +219,27 @@
     <message id="history-remorse-deleting_all">
         <source>Deleting all codes</source>
         <extracomment>Remorse popup text</extracomment>
-        <translation type="unfinished">Usuwanie wszystkich kodów</translation>
+        <translation>Usuwanie wszystkich kodów</translation>
     </message>
     <message id="history-remorse-deleting_selected_code">
         <source>Deleting selected code</source>
         <extracomment>Remorse popup text (single code selected)</extracomment>
-        <translation type="unfinished">Usuwanie wybranego kodu</translation>
+        <translation>Usuwanie wybranego kodu</translation>
     </message>
     <message id="history-remorse-deleting_selected_codes">
         <source>Deleting selected codes</source>
         <extracomment>Remorse popup text (multiple codes selected)</extracomment>
-        <translation type="unfinished">Usuwanie wybranych kodów</translation>
+        <translation>Usuwanie wybranych kodów</translation>
     </message>
     <message id="history-code_copied-notification">
         <source>Selected code copied to clipboard</source>
         <extracomment>Notification text (single code selected)</extracomment>
-        <translation type="unfinished">Wybrany kod skopiowany do schowka</translation>
+        <translation>Wybrany kod skopiowany do schowka</translation>
     </message>
     <message id="history-codes_copied-notification">
         <source>Selected codes copied to clipboard</source>
         <extracomment>Notification text (multiple codes selected)</extracomment>
-        <translation type="unfinished">Wybrane kody skopiowane do schowka</translation>
+        <translation>Wybrane kody skopiowane do schowka</translation>
     </message>
     <message id="history-empty">
         <source>History is empty</source>
@@ -249,7 +249,7 @@
     <message id="button-eu_covid_cert">
         <source>COVID Certificate</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished">Certyfikat COVID</translation>
+        <translation>Certyfikat COVID</translation>
     </message>
     <message id="button-open_link">
         <source>Open link</source>
@@ -269,7 +269,7 @@
     <message id="button-add_to_calendar">
         <source>Add to calendar</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished">Dodaj do kalendarza</translation>
+        <translation>Dodaj do kalendarza</translation>
     </message>
     <message id="button-fetch_receipt">
         <source>Fetch receipt</source>
@@ -304,27 +304,27 @@
     <message id="contact-menu-save_contact">
         <source>Save contact</source>
         <extracomment>Pulley menu item (saves contact)</extracomment>
-        <translation type="unfinished">Zapisz kontakt</translation>
+        <translation>Zapisz kontakt</translation>
     </message>
     <message id="contact-notification-saved">
         <source>Contact saved</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Kontakt zapisany</translation>
+        <translation>Kontakt zapisany</translation>
     </message>
     <message id="contact-notification-maybe_saved">
         <source>Contact saved (or at least we tried)</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Kontakt zapisany (najprawdopodobniej)</translation>
+        <translation>Kontakt zapisany (najprawdopodobniej)</translation>
     </message>
     <message id="contact-notification-failed">
         <source>Failed to save the contact</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Nie udało się zapisać kontaktu</translation>
+        <translation>Nie udało się zapisać kontaktu</translation>
     </message>
     <message id="contact-notification-failed_jailed">
         <source>Failed to save the contact (blocked by sandboxing?)</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Nie udało się zapisać kontaktu (piaskownica?)</translation>
+        <translation>Nie udało się zapisać kontaktu (piaskownica?)</translation>
     </message>
     <message id="notification-copied_to_clipboard">
         <source>Copied to clipboard</source>
@@ -364,17 +364,17 @@
     <message id="hint-open_url">
         <source>Open URL in default application</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Otwórz URL w domyślnej aplikacji</translation>
+        <translation>Otwórz URL w domyślnej aplikacji</translation>
     </message>
     <message id="hint-covid_certificate">
         <source>Show EU digital COVID certificate</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Pokaż Unijne cyfrowe zaświadczenie COVID</translation>
+        <translation>Pokaż Unijne cyfrowe zaświadczenie COVID</translation>
     </message>
     <message id="hint-add_to_calendar">
         <source>Add event to calendar</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Dodaj wydarzenie do kalendarza</translation>
+        <translation>Dodaj wydarzenie do kalendarza</translation>
     </message>
     <message id="settings-display-section">
         <source>Display</source>
@@ -419,57 +419,57 @@
     <message id="select-title">
         <source>Select codes</source>
         <extracomment>Selection page title</extracomment>
-        <translation type="unfinished">Wybierz kody</translation>
+        <translation>Wybierz kody</translation>
     </message>
     <message id="select-menu-all">
         <source>Select all</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Zaznacz wszystko</translation>
+        <translation>Zaznacz wszystko</translation>
     </message>
     <message id="select-menu-none">
         <source>Select none</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Wybierz żaden</translation>
+        <translation>Wybierz żaden</translation>
     </message>
     <message id="hint-delete_selected_codes">
         <source>Delete selected codes</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Usuń wybrane kody</translation>
+        <translation>Usuń wybrane kody</translation>
     </message>
     <message id="hint-copy_selected_codes">
         <source>Copy selected codes to clipboard</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Skopiuj wybrane kody do schowka</translation>
+        <translation>Skopiuj wybrane kody do schowka</translation>
     </message>
     <message id="hint-history_swipe">
         <source>Swipe to see other history entries</source>
         <extracomment>Hint text for a swipe (either left or right)</extracomment>
-        <translation type="unfinished">Możesz przejść do następnego rekordu za pomocą gestu</translation>
+        <translation>Przeciągnij w bok, aby przejść do kolejnego wpisu</translation>
     </message>
     <message id="scan-gallery-menu">
         <source>Scan from Gallery</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Skanuj z galerii</translation>
+        <translation>Skanuj z galerii</translation>
     </message>
     <message id="gallery-title">
         <source>Select image</source>
         <extracomment>Page header</extracomment>
-        <translation type="unfinished">Wybierz obraz</translation>
+        <translation>Wybierz obraz</translation>
     </message>
     <message id="gallery-empty">
         <source>No images found in the gallery</source>
         <extracomment>Placeholder text</extracomment>
-        <translation type="unfinished">Wydaje się, że w galerii nic nie ma</translation>
+        <translation>Wydaje się, że w galerii nic nie ma</translation>
     </message>
     <message id="gallery-thumbnail-error">
         <source>Error</source>
         <extracomment>Thumbnail image loading failed</extracomment>
-        <translation type="unfinished">Błąd</translation>
+        <translation>Błąd</translation>
     </message>
     <message id="gallery-rotate">
         <source>Rotate</source>
         <extracomment>Rotation widget</extracomment>
-        <translation type="unfinished">Obrót</translation>
+        <translation>Obrót</translation>
     </message>
     <message id="dgcert-page_header">
         <source>EU Digital COVID Certificate</source>
@@ -479,197 +479,197 @@
     <message id="dgcert-schema_version">
         <source>Schema version %1</source>
         <extracomment>Page description</extracomment>
-        <translation type="unfinished">Wersja schematu %1</translation>
+        <translation>Wersja schematu %1</translation>
     </message>
     <message id="dgcert-common-issuer">
         <source>Issuer</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Emitent</translation>
+        <translation>Emitent</translation>
     </message>
     <message id="dgcert-common-issue_date">
         <source>Issue date</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Data wydania</translation>
+        <translation>Data wydania</translation>
     </message>
     <message id="dgcert-common-expiration_date">
         <source>Expiration date</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Data wygaśnięcia</translation>
+        <translation>Data wygaśnięcia</translation>
     </message>
     <message id="dgcert-personal-name">
         <source>Name</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Nazwa</translation>
+        <translation>Imię</translation>
     </message>
     <message id="dgcert-personal-standardized_name">
         <source>Standardized name</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Standaryzowana nazwa</translation>
+        <translation>Standaryzowana nazwa</translation>
     </message>
     <message id="dgcert-personal-date_of_birth">
         <source>Date of birth</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Data urodzenia</translation>
+        <translation>Data urodzenia</translation>
     </message>
     <message id="dgcert-signature_disclaimer">
         <source>The signature is not checked and therefore the validity of the certificate is not guaranteed.</source>
         <extracomment>Disclaimer</extracomment>
-        <translation type="unfinished">Podpis cyfrowy nie jest weryfikowany, więc dokładność informacji nie jest gwarantowana.</translation>
+        <translation>Podpis cyfrowy nie jest weryfikowany, więc dokładność informacji nie jest gwarantowana.</translation>
     </message>
     <message id="dgcert-vaccination-header">
         <source>Vaccination certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Zaświadczenie o szczepieniu</translation>
+        <translation>Zaświadczenie o szczepieniu</translation>
     </message>
     <message id="dgcert-vaccination-tg">
         <source>Disease or agent targeted</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Zakażenie</translation>
+        <translation>Zakażenie</translation>
     </message>
     <message id="dgcert-vaccination-vp">
         <source>Type of the vaccine</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Rodzaj szczepionki</translation>
+        <translation>Rodzaj szczepionki</translation>
     </message>
     <message id="dgcert-vaccination-mp">
         <source>Vaccine product</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Szczepionka</translation>
+        <translation>Szczepionka</translation>
     </message>
     <message id="dgcert-vaccination-ma">
         <source>Vaccine manufacturer</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Producent</translation>
+        <translation>Producent</translation>
     </message>
     <message id="dgcert-vaccination-dn_sd">
         <source>Number of doses</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Liczba dawek</translation>
+        <translation>Liczba dawek</translation>
     </message>
     <message id="dgcert-vaccination-dt">
         <source>Date of vaccination</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Data szczepienia</translation>
+        <translation>Data szczepienia</translation>
     </message>
     <message id="dgcert-vaccination-co">
         <source>Country of vaccination</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Kraj szczepienia</translation>
+        <translation>Kraj szczepienia</translation>
     </message>
     <message id="dgcert-vaccination-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Organizacja wydająca</translation>
+        <translation>Organizacja wydająca</translation>
     </message>
     <message id="dgcert-vaccination-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Unikalny identyfikator certyfikatu</translation>
+        <translation>Unikalny identyfikator certyfikatu</translation>
     </message>
     <message id="dgcert-test-header">
         <source>Test certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Certyfikat testu</translation>
+        <translation>Certyfikat testu</translation>
     </message>
     <message id="dgcert-test-tg">
         <source>Disease or agent</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Zakażenie</translation>
+        <translation>Zakażenie</translation>
     </message>
     <message id="dgcert-test-tt">
         <source>The type of test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Rodzaj testu</translation>
+        <translation>Rodzaj testu</translation>
     </message>
     <message id="dgcert-test-nm">
         <source>Test name</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Test</translation>
+        <translation>Test</translation>
     </message>
     <message id="dgcert-test-ma">
         <source>Test device identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Urządzenie testowe</translation>
+        <translation>Urządzenie testowe</translation>
     </message>
     <message id="dgcert-test-sc">
         <source>Date and time of the sample</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Data i godzina pobrania próbki</translation>
+        <translation>Data i godzina pobrania próbki</translation>
     </message>
     <message id="dgcert-test-tr">
         <source>Result of the test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Wynik testu</translation>
+        <translation>Wynik testu</translation>
     </message>
     <message id="dgcert-test-tc">
         <source>Testing centre or facility</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Placówka testowa</translation>
+        <translation>Placówka testowa</translation>
     </message>
     <message id="dgcert-test-co">
         <source>Country where the test was carried out</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Kraj</translation>
+        <translation>Kraj</translation>
     </message>
     <message id="dgcert-test-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Organizacja wydająca</translation>
+        <translation>Organizacja wydająca</translation>
     </message>
     <message id="dgcert-test-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Unikalny identyfikator certyfikatu</translation>
+        <translation>Unikalny identyfikator certyfikatu</translation>
     </message>
     <message id="dgcert-recovery-header">
         <source>Recovery certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Świadectwo odzyskania</translation>
+        <translation>Świadectwo wtzdrowienia</translation>
     </message>
     <message id="dgcert-recovery-tg">
         <source>Disease or agent</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Zakażenie</translation>
+        <translation>Zakażenie</translation>
     </message>
     <message id="dgcert-recovery-fr">
         <source>Date of the first positive test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Data pierwszego pozytywnego testu</translation>
+        <translation>Data pierwszego pozytywnego testu</translation>
     </message>
     <message id="dgcert-recovery-co">
         <source>Country where the test was carried out</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Kraj</translation>
+        <translation>Kraj</translation>
     </message>
     <message id="dgcert-recovery-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Organizacja wydająca</translation>
+        <translation>Organizacja wydająca</translation>
     </message>
     <message id="dgcert-recovery-df">
         <source>Certificate valid from</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Obowiązuje od</translation>
+        <translation>Ważny od</translation>
     </message>
     <message id="dgcert-recovery-du">
         <source>Certificate valid until</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Ważne do</translation>
+        <translation>Ważny do</translation>
     </message>
     <message id="dgcert-recovery-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Unikalny identyfikator certyfikatu</translation>
+        <translation>Unikalny identyfikator certyfikatu</translation>
     </message>
     <message id="dgcert-test_result-not_detected">
         <source>Not detected</source>
         <extracomment>Test result</extracomment>
-        <translation type="unfinished">Negatywny</translation>
+        <translation>Negatywny</translation>
     </message>
     <message id="dgcert-test_result-detected">
         <source>Detected</source>
         <extracomment>Test result</extracomment>
-        <translation type="unfinished">Pozytywny</translation>
+        <translation>Pozytywny</translation>
     </message>
 </context>
 </TS>
