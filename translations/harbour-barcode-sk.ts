@@ -499,12 +499,12 @@
     <message id="dgcert-personal-name">
         <source>Name</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation>Meno</translation>
+        <translation>Priezvisko a krstné meno</translation>
     </message>
     <message id="dgcert-personal-standardized_name">
         <source>Standardized name</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation>Priezvisko</translation>
+        <translation>Štandardizované priezvisko krstné meno</translation>
     </message>
     <message id="dgcert-personal-date_of_birth">
         <source>Date of birth</source>
@@ -559,7 +559,7 @@
     <message id="dgcert-vaccination-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation>Vydávajúca organizácia</translation>
+        <translation>Potvrdenie vystavil</translation>
     </message>
     <message id="dgcert-vaccination-ci">
         <source>Unique certificate identifier</source>
