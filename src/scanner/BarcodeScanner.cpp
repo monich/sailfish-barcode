@@ -24,7 +24,6 @@ THE SOFTWARE.
 */
 
 #include "BarcodeScanner.h"
-#include "ImageSource.h"
 #include "Decoder.h"
 
 #include "HarbourDebug.h"
@@ -288,6 +287,7 @@ void BarcodeScanner::Private::decodingThread()
 #if HARBOUR_DEBUG
             QTime time(QTime::currentTime());
 #endif
+            image = image.convertToFormat(QImage::Format_ARGB32_Premultiplied);
             saveDebugImage(image, "debug_screenshot.bmp");
 
             // Crop the image - we only need the viewfinder area
@@ -379,22 +379,8 @@ void BarcodeScanner::Private::decodingThread()
                 scale = 1;
             }
 
-            // Ref takes ownership of ImageSource:
-            ImageSource* source = new ImageSource(scaledImage);
-            zxing::Ref<zxing::LuminanceSource> sourceRef(source);
-
-#if HARBOUR_DEBUG
-            // These are expensive, check if directory exists before
-            // generating debug images (esp. the black & white one,
-            // which is purely for debugging)
-            if (debugImageDir.exists()) {
-                saveDebugImage(source->grayscaleImage(), "debug_grayscale.bmp");
-                saveDebugImage(source->bwImage(), "debug_bw.bmp");
-            }
-#endif // HARBOUR_DEBUG
-
             HDEBUG("decoding screenshot ...");
-            result = decoder.decode(sourceRef);
+            result = decoder.decode(scaledImage);
 
             if (!result.isValid()) {
                 // try the other orientation for 1D bar code
@@ -434,7 +420,7 @@ void BarcodeScanner::Private::decodingThread()
                 HDEBUG(points[i] << "=>" << p);
                 points[i] = p;
             }
-            result = Decoder::Result(result.getText(), points, result.getFormat());
+            result = Decoder::Result(result.getText(), points, result.getFormat(), result.getFormatName());
         }
     } else {
         HDEBUG("nothing was decoded");

@@ -30,9 +30,8 @@ THE SOFTWARE.
 #include <QString>
 #include <QMetaType>
 
-#include <zxing/BarcodeFormat.h>
-#include <zxing/LuminanceSource.h>
-#include <zxing/common/Counted.h>
+#include <zbar/QZBarImage.h>
+#include <zbar/Symbol.h>
 
 class Decoder {
     Q_DISABLE_COPY(Decoder)
@@ -43,8 +42,7 @@ public:
     Decoder();
     ~Decoder();
 
-    Result decode(QImage aImage);
-    Result decode(zxing::Ref<zxing::LuminanceSource> aSource);
+    Result decode(zbar::QZBarImage aImage);
 
 private:
     class Private;
@@ -55,7 +53,7 @@ class Decoder::Result {
 friend class Decoder;
 
 public:
-    Result(QString aText, QList<QPointF> aPoints, zxing::BarcodeFormat aFormat);
+    Result(QString aText, QList<QPointF> aPoints, zbar::zbar_symbol_type_t aFormat, QString formatName);
     Result(const Result& aResult);
     Result();
     ~Result();
@@ -65,7 +63,7 @@ public:
     bool isValid() const;
     QString getText() const;
     QList<QPointF> getPoints() const;
-    zxing::BarcodeFormat::Value getFormat() const;
+    zbar::zbar_symbol_type_t getFormat() const;
     QString getFormatName() const;
 
 private:

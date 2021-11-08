@@ -23,7 +23,9 @@ DEFINES += \
 
 INCLUDEPATH += \
     src \
-    src/zxing \
+    src/zbar/include/ \
+    src/zbar/zbar/ \
+    src/zbar-config/ \
     harbour-lib/include
 
 CONFIG(debug, debug|release) {
@@ -44,8 +46,7 @@ SOURCES += \
     src/Plugins.cpp \
     src/Settings.cpp \
     src/scanner/BarcodeScanner.cpp \
-    src/scanner/Decoder.cpp \
-    src/scanner/ImageSource.cpp
+    src/scanner/Decoder.cpp
 
 HEADERS += \
     src/BarcodeUtils.h \
@@ -60,8 +61,7 @@ HEADERS += \
     src/Plugins.h \
     src/Settings.h \
     src/scanner/BarcodeScanner.h \
-    src/scanner/Decoder.h \
-    src/scanner/ImageSource.h
+    src/scanner/Decoder.h
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
@@ -130,243 +130,81 @@ qml_components.files = $${HARBOUR_QML_COMPONENTS}
 qml_components.path = /usr/share/$${TARGET}/qml/harbour
 INSTALLS += qml_components
 
-# zxing
+# zbar
 
 SOURCES += \
-    src/zxing/bigint/BigIntegerAlgorithms.cc \
-    src/zxing/bigint/BigInteger.cc \
-    src/zxing/bigint/BigIntegerUtils.cc \
-    src/zxing/bigint/BigUnsigned.cc \
-    src/zxing/bigint/BigUnsignedInABase.cc
+    src/zbar/zbar/convert.c \
+    src/zbar/zbar/video.c \
+    src/zbar/zbar/video/null.c \
+    src/zbar/zbar/sqcode.c \
+    src/zbar/zbar/symbol.c \
+    src/zbar/zbar/image.c \
+    src/zbar/zbar/error.c \
+    src/zbar/zbar/refcnt.c \
+    src/zbar/zbar/img_scanner.c \
+    src/zbar/zbar/misc.c \
+    src/zbar/zbar/scanner.c \
+    src/zbar/zbar/decoder.c \
+    src/zbar/zbar/qrcode/binarize.c \
+    src/zbar/zbar/qrcode/qrdec.c \
+    src/zbar/zbar/qrcode/bch15_5.c \
+    src/zbar/zbar/qrcode/isaac.c \
+    src/zbar/zbar/qrcode/qrdectxt.c \
+    src/zbar/zbar/qrcode/util.c \
+    src/zbar/zbar/qrcode/rs.c \
+    src/zbar/zbar/config.c \
+    src/zbar/zbar/decoder/code39.c \
+    src/zbar/zbar/decoder/databar.c \
+    src/zbar/zbar/decoder/qr_finder.c \
+    src/zbar/zbar/decoder/code128.c \
+    src/zbar/zbar/decoder/i25.c \
+    src/zbar/zbar/decoder/ean.c \
+    src/zbar/zbar/decoder/codabar.c \
+    src/zbar/zbar/decoder/sq_finder.c \
+    src/zbar/zbar/decoder/code93.c
 
 HEADERS += \
-    src/zxing/bigint/BigIntegerAlgorithms.hh \
-    src/zxing/bigint/BigInteger.hh \
-    src/zxing/bigint/BigIntegerLibrary.hh \
-    src/zxing/bigint/BigIntegerUtils.hh \
-    src/zxing/bigint/BigUnsigned.hh \
-    src/zxing/bigint/BigUnsignedInABase.hh \
-    src/zxing/bigint/NumberlikeArray.hh
+    src/zbar-config/config.h \
+    src/zbar/zbar/decoder.h \
+    src/zbar/zbar/misc.h \
+    src/zbar/zbar/mutex.h \
+    src/zbar/zbar/img_scanner.h \
+    src/zbar/zbar/window.h \
+    src/zbar/zbar/debug.h \
+    src/zbar/zbar/refcnt.h \
+    src/zbar/zbar/image.h \
+    src/zbar/zbar/error.h \
+    src/zbar/zbar/thread.h \
+    src/zbar/zbar/sqcode.h \
+    src/zbar/zbar/symbol.h \
+    src/zbar/zbar/qrcode/bch15_5.h \
+    src/zbar/zbar/qrcode/rs.h \
+    src/zbar/zbar/qrcode/util.h \
+    src/zbar/zbar/qrcode/isaac.h \
+    src/zbar/zbar/qrcode/qrdec.h \
+    src/zbar/zbar/qrcode/binarize.h \
+    src/zbar/zbar/event.h \
+    src/zbar/zbar/timer.h \
+    src/zbar/zbar/processor/posix.h \
+    src/zbar/zbar/decoder/sq_finder.h \
+    src/zbar/zbar/decoder/ean.h \
+    src/zbar/zbar/decoder/codabar.h \
+    src/zbar/zbar/decoder/code93.h \
+    src/zbar/zbar/decoder/code39.h \
+    src/zbar/zbar/decoder/code128.h \
+    src/zbar/zbar/decoder/i25.h \
+    src/zbar/zbar/decoder/qr_finder.h \
+    src/zbar/zbar/decoder/databar.h \
+    src/zbar/zbar/qrcode.h \
+    src/zbar/include/zbar/Decoder.h \
+    src/zbar/include/zbar/Scanner.h \
+    src/zbar/include/zbar/Symbol.h \
+    src/zbar/include/zbar/Exception.h \
+    src/zbar/include/zbar/Window.h \
+    src/zbar/include/zbar/Image.h \
+    src/zbar/include/zbar/ImageScanner.h \
+    src/zbar/include/zbar.h
 
-SOURCES += \
-    src/zxing/zxing/common/BitArray.cpp \
-    src/zxing/zxing/common/BitMatrix.cpp \
-    src/zxing/zxing/common/BitSource.cpp \
-    src/zxing/zxing/common/CharacterSetECI.cpp \
-    src/zxing/zxing/common/DecoderResult.cpp \
-    src/zxing/zxing/common/DetectorResult.cpp \
-    src/zxing/zxing/common/GlobalHistogramBinarizer.cpp \
-    src/zxing/zxing/common/GridSampler.cpp \
-    src/zxing/zxing/common/HybridBinarizer.cpp \
-    src/zxing/zxing/common/IllegalArgumentException.cpp \
-    src/zxing/zxing/common/PerspectiveTransform.cpp \
-    src/zxing/zxing/common/Str.cpp \
-    src/zxing/zxing/common/StringUtils.cpp
-
-HEADERS += \
-    src/zxing/zxing/common/Array.h \
-    src/zxing/zxing/common/BitArray.h \
-    src/zxing/zxing/common/BitMatrix.h \
-    src/zxing/zxing/common/BitSource.h \
-    src/zxing/zxing/common/CharacterSetECI.h \
-    src/zxing/zxing/common/Counted.h \
-    src/zxing/zxing/common/DecoderResult.h \
-    src/zxing/zxing/common/DetectorResult.h \
-    src/zxing/zxing/common/GlobalHistogramBinarizer.h \
-    src/zxing/zxing/common/GridSampler.h \
-    src/zxing/zxing/common/HybridBinarizer.h \
-    src/zxing/zxing/common/IllegalArgumentException.h \
-    src/zxing/zxing/common/PerspectiveTransform.h \
-    src/zxing/zxing/common/Point.h \
-    src/zxing/zxing/common/Str.h \
-    src/zxing/zxing/common/StringUtils.h \
-    src/zxing/zxing/common/Types.h
-
-SOURCES += \
-    src/zxing/zxing/common/detector/MonochromeRectangleDetector.cpp \
-    src/zxing/zxing/common/detector/WhiteRectangleDetector.cpp
-
-HEADERS += \
-    src/zxing/zxing/common/detector/MathUtils.h \
-    src/zxing/zxing/common/detector/MonochromeRectangleDetector.h \
-    src/zxing/zxing/common/detector/WhiteRectangleDetector.h
-
-SOURCES += \
-    src/zxing/zxing/common/reedsolomon/GenericGF.cpp \
-    src/zxing/zxing/common/reedsolomon/GenericGFPoly.cpp \
-    src/zxing/zxing/common/reedsolomon/ReedSolomonDecoder.cpp \
-    src/zxing/zxing/common/reedsolomon/ReedSolomonException.cpp
-
-HEADERS += \
-    src/zxing/zxing/common/reedsolomon/GenericGF.h \
-    src/zxing/zxing/common/reedsolomon/GenericGFPoly.h \
-    src/zxing/zxing/common/reedsolomon/ReedSolomonDecoder.h \
-    src/zxing/zxing/common/reedsolomon/ReedSolomonException.h
-
-SOURCES += \
-    src/zxing/zxing/BarcodeFormat.cpp \
-    src/zxing/zxing/Binarizer.cpp \
-    src/zxing/zxing/BinaryBitmap.cpp \
-    src/zxing/zxing/ChecksumException.cpp \
-    src/zxing/zxing/DecodeHints.cpp \
-    src/zxing/zxing/EncodeHint.cpp \
-    src/zxing/zxing/Exception.cpp \
-    src/zxing/zxing/FormatException.cpp \
-    src/zxing/zxing/InvertedLuminanceSource.cpp \
-    src/zxing/zxing/LuminanceSource.cpp \
-    src/zxing/zxing/MultiFormatReader.cpp \
-    src/zxing/zxing/Reader.cpp \
-    src/zxing/zxing/Result.cpp \
-    src/zxing/zxing/ResultIO.cpp \
-    src/zxing/zxing/ResultPointCallback.cpp \
-    src/zxing/zxing/ResultPoint.cpp
-
-HEADERS += \
-    src/zxing/zxing/BarcodeFormat.h \
-    src/zxing/zxing/Binarizer.h \
-    src/zxing/zxing/BinaryBitmap.h \
-    src/zxing/zxing/ChecksumException.h \
-    src/zxing/zxing/DecodeHints.h \
-    src/zxing/zxing/EncodeHint.h \
-    src/zxing/zxing/Exception.h \
-    src/zxing/zxing/FormatException.h \
-    src/zxing/zxing/IllegalStateException.h \
-    src/zxing/zxing/InvertedLuminanceSource.h \
-    src/zxing/zxing/LuminanceSource.h \
-    src/zxing/zxing/MultiFormatReader.h \
-    src/zxing/zxing/NotFoundException.h \
-    src/zxing/zxing/ReaderException.h \
-    src/zxing/zxing/Reader.h \
-    src/zxing/zxing/Result.h \
-    src/zxing/zxing/ResultPointCallback.h \
-    src/zxing/zxing/ResultPoint.h \
-    src/zxing/zxing/UnsupportedEncodingException.h \
-    src/zxing/zxing/WriterException.h \
-    src/zxing/zxing/ZXing.h
-
-SOURCES += \
-    src/zxing/zxing/aztec/AztecDetectorResult.cpp \
-    src/zxing/zxing/aztec/AztecReader.cpp \
-    src/zxing/zxing/aztec/decoder/AztecDecoder.cpp \
-    src/zxing/zxing/aztec/detector/AztecDetector.cpp
-
-HEADERS += \
-    src/zxing/zxing/aztec/AztecDetectorResult.h \
-    src/zxing/zxing/aztec/AztecReader.h \
-    src/zxing/zxing/aztec/decoder/Decoder.h \
-    src/zxing/zxing/aztec/detector/Detector.h
-
-SOURCES += \
-    src/zxing/zxing/oned/CodaBarReader.cpp \
-    src/zxing/zxing/oned/Code128Reader.cpp \
-    src/zxing/zxing/oned/Code39Reader.cpp \
-    src/zxing/zxing/oned/Code93Reader.cpp \
-    src/zxing/zxing/oned/EAN13Reader.cpp \
-    src/zxing/zxing/oned/EAN8Reader.cpp \
-    src/zxing/zxing/oned/ITFReader.cpp \
-    src/zxing/zxing/oned/MultiFormatOneDReader.cpp \
-    src/zxing/zxing/oned/MultiFormatUPCEANReader.cpp \
-    src/zxing/zxing/oned/OneDReader.cpp \
-    src/zxing/zxing/oned/OneDResultPoint.cpp \
-    src/zxing/zxing/oned/UPCAReader.cpp \
-    src/zxing/zxing/oned/UPCEANReader.cpp \
-    src/zxing/zxing/oned/UPCEReader.cpp
-
-HEADERS += \
-    src/zxing/zxing/oned/CodaBarReader.h \
-    src/zxing/zxing/oned/Code128Reader.h \
-    src/zxing/zxing/oned/Code39Reader.h \
-    src/zxing/zxing/oned/Code93Reader.h \
-    src/zxing/zxing/oned/EAN13Reader.h \
-    src/zxing/zxing/oned/EAN8Reader.h \
-    src/zxing/zxing/oned/ITFReader.h \
-    src/zxing/zxing/oned/MultiFormatOneDReader.h \
-    src/zxing/zxing/oned/MultiFormatUPCEANReader.h \
-    src/zxing/zxing/oned/OneDReader.h \
-    src/zxing/zxing/oned/OneDResultPoint.h \
-    src/zxing/zxing/oned/UPCAReader.h \
-    src/zxing/zxing/oned/UPCEANReader.h \
-    src/zxing/zxing/oned/UPCEReader.h
-
-SOURCES += \
-    src/zxing/zxing/pdf417/PDF417Reader.cpp \
-    src/zxing/zxing/pdf417/decoder/ec/ErrorCorrection.cpp \
-    src/zxing/zxing/pdf417/decoder/ec/ModulusGF.cpp \
-    src/zxing/zxing/pdf417/decoder/ec/ModulusPoly.cpp \
-    src/zxing/zxing/pdf417/decoder/PDF417BitMatrixParser.cpp \
-    src/zxing/zxing/pdf417/decoder/PDF417DecodedBitStreamParser.cpp \
-    src/zxing/zxing/pdf417/decoder/PDF417Decoder.cpp \
-    src/zxing/zxing/pdf417/detector/LinesSampler.cpp \
-    src/zxing/zxing/pdf417/detector/PDF417Detector.cpp
-
-HEADERS += \
-    src/zxing/zxing/pdf417/PDF417Reader.h \
-    src/zxing/zxing/pdf417/decoder/BitMatrixParser.h \
-    src/zxing/zxing/pdf417/decoder/DecodedBitStreamParser.h \
-    src/zxing/zxing/pdf417/decoder/Decoder.h \
-    src/zxing/zxing/pdf417/decoder/ec/ErrorCorrection.h \
-    src/zxing/zxing/pdf417/decoder/ec/ModulusGF.h \
-    src/zxing/zxing/pdf417/decoder/ec/ModulusPoly.h \
-    src/zxing/zxing/pdf417/detector/Detector.h \
-    src/zxing/zxing/pdf417/detector/LinesSampler.h
-
-SOURCES += \
-    src/zxing/zxing/qrcode/QRCodeReader.cpp \
-    src/zxing/zxing/qrcode/QRErrorCorrectionLevel.cpp \
-    src/zxing/zxing/qrcode/QRFormatInformation.cpp \
-    src/zxing/zxing/qrcode/QRVersion.cpp \
-    src/zxing/zxing/qrcode/decoder/QRBitMatrixParser.cpp \
-    src/zxing/zxing/qrcode/decoder/QRDataBlock.cpp \
-    src/zxing/zxing/qrcode/decoder/QRDataMask.cpp \
-    src/zxing/zxing/qrcode/decoder/QRDecodedBitStreamParser.cpp \
-    src/zxing/zxing/qrcode/decoder/QRDecoder.cpp \
-    src/zxing/zxing/qrcode/decoder/QRMode.cpp \
-    src/zxing/zxing/qrcode/detector/QRAlignmentPattern.cpp \
-    src/zxing/zxing/qrcode/detector/QRAlignmentPatternFinder.cpp \
-    src/zxing/zxing/qrcode/detector/QRDetector.cpp \
-    src/zxing/zxing/qrcode/detector/QRFinderPattern.cpp \
-    src/zxing/zxing/qrcode/detector/QRFinderPatternFinder.cpp \
-    src/zxing/zxing/qrcode/detector/QRFinderPatternInfo.cpp
-
-HEADERS += \
-    src/zxing/zxing/qrcode/decoder/BitMatrixParser.h \
-    src/zxing/zxing/qrcode/decoder/DataBlock.h \
-    src/zxing/zxing/qrcode/decoder/DataMask.h \
-    src/zxing/zxing/qrcode/decoder/DecodedBitStreamParser.h \
-    src/zxing/zxing/qrcode/decoder/Decoder.h \
-    src/zxing/zxing/qrcode/decoder/Mode.h \
-    src/zxing/zxing/qrcode/detector/AlignmentPatternFinder.h \
-    src/zxing/zxing/qrcode/detector/AlignmentPattern.h \
-    src/zxing/zxing/qrcode/detector/Detector.h \
-    src/zxing/zxing/qrcode/detector/FinderPatternFinder.h \
-    src/zxing/zxing/qrcode/detector/FinderPattern.h \
-    src/zxing/zxing/qrcode/detector/FinderPatternInfo.h \
-    src/zxing/zxing/qrcode/ErrorCorrectionLevel.h \
-    src/zxing/zxing/qrcode/FormatInformation.h \
-    src/zxing/zxing/qrcode/QRCodeReader.h \
-    src/zxing/zxing/qrcode/Version.h
-
-SOURCES += \
-    src/zxing/zxing/datamatrix/DataMatrixReader.cpp \
-    src/zxing/zxing/datamatrix/DataMatrixVersion.cpp \
-    src/zxing/zxing/datamatrix/decoder/DataMatrixBitMatrixParser.cpp \
-    src/zxing/zxing/datamatrix/decoder/DataMatrixDataBlock.cpp \
-    src/zxing/zxing/datamatrix/decoder/DataMatrixDecodedBitStreamParser.cpp \
-    src/zxing/zxing/datamatrix/decoder/DataMatrixDecoder.cpp \
-    src/zxing/zxing/datamatrix/detector/DataMatrixCornerPoint.cpp \
-    src/zxing/zxing/datamatrix/detector/DataMatrixDetector.cpp \
-    src/zxing/zxing/datamatrix/detector/DataMatrixDetectorException.cpp
-
-HEADERS += \
-    src/zxing/zxing/datamatrix/DataMatrixReader.h \
-    src/zxing/zxing/datamatrix/decoder/BitMatrixParser.h \
-    src/zxing/zxing/datamatrix/decoder/DataBlock.h \
-    src/zxing/zxing/datamatrix/decoder/DecodedBitStreamParser.h \
-    src/zxing/zxing/datamatrix/decoder/Decoder.h \
-    src/zxing/zxing/datamatrix/detector/CornerPoint.h \
-    src/zxing/zxing/datamatrix/detector/DetectorException.h \
-    src/zxing/zxing/datamatrix/detector/Detector.h \
-    src/zxing/zxing/datamatrix/Version.h
 
 # libmc
 

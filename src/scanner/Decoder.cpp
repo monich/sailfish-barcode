@@ -23,17 +23,15 @@ THE SOFTWARE.
 */
 
 #include "Decoder.h"
-#include "ImageSource.h"
 
 #include "HarbourDebug.h"
 
 #include <QAtomicInt>
 
-#include <zxing/DecodeHints.h>
-#include <zxing/MultiFormatReader.h>
-#include <zxing/Binarizer.h>
-#include <zxing/BinaryBitmap.h>
-#include <zxing/common/GlobalHistogramBinarizer.h>
+#include <zbar/ImageScanner.h>
+#include <zbar/Image.h>
+#include <zbar/Symbol.h>
+#include <zbar/include/zbar.h>
 
 // ==========================================================================
 // Decoder::Result::Private
@@ -41,20 +39,21 @@ THE SOFTWARE.
 
 class Decoder::Result::Private {
 public:
-    Private(QString aText, QList<QPointF> aPoints, zxing::BarcodeFormat::Value aFormat);
+    Private(QString aText, QList<QPointF> aPoints,
+            zbar::zbar_symbol_type_t aFormat, QString formatName);
 
 public:
     QAtomicInt iRef;
     QString iText;
     QList<QPointF> iPoints;
-    zxing::BarcodeFormat::Value iFormat;
+    zbar::zbar_symbol_type_t iFormat;
     QString iFormatName;
 };
 
 Decoder::Result::Private::Private(QString aText, QList<QPointF> aPoints,
-    zxing::BarcodeFormat::Value aFormat) :
+                                  zbar::zbar_symbol_type_t aFormat, QString formatName) :
     iRef(1), iText(aText), iPoints(aPoints), iFormat(aFormat),
-    iFormatName(QLatin1String(zxing::BarcodeFormat::barcodeFormatNames[aFormat]))
+    iFormatName(formatName)
 {
 }
 
@@ -63,8 +62,8 @@ Decoder::Result::Private::Private(QString aText, QList<QPointF> aPoints,
 // ==========================================================================
 
 Decoder::Result::Result(QString aText, QList<QPointF> aPoints,
-    zxing::BarcodeFormat aFormat) :
-    iPrivate(new Private(aText, aPoints, aFormat))
+                        zbar::zbar_symbol_type_t aFormat, QString formatName) :
+    iPrivate(new Private(aText, aPoints, aFormat, formatName))
 {
 }
 
@@ -117,9 +116,9 @@ QList<QPointF> Decoder::Result::getPoints() const
     return iPrivate ? iPrivate->iPoints : QList<QPointF>();
 }
 
-zxing::BarcodeFormat::Value Decoder::Result::getFormat() const
+zbar::zbar_symbol_type_t Decoder::Result::getFormat() const
 {
-    return iPrivate ? iPrivate->iFormat : zxing::BarcodeFormat::NONE;
+    return iPrivate ? iPrivate->iFormat : zbar::zbar_symbol_type_t::ZBAR_NONE;
 }
 
 QString Decoder::Result::getFormatName() const
@@ -136,17 +135,14 @@ public:
     Private();
     ~Private();
 
-    zxing::Ref<zxing::Result> decode(zxing::Ref<zxing::LuminanceSource> aSource);
-
 public:
-    zxing::MultiFormatReader* iReader;
-    zxing::DecodeHints iHints;
+    zbar::ImageScanner* iReader;
 };
 
 Decoder::Private::Private() :
-    iReader(new zxing::MultiFormatReader),
-    iHints(zxing::DecodeHints::DEFAULT_HINT)
+    iReader(new zbar::ImageScanner)
 {
+    iReader->set_config(zbar::ZBAR_NONE, zbar::ZBAR_CFG_ENABLE, 1);
 }
 
 Decoder::Private::~Private()
@@ -154,12 +150,6 @@ Decoder::Private::~Private()
     delete iReader;
 }
 
-zxing::Ref<zxing::Result> Decoder::Private::decode(zxing::Ref<zxing::LuminanceSource> aSource)
-{
-    zxing::Ref<zxing::Binarizer> binarizer(new zxing::GlobalHistogramBinarizer(aSource));
-    zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
-    return iReader->decode(bitmap, iHints);
-}
 
 // ==========================================================================
 // Decoder
@@ -174,29 +164,25 @@ Decoder::~Decoder()
     delete iPrivate;
 }
 
-Decoder::Result Decoder::decode(QImage aImage)
+Decoder::Result Decoder::decode(zbar::QZBarImage bitmap)
 {
-    zxing::Ref<zxing::LuminanceSource> source(new ImageSource(aImage));
-    return decode(source);
-}
+    zbar::Image tmp = bitmap.convert(*(long *)"Y800");
+    iPrivate->iReader->scan(tmp);
+    bitmap.set_symbols(tmp.get_symbols());
 
-Decoder::Result Decoder::decode(zxing::Ref<zxing::LuminanceSource> aSource)
-{
-    try {
-        zxing::Ref<zxing::Result> result(iPrivate->decode(aSource));
-
+    auto symbols = tmp.get_symbols();
+    for (auto symbol_it = symbols.symbol_begin(); symbol_it != symbols.symbol_end(); ++symbol_it) {
+        auto symbol = *symbol_it;
         QList<QPointF> points;
-        zxing::ArrayRef<zxing::Ref<zxing::ResultPoint> > found(result->getResultPoints());
-        for (int i = 0; i < found->size(); i++) {
-            const zxing::ResultPoint& point(*(found[i]));
-            points.append(QPointF(point.getX(), point.getY()));
+        for (auto i = symbol.point_begin(); i != symbol.point_end(); ++i) {
+            auto point = *i;
+            points.append(QPointF(point.x, point.y));
         }
 
-        const std::string& text = result->getText()->getText();
-        return Result(QString::fromUtf8(text.c_str(), text.length()), points,
-            result->getBarcodeFormat());
-    } catch (zxing::Exception& e) {
-        HDEBUG("Exception:" << e.what());
-        return Result();
+        const std::string& text = symbol.get_data();
+        return Result(QString::fromStdString(text), points,
+                      symbol.get_type(), QString::fromStdString(symbol.get_type_name()));
     }
+
+    return Result();
 }

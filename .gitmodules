@@ -4,3 +4,6 @@
 [submodule "libmc"]
 	path = libmc
 	url = https://github.com/monich/libmc.git
+[submodule "src/zbar"]
+	path = src/zbar
+	url = https://github.com/mchehab/zbar.git
