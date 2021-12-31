@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2021 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,12 +32,13 @@ THE SOFTWARE.
 class ImageSource : public zxing::LuminanceSource
 {
     Q_DISABLE_COPY(ImageSource)
+    class Private;
 
 public:
-    ImageSource(QImage aImage);
+    ImageSource(const QImage& aImage);
     ~ImageSource();
     
-    QImage grayscaleImage() const;
+    const QImage& grayscaleImage() const { return iImage; }
     QImage bwImage();
 
     zxing::ArrayRef<zxing::byte> getRow(int aY, zxing::ArrayRef<zxing::byte> aRow) const Q_DECL_OVERRIDE;
@@ -48,8 +49,6 @@ private:
 
 private:
     QImage iImage;
-    mutable zxing::byte** iGrayRows;
-    mutable zxing::ArrayRef<zxing::byte> iGrayImage;
 };
 
 #endif // BARCODE_IMAGESOURCE_H
