@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2021 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -243,6 +243,7 @@ Page {
         markerColor: AppSettings.markerColor
         rotation: orientationAngle()
         canGrab: (!galleryImage || !galleryImage.moving) && !galleryScanTimer.running
+        decodingHints: AppSettings.decodingHints
 
         onDecodingFinished: {
             if (result.ok) {
@@ -909,7 +910,7 @@ Page {
                         width: parent.width
                         color: resultItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                         font.pixelSize: Theme.fontSizeExtraSmall
-                        text: Utils.barcodeFormat(clickableResult.format)
+                        text: BarcodeUtils.barcodeFormatName(clickableResult.format)
                         truncationMode: TruncationMode.Fade
                     }
                 }

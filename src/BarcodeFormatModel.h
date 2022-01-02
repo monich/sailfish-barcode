@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2020-2022 Slava Monich
+Copyright (c) 2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,30 +22,36 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-#include "BarcodeUtils.h"
-#include "BarcodeFormatModel.h"
+#ifndef BARCODE_FORMAT_MODEL_H
+#define BARCODE_FORMAT_MODEL_H
 
-BarcodeUtils::BarcodeUtils(QObject* aParent) :
-    QObject(aParent)
-{
-}
+#include <QAbstractListModel>
 
-// Callback for qmlRegisterSingletonType<BarcodeUtils>
-QObject* BarcodeUtils::createSingleton(QQmlEngine*, QJSEngine*)
-{
-    return new BarcodeUtils();
-}
+class BarcodeFormatModel : public QAbstractListModel {
+    Q_OBJECT
+    Q_PROPERTY(uint hints READ getHints WRITE setHints NOTIFY hintsChanged)
 
-QString BarcodeUtils::urlScheme(QString aText)
-{
-    return (!aText.isEmpty() &&
-        aText.indexOf('\r') < 0 &&
-        aText.indexOf('\n') < 0) ?
-        QUrl(aText, QUrl::StrictMode).scheme() :
-        QString();
-}
+public:
+    BarcodeFormatModel(QObject* aParent = Q_NULLPTR);
+    ~BarcodeFormatModel();
 
-const QString BarcodeUtils::barcodeFormatName(QString aIdent)
-{
-    return BarcodeFormatModel::formatName(aIdent);
-}
+    static const QString formatName(QString aIdent);
+
+    uint getHints() const;
+    void setHints(uint aHints);
+
+    // QAbstractItemModel
+    QHash<int,QByteArray> roleNames() const Q_DECL_OVERRIDE;
+    int rowCount(const QModelIndex& aParent = QModelIndex()) const Q_DECL_OVERRIDE;
+    QVariant data(const QModelIndex& aIndex, int aRole) const Q_DECL_OVERRIDE;
+
+Q_SIGNALS:
+    void hintsChanged();
+
+private:
+    class Private;
+    Private* iPrivate;
+};
+
+
+#endif // BARCODE_FORMAT_MODEL_H

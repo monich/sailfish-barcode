@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -41,6 +41,7 @@ class BarcodeScanner : public QObject {
     Q_PROPERTY(ScanState scanState READ scanState NOTIFY scanStateChanged)
     Q_PROPERTY(bool canGrab READ canGrab WRITE setCanGrab NOTIFY canGrabChanged)
     Q_PROPERTY(bool grabbing READ grabbing NOTIFY grabbingChanged)
+    Q_PROPERTY(uint decodingHints READ decodingHints WRITE setDecodingHints NOTIFY decodingHintsChanged)
     Q_ENUMS(ScanState)
 
     class Private;
@@ -78,6 +79,9 @@ public:
 
     bool grabbing() const;
 
+    uint decodingHints() const;
+    void setDecodingHints(uint aValue);
+
 Q_SIGNALS:
     void decodingFinished(QImage image, QVariantMap result);
     void viewFinderItemChanged();
@@ -87,6 +91,7 @@ Q_SIGNALS:
     void scanStateChanged();
     void canGrabChanged();
     void grabbingChanged();
+    void decodingHintsChanged();
 
 private:
     Private* iPrivate;

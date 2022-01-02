@@ -47,8 +47,10 @@ class DecodeHints {
   static const DecodeHintType MAXICODE_HINT;
   static const DecodeHintType PDF_417_HINT;
   static const DecodeHintType QR_CODE_HINT;
+#ifdef SUPPORT_RSS
   static const DecodeHintType RSS_14_HINT;
   static const DecodeHintType RSS_EXPANDED_HINT;
+#endif
   static const DecodeHintType UPC_A_HINT;
   static const DecodeHintType UPC_E_HINT;
   static const DecodeHintType UPC_EAN_EXTENSION_HINT;
@@ -65,11 +67,12 @@ class DecodeHints {
   static const DecodeHints DEFAULT_HINT;
 
   DecodeHints();
-  DecodeHints(const DecodeHintType &init);
+  DecodeHints(DecodeHintType init);
   DecodeHints(const DecodeHints &other);
 
   void addFormat(BarcodeFormat toadd);
   bool containsFormat(BarcodeFormat tocheck) const;
+  DecodeHintType getHints() const { return hints; }
   bool isEmpty() const {return (hints==0);}
   void clear() {hints=0;}
   void setTryHarder(bool toset);

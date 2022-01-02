@@ -31,6 +31,7 @@ CONFIG(debug, debug|release) {
 }
 
 SOURCES += \
+    src/BarcodeFormatModel.cpp \
     src/BarcodeUtils.cpp \
     src/Database.cpp \
     src/DGCertModel.cpp \
@@ -48,6 +49,7 @@ SOURCES += \
     src/scanner/ImageSource.cpp
 
 HEADERS += \
+    src/BarcodeFormatModel.h \
     src/BarcodeUtils.h \
     src/Database.h \
     src/DGCertModel.h \

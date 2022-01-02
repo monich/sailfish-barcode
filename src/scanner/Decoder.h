@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,7 @@ THE SOFTWARE.
 #include <QString>
 #include <QMetaType>
 
+#include <zxing/DecodeHints.h>
 #include <zxing/BarcodeFormat.h>
 #include <zxing/LuminanceSource.h>
 #include <zxing/common/Counted.h>
@@ -45,6 +46,7 @@ public:
 
     Result decode(QImage aImage);
     Result decode(zxing::Ref<zxing::LuminanceSource> aSource);
+    void setHints(const zxing::DecodeHints& aHints);
 
 private:
     class Private;

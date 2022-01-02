@@ -41,8 +41,10 @@ const zxing::DecodeHintType DecodeHints::ITF_HINT = 1 << BarcodeFormat::ITF;
 const zxing::DecodeHintType DecodeHints::MAXICODE_HINT = 1 << BarcodeFormat::MAXICODE;
 const zxing::DecodeHintType DecodeHints::PDF_417_HINT = 1 << BarcodeFormat::PDF_417;
 const zxing::DecodeHintType DecodeHints::QR_CODE_HINT = 1 << BarcodeFormat::QR_CODE;
+#ifdef SUPPORT_RSS
 const zxing::DecodeHintType DecodeHints::RSS_14_HINT = 1 << BarcodeFormat::RSS_14;
 const zxing::DecodeHintType DecodeHints::RSS_EXPANDED_HINT = 1 << BarcodeFormat::RSS_EXPANDED;
+#endif
 const zxing::DecodeHintType DecodeHints::UPC_A_HINT = 1 << BarcodeFormat::UPC_A;
 const zxing::DecodeHintType DecodeHints::UPC_E_HINT = 1 << BarcodeFormat::UPC_E;
 const zxing::DecodeHintType DecodeHints::UPC_EAN_EXTENSION_HINT = 1 << BarcodeFormat::UPC_EAN_EXTENSION;
@@ -51,11 +53,13 @@ const zxing::DecodeHintType DecodeHints::TRYHARDER_HINT = 1 << 31;
 const zxing::DecodeHintType DecodeHints::CHARACTER_SET = 1 << 30;
 
 const zxing::DecodeHints DecodeHints::PRODUCT_HINT(
+#ifdef SUPPORT_RSS
+  DecodeHints::RSS_14_HINT |
+#endif
   DecodeHints::UPC_A_HINT |
   DecodeHints::UPC_E_HINT |
   DecodeHints::EAN_13_HINT |
-  DecodeHints::EAN_8_HINT |
-  DecodeHints::RSS_14_HINT
+  DecodeHints::EAN_8_HINT
   );
 
 const zxing::DecodeHints DecodeHints::ONED_HINT(
@@ -75,17 +79,17 @@ const zxing::DecodeHints DecodeHints::DEFAULT_HINT(
   DecodeHints::PDF_417_HINT
   );
 
-DecodeHints::DecodeHints() {
-  hints = 0;
+DecodeHints::DecodeHints() :
+  hints(0) {
 }
 
-DecodeHints::DecodeHints(const zxing::DecodeHintType &init) {
-    hints = init;
+DecodeHints::DecodeHints(zxing::DecodeHintType init) :
+  hints(init) {
 }
 
-DecodeHints::DecodeHints(const DecodeHints &other) {
-    hints = other.hints;
-    callback = other.callback;
+DecodeHints::DecodeHints(const DecodeHints &other) :
+  hints(other.hints),
+  callback(other.callback) {
 }
 
 void DecodeHints::addFormat(BarcodeFormat toadd) {
@@ -102,8 +106,13 @@ void DecodeHints::addFormat(BarcodeFormat toadd) {
   case BarcodeFormat::MAXICODE: hints |= MAXICODE_HINT; break;
   case BarcodeFormat::PDF_417: hints |= PDF_417_HINT; break;
   case BarcodeFormat::QR_CODE: hints |= QR_CODE_HINT; break;
+#ifdef SUPPORT_RSS
   case BarcodeFormat::RSS_14: hints |= RSS_14_HINT; break;
   case BarcodeFormat::RSS_EXPANDED: hints |= RSS_EXPANDED_HINT; break;
+#else
+  case BarcodeFormat::RSS_14:
+  case BarcodeFormat::RSS_EXPANDED: break;
+#endif
   case BarcodeFormat::UPC_A: hints |= UPC_A_HINT; break;
   case BarcodeFormat::UPC_E: hints |= UPC_E_HINT; break;
   case BarcodeFormat::UPC_EAN_EXTENSION: hints |= UPC_EAN_EXTENSION_HINT; break;
@@ -127,8 +136,14 @@ bool DecodeHints::containsFormat(BarcodeFormat tocheck) const {
   case BarcodeFormat::MAXICODE: checkAgainst |= MAXICODE_HINT; break;
   case BarcodeFormat::PDF_417: checkAgainst |= PDF_417_HINT; break;
   case BarcodeFormat::QR_CODE: checkAgainst |= QR_CODE_HINT; break;
+#ifdef SUPPORT_RSS
   case BarcodeFormat::RSS_14: checkAgainst |= RSS_14_HINT; break;
   case BarcodeFormat::RSS_EXPANDED: checkAgainst |= RSS_EXPANDED_HINT; break;
+#else
+  case BarcodeFormat::RSS_14:
+  case BarcodeFormat::RSS_EXPANDED:
+    return false;
+#endif
   case BarcodeFormat::UPC_A: checkAgainst |= UPC_A_HINT; break;
   case BarcodeFormat::UPC_E: checkAgainst |= UPC_E_HINT; break;
   case BarcodeFormat::UPC_EAN_EXTENSION: checkAgainst |= UPC_EAN_EXTENSION_HINT; break;

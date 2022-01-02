@@ -58,11 +58,6 @@
         <extracomment>About page label</extracomment>
         <translation>Поддерживает одно- и двухмерные баркоды</translation>
     </message>
-    <message id="about-supported_codes-text">
-        <source>Image source: %1</source>
-        <extracomment>About page text</extracomment>
-        <translation>Источник изображений: %1</translation>
-    </message>
     <message id="scan-slider-zoom">
         <source>Zoom</source>
         <extracomment>Slider label</extracomment>
@@ -92,6 +87,16 @@
         <source>Settings</source>
         <extracomment>Setting page title and menu item</extracomment>
         <translation>Настройки</translation>
+    </message>
+    <message id="settings-formats-section">
+        <source>Barcode formats</source>
+        <extracomment>Section header</extracomment>
+        <translation>Форматы баркодов</translation>
+    </message>
+    <message id="settings-formats-description">
+        <source>Disabling the formats that you don&apos;t need speeds up the decoding and reduces the risk of incorrect recognition of the barcode type.</source>
+        <extracomment>Section description</extracomment>
+        <translation>Отключая ненужные форматы, вы ускоряете декодирование и уменьшаете шанс неверного определения типа баркода.</translation>
     </message>
     <message id="settings-scan-section">
         <source>Scan</source>

@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,11 @@ THE SOFTWARE.
 
 #include "Settings.h"
 
+#include <zxing/DecodeHints.h>
+
 #include <MGConfItem>
 
-#define DCONF_PATH                      "/apps/harbour-barcode/"
+#define DCONF_PATH_(x)                 "/apps/harbour-barcode/" x
 
 // New keys (the ones that have only been in dconf)
 #define KEY_BUZZ_ON_SCAN               "buzz_on_scan"
@@ -35,6 +37,7 @@ THE SOFTWARE.
 #define KEY_ORIENTATION                "orientation"
 #define KEY_MAX_DIGITAL_ZOOM           "max_digital_zoom"
 #define KEY_VOLUME_ZOOM                "volume_zoom"
+#define KEY_DECODING_HINTS             "decoding_hints"
 
 #define DEFAULT_SOUND                   false
 #define DEFAULT_BUZZ_ON_SCAN            true
@@ -48,7 +51,8 @@ THE SOFTWARE.
 #define DEFAULT_SAVE_IMAGES             true
 #define DEFAULT_VOLUME_ZOOM             true
 #define DEFAULT_WIDE_MODE               false
-#define DEFAULT_ORIENTATION             (Settings::OrientationAny)
+#define DEFAULT_DECODING_HINTS          zxing::DecodeHints::DEFAULT_HINT.getHints()
+#define DEFAULT_ORIENTATION             Settings::OrientationAny
 
 // ==========================================================================
 // Settings::Private
@@ -73,25 +77,27 @@ public:
     MGConfItem* iSaveImages;
     MGConfItem* iVolumeZoom;
     MGConfItem* iWideMode;
+    MGConfItem* iDecodingHints;
     MGConfItem* iOrientation;
 };
 
-const QString Settings::Private::HINTS_ROOT(DCONF_PATH "hints/");
+const QString Settings::Private::HINTS_ROOT(DCONF_PATH_("hints/"));
 
 Settings::Private::Private(Settings* aSettings) :
-    iSound(new MGConfItem(DCONF_PATH KEY_SOUND, aSettings)),
-    iBuzzOnScan(new MGConfItem(DCONF_PATH KEY_BUZZ_ON_SCAN, aSettings)),
-    iDigitalZoom(new MGConfItem(DCONF_PATH KEY_DIGITAL_ZOOM, aSettings)),
-    iMaxDigitalZoom(new MGConfItem(DCONF_PATH KEY_MAX_DIGITAL_ZOOM, aSettings)),
-    iScanDuration(new MGConfItem(DCONF_PATH KEY_SCAN_DURATION, aSettings)),
-    iResultViewDuration(new MGConfItem(DCONF_PATH KEY_RESULT_VIEW_DURATION, aSettings)),
-    iMarkerColor(new MGConfItem(DCONF_PATH KEY_MARKER_COLOR, aSettings)),
-    iHistorySize(new MGConfItem(DCONF_PATH KEY_HISTORY_SIZE, aSettings)),
-    iScanOnStart(new MGConfItem(DCONF_PATH KEY_SCAN_ON_START, aSettings)),
-    iSaveImages(new MGConfItem(DCONF_PATH KEY_SAVE_IMAGES, aSettings)),
-    iVolumeZoom(new MGConfItem(DCONF_PATH KEY_VOLUME_ZOOM, aSettings)),
-    iWideMode(new MGConfItem(DCONF_PATH KEY_WIDE_MODE, aSettings)),
-    iOrientation(new MGConfItem(DCONF_PATH KEY_ORIENTATION, aSettings))
+    iSound(new MGConfItem(DCONF_PATH_(KEY_SOUND), aSettings)),
+    iBuzzOnScan(new MGConfItem(DCONF_PATH_(KEY_BUZZ_ON_SCAN), aSettings)),
+    iDigitalZoom(new MGConfItem(DCONF_PATH_(KEY_DIGITAL_ZOOM), aSettings)),
+    iMaxDigitalZoom(new MGConfItem(DCONF_PATH_(KEY_MAX_DIGITAL_ZOOM), aSettings)),
+    iScanDuration(new MGConfItem(DCONF_PATH_(KEY_SCAN_DURATION), aSettings)),
+    iResultViewDuration(new MGConfItem(DCONF_PATH_(KEY_RESULT_VIEW_DURATION), aSettings)),
+    iMarkerColor(new MGConfItem(DCONF_PATH_(KEY_MARKER_COLOR), aSettings)),
+    iHistorySize(new MGConfItem(DCONF_PATH_(KEY_HISTORY_SIZE), aSettings)),
+    iScanOnStart(new MGConfItem(DCONF_PATH_(KEY_SCAN_ON_START), aSettings)),
+    iSaveImages(new MGConfItem(DCONF_PATH_(KEY_SAVE_IMAGES), aSettings)),
+    iVolumeZoom(new MGConfItem(DCONF_PATH_(KEY_VOLUME_ZOOM), aSettings)),
+    iWideMode(new MGConfItem(DCONF_PATH_(KEY_WIDE_MODE), aSettings)),
+    iDecodingHints(new MGConfItem(DCONF_PATH_(KEY_DECODING_HINTS), aSettings)),
+    iOrientation(new MGConfItem(DCONF_PATH_(KEY_ORIENTATION), aSettings))
 {
     connect(iSound, SIGNAL(valueChanged()), aSettings, SIGNAL(soundChanged()));
     connect(iBuzzOnScan, SIGNAL(valueChanged()), aSettings, SIGNAL(buzzOnScanChanged()));
@@ -105,6 +111,7 @@ Settings::Private::Private(Settings* aSettings) :
     connect(iSaveImages, SIGNAL(valueChanged()), aSettings, SIGNAL(saveImagesChanged()));
     connect(iVolumeZoom, SIGNAL(valueChanged()), aSettings, SIGNAL(volumeZoomChanged()));
     connect(iWideMode, SIGNAL(valueChanged()), aSettings, SIGNAL(wideModeChanged()));
+    connect(iDecodingHints, SIGNAL(valueChanged()), aSettings, SIGNAL(decodingHintsChanged()));
     connect(iOrientation, SIGNAL(valueChanged()), aSettings, SIGNAL(orientationChanged()));
 }
 
@@ -246,6 +253,32 @@ bool Settings::wideMode() const
 void Settings::setWideMode(bool aValue)
 {
     iPrivate->iWideMode->set(aValue);
+}
+
+uint Settings::decodingHints() const
+{
+    return iPrivate->iDecodingHints->value(DEFAULT_DECODING_HINTS).toUInt();
+}
+
+void Settings::setDecodingHints(uint aValue)
+{
+    iPrivate->iDecodingHints->set(aValue);
+}
+
+void Settings::setDecodingHint(uint aValue)
+{
+    const uint hints = decodingHints();
+    if ((hints & aValue) != aValue) {
+        iPrivate->iDecodingHints->set(hints | aValue);
+    }
+}
+
+void Settings::clearDecodingHint(uint aValue)
+{
+    const uint hints = decodingHints();
+    if ((hints & aValue) != 0) {
+        iPrivate->iDecodingHints->set(hints & ~aValue);
+    }
 }
 
 Settings::Orientation Settings::orientation() const

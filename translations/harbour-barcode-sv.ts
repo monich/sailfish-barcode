@@ -58,11 +58,6 @@
         <extracomment>About page label</extracomment>
         <translation>1D-/2D-koder som stöds</translation>
     </message>
-    <message id="about-supported_codes-text">
-        <source>Image source: %1</source>
-        <extracomment>About page text</extracomment>
-        <translation>Bildkälla: %1</translation>
-    </message>
     <message id="scan-slider-zoom">
         <source>Zoom</source>
         <extracomment>Slider label</extracomment>
@@ -92,6 +87,16 @@
         <source>Settings</source>
         <extracomment>Setting page title and menu item</extracomment>
         <translation>Inställningar</translation>
+    </message>
+    <message id="settings-formats-section">
+        <source>Barcode formats</source>
+        <extracomment>Section header</extracomment>
+        <translation type="unfinished">Streckkodsformat</translation>
+    </message>
+    <message id="settings-formats-description">
+        <source>Disabling the formats that you don&apos;t need speeds up the decoding and reduces the risk of incorrect recognition of the barcode type.</source>
+        <extracomment>Section description</extracomment>
+        <translation type="unfinished">Att inaktivera de format du inte behöver påskyndar avkodningen och minskar risken för felaktig identifiering av streckkodstypen.</translation>
     </message>
     <message id="settings-scan-section">
         <source>Scan</source>

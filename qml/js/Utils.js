@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -87,47 +87,5 @@ function getValueText(value) {
         return value
     } else {
         return removeLineBreak(value)
-    }
-}
-
-function barcodeFormat(format) {
-    if (format === "AZTEC") {
-        return "Aztec"
-    } else if (format === "CODABAR") {
-        return "Codabar"
-    } else if (format === "CODE_39") {
-        return "Code 39"
-    } else if (format === "CODE_93") {
-        return "Code 93"
-    } else if (format === "CODE_128") {
-        return "Code 128"
-    } else if (format === "DATA_MATRIX") {
-        return "Data Matrix"
-    } else if (format === "EAN_8") {
-        return "EAN-8"
-    } else if (format === "EAN_13") {
-        return "EAN-13"
-    } else if (format === "ITF") {
-        return "ITF-14"
-    } else if (format === "MAXICODE") {
-        return "MaxiCode"
-    } else if (format === "PDF_417") {
-        return "PDF417"
-    } else if (format === "QR_CODE") {
-        return "QR Code"
-    } else if (format === "RSS_14") {
-        return "RSS-14"
-    } else if (format === "RSS_EXPANDED") {
-        return "RSS"
-    } else if (format === "UPC_A") {
-        return "UPC-A"
-    } else if (format === "UPC_E") {
-        return "UPC-E"
-    } else if (format === "UPC_EAN_EXTENSION") {
-        return "EAN"
-    } else if (format === "ASSUME_GS1") {
-        return "GS1"
-    } else {
-        return ""
     }
 }

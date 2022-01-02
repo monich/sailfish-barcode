@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2021 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,10 @@ THE SOFTWARE.
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import harbour.barcode 1.0
 
 import "../components"
+import "../harbour"
 
 Page {
     id: aboutPage
@@ -139,9 +141,6 @@ Page {
                 //: About page label
                 //% "Supported 1D/2D bar codes"
                 label: qsTrId("about-supported_codes-label")
-                //: About page text
-                //% "Image source: %1"
-                text: qsTrId("about-supported_codes-text").arg("http://wikipedia.org")
                 separator: false
             }
 
@@ -157,86 +156,42 @@ Page {
                 columns: Math.max(Math.floor((width + spacing)/(Theme.itemSizeExtraLarge + spacing)), 1)
 
                 Repeater {
-                    model: ListModel {
-                        ListElement {
-                            name: "QR code"
-                            imgSrc: "qr-code_240.png"
-                        }
-                        ListElement {
-                            name: "Aztec"
-                            imgSrc: "aztec_240.png"
-                        }
-                        ListElement {
-                            name: "Data Matrix"
-                            imgSrc: "datamatrix_240.png"
-                        }
-                        ListElement {
-                            name: "Code 39"
-                            imgSrc: "code-39_240.png"
-                        }
-                        ListElement {
-                            name: "Code 93"
-                            imgSrc: "code-93_240.png"
-                        }
-                        ListElement {
-                            name: "Code 128"
-                            imgSrc: "code-128_240.png"
-                        }
-                        ListElement {
-                            name: "EAN 8"
-                            imgSrc: "ean-8_240.png"
-                        }
-                        ListElement {
-                            name: "EAN 13"
-                            imgSrc: "ean-13_240.png"
-                        }
-                        ListElement {
-                            name: "Interleaved 2/5"
-                            imgSrc: "interleaved_240.png"
-                        }
-                        ListElement {
-                            name: "UPC"
-                            imgSrc: "upc_240.png"
-                        }
-                        ListElement {
-                            name: "Codebar"
-                            imgSrc: "codebar_240.png"
-                        }
-                        ListElement {
-                            name: "PDF417"
-                            imgSrc: "pdf417_240.png"
-                        }
-                    }
-
-                    delegate: ShaderEffectSource {
+                    model: BarcodeFormatModel { }
+                    delegate: Item {
                         width: grid.cellWidth
                         height: grid.cellHeight
-                        sourceItem: Item {
-                            width: grid.cellWidth
-                            height: grid.cellHeight
 
-                            Rectangle {
-                                color: "white"
-                                anchors.fill: parent
+                        Rectangle {
+                            color: "white"
+                            anchors.fill: parent
+                        }
+
+                        HarbourHighlightIcon {
+                            anchors {
+                                horizontalCenter: parent.horizontalCenter
+                                top: parent.top
+                                topMargin: Theme.paddingSmall
+                                bottom: formatName.top
                             }
+                            width: parent.width - 2 * Theme.paddingSmall
+                            source: "img/sample-" + model.sample + ".svg"
+                            highlightColor: "black"
+                            sourceSize.height: height
+                            fillMode: Image.PreserveAspectFit
+                            verticalAlignment: Image.AlignTop
+                            horizontalAlignment: Image.AlignHCenter
+                            smooth: true
+                        }
 
-                            Image {
-                                source: "img/" + model.imgSrc
-                                width: parent.width - 2 * Theme.paddingSmall
-                                anchors.centerIn: parent
-                                fillMode: Image.PreserveAspectFit
-                                smooth: true
-                            }
+                        Text {
+                            id: formatName
 
-                            Text {
-                                text: name;
-                                font.pixelSize: Theme.fontSizeTiny
-                                color: "black"
-                                anchors {
-                                    horizontalCenter: parent.horizontalCenter
-                                    baselineOffset: -Theme.paddingSmall
-                                    baseline: parent.bottom
-                                }
+                            text: model.name
+                            font.pixelSize: Theme.fontSizeTiny
+                            color: "black"
+                            anchors {
+                                horizontalCenter: parent.horizontalCenter
+                                bottom: parent.bottom
                             }
                         }
                     }

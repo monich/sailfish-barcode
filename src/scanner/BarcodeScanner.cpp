@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2021 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,8 @@ THE SOFTWARE.
 #include "BarcodeScanner.h"
 #include "ImageSource.h"
 #include "Decoder.h"
+
+#include <zxing/DecodeHints.h>
 
 #include "HarbourDebug.h"
 
@@ -102,6 +104,7 @@ public:
 
     QRect iViewFinderRect;
     QColor iMarkerColor;
+    uint iDecodingHints;
 };
 
 BarcodeScanner::Private::Private(BarcodeScanner* aParent) :
@@ -116,7 +119,8 @@ BarcodeScanner::Private::Private(BarcodeScanner* aParent) :
     iLastKnownState(Idle),
     iViewFinderItem(NULL),
     iScanTimeout(new QTimer(this)),
-    iMarkerColor(QColor(0, 255, 0)) // default green
+    iMarkerColor(QColor(0, 255, 0)), // default green
+    iDecodingHints(zxing::DecodeHints::DEFAULT_HINT.getHints())
 {
     iScanTimeout->setSingleShot(true);
     connect(iScanTimeout, SIGNAL(timeout()), SLOT(onScanningTimeout()));
@@ -271,6 +275,8 @@ void BarcodeScanner::Private::decodingThread()
         emit needImage();
         int rotation;
         QRect viewFinderRect;
+        zxing::DecodeHints hints;
+
         while (iCaptureImage.isNull() && !iAbortScan) {
             iDecodingEvent.wait(&iDecodingMutex);
         }
@@ -282,6 +288,7 @@ void BarcodeScanner::Private::decodingThread()
         }
         viewFinderRect = iViewFinderRect;
         rotation = iRotation;
+        hints = iDecodingHints;
         iDecodingMutex.unlock();
 
         if (!image.isNull()) {
@@ -394,6 +401,7 @@ void BarcodeScanner::Private::decodingThread()
 #endif // HARBOUR_DEBUG
 
             HDEBUG("decoding screenshot ...");
+            decoder.setHints(hints);
             result = decoder.decode(sourceRef);
 
             if (!result.isValid()) {
@@ -608,6 +616,21 @@ void BarcodeScanner::setCanGrab(bool aCanGrab)
 bool BarcodeScanner::grabbing() const
 {
     return iPrivate->iGrabbing;
+}
+
+uint BarcodeScanner::decodingHints() const
+{
+    return iPrivate->iDecodingHints;
+}
+
+void BarcodeScanner::setDecodingHints(uint aValue)
+{
+    if (iPrivate->iDecodingHints != aValue) {
+        iPrivate->iDecodingMutex.lock();
+        iPrivate->iDecodingHints = aValue;
+        iPrivate->iDecodingMutex.unlock();
+        Q_EMIT decodingHintsChanged();
+    }
 }
 
 #include "BarcodeScanner.moc"

@@ -58,11 +58,6 @@
         <extracomment>About page label</extracomment>
         <translation>Wsparcie dla kodów kreskowych 1D/2D</translation>
     </message>
-    <message id="about-supported_codes-text">
-        <source>Image source: %1</source>
-        <extracomment>About page text</extracomment>
-        <translation>Źródło obrazka: %1</translation>
-    </message>
     <message id="scan-slider-zoom">
         <source>Zoom</source>
         <extracomment>Slider label</extracomment>
@@ -92,6 +87,16 @@
         <source>Settings</source>
         <extracomment>Setting page title and menu item</extracomment>
         <translation>Ustawienia</translation>
+    </message>
+    <message id="settings-formats-section">
+        <source>Barcode formats</source>
+        <extracomment>Section header</extracomment>
+        <translation type="unfinished">Formaty kodów kreskowych</translation>
+    </message>
+    <message id="settings-formats-description">
+        <source>Disabling the formats that you don&apos;t need speeds up the decoding and reduces the risk of incorrect recognition of the barcode type.</source>
+        <extracomment>Section description</extracomment>
+        <translation type="unfinished">Wyłączając niepotrzebne formaty, przyspieszasz dekodowanie i zmniejszasz ryzyko nieprawidłowego wykrycia typu kodu kreskowego.</translation>
     </message>
     <message id="settings-scan-section">
         <source>Scan</source>

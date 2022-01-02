@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2020 Slava Monich
+Copyright (c) 2020-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -38,9 +38,10 @@ public:
     BarcodeUtils(QObject* aParent = Q_NULLPTR);
 
     // Callback for qmlRegisterSingletonType<BarcodeUtils>
-    static QObject* createSingleton(QQmlEngine* aEngine, QJSEngine* aScript);
+    static QObject* createSingleton(QQmlEngine*, QJSEngine*);
 
-    Q_INVOKABLE static QString urlScheme(QString aText);
+    Q_INVOKABLE static QString urlScheme(QString text);
+    Q_INVOKABLE static const QString barcodeFormatName(QString ident);
 };
 
 #endif // BARCODE_UTILS_H

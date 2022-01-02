@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2021 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -44,6 +44,7 @@ THE SOFTWARE.
 #include "HarbourTemporaryFile.h"
 #include "HarbourSystemInfo.h"
 
+#include "BarcodeFormatModel.h"
 #include "BarcodeUtils.h"
 #include "Plugins.h"
 #include "Database.h"
@@ -70,6 +71,7 @@ static void register_types(QQmlEngine* engine, const char* uri, int v1, int v2)
     qmlRegisterType<HarbourTemporaryFile>(uri, v1, v2, "TemporaryFile");
     qmlRegisterSingletonType<HarbourSystemInfo>(uri, v1, v2, "SystemInfo", HarbourSystemInfo::createSingleton);
     qmlRegisterSingletonType<HarbourProcessState>(uri, v1, v2, "ProcessState", HarbourProcessState::createSingleton);
+    qmlRegisterType<BarcodeFormatModel>(uri, v1, v2, "BarcodeFormatModel");
     qmlRegisterType<BarcodeScanner>(uri, v1, v2, "BarcodeScanner");
     qmlRegisterType<DGCertModel>(uri, v1, v2, "DGCertModel");
     qmlRegisterType<DGCertRecognizer>(uri, v1, v2, "DGCertRecognizer");

@@ -56,16 +56,14 @@ MultiFormatOneDReader::MultiFormatOneDReader(DecodeHints hints) : readers() {
   if (hints.containsFormat(BarcodeFormat::CODABAR)) {
     readers.push_back(Ref<OneDReader>(new CodaBarReader()));
   }
-/*
+#ifdef SUPPORT_RSS
   if (hints.containsFormat(BarcodeFormat::RSS_14)) {
     readers.push_back(Ref<OneDReader>(new RSS14Reader()));
   }
-*/
-/*
   if (hints.containsFormat(BarcodeFormat::RSS_EXPANDED)) {
     readers.push_back(Ref<OneDReader>(new RSS14ExpandedReader()));
   }
-*/
+#endif
   if (readers.size() == 0) {
     readers.push_back(Ref<OneDReader>(new MultiFormatUPCEANReader(hints)));
     readers.push_back(Ref<OneDReader>(new Code39Reader()));

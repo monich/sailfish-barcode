@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018-2021 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -54,6 +54,7 @@ class Settings : public QObject {
     Q_PROPERTY(bool saveImages READ saveImages WRITE setSaveImages NOTIFY saveImagesChanged)
     Q_PROPERTY(bool volumeZoom READ volumeZoom WRITE setVolumeZoom NOTIFY volumeZoomChanged)
     Q_PROPERTY(bool wideMode READ wideMode WRITE setWideMode NOTIFY wideModeChanged)
+    Q_PROPERTY(uint decodingHints READ decodingHints WRITE setDecodingHints NOTIFY decodingHintsChanged)
     Q_PROPERTY(Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
     Q_ENUMS(Orientation)
     Q_ENUMS(Constants)
@@ -113,6 +114,11 @@ public:
     bool wideMode() const;
     void setWideMode(bool aValue);
 
+    uint decodingHints() const;
+    void setDecodingHints(uint aValue);
+    Q_INVOKABLE void setDecodingHint(uint aValue);
+    Q_INVOKABLE void clearDecodingHint(uint aValue);
+
     Orientation orientation() const;
     void setOrientation(Orientation aValue);
 
@@ -129,6 +135,7 @@ Q_SIGNALS:
     void saveImagesChanged();
     void volumeZoomChanged();
     void wideModeChanged();
+    void decodingHintsChanged();
     void orientationChanged();
 
 private:

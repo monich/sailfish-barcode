@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2021 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -105,6 +105,49 @@ Page {
             //: Setting page title and menu item
             //% "Settings"
             PageHeader { title: qsTrId("settings-title") }
+
+            //: Section header
+            //% "Barcode formats"
+            SectionHeader { text: qsTrId("settings-formats-section") }
+
+            Label {
+                x: Theme.horizontalPageMargin
+                width: parent.width - x*2
+                wrapMode: Text.Wrap
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+                //: Section description
+                //% "Disabling the formats that you don't need speeds up the decoding and reduces the risk of incorrect recognition of the barcode type."
+                text: qsTrId("settings-formats-description")
+            }
+
+            Grid {
+                id: formatsGrid
+
+                width: parent.width
+                columns: landscapeLayout ? 4 : 2
+
+                readonly property real columnWidth: Math.floor(width/columns)
+                readonly property int portraitColumns: Math.max(1, Math.min(2, width/Theme.itemSizeHuge))
+                readonly property int landscapeColumns: Math.max(2, Math.min(4, width/Theme.itemSizeHuge))
+
+                Repeater {
+                    model: BarcodeFormatModel { hints: AppSettings.decodingHints }
+                    delegate: TextSwitch {
+                        text: model.name
+                        width: formatsGrid.columnWidth
+                        automaticCheck: false
+                        checked: model.enabled
+                        onClicked: {
+                            if (checked) {
+                                AppSettings.clearDecodingHint(model.hint)
+                            } else {
+                                AppSettings.setDecodingHint(model.hint)
+                            }
+                        }
+                    }
+                }
+            }
 
             //: Section header
             //% "Display"

@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,6 @@ THE SOFTWARE.
 
 #include <QAtomicInt>
 
-#include <zxing/DecodeHints.h>
 #include <zxing/MultiFormatReader.h>
 #include <zxing/Binarizer.h>
 #include <zxing/BinaryBitmap.h>
@@ -199,4 +198,9 @@ Decoder::Result Decoder::decode(zxing::Ref<zxing::LuminanceSource> aSource)
         HDEBUG("Exception:" << e.what());
         return Result();
     }
+}
+
+void Decoder::setHints(const zxing::DecodeHints& aHints)
+{
+    iPrivate->iHints = aHints;
 }
