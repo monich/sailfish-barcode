@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018-2021 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@ THE SOFTWARE.
 
 #include "ImageSource.h"
 
-#include <zxing/common/GlobalHistogramBinarizer.h>
+#include "HarbourDebug.h"
 
 class ImageSource::Private {
 public:
@@ -138,6 +138,11 @@ const zxing::byte* ImageSource::getGrayRow(int aY) const
 }
 
 // Strictly for debugging
+
+#if HARBOUR_DEBUG
+
+#include <zxing/common/GlobalHistogramBinarizer.h>
+
 QImage ImageSource::bwImage()
 {
     zxing::GlobalHistogramBinarizer binarizer(zxing::Ref<zxing::LuminanceSource>(this));
@@ -167,3 +172,5 @@ QImage ImageSource::bwImage()
         return QImage();
     }
 }
+
+#endif // HARBOUR_DEBUG
