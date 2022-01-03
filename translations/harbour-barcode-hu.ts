@@ -320,7 +320,7 @@
     <message id="contact-notification-failed">
         <source>Failed to save the contact</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation>A névjegyet nem lehetett megmenteni</translation>
+        <translation>A névjegyet nem lehetett menteni</translation>
     </message>
     <message id="contact-notification-failed_jailed">
         <source>Failed to save the contact (blocked by sandboxing?)</source>
