@@ -325,7 +325,7 @@
     <message id="contact-notification-failed_jailed">
         <source>Failed to save the contact (blocked by sandboxing?)</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation>A névjegyet nem lehetett megmenteni (a homokozó által blokkolt?)</translation>
+        <translation>A névjegyet nem lehetett menteni (a homokozó által blokkolt?)</translation>
     </message>
     <message id="notification-copied_to_clipboard">
         <source>Copied to clipboard</source>
