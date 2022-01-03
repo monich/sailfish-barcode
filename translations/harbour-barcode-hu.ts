@@ -11,7 +11,7 @@
     <message id="about-description">
         <source>This app demonstrates a bar code reader for Sailfish OS. We hope it is useful for other projects. CodeReader is open source and licensed under the MIT License.</source>
         <extracomment>About page text</extracomment>
-        <translation type="unfinished">Ez egy demonstrációs céllal létrehozott alkalmazás a Sailfish OS-hez. Reméljük hasznát veszed akár más projektekhez is. A program forráskódja nyílt, MIT licensznek megfelelően.</translation>
+        <translation>Ez egy demonstrációs céllal létrehozott alkalmazás a Sailfish OS-hez. Reméljük hasznát veszed akár más projektekhez is. A program forráskódja nyílt, MIT licensznek megfelelően.</translation>
     </message>
     <message id="about-version-label">
         <source>Version</source>
@@ -21,12 +21,12 @@
     <message id="about-author-labels">
         <source>Authors</source>
         <extracomment>About page label</extracomment>
-        <translation type="unfinished">Készítők</translation>
+        <translation>Készítők</translation>
     </message>
     <message id="about-contributors-label">
         <source>Contributors</source>
         <extracomment>About page label</extracomment>
-        <translation>Közreműködtek</translation>
+        <translation>Közreműködők</translation>
     </message>
     <message id="about-contributors-text">
         <source>%1 and others.</source>
@@ -61,7 +61,7 @@
     <message id="scan-slider-zoom">
         <source>Zoom</source>
         <extracomment>Slider label</extracomment>
-        <translation type="unfinished">Nagyítás</translation>
+        <translation>Nagyítás</translation>
     </message>
     <message id="scan-action-scan">
         <source>Scan</source>
@@ -71,7 +71,7 @@
     <message id="scan-action-cancel">
         <source>Cancel</source>
         <extracomment>Scan button label</extracomment>
-        <translation type="unfinished">Mégsem</translation>
+        <translation>Mégsem</translation>
     </message>
     <message id="scan-status-busy">
         <source>Scan in progress ...</source>
@@ -91,12 +91,12 @@
     <message id="settings-formats-section">
         <source>Barcode formats</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Vonalkód formátumok</translation>
+        <translation>Vonalkódformátumok</translation>
     </message>
     <message id="settings-formats-description">
         <source>Disabling the formats that you don&apos;t need speeds up the decoding and reduces the risk of incorrect recognition of the barcode type.</source>
         <extracomment>Section description</extracomment>
-        <translation type="unfinished">A nem szükséges formátumok letiltása felgyorsítja a dekódolást és csökkenti a vonalkód típusának helytelen felismerésének kockázatát.</translation>
+        <translation>A nem szükséges formátumok letiltása felgyorsítja a dekódolást és csökkenti a vonalkódtípus helytelen felismerésének kockázatát.</translation>
     </message>
     <message id="settings-scan-section">
         <source>Scan</source>
@@ -121,7 +121,7 @@
     <message id="settings-volume_zoom-label">
         <source>Zoom with volume keys</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished">Nagyítás hangerő-szabályzó gombokkal</translation>
+        <translation>Nagyítás hangerő-szabályzó gombokkal</translation>
     </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
@@ -250,7 +250,7 @@
     <message id="button-eu_covid_cert">
         <source>COVID Certificate</source>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished">COVID tanúsítvány</translation>
+        <translation>COVID-igazolvány</translation>
     </message>
     <message id="button-open_link">
         <source>Open link</source>
@@ -265,7 +265,7 @@
     <message id="button-contact_card">
         <source>Contact card</source>
         <extracomment>Button text</extracomment>
-        <translation>Névjegy</translation>
+        <translation>Névjegykártya</translation>
     </message>
     <message id="button-add_to_calendar">
         <source>Add to calendar</source>
@@ -295,7 +295,7 @@
     <message id="text-receipt_not_found">
         <source>Receipt not found</source>
         <extracomment>Status label</extracomment>
-        <translation>Recept letöltése</translation>
+        <translation>Bizonylat nem található</translation>
     </message>
     <message id="text-network_error">
         <source>Network error</source>
@@ -305,27 +305,27 @@
     <message id="contact-menu-save_contact">
         <source>Save contact</source>
         <extracomment>Pulley menu item (saves contact)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Névjegy mentése</translation>
     </message>
     <message id="contact-notification-saved">
         <source>Contact saved</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Névjegy mentve</translation>
+        <translation>Névjegy mentve</translation>
     </message>
     <message id="contact-notification-maybe_saved">
         <source>Contact saved (or at least we tried)</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Névjegy mentve (legalább megpróbáltuk)</translation>
+        <translation>Névjegy mentve (legalábbis megpróbáltuk)</translation>
     </message>
     <message id="contact-notification-failed">
         <source>Failed to save the contact</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Névjegy nem lehetett megmenteni</translation>
+        <translation>A névjegyet nem lehetett megmenteni</translation>
     </message>
     <message id="contact-notification-failed_jailed">
         <source>Failed to save the contact (blocked by sandboxing?)</source>
         <extracomment>Pop-up notification</extracomment>
-        <translation type="unfinished">Névjegy nem lehetett megmenteni (a homokozó által blokkolt?)</translation>
+        <translation>A névjegyet nem lehetett megmenteni (a homokozó által blokkolt?)</translation>
     </message>
     <message id="notification-copied_to_clipboard">
         <source>Copied to clipboard</source>
@@ -355,7 +355,7 @@
     <message id="hint-open_contact_card">
         <source>Open contact card</source>
         <extracomment>Hint label</extracomment>
-        <translation>Névjegy megnyitása</translation>
+        <translation>Névjegykártya megnyitása</translation>
     </message>
     <message id="hint-open_link">
         <source>Open link in browser</source>
@@ -370,12 +370,12 @@
     <message id="hint-covid_certificate">
         <source>Show EU digital COVID certificate</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Uniós digitális Covid-igazolvány megjelenítése</translation>
+        <translation>Uniós digitális Covid-igazolvány megjelenítése</translation>
     </message>
     <message id="hint-add_to_calendar">
         <source>Add event to calendar</source>
         <extracomment>Hint label</extracomment>
-        <translation type="unfinished">Esemény hozzáadása a naptárhoz</translation>
+        <translation>Esemény hozzáadása a naptárhoz</translation>
     </message>
     <message id="settings-display-section">
         <source>Display</source>
@@ -385,7 +385,7 @@
     <message id="settings-display-orientation-label">
         <source>Orientation</source>
         <extracomment>Combo box label</extracomment>
-        <translation>Képernyőforgatás</translation>
+        <translation>Tájolás</translation>
     </message>
     <message id="settings-display-orientation-primary">
         <source>Primary</source>
@@ -415,7 +415,7 @@
     <message id="settings-display-orientation-allow_inverted-description">
         <source>If enabled, allows both primary and inverted landscape or portrait orientation.</source>
         <extracomment>Text switch description</extracomment>
-        <translation>Ha bekapcsolod mind az elsődleges, a tükrözött álló és fekvő mód is elérhető lesz.</translation>
+        <translation>Ha bekapcsolod mind az elsődleges, mind a tükrözött álló és fekvő mód is elérhető lesz.</translation>
     </message>
     <message id="select-title">
         <source>Select codes</source>
@@ -450,27 +450,27 @@
     <message id="scan-gallery-menu">
         <source>Scan from Gallery</source>
         <extracomment>Pulley menu item</extracomment>
-        <translation type="unfinished">Szkennelés a Galériából</translation>
+        <translation>Szkennelés a Galériából</translation>
     </message>
     <message id="gallery-title">
         <source>Select image</source>
         <extracomment>Page header</extracomment>
-        <translation type="unfinished">Kép kiválasztása</translation>
+        <translation>Kép kiválasztása</translation>
     </message>
     <message id="gallery-empty">
         <source>No images found in the gallery</source>
         <extracomment>Placeholder text</extracomment>
-        <translation type="unfinished">Nincs kép a galériában</translation>
+        <translation>Nincs kép a galériában</translation>
     </message>
     <message id="gallery-thumbnail-error">
         <source>Error</source>
         <extracomment>Thumbnail image loading failed</extracomment>
-        <translation type="unfinished">Hiba</translation>
+        <translation>Hiba</translation>
     </message>
     <message id="gallery-rotate">
         <source>Rotate</source>
         <extracomment>Rotation widget</extracomment>
-        <translation type="unfinished">Forog</translation>
+        <translation>Forgatás</translation>
     </message>
     <message id="dgcert-page_header">
         <source>EU Digital COVID Certificate</source>
@@ -485,192 +485,192 @@
     <message id="dgcert-common-issuer">
         <source>Issuer</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Kibocsátó</translation>
+        <translation>Kibocsátó</translation>
     </message>
     <message id="dgcert-common-issue_date">
         <source>Issue date</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Kiadás dátuma</translation>
+        <translation>Kiadás dátuma</translation>
     </message>
     <message id="dgcert-common-expiration_date">
         <source>Expiration date</source>
         <extracomment>Detail label (common field)</extracomment>
-        <translation type="unfinished">Lejárati dátum</translation>
+        <translation>Lejárati dátum</translation>
     </message>
     <message id="dgcert-personal-name">
         <source>Name</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Név</translation>
+        <translation>Név</translation>
     </message>
     <message id="dgcert-personal-standardized_name">
         <source>Standardized name</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Szabványosított név</translation>
+        <translation>Szabványosított név</translation>
     </message>
     <message id="dgcert-personal-date_of_birth">
         <source>Date of birth</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">Születési dátum</translation>
+        <translation>Születési dátum</translation>
     </message>
     <message id="dgcert-signature_disclaimer">
         <source>The signature is not checked and therefore the validity of the certificate is not guaranteed.</source>
         <extracomment>Disclaimer</extracomment>
-        <translation type="unfinished">Az aláírást nem ellenőrzik, és a tanúsítvány érvényessége nem garantált.</translation>
+        <translation>Az aláírás nem ellenőrzött, ezért a tanúsítvány érvényessége nem garantált.</translation>
     </message>
     <message id="dgcert-vaccination-header">
         <source>Vaccination certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Oltási igazolás</translation>
+        <translation>Oltási igazolvány</translation>
     </message>
     <message id="dgcert-vaccination-tg">
         <source>Disease or agent targeted</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Fertőzés</translation>
+        <translation>Célzott kórokozó, vagy betegség</translation>
     </message>
     <message id="dgcert-vaccination-vp">
         <source>Type of the vaccine</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">A vakcina típusa</translation>
+        <translation>Az oltóanyag típusa</translation>
     </message>
     <message id="dgcert-vaccination-mp">
         <source>Vaccine product</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Vakcina</translation>
+        <translation>Oltóanyag-termék</translation>
     </message>
     <message id="dgcert-vaccination-ma">
         <source>Vaccine manufacturer</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Vakcinagyártó</translation>
+        <translation>Oltóanyag gyártója</translation>
     </message>
     <message id="dgcert-vaccination-dn_sd">
         <source>Number of doses</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Az adagok száma</translation>
+        <translation>Az adagok száma</translation>
     </message>
     <message id="dgcert-vaccination-dt">
         <source>Date of vaccination</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Az adagok száma</translation>
+        <translation>Az oltások dátuma</translation>
     </message>
     <message id="dgcert-vaccination-co">
         <source>Country of vaccination</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Az oltás országa</translation>
+        <translation>Az oltás országa</translation>
     </message>
     <message id="dgcert-vaccination-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">A tanúsítvány kibocsátója</translation>
+        <translation>Az igazolvány kibocsátója</translation>
     </message>
     <message id="dgcert-vaccination-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation type="unfinished">Egyedi tanúsítványazonosító</translation>
+        <translation>Egyedi igazolványazonosító</translation>
     </message>
     <message id="dgcert-test-header">
         <source>Test certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Tesztigazolás</translation>
+        <translation>Tesztigazolás</translation>
     </message>
     <message id="dgcert-test-tg">
         <source>Disease or agent</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Fertőzés</translation>
+        <translation>Betegség, vagy kórokozó</translation>
     </message>
     <message id="dgcert-test-tt">
         <source>The type of test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">A teszt típusa</translation>
+        <translation>A teszt típusa</translation>
     </message>
     <message id="dgcert-test-nm">
         <source>Test name</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Teszt</translation>
+        <translation>A teszt neve</translation>
     </message>
     <message id="dgcert-test-ma">
         <source>Test device identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Teszt felszerelés</translation>
+        <translation>Teszt készülék-azonosító</translation>
     </message>
     <message id="dgcert-test-sc">
         <source>Date and time of the sample</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">A minta dátuma és ideje</translation>
+        <translation>A minta dátuma és ideje</translation>
     </message>
     <message id="dgcert-test-tr">
         <source>Result of the test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">A teszt eredménye</translation>
+        <translation>A teszt eredménye</translation>
     </message>
     <message id="dgcert-test-tc">
         <source>Testing centre or facility</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Vizsgálati létesítmény</translation>
+        <translation>Vizsgálati létesítmény</translation>
     </message>
     <message id="dgcert-test-co">
         <source>Country where the test was carried out</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Ország</translation>
+        <translation>Tesztelés országa</translation>
     </message>
     <message id="dgcert-test-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">A tanúsítvány kibocsátója</translation>
+        <translation>Az igazolvány kibocsátója</translation>
     </message>
     <message id="dgcert-test-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Egyedi tanúsítványazonosító</translation>
+        <translation>Egyedi igazolványazonosító</translation>
     </message>
     <message id="dgcert-recovery-header">
         <source>Recovery certificate</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Helyreállítási tanúsítvány</translation>
+        <translation>Helyreállítási tanúsítvány</translation>
     </message>
     <message id="dgcert-recovery-tg">
         <source>Disease or agent</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Fertőzés</translation>
+        <translation>Betegség, vagy kórokozó</translation>
     </message>
     <message id="dgcert-recovery-fr">
         <source>Date of the first positive test</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Az első pozitív teszt dátuma</translation>
+        <translation>Az első pozitív teszt dátuma</translation>
     </message>
     <message id="dgcert-recovery-co">
         <source>Country where the test was carried out</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Ország</translation>
+        <translation>Tesztelés országa</translation>
     </message>
     <message id="dgcert-recovery-is">
         <source>Certificate issuer</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">A tanúsítvány kibocsátója</translation>
+        <translation>Az igazolvány kibocsátója</translation>
     </message>
     <message id="dgcert-recovery-df">
         <source>Certificate valid from</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Től érvényes</translation>
+        <translation>Érvényesség kezdete</translation>
     </message>
     <message id="dgcert-recovery-du">
         <source>Certificate valid until</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Ig érvényes</translation>
+        <translation>Érvényesség vége</translation>
     </message>
     <message id="dgcert-recovery-ci">
         <source>Unique certificate identifier</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation type="unfinished">Egyedi tanúsítványazonosító</translation>
+        <translation>Egyedi igazolványazonosító</translation>
     </message>
     <message id="dgcert-test_result-not_detected">
         <source>Not detected</source>
         <extracomment>Test result</extracomment>
-        <translation type="unfinished">Negatív</translation>
+        <translation>Negatív</translation>
     </message>
     <message id="dgcert-test_result-detected">
         <source>Detected</source>
         <extracomment>Test result</extracomment>
-        <translation type="unfinished">Pozitív</translation>
+        <translation>Pozitív</translation>
     </message>
 </context>
 </TS>
