@@ -52,6 +52,30 @@ Page {
     readonly property bool scanningGalleryImage: galleryImage && galleryImage.visible
     readonly property bool useVolumeKeys: AppSettings.volumeZoom && (scanPage.status === PageStatus.Active) && Qt.application.active
 
+    readonly property var volumeUp: Qt.createQmlObject(BarcodeUtils.mediaKeyQml, scanPage, "VolumeKey")
+    readonly property var volumeDown: Qt.createQmlObject(BarcodeUtils.mediaKeyQml, scanPage, "VolumeKey")
+    readonly property var permissions: Qt.createQmlObject(BarcodeUtils.permissionsQml, scanPage, "Permissions")
+
+    Binding { target: permissions; property: "enabled"; value: useVolumeKeys }
+    Binding { target: volumeUp; property: "enabled"; value: useVolumeKeys }
+    Binding { target: volumeUp;  property: "key"; value: Qt.Key_VolumeUp }
+    Binding { target: volumeDown; property: "enabled"; value: useVolumeKeys }
+    Binding { target: volumeDown;  property: "key"; value: Qt.Key_VolumeDown }
+
+    Connections {
+        target: volumeUp
+        ignoreUnknownSignals: true
+        onPressed: zoomSlider.zoomIn()
+        onRepeat: zoomSlider.zoomIn()
+    }
+
+    Connections {
+        target: volumeDown
+        ignoreUnknownSignals: true
+        onPressed: zoomSlider.zoomOut()
+        onRepeat: zoomSlider.zoomOut()
+    }
+
     function destroyViewFinder() {
         if (viewFinder) {
             console.log("destroying viewfinder ...")
@@ -961,32 +985,6 @@ Page {
     Component {
         id: remorseComponent
         RemorseItem { }
-    }
-
-    MediaKey {
-        enabled: useVolumeKeys
-        key: Qt.Key_VolumeUp
-        onPressed: zoomSlider.zoomIn()
-        onRepeat: zoomSlider.zoomIn()
-    }
-
-    MediaKey {
-        enabled: useVolumeKeys
-        key: Qt.Key_VolumeDown
-        onPressed: zoomSlider.zoomOut()
-        onRepeat: zoomSlider.zoomOut()
-    }
-
-    Permissions {
-        enabled: useVolumeKeys
-        autoRelease: true
-        applicationClass: "camera"
-
-        Resource {
-            id: volumeKeysResource
-            type: Resource.ScaleButton
-            optional: true
-        }
     }
 
     states: [

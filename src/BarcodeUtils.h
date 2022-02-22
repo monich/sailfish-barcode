@@ -33,12 +33,17 @@ class QJSEngine;
 
 class BarcodeUtils : public QObject {
     Q_OBJECT
+    Q_PROPERTY(QString mediaKeyQml READ mediaKeyQml CONSTANT)
+    Q_PROPERTY(QString permissionsQml READ permissionsQml CONSTANT)
 
 public:
     BarcodeUtils(QObject* aParent = Q_NULLPTR);
 
     // Callback for qmlRegisterSingletonType<BarcodeUtils>
     static QObject* createSingleton(QQmlEngine*, QJSEngine*);
+
+    static QString mediaKeyQml();
+    static QString permissionsQml();
 
     Q_INVOKABLE static QString urlScheme(QString text);
     Q_INVOKABLE static const QString barcodeFormatName(QString ident);

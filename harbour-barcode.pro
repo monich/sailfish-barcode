@@ -92,9 +92,7 @@ SOURCES += \
     $${HARBOUR_LIB_SRC}/HarbourBase45.cpp \
     $${HARBOUR_LIB_SRC}/HarbourDisplayBlanking.cpp \
     $${HARBOUR_LIB_SRC}/HarbourMce.cpp \
-    $${HARBOUR_LIB_SRC}/HarbourMediaPlugin.cpp \
     $${HARBOUR_LIB_SRC}/HarbourPluginLoader.cpp \
-    $${HARBOUR_LIB_SRC}/HarbourPolicyPlugin.cpp \
     $${HARBOUR_LIB_SRC}/HarbourProcessState.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSelectionListModel.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSingleImageProvider.cpp \

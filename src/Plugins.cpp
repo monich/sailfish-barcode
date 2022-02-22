@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2020-2021 Slava Monich
+Copyright (c) 2020-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -128,6 +128,4 @@ void Plugins::registerTypes(QQmlEngine* aEngine, const char* aModule, int v1, in
     Gallery::registerTypes(aEngine, aModule, v1, v2);
     Contacts::registerTypes(aEngine, aModule, v1, v2);
     Thumbnailer::registerTypes(aEngine, aModule, v1, v2);
-    HarbourMediaPlugin::registerTypes(aEngine, aModule, v1, v2);
-    HarbourPolicyPlugin::registerTypes(aEngine, aModule, v1, v2);
 }

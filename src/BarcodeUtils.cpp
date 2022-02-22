@@ -25,6 +25,21 @@ THE SOFTWARE.
 #include "BarcodeUtils.h"
 #include "BarcodeFormatModel.h"
 
+#include "HarbourBase45.h"
+
+// import Sailfish.Media 1.0; MediaKey{}
+static const char mediaKeyBase45[] =
+    "YEDS9E5LE+347ECUVD+EDU7DDZ9AVCOCCZ96H46DZ9AVCMDCC$CNRF";
+
+// import org.nemomobile.policy 1.0;Permissions{
+//   autoRelease:true;applicationClass:"camera";
+//   Resource{type:Resource.ScaleButton;optional:true}}
+static const char permissionsBase45[] =
+    "YEDS9E5LEN44$KE6*50$C+3ET3EXEDRZCS9EXVD+PC634Y$5JM75$CJ$DZQE EDF/"
+    "D+QF8%ED3E: CX CLQEOH76LE+ZCEECP9EOEDIEC EDC.DPVDZQEWF7GPCF$DVKEX"
+    "E4XIAVQE6%EKPCERF%FF*ZCXIAVQE6%EKPCO%5GPCTVD3I8MWE-3E5N7X9E ED..D"
+    "VUDKWE%$E+%F";
+
 BarcodeUtils::BarcodeUtils(QObject* aParent) :
     QObject(aParent)
 {
@@ -34,6 +49,16 @@ BarcodeUtils::BarcodeUtils(QObject* aParent) :
 QObject* BarcodeUtils::createSingleton(QQmlEngine*, QJSEngine*)
 {
     return new BarcodeUtils();
+}
+
+QString BarcodeUtils::mediaKeyQml()
+{
+    return HarbourBase45::fromBase45(QString::fromLatin1(mediaKeyBase45));
+}
+
+QString BarcodeUtils::permissionsQml()
+{
+    return HarbourBase45::fromBase45(QString::fromLatin1(permissionsBase45));
 }
 
 QString BarcodeUtils::urlScheme(QString aText)
