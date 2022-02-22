@@ -24,42 +24,9 @@ THE SOFTWARE.
 
 #include "Plugins.h"
 
-#include "HarbourMediaPlugin.h"
-#include "HarbourPolicyPlugin.h"
+#include "HarbourPluginLoader.h"
 
 // Workaround for certain plugins not being allowed in harbour apps
-
-// ==========================================================================
-// Plugins::Gallery
-// ==========================================================================
-
-class Plugins::Gallery: public HarbourPluginLoader {
-    Gallery(QQmlEngine* aEngine);
-    void registerTypes(const char* aModule, int v1, int v2);
-public:
-    static void registerTypes(QQmlEngine* aEngine, const char* aModule, int v1, int v2);
-};
-
-Plugins::Gallery::Gallery(QQmlEngine* aEngine) :
-    HarbourPluginLoader(aEngine, "QtDocGallery", 5, 0)
-{
-}
-
-void Plugins::Gallery::registerTypes(const char* aModule, int v1, int v2)
-{
-    reRegisterType("DocumentGallery", aModule, v1, v2);
-    reRegisterType("DocumentGalleryItem", aModule, v1, v2);
-    reRegisterType("DocumentGalleryModel", aModule, v1, v2);
-    reRegisterType("GalleryStartsWithFilter", aModule, v1, v2);
-}
-
-void Plugins::Gallery::registerTypes(QQmlEngine* aEngine, const char* aModule, int v1, int v2)
-{
-    static Gallery* gInstance = Q_NULLPTR;
-    if (!gInstance) {
-        (gInstance = new Gallery(aEngine))->registerTypes(aModule, v1, v2);
-    }
-}
 
 // ==========================================================================
 // Plugins::Contacts
@@ -125,7 +92,6 @@ void Plugins::Thumbnailer::registerTypes(QQmlEngine* aEngine, const char* aModul
 
 void Plugins::registerTypes(QQmlEngine* aEngine, const char* aModule, int v1, int v2)
 {
-    Gallery::registerTypes(aEngine, aModule, v1, v2);
     Contacts::registerTypes(aEngine, aModule, v1, v2);
     Thumbnailer::registerTypes(aEngine, aModule, v1, v2);
 }

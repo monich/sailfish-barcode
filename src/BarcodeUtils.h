@@ -33,6 +33,7 @@ class QJSEngine;
 
 class BarcodeUtils : public QObject {
     Q_OBJECT
+    Q_PROPERTY(QString documentGalleryModelQml READ documentGalleryModelQml CONSTANT)
     Q_PROPERTY(QString mediaKeyQml READ mediaKeyQml CONSTANT)
     Q_PROPERTY(QString permissionsQml READ permissionsQml CONSTANT)
 
@@ -42,6 +43,7 @@ public:
     // Callback for qmlRegisterSingletonType<BarcodeUtils>
     static QObject* createSingleton(QQmlEngine*, QJSEngine*);
 
+    static QString documentGalleryModelQml();
     static QString mediaKeyQml();
     static QString permissionsQml();
 

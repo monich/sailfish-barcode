@@ -27,7 +27,19 @@ THE SOFTWARE.
 
 #include "HarbourBase45.h"
 
-// import Sailfish.Media 1.0; MediaKey{}
+// import Sailfish.Silica 1.0;import QtDocGallery 5.0;DocumentGalleryModel{
+//   rootType:DocumentGallery.Image;properties:["url","mimeType","orientation"];sortProperties:["-lastModified"];
+//   filter:GalleryStartsWithFilter{property:"filePath";value:StandardPaths.music;negated:true}}
+static const char documentGalleryModelBase45[] =
+    "YEDS9E5LE+347ECUVD+EDU7DNOAXVDGPC634Y$5:M7Q$D04ESUEHDAET8ZOCAECTV"
+    "DALEA34Y$57M7U3E1%E1$CMVEAECTVDALENZ96VC6WD0LE24EPUAI9ELG7U3E1%E1"
+    "$CMVEAECTVDALEE%5B$D93D6N70LEI9E5LEQEDNPEKNB6%E7UD3Q5J$DF$DPUAI9E"
+    "IE4+F4*KE1$C3WEBWE-3EMF49N704EVVE0LEI9E5LEQEDNPEKNBIX5HECSVEV3ERE"
+    "DQEDTTCHZBR.C:VD5$COG7AECTVDALEYOAGECLWEC2BAWEP+8:VD5$CARF0LEI9E5"
+    "LETEFVF4XEDG CIECI7DCN7AEC%$E G73WE0/DGECUUCIEC99D5*57%EOED4N7* C"
+    "IEC  COH76LEG$CZ2";
+
+// import Sailfish.Media 1.0;MediaKey{}
 static const char mediaKeyBase45[] =
     "YEDS9E5LE+347ECUVD+EDU7DDZ9AVCOCCZ96H46DZ9AVCMDCC$CNRF";
 
@@ -49,6 +61,11 @@ BarcodeUtils::BarcodeUtils(QObject* aParent) :
 QObject* BarcodeUtils::createSingleton(QQmlEngine*, QJSEngine*)
 {
     return new BarcodeUtils();
+}
+
+QString BarcodeUtils::documentGalleryModelQml()
+{
+    return HarbourBase45::fromBase45(QString::fromLatin1(documentGalleryModelBase45));
 }
 
 QString BarcodeUtils::mediaKeyQml()

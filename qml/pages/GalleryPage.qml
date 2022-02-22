@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@ THE SOFTWARE.
 */
 
 import QtQuick 2.0
-//import QtDocGallery 5.0
 import Sailfish.Silica 1.0
 import harbour.barcode 1.0
 
@@ -32,18 +31,7 @@ Page {
 
     property string title
 
-    DocumentGalleryModel {
-        id: galleryModel
-        rootType: DocumentGallery.Image
-        readonly property string keyRole: "url"
-        properties: ["url", "mimeType", "orientation", "dateTaken", "width", "height"]
-        sortProperties: ["-lastModified"]
-        filter: GalleryStartsWithFilter {
-            property: "filePath"
-            value: StandardPaths.music
-            negated: true
-        }
-    }
+    readonly property var galleryModel: Qt.createQmlObject(BarcodeUtils.documentGalleryModelQml, thisPage, "GalleryModel")
 
     signal imageSelected(var url, var orientation)
 
@@ -132,7 +120,22 @@ Page {
             //: Placeholder text
             //% "No images found in the gallery"
             text: qsTrId("gallery-empty")
-            enabled: !galleryModel.count
+            enabled: !busyIndicator.running && (!galleryModel || !galleryModel.count)
+        }
+    }
+
+    BusyIndicator {
+        id: busyIndicator
+
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: thisPage
+        running: initTimer.running && !!galleryModel && !galleryModel.count
+
+        Timer {
+            id: initTimer
+
+            interval: 5000
+            running: true
         }
     }
 }
