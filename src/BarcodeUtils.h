@@ -36,6 +36,7 @@ class BarcodeUtils : public QObject {
     Q_PROPERTY(QString documentGalleryModelQml READ documentGalleryModelQml CONSTANT)
     Q_PROPERTY(QString mediaKeyQml READ mediaKeyQml CONSTANT)
     Q_PROPERTY(QString permissionsQml READ permissionsQml CONSTANT)
+    Q_PROPERTY(QString thumbnailQml READ thumbnailQml CONSTANT)
 
 public:
     BarcodeUtils(QObject* aParent = Q_NULLPTR);
@@ -46,6 +47,7 @@ public:
     static QString documentGalleryModelQml();
     static QString mediaKeyQml();
     static QString permissionsQml();
+    static QString thumbnailQml();
 
     Q_INVOKABLE static QString urlScheme(QString text);
     Q_INVOKABLE static const QString barcodeFormatName(QString ident);

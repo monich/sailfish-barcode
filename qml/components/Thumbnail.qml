@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2020-2022 Slava Monich
+Copyright (c) 2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,18 +22,30 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-#ifndef BARCODE_PLUGINS_H
-#define BARCODE_PLUGINS_H
+import QtQuick 2.0
+import harbour.barcode 1.0
 
-// Certain plugins are not allowed in harbour apps, can't be used
-// directly, have to be loaded in a weird way
+Item {
+    id: thisItem
 
-class QQmlEngine;
+    property string mimeType
+    property url source
 
-class Plugins {
-    class Contacts;     // org.nemomobile.contacts
-public:
-    static void registerTypes(QQmlEngine* aEngine, const char* aModule, int v1, int v2);
-};
+    signal thumbnailError()
 
-#endif // BARCODE_PLUGINS_H
+    readonly property var thumbnail: Qt.createQmlObject(BarcodeUtils.thumbnailQml, thisItem, "Thumbnail")
+
+    Binding { target: thumbnail; property: "sourceSize"; value: Qt.size(width,height) }
+    Binding { target: thumbnail; property: "mimeType"; value: mimeType }
+    Binding { target: thumbnail; property: "source"; value: source }
+
+    Connections {
+        target: thumbnail
+        ignoreUnknownSignals: true
+        onStatusChanged: {
+            if (thumbnail.status === thumbnail.errorStatus) {
+                thisItem.thumbnailError()
+            }
+        }
+    }
+}

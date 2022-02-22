@@ -52,6 +52,13 @@ static const char permissionsBase45[] =
     "E4XIAVQE6%EKPCERF%FF*ZCXIAVQE6%EKPCO%5GPCTVD3I8MWE-3E5N7X9E ED..D"
     "VUDKWE%$E+%F";
 
+// import org.nemomobile.thumbnailer 1.0;Thumbnail{
+//   readonly property int errorStatus:Thumbnail.Error;anchors.fill:parent}
+static const char thumbnailBase45[] =
+    "YEDS9E5LEN44$KE6*50$C+3ET3EXEDRZCAWE1%E/JC7ECTVDBJEZ96H468UA1%E/J"
+    "C7EC6WDZKE2EC-3E4WDO440LEI9E5LE3EFZEDSUE5$C0LEHKE3WENWENPE8UA1%E/"
+    "JC7ECJUD3Z80LE%JECECNPC04EBPER.C VDKH7GEC1$CVWE";
+
 BarcodeUtils::BarcodeUtils(QObject* aParent) :
     QObject(aParent)
 {
@@ -76,6 +83,11 @@ QString BarcodeUtils::mediaKeyQml()
 QString BarcodeUtils::permissionsQml()
 {
     return HarbourBase45::fromBase45(QString::fromLatin1(permissionsBase45));
+}
+
+QString BarcodeUtils::thumbnailQml()
+{
+    return HarbourBase45::fromBase45(QString::fromLatin1(thumbnailBase45));
 }
 
 QString BarcodeUtils::urlScheme(QString aText)

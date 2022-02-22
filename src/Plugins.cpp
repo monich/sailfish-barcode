@@ -58,40 +58,10 @@ void Plugins::Contacts::registerTypes(QQmlEngine* aEngine, const char* aModule, 
 }
 
 // ==========================================================================
-// Plugins::Thumbnailer
-// ==========================================================================
-
-class Plugins::Thumbnailer: public HarbourPluginLoader {
-    Thumbnailer(QQmlEngine* aEngine);
-    void registerTypes(const char* aModule, int v1, int v2);
-public:
-    static void registerTypes(QQmlEngine* aEngine, const char* aModule, int v1, int v2);
-};
-
-Plugins::Thumbnailer::Thumbnailer(QQmlEngine* aEngine) :
-    HarbourPluginLoader(aEngine, "org.nemomobile.thumbnailer", 1, 0)
-{
-}
-
-void Plugins::Thumbnailer::registerTypes(const char* aModule, int v1, int v2)
-{
-    reRegisterType("Thumbnail", aModule, v1, v2);
-}
-
-void Plugins::Thumbnailer::registerTypes(QQmlEngine* aEngine, const char* aModule, int v1, int v2)
-{
-    static Thumbnailer* gInstance = Q_NULLPTR;
-    if (!gInstance) {
-        (gInstance = new Thumbnailer(aEngine))->registerTypes(aModule, v1, v2);
-    }
-}
-
-// ==========================================================================
 // Plugins
 // ==========================================================================
 
 void Plugins::registerTypes(QQmlEngine* aEngine, const char* aModule, int v1, int v2)
 {
     Contacts::registerTypes(aEngine, aModule, v1, v2);
-    Thumbnailer::registerTypes(aEngine, aModule, v1, v2);
 }

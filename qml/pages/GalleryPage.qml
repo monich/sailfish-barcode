@@ -26,6 +26,9 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import harbour.barcode 1.0
 
+import "../components"
+import "../harbour"
+
 Page {
     id: thisPage
 
@@ -63,28 +66,21 @@ Page {
             contentHeight: grid.cellSize
             contentWidth: grid.cellSize
 
+            layer.enabled: highlighted
+            layer.effect: HarbourPressEffect { source: delegate }
+
             readonly property url modelUrl: url
             readonly property string modelMimeType: mimeType
             readonly property int modelOrientation: orientation
 
             Thumbnail {
                 id: thumbnail
+
                 source: modelUrl
                 mimeType: modelMimeType
                 width:  grid.cellSize
                 height: grid.cellSize
-                sourceSize.width: grid.cellSize
-                sourceSize.height: grid.cellSize
-                priority: Thumbnail.NormalPriority
-                opacity: delegate.highlighted ? 0.7 : 1.0
-
-                onStatusChanged: {
-                    if (status === Thumbnail.Error) {
-                        errorComponent.createObject(thumbnail)
-                    }
-                }
-
-                Behavior on opacity { FadeAnimation {} }
+                onThumbnailError: errorComponent.createObject(thumbnail)
             }
 
             Component {
