@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018-2021 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,15 +26,19 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import org.nemomobile.notifications 1.0
 import org.nemomobile.dbus 2.0
-//import org.nemomobile.contacts 1.0
 import harbour.barcode 1.0
 
 Item {
     id: vcard
+
     visible: false
 
-    property alias count: model.count
+    readonly property int count: !model ? 0 : model.count
     property alias content: file.content
+
+    readonly property var model: Qt.createQmlObject(BarcodeUtils.peopleVCardModelQml, vcard, "VCardModel")
+
+    Binding { target: model; property: "source"; value: file.url }
 
     function importContact() {
         var url
@@ -79,12 +83,7 @@ Item {
     }
 
     function contact() {
-        return model.getPerson(0)
-    }
-
-    PeopleVCardModel {
-        id: model
-        source: file.fileName
+        return !model ? undefined : model.getPerson(0)
     }
 
     DBusInterface {

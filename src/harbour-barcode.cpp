@@ -46,7 +46,6 @@ THE SOFTWARE.
 
 #include "BarcodeFormatModel.h"
 #include "BarcodeUtils.h"
-#include "Plugins.h"
 #include "Database.h"
 #include "DGCertModel.h"
 #include "DGCertRecognizer.h"
@@ -64,7 +63,6 @@ THE SOFTWARE.
 
 static void register_types(QQmlEngine* engine, const char* uri, int v1, int v2)
 {
-    Plugins::registerTypes(engine, uri, v1, v2);
     qmlRegisterType<HarbourSelectionListModel>(uri, v1, v2, "HarbourSelectionListModel");
     qmlRegisterType<HarbourSingleImageProvider>(uri, v1, v2, "SingleImageProvider");
     qmlRegisterType<HarbourDisplayBlanking>(uri, v1, v2, "DisplayBlanking");

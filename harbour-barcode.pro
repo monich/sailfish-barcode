@@ -42,7 +42,6 @@ SOURCES += \
     src/HistoryModel.cpp \
     src/MeCardConverter.cpp \
     src/OfdReceiptFetcher.cpp \
-    src/Plugins.cpp \
     src/Settings.cpp \
     src/scanner/BarcodeScanner.cpp \
     src/scanner/Decoder.cpp \
@@ -59,7 +58,6 @@ HEADERS += \
     src/HistoryModel.h \
     src/MeCardConverter.h \
     src/OfdReceiptFetcher.h \
-    src/Plugins.h \
     src/Settings.h \
     src/scanner/BarcodeScanner.h \
     src/scanner/Decoder.h \
@@ -92,11 +90,9 @@ SOURCES += \
     $${HARBOUR_LIB_SRC}/HarbourBase45.cpp \
     $${HARBOUR_LIB_SRC}/HarbourDisplayBlanking.cpp \
     $${HARBOUR_LIB_SRC}/HarbourMce.cpp \
-    $${HARBOUR_LIB_SRC}/HarbourPluginLoader.cpp \
     $${HARBOUR_LIB_SRC}/HarbourProcessState.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSelectionListModel.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSingleImageProvider.cpp \
-    $${HARBOUR_LIB_SRC}/HarbourSystem.cpp \
     $${HARBOUR_LIB_SRC}/HarbourSystemInfo.cpp \
     $${HARBOUR_LIB_SRC}/HarbourTask.cpp \
     $${HARBOUR_LIB_SRC}/HarbourTemporaryFile.cpp
@@ -105,13 +101,9 @@ HEADERS += \
     $${HARBOUR_LIB_INCLUDE}/HarbourBase45.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourDebug.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourDisplayBlanking.h \
-    $${HARBOUR_LIB_INCLUDE}/HarbourMediaPlugin.h \
-    $${HARBOUR_LIB_INCLUDE}/HarbourPluginLoader.h \
-    $${HARBOUR_LIB_INCLUDE}/HarbourPolicyPlugin.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourProcessState.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSelectionListModel.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSingleImageProvider.h \
-    $${HARBOUR_LIB_INCLUDE}/HarbourSystem.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourSystemInfo.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourTask.h \
     $${HARBOUR_LIB_INCLUDE}/HarbourTemporaryFile.h \

@@ -59,6 +59,11 @@ static const char thumbnailBase45[] =
     "C7EC6WDZKE2EC-3E4WDO440LEI9E5LE3EFZEDSUE5$C0LEHKE3WENWENPE8UA1%E/"
     "JC7ECJUD3Z80LE%JECECNPC04EBPER.C VDKH7GEC1$CVWE";
 
+// import org.nemomobile.contacts 1.0;PeopleVCardModel{}
+static const char peopleVCardModelBase45[] =
+    "YEDS9E5LEN44$KE6*50$C+3ET3EXEDRZCUPCG/D1ECLWE634Y$5JM72$CP9EM CEN"
+    "8YKENZ96VC6WDZ2";
+
 BarcodeUtils::BarcodeUtils(QObject* aParent) :
     QObject(aParent)
 {
@@ -75,6 +80,11 @@ QString BarcodeUtils::documentGalleryModelQml()
     return HarbourBase45::fromBase45(QString::fromLatin1(documentGalleryModelBase45));
 }
 
+QString BarcodeUtils::thumbnailQml()
+{
+    return HarbourBase45::fromBase45(QString::fromLatin1(thumbnailBase45));
+}
+
 QString BarcodeUtils::mediaKeyQml()
 {
     return HarbourBase45::fromBase45(QString::fromLatin1(mediaKeyBase45));
@@ -85,9 +95,9 @@ QString BarcodeUtils::permissionsQml()
     return HarbourBase45::fromBase45(QString::fromLatin1(permissionsBase45));
 }
 
-QString BarcodeUtils::thumbnailQml()
+QString BarcodeUtils::peopleVCardModelQml()
 {
-    return HarbourBase45::fromBase45(QString::fromLatin1(thumbnailBase45));
+    return HarbourBase45::fromBase45(QString::fromLatin1(peopleVCardModelBase45));
 }
 
 QString BarcodeUtils::urlScheme(QString aText)
