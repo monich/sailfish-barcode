@@ -91,12 +91,12 @@
     <message id="settings-formats-section">
         <source>Barcode formats</source>
         <extracomment>Section header</extracomment>
-        <translation type="unfinished">Formáty čiarových kódov</translation>
+        <translation>Formáty čiarových kódov</translation>
     </message>
     <message id="settings-formats-description">
         <source>Disabling the formats that you don&apos;t need speeds up the decoding and reduces the risk of incorrect recognition of the barcode type.</source>
         <extracomment>Section description</extracomment>
-        <translation type="unfinished">Vypnutím nepotrebných formátov zrýchlite dekódovanie a znížite možnosť nesprávnej detekcie typu čiarového kódu.</translation>
+        <translation>Vypnutím nepotrebných formátov zrýchlite dekódovanie a znížite možnosť nesprávnej detekcie typu čiarového kódu.</translation>
     </message>
     <message id="settings-scan-section">
         <source>Scan</source>
