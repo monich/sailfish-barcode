@@ -10,7 +10,7 @@ QT += multimedia concurrent sql network
 LIBS += -ldl
 
 isEmpty(VERSION) {
-    VERSION = 1.0.45
+    VERSION = 1.0.46
     message("VERSION is unset, assuming $$VERSION")
 }
 
