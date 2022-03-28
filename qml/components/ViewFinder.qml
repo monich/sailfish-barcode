@@ -135,7 +135,7 @@ VideoOutput {
         id: camera
 
         flash.mode: Camera.FlashOff
-        captureMode: Camera.CaptureVideo
+        captureMode: Camera.CaptureStillImage
         videoRecorder.frameRate: 30
         imageProcessing.whiteBalanceMode: flashOn ?
             CameraImageProcessing.WhiteBalanceFlash :
