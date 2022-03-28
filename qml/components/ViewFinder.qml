@@ -10,7 +10,6 @@ VideoOutput {
     fillMode: VideoOutput.Stretch
 
     property alias beepSource: beep.source
-    property bool playingBeep: false
     property size viewfinderResolution
     property bool completed
     property bool showFocusArea: true
@@ -73,15 +72,7 @@ VideoOutput {
     }
 
     function playBeep() {
-        // Camera locks the output playback resource, we need
-        // to stop it before we can play the beep. Luckily,
-        // the viewfinder is typically covered with the marker
-        // image so the user won't even notice the pause.
-        playingBeep = true
-        // The beep starts playing when the camera stops and
-        // audio becomes available. When playback is stopped,
-        // the camera is restarted.
-        camera.stop()
+        beep.play()
     }
 
     function viewfinderToFramePoint(vx, vy) {
@@ -155,20 +146,10 @@ VideoOutput {
                 // Camera doesn't emit maximumDigitalZoomChanged signal
                 viewFinder.maximumDigitalZoom(maximumDigitalZoom)
                 digitalZoom = viewFinder.digitalZoom
-            } else if (viewFinder.playingBeep) {
-                // Try to play when camera actually gets into inactive state
-                beep.play()
-                if (beep.playing) {
-                    // Yey, it's playing! Clear the request. Camera will be
-                    // restarted when the beep stops playing.
-                    viewFinder.playingBeep = false
-                }
             }
         }
         onCameraStateChanged: {
-            if (cameraState === Camera.ActiveState) {
-                viewFinder.playingBeep = false
-            } else if (cameraState === Camera.UnloadedState) {
+            if (cameraState === Camera.UnloadedState) {
                 if (viewFinder.viewfinderResolution &&
                     viewFinder.viewfinderResolution !== viewfinder.resolution) {
                     viewfinder.resolution = viewFinder.viewfinderResolution
@@ -226,7 +207,5 @@ VideoOutput {
 
     SoundEffect {
         id: beep
-
-        onPlayingChanged: if (!playing) camera.start()
     }
 }
