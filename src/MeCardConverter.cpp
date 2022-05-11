@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2020 Slava Monich
+Copyright (c) 2020-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -73,6 +73,7 @@ void MeCardConverter::Task::performTask()
         concatValues(&utf8, "N", mecard->n, ';');
         encodeValues(&utf8, "TEL", mecard->tel);
         encodeValues(&utf8, "EMAIL", mecard->email);
+        encodeValues(&utf8, "ORG", mecard->org);
         encodeValues(&utf8, "BDAY", mecard->bday);
         if (mecard->adr) {
             // ADR is slightly special
