@@ -61,7 +61,6 @@ Page {
             width: parent.width
 
             readonly property int detailIconSize: detailItemSample.height - 2 * Theme.paddingSmall
-            readonly property int detailLeftMargin: Theme.horizontalPageMargin + detailIconSize + Theme.paddingLarge
 
             PageHeader {
                 title: !contact ? "" :
@@ -96,6 +95,13 @@ Page {
                 visible: contactImage.visible
             }
 
+            IconSeparator {
+                width: parent.width
+                visible: (primaryName.visible || secondaryName.visible) && !contactImage.visible
+                iconSource: visible ? "img/contact-name.svg" : ""
+                iconSize: content.detailIconSize
+            }
+
             CopyableDetailItem {
                 id: primaryName
 
@@ -108,7 +114,6 @@ Page {
                     qsTrId("contact-detail-name")
                 value: contact.primaryName
                 visible: !!value
-                leftMargin: content.detailLeftMargin
             }
 
             CopyableDetailItem {
@@ -123,19 +128,13 @@ Page {
                     qsTrId("contact-detail-name")
                 value: contact.secondaryName
                 visible: !!value
-                leftMargin: content.detailLeftMargin
             }
 
-            VerticalGap {
-                visible: primaryName.visible || secondaryName.visible
-            }
-
-            Separator {
+            IconSeparator {
                 width: parent.width
-                color: Theme.highlightColor
-                horizontalAlignment: Qt.AlignHCenter
-                visible: (primaryName.visible ||
-                    secondaryName.visible) && phoneDetails.count
+                visible: phoneDetails.count > 0
+                iconSource: visible ? "img/contact-phone.svg" : ""
+                iconSize: content.detailIconSize
             }
 
             Repeater {
@@ -149,25 +148,14 @@ Page {
                     label: index ? "" : qsTrId("contact-detail-phone")
                     value: modelData.number
                     visible: !!value || !index
-                    leftMargin: content.detailLeftMargin
-
-                    HarbourHighlightIcon {
-                        x: Theme.horizontalPageMargin
-                        y: Theme.paddingSmall
-                        visible: !index
-                        source: visible ? "img/contact-phone.svg" : ""
-                        sourceSize.height: content.detailIconSize
-                    }
                 }
             }
 
-            Separator {
+            IconSeparator {
                 width: parent.width
-                color: Theme.highlightColor
-                horizontalAlignment: Qt.AlignHCenter
-                visible: (primaryName.visible ||
-                    secondaryName.visible ||
-                    phoneDetails.count) && emailDetails.count
+                visible: emailDetails.count > 0
+                iconSource: visible ? "img/contact-email.svg" : ""
+                iconSize: content.detailIconSize
             }
 
             Repeater {
@@ -181,26 +169,14 @@ Page {
                     label: index ? "" : qsTrId("contact-detail-email")
                     value: modelData.address
                     visible: !!value || !index
-                    leftMargin: content.detailLeftMargin
-
-                    HarbourHighlightIcon {
-                        x: Theme.horizontalPageMargin
-                        y: Theme.paddingSmall
-                        visible: !index
-                        source: visible ? "img/contact-email.svg" : ""
-                        sourceSize.height: content.detailIconSize
-                    }
                 }
             }
 
-            Separator {
+            IconSeparator {
                 width: parent.width
-                color: Theme.highlightColor
-                horizontalAlignment: Qt.AlignHCenter
-                visible: (primaryName.visible ||
-                    secondaryName.visible ||
-                    phoneDetails.count ||
-                    emailDetails.count) && addressDetails.count
+                visible: addressDetails.count > 0
+                iconSource: visible ? "img/contact-address.svg" : ""
+                iconSize: content.detailIconSize
             }
 
             Repeater {
@@ -214,27 +190,14 @@ Page {
                     label: index ? "" : qsTrId("contact-detail-address")
                     value: modelData.address
                     visible: !!value || !index
-                    leftMargin: content.detailLeftMargin
-
-                    HarbourHighlightIcon {
-                        x: Theme.horizontalPageMargin
-                        y: Theme.paddingSmall
-                        visible: !index
-                        source: visible ? "img/contact-address.svg" : ""
-                        sourceSize.height: content.detailIconSize
-                    }
                 }
             }
 
-            Separator {
+            IconSeparator {
                 width: parent.width
-                color: Theme.highlightColor
-                horizontalAlignment: Qt.AlignHCenter
-                visible: (primaryName.visible ||
-                    secondaryName.visible ||
-                    phoneDetails.count ||
-                    emailDetails.count ||
-                    addressDetails.count) && websiteDetails.count
+                visible: websiteDetails.count > 0
+                iconSource: visible ? "img/contact-website.svg" : ""
+                iconSize: content.detailIconSize
             }
 
             Repeater {
@@ -248,28 +211,14 @@ Page {
                     label: index ? "" : qsTrId("contact-detail-website")
                     value: modelData.url
                     visible: !!value || !index
-                    leftMargin: content.detailLeftMargin
-
-                    HarbourHighlightIcon {
-                        x: Theme.horizontalPageMargin
-                        y: Theme.paddingSmall
-                        visible: !index
-                        source: visible ? "img/contact-website.svg" : ""
-                        sourceSize.height: content.detailIconSize
-                    }
                 }
             }
 
-            Separator {
+            IconSeparator {
                 width: parent.width
-                color: Theme.highlightColor
-                horizontalAlignment: Qt.AlignHCenter
-                visible: (primaryName.visible ||
-                    secondaryName.visible ||
-                    phoneDetails.count ||
-                    emailDetails.count ||
-                    addressDetails.count ||
-                    websiteDetails.count) && birthdayDetail.visible
+                visible: birthdayDetail.visible
+                iconSource: visible ? "img/contact-date.svg" : ""
+                iconSize: content.detailIconSize
             }
 
             CopyableDetailItem {
@@ -281,28 +230,13 @@ Page {
                 label: qsTrId("contact-detail-birthday")
                 value: isNaN(birthdayDetail.date) ? "" : Qt.formatDate(birthdayDetail.date)
                 visible: !!value
-                leftMargin: content.detailLeftMargin
-
-                HarbourHighlightIcon {
-                    x: Theme.horizontalPageMargin
-                    y: Theme.paddingSmall
-                    visible: parent.visible
-                    source: visible ? "img/contact-date.svg" : ""
-                    sourceSize.height: content.detailIconSize
-                }
             }
 
-            Separator {
+            IconSeparator {
                 width: parent.width
-                color: Theme.highlightColor
-                horizontalAlignment: Qt.AlignHCenter
-                visible: (primaryName.visible ||
-                    secondaryName.visible ||
-                    phoneDetails.count ||
-                    emailDetails.count ||
-                    addressDetails.count ||
-                    websiteDetails.count ||
-                    birthdayDetail.visible) && noteDetails.count
+                visible: noteDetails.count > 0
+                iconSource: visible ? "img/contact-note.svg" : ""
+                iconSize: content.detailIconSize
             }
 
             Repeater {
@@ -316,15 +250,6 @@ Page {
                     label: index ? "" : qsTrId("contact-detail-note")
                     value: modelData.note
                     visible: !!value || !index
-                    leftMargin: content.detailLeftMargin
-
-                    HarbourHighlightIcon {
-                        x: Theme.horizontalPageMargin
-                        y: Theme.paddingSmall
-                        visible: !index
-                        source: visible ? "img/contact-note.svg" : ""
-                        sourceSize.height: content.detailIconSize
-                    }
                 }
             }
         }
