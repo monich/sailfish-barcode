@@ -212,7 +212,7 @@
     <message id="history-menu-copy">
         <source>Copy to clipboard</source>
         <extracomment>Context menu item</extracomment>
-        <translation>Copy to clipboard</translation>
+        <translation>Copy</translation>
     </message>
     <message id="history-menu-delete_remorse">
         <source>Deleting</source>
@@ -673,6 +673,56 @@
         <source>Detected</source>
         <extracomment>Test result</extracomment>
         <translation>Positive</translation>
+    </message>
+    <message id="contact-title-default">
+        <source>Contact</source>
+        <extracomment>Default page title (contact page)</extracomment>
+        <translation>Contact</translation>
+    </message>
+    <message id="contact-detail-name">
+        <source>Name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Name</translation>
+    </message>
+    <message id="contact-detail-primary_name">
+        <source>Primary name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Primary name</translation>
+    </message>
+    <message id="contact-detail-secondary_name">
+        <source>Secondary name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Secondary name</translation>
+    </message>
+    <message id="contact-detail-phone">
+        <source>Phone</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Phone</translation>
+    </message>
+    <message id="contact-detail-email">
+        <source>E-mail</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>E-mail</translation>
+    </message>
+    <message id="contact-detail-address">
+        <source>Address</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Address</translation>
+    </message>
+    <message id="contact-detail-website">
+        <source>Website</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Website</translation>
+    </message>
+    <message id="contact-detail-birthday">
+        <source>Birthday</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Birthday</translation>
+    </message>
+    <message id="contact-detail-note">
+        <source>Note</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Note</translation>
     </message>
 </context>
 </TS>

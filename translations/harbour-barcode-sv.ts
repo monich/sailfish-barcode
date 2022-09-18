@@ -674,5 +674,55 @@
         <extracomment>Test result</extracomment>
         <translation>Positivt</translation>
     </message>
+    <message id="contact-title-default">
+        <source>Contact</source>
+        <extracomment>Default page title (contact page)</extracomment>
+        <translation type="unfinished">Kontakt</translation>
+    </message>
+    <message id="contact-detail-name">
+        <source>Name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">Namn</translation>
+    </message>
+    <message id="contact-detail-primary_name">
+        <source>Primary name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">Primärt namn</translation>
+    </message>
+    <message id="contact-detail-secondary_name">
+        <source>Secondary name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">Sekundärt namn</translation>
+    </message>
+    <message id="contact-detail-phone">
+        <source>Phone</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Telefon</translation>
+    </message>
+    <message id="contact-detail-email">
+        <source>E-mail</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Mejl</translation>
+    </message>
+    <message id="contact-detail-address">
+        <source>Address</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Adress</translation>
+    </message>
+    <message id="contact-detail-website">
+        <source>Website</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Webbplats</translation>
+    </message>
+    <message id="contact-detail-birthday">
+        <source>Birthday</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Födelsedag</translation>
+    </message>
+    <message id="contact-detail-note">
+        <source>Note</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Anteckning</translation>
+    </message>
 </context>
 </TS>

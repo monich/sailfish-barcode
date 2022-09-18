@@ -674,5 +674,55 @@
         <extracomment>Test result</extracomment>
         <translation type="unfinished">Positif</translation>
     </message>
+    <message id="contact-title-default">
+        <source>Contact</source>
+        <extracomment>Default page title (contact page)</extracomment>
+        <translation type="unfinished">Contact</translation>
+    </message>
+    <message id="contact-detail-name">
+        <source>Name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">Nom</translation>
+    </message>
+    <message id="contact-detail-primary_name">
+        <source>Primary name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">Nom principal</translation>
+    </message>
+    <message id="contact-detail-secondary_name">
+        <source>Secondary name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">Nom secondaire</translation>
+    </message>
+    <message id="contact-detail-phone">
+        <source>Phone</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Téléphone</translation>
+    </message>
+    <message id="contact-detail-email">
+        <source>E-mail</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>E-mail</translation>
+    </message>
+    <message id="contact-detail-address">
+        <source>Address</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Adresse</translation>
+    </message>
+    <message id="contact-detail-website">
+        <source>Website</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Site Web</translation>
+    </message>
+    <message id="contact-detail-birthday">
+        <source>Birthday</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Date de naissance</translation>
+    </message>
+    <message id="contact-detail-note">
+        <source>Note</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Note</translation>
+    </message>
 </context>
 </TS>

@@ -67,6 +67,7 @@ Page {
         }
 
         delegate: CodeItem {
+            allowedOrientations: codePage.allowedOrientations
             offsetY: -slideView.y
             width: slideView.width
             height: slideView.height

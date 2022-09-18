@@ -32,6 +32,7 @@ import "../js/Utils.js" as Utils
 Item {
     id: codeItem
 
+    property int allowedOrientations
     property string text
     property string recordId
     property bool hasImage
@@ -188,9 +189,11 @@ Item {
                 visible: isNeeded
                 enabled: !holdOffTimer.running
                 onClicked: {
+                    // Take focus away from the edit field
+                    button.forceActiveFocus()
                     if (dgCert.valid) {
                         pageStack.push("CovidPage.qml", {
-                            allowedOrientations: window.allowedOrientations,
+                            allowedOrientations: codeItem.allowedOrientations,
                             text: dgCert.text
                         })
                     } else if (isUrl) {
@@ -204,17 +207,9 @@ Item {
                         Qt.openUrlExternally(calendarEvent.url)
                         holdOffTimer.restart()
                     } else if (haveContact) {
-                        // Workaround for Sailfish.Contacts not being allowed in harbour apps
-                        var page = Qt.createQmlObject("import QtQuick 2.0;import Sailfish.Silica 1.0;import Sailfish.Contacts 1.0; \
-    Page { id: page; signal saveContact(); property alias contact: card.contact; property alias saveText: saveMenu.text; \
-    ContactCard { id: card; PullDownMenu { MenuItem { id: saveMenu; onClicked: page.saveContact(); }}}}",
-                            codeItem, "ContactPage")
-                        pageStack.push(page, {
-                            allowedOrientations: window.allowedOrientations,
-                            contact: codeItem.vcard.contact(),
-                            //: Pulley menu item (saves contact)
-                            //% "Save contact"
-                            saveText: qsTrId("contact-menu-save_contact")
+                        pageStack.push("VCardPage.qml", {
+                            allowedOrientations: codeItem.allowedOrientations,
+                            contact: vcard.contact(),
                         }).saveContact.connect(function() {
                            pageStack.pop()
                            codeItem.vcard.importContact()

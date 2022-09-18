@@ -676,5 +676,55 @@
         <extracomment>Test result</extracomment>
         <translation>Pozitívny</translation>
     </message>
+    <message id="contact-title-default">
+        <source>Contact</source>
+        <extracomment>Default page title (contact page)</extracomment>
+        <translation type="unfinished">Kontakt</translation>
+    </message>
+    <message id="contact-detail-name">
+        <source>Name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">Meno</translation>
+    </message>
+    <message id="contact-detail-primary_name">
+        <source>Primary name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">Hlavné meno</translation>
+    </message>
+    <message id="contact-detail-secondary_name">
+        <source>Secondary name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">Druhé meno</translation>
+    </message>
+    <message id="contact-detail-phone">
+        <source>Phone</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Telefón</translation>
+    </message>
+    <message id="contact-detail-email">
+        <source>E-mail</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>E-mail</translation>
+    </message>
+    <message id="contact-detail-address">
+        <source>Address</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Adresa</translation>
+    </message>
+    <message id="contact-detail-website">
+        <source>Website</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Webová stránka</translation>
+    </message>
+    <message id="contact-detail-birthday">
+        <source>Birthday</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Narodeniny</translation>
+    </message>
+    <message id="contact-detail-note">
+        <source>Note</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>Poznámka</translation>
+    </message>
 </context>
 </TS>

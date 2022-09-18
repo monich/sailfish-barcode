@@ -787,7 +787,7 @@ Page {
                         onHideHint: scanPage.hideHint()
                         onClicked: {
                             pageStack.push("CovidPage.qml", {
-                                allowedOrientations: window.allowedOrientations,
+                                allowedOrientations: scanPage.allowedOrientations,
                                 text: dgCert.text
                             })
                         }
@@ -805,17 +805,9 @@ Page {
                         onShowHint: scanPage.showHint(hint)
                         onHideHint: scanPage.hideHint()
                         onClicked: {
-                            // Workaround for Sailfish.Contacts not being allowed in harbour apps
-                            var page = Qt.createQmlObject("import QtQuick 2.0;import Sailfish.Silica 1.0;import Sailfish.Contacts 1.0; \
-    Page { id: page; signal saveContact(); property alias contact: card.contact; property alias saveText: saveMenu.text; \
-    ContactCard { id: card; PullDownMenu { MenuItem { id: saveMenu; onClicked: page.saveContact(); }}}}",
-                                scanPage, "ContactPage")
-                            pageStack.push(page, {
-                                allowedOrientations: window.allowedOrientations,
+                            pageStack.push("VCardPage.qml", {
+                                allowedOrientations: scanPage.allowedOrientations,
                                 contact: clickableResult.vcard.contact(),
-                                //: Pulley menu item (saves contact)
-                                //% "Save contact"
-                                saveText: qsTrId("contact-menu-save_contact")
                             }).saveContact.connect(function() {
                                 pageStack.pop()
                                 clickableResult.vcard.importContact()

@@ -500,7 +500,7 @@
     <message id="dgcert-personal-name">
         <source>Name</source>
         <extracomment>Detail label (personal details)</extracomment>
-        <translation type="unfinished">名称</translation>
+        <translation type="unfinished">姓名</translation>
     </message>
     <message id="dgcert-personal-standardized_name">
         <source>Standardized name</source>
@@ -671,6 +671,56 @@
         <source>Detected</source>
         <extracomment>Test result</extracomment>
         <translation type="unfinished">检测到</translation>
+    </message>
+    <message id="contact-title-default">
+        <source>Contact</source>
+        <extracomment>Default page title (contact page)</extracomment>
+        <translation type="unfinished">联系人</translation>
+    </message>
+    <message id="contact-detail-name">
+        <source>Name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">名字</translation>
+    </message>
+    <message id="contact-detail-primary_name">
+        <source>Primary name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">主要名称</translation>
+    </message>
+    <message id="contact-detail-secondary_name">
+        <source>Secondary name</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation type="unfinished">次要名称</translation>
+    </message>
+    <message id="contact-detail-phone">
+        <source>Phone</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>电话</translation>
+    </message>
+    <message id="contact-detail-email">
+        <source>E-mail</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>电子邮件</translation>
+    </message>
+    <message id="contact-detail-address">
+        <source>Address</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>地址</translation>
+    </message>
+    <message id="contact-detail-website">
+        <source>Website</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>网站</translation>
+    </message>
+    <message id="contact-detail-birthday">
+        <source>Birthday</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>生日</translation>
+    </message>
+    <message id="contact-detail-note">
+        <source>Note</source>
+        <extracomment>Contact detail label</extracomment>
+        <translation>注释</translation>
     </message>
 </context>
 </TS>
