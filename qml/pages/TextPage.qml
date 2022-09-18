@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2020 Slava Monich
+Copyright (c) 2018-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,8 +29,6 @@ import Sailfish.Silica 1.0
 Page {
     id: textPage
 
-    allowedOrientations: window.allowedOrientations
-
     property alias text: codeItem.text
     property alias recordId: codeItem.recordId
     property alias hasImage: codeItem.hasImage
@@ -43,6 +41,7 @@ Page {
     CodeItem {
         id: codeItem
 
+        allowedOrientations: textPage.allowedOrientations
         anchors.fill: parent
         isPortrait: textPage.isPortrait
         onDeleteEntry: textPage.deleteEntry()

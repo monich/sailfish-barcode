@@ -933,6 +933,7 @@ Page {
 
                 onClicked: {
                     pageStack.push("TextPage.qml", {
+                        allowedOrientations: scanPage.allowedOrientations,
                         hasImage: AppSettings.saveImages,
                         recordId: clickableResult.recordId,
                         text: clickableResult.text,
