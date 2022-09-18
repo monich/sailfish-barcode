@@ -369,9 +369,9 @@ void BarcodeScanner::Private::decodingThread()
 #endif // HARBOUR_DEBUG
 
             QImage scaledImage;
-            if (image.width() > maxSize || image.height() > maxSize) {
+            if (image.width() > maxSize && image.height() > maxSize) {
                 Qt::TransformationMode mode = Qt::SmoothTransformation;
-                if (image.height() > image.width()) {
+                if (image.height() < image.width()) {
                     scaledImage = image.scaledToHeight(maxSize, mode);
                     scale = image.height()/(qreal)maxSize;
                     HDEBUG("scaled to height" << scale << scaledImage);
