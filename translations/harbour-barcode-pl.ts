@@ -679,22 +679,22 @@
     <message id="contact-title-default">
         <source>Contact</source>
         <extracomment>Default page title (contact page)</extracomment>
-        <translation type="unfinished">Kontakt</translation>
+        <translation>Kontakt</translation>
     </message>
     <message id="contact-detail-name">
         <source>Name</source>
         <extracomment>Contact detail label</extracomment>
-        <translation type="unfinished">Imię</translation>
+        <translation>Imię</translation>
     </message>
     <message id="contact-detail-primary_name">
         <source>Primary name</source>
         <extracomment>Contact detail label</extracomment>
-        <translation type="unfinished">Główna imię</translation>
+        <translation>Pierwsze imię</translation>
     </message>
     <message id="contact-detail-secondary_name">
         <source>Secondary name</source>
         <extracomment>Contact detail label</extracomment>
-        <translation type="unfinished">Drugie imię</translation>
+        <translation>Drugie imię</translation>
     </message>
     <message id="contact-detail-phone">
         <source>Phone</source>
