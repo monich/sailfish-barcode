@@ -340,9 +340,9 @@
         <translation>Flash</translation>
     </message>
     <message id="hint-aspect-ratio">
-        <source>Switch the aspect ratio between 16:9 and 4:3</source>
+        <source>Switch the aspect ratio between 9:16 and 3:4</source>
         <extracomment>Hint label</extracomment>
-        <translation>Mudar proporções de aspeto entre 16:9 e 4:3</translation>
+        <translation>Mudar proporções de aspeto entre 9:16 e 3:4</translation>
     </message>
     <message id="hint-aspect-ratio_landscape">
         <source>Switch the aspect ratio between 16:9 and 4:3</source>
