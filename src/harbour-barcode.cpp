@@ -104,10 +104,15 @@ int main(int argc, char *argv[])
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     bool torchSupported = false;
 
-    // Parse Qt version to find out what's supported and what's not
     const char* qver = qVersion();
     HDEBUG("Qt version" << qver);
-    if (qver) {
+
+    if (qgetenv("HARBOUR_BARCODE_ENABLE_TORCH").toInt() > 0 ||
+        MGConfItem(SETTINGS_DCONF_PATH_("enableTorch")).value().toBool()) {
+        torchSupported = true;
+        HDEBUG("Torch support is enabled");
+    } else if (qver) {
+        // Figure out what's supported and what's not
         const QStringList s(QString(qver).split('.'));
         if (s.size() >= 3) {
             int v = QT_VERSION_CHECK(s[0].toInt(), s[1].toInt(), s[2].toInt());
@@ -120,6 +125,11 @@ int main(int argc, char *argv[])
                 if (flashValues.size() == 1 &&
                     flashValues.at(0).toInt() == QCameraExposure::FlashOff) {
                     HDEBUG("Flash disabled by" << qPrintable(flashValuesKey));
+                } else if (flashValues.isEmpty()) {
+                    // If this DConf key is missing, assume that the torch
+                    // mode is not supported
+                    HDEBUG("DConf entry" << qPrintable(flashValuesKey) <<
+                        "is missing, disabling the torch");
                 } else {
                     torchSupported = true;
                     HDEBUG("Torch supported");

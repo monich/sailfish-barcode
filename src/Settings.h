@@ -30,6 +30,8 @@ THE SOFTWARE.
 
 #include <QtQml>
 
+#define SETTINGS_DCONF_PATH_(x)     "/apps/harbour-barcode/" x
+
 // Old keys (the ones that may need to be imported from the database)
 
 #define KEY_SOUND                   "sound"

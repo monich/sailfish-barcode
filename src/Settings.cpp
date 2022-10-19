@@ -28,7 +28,7 @@ THE SOFTWARE.
 
 #include <MGConfItem>
 
-#define DCONF_PATH_(x)                 "/apps/harbour-barcode/" x
+#define DCONF_PATH_(x)                 SETTINGS_DCONF_PATH_(x)
 
 // New keys (the ones that have only been in dconf)
 #define KEY_BUZZ_ON_SCAN               "buzz_on_scan"
