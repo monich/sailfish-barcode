@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2020-2021 Slava Monich
+Copyright (c) 2020-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,8 @@ THE SOFTWARE.
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../harbour"
+
 SilicaFlickable {
     id: galleryImage
 
@@ -33,6 +35,7 @@ SilicaFlickable {
     property real orientation
     property bool isLandscape
     property alias source: image.source
+    property bool invert
 
     readonly property real minZoomX: (implicitWidth > width) ? width/implicitWidth : 0.1
     readonly property real minZoomY: (implicitHeight > height) ? height/implicitHeight : 0.1
@@ -104,6 +107,11 @@ SilicaFlickable {
             readonly property real a: width ? Math.atan(height/width) : 0
             readonly property real xSize: d * Math.max(Math.abs(Math.cos(r - a)), Math.abs(Math.cos(r + a)))
             readonly property real ySize: d * Math.max(Math.abs(Math.sin(r - a)), Math.abs(Math.sin(r + a)))
+
+            layer.enabled: invert
+            layer.effect: HarbourInvertEffect {
+                source: image
+            }
 
             anchors.centerIn: parent
             scale: actualZoom

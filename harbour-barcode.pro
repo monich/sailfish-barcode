@@ -115,6 +115,7 @@ HARBOUR_QML_COMPONENTS = \
     $${HARBOUR_LIB_QML}/HarbourHighlightIcon.qml \
     $${HARBOUR_LIB_QML}/HarbourHintIconButton.qml \
     $${HARBOUR_LIB_QML}/HarbourHorizontalSwipeHint.qml \
+    $${HARBOUR_LIB_QML}/HarbourInvertEffect.qml \
     $${HARBOUR_LIB_QML}/HarbourPressEffect.qml
 
 OTHER_FILES += $${HARBOUR_QML_COMPONENTS}

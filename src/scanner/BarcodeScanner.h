@@ -32,7 +32,8 @@ THE SOFTWARE.
 #include <QRect>
 #include <QVariantMap>
 
-class BarcodeScanner : public QObject {
+class BarcodeScanner : public QObject
+{
     Q_OBJECT
     Q_PROPERTY(QObject* viewFinderItem READ viewFinderItem WRITE setViewFinderItem NOTIFY viewFinderItemChanged)
     Q_PROPERTY(QRect viewFinderRect READ viewFinderRect WRITE setViewFinderRect NOTIFY viewFinderRectChanged)
@@ -41,6 +42,7 @@ class BarcodeScanner : public QObject {
     Q_PROPERTY(ScanState scanState READ scanState NOTIFY scanStateChanged)
     Q_PROPERTY(bool canGrab READ canGrab WRITE setCanGrab NOTIFY canGrabChanged)
     Q_PROPERTY(bool grabbing READ grabbing NOTIFY grabbingChanged)
+    Q_PROPERTY(bool inverted READ inverted WRITE setInverted NOTIFY invertedChanged)
     Q_PROPERTY(uint decodingHints READ decodingHints WRITE setDecodingHints NOTIFY decodingHintsChanged)
     Q_ENUMS(ScanState)
 
@@ -57,30 +59,33 @@ public:
     BarcodeScanner(QObject* aParent = Q_NULLPTR);
     virtual ~BarcodeScanner();
 
-    Q_INVOKABLE void startScanning(int aTimeout);
+    Q_INVOKABLE void startScanning(int);
     Q_INVOKABLE void stopScanning();
 
     QObject* viewFinderItem() const;
-    void setViewFinderItem(QObject* aItem);
+    void setViewFinderItem(QObject*);
 
     const QRect& viewFinderRect() const;
-    void setViewFinderRect(const QRect& aRect);
+    void setViewFinderRect(const QRect&);
 
     QString markerColor() const;
-    void setMarkerColor(QString aValue);
+    void setMarkerColor(QString);
 
     int rotation() const;
-    void setRotation(int aDegrees);
+    void setRotation(int);
 
     ScanState scanState() const;
 
     bool canGrab() const;
-    void setCanGrab(bool aValue);
+    void setCanGrab(bool);
 
     bool grabbing() const;
 
+    bool inverted() const;
+    void setInverted(bool);
+
     uint decodingHints() const;
-    void setDecodingHints(uint aValue);
+    void setDecodingHints(uint);
 
 Q_SIGNALS:
     void decodingFinished(QImage image, QVariantMap result);
@@ -91,6 +96,7 @@ Q_SIGNALS:
     void scanStateChanged();
     void canGrabChanged();
     void grabbingChanged();
+    void invertedChanged();
     void decodingHintsChanged();
 
 private:

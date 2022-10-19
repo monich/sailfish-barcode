@@ -34,27 +34,30 @@ import "../components"
 import "../harbour"
 
 Page {
-    id: scanPage
+    id: thisPage
 
     allowedOrientations: window.allowedOrientations
 
+    property bool autoScan
+    readonly property bool cameraActive: viewFinder && viewFinder.cameraActive
+
+    // Internal properties
     property Item galleryImage
     property Item viewFinder
     property Item hint
+
     property bool showMarker
-    property bool autoScan
-    property int scanTimeout: 60
-
+    readonly property bool mustShowViewFinder: (thisPage.status === PageStatus.Active) && Qt.application.active && !scanningGalleryImage && !showMarker
     readonly property bool hintActive: hint && hint.visible
-    readonly property bool cameraActive: viewFinder && viewFinder.cameraActive
     readonly property bool landscapeLayout: width > height
-    readonly property bool mustShowViewFinder: (scanPage.status === PageStatus.Active) && Qt.application.active && !scanningGalleryImage && !showMarker
     readonly property bool scanningGalleryImage: galleryImage && galleryImage.visible
-    readonly property bool useVolumeKeys: AppSettings.volumeZoom && (scanPage.status === PageStatus.Active) && Qt.application.active
+    readonly property bool useVolumeKeys: AppSettings.volumeZoom && (thisPage.status === PageStatus.Active) && Qt.application.active
+    readonly property int toolIconFadeDuration: 64
+    readonly property int scanTimeout: 60
 
-    readonly property var volumeUp: Qt.createQmlObject(BarcodeUtils.mediaKeyQml, scanPage, "VolumeKey")
-    readonly property var volumeDown: Qt.createQmlObject(BarcodeUtils.mediaKeyQml, scanPage, "VolumeKey")
-    readonly property var permissions: Qt.createQmlObject(BarcodeUtils.permissionsQml, scanPage, "Permissions")
+    readonly property var volumeUp: Qt.createQmlObject(BarcodeUtils.mediaKeyQml, thisPage, "VolumeKey")
+    readonly property var volumeDown: Qt.createQmlObject(BarcodeUtils.mediaKeyQml, thisPage, "VolumeKey")
+    readonly property var permissions: Qt.createQmlObject(BarcodeUtils.permissionsQml, thisPage, "Permissions")
 
     Binding { target: permissions; property: "enabled"; value: useVolumeKeys }
     Binding { target: volumeUp; property: "enabled"; value: useVolumeKeys }
@@ -173,7 +176,7 @@ Page {
 
     function showHint(text) {
         if (!hint) {
-            hint = hintComponent.createObject(scanPage)
+            hint = hintComponent.createObject(thisPage)
         }
         hint.text = text
         hint.opacity = 1.0
@@ -215,7 +218,7 @@ Page {
     }
 
     onStatusChanged: {
-        if (scanPage.status === PageStatus.Inactive) {
+        if (thisPage.status === PageStatus.Inactive) {
             console.log("Page is INACTIVE")
             // stop scanning if page is not active
             destroyScanner()
@@ -267,6 +270,7 @@ Page {
         markerColor: AppSettings.markerColor
         rotation: orientationAngle()
         canGrab: (!galleryImage || !galleryImage.moving) && !galleryScanTimer.running
+        inverted: invertButton.down
         decodingHints: AppSettings.decodingHints
 
         onDecodingFinished: {
@@ -274,7 +278,7 @@ Page {
                 statusText.text = ""
                 applyResult(image, result)
                 if (AppSettings.resultViewDuration > 0) {
-                    scanPage.showMarker = true
+                    thisPage.showMarker = true
                     resultViewTimer.restart()
                 }
                 if (buzzLoader.item) {
@@ -318,7 +322,7 @@ Page {
         id: resultViewTimer
 
         interval: AppSettings.resultViewDuration * 1000
-        onTriggered: scanPage.showMarker = false
+        onTriggered: thisPage.showMarker = false
     }
 
     Component {
@@ -336,7 +340,7 @@ Page {
 
         GalleryImage {
             visible: false
-            isLandscape: scanPage.isLandscape
+            isLandscape: thisPage.isLandscape
             z: 1
         }
     }
@@ -345,6 +349,7 @@ Page {
         id: scanPageFlickable
 
         anchors.fill: parent
+        interactive: !(invertButton.visible && invertButton.down)
 
         PullDownMenu {
             enabled: scanner.idle && !hintActive
@@ -366,7 +371,7 @@ Page {
                         //: Page header
                         //% "Select image"
                         title: qsTrId("gallery-title"),
-                        allowedOrientations: scanPage.allowedOrientations
+                        allowedOrientations: thisPage.allowedOrientations
                     })
                     var imageUrl, imageOrientation
                     picker.imageSelected.connect(function(url, orientation) {
@@ -493,8 +498,8 @@ Page {
                 readonly property int landscapeHeight: Math.floor((parent.width/parent.height > ratio) ? parent.height : (parent.width / ratio))
 
                 anchors.centerIn: parent
-                width: scanningGalleryImage ? parent.width : (scanPage.isPortrait ? portraitWidth : landscapeWidth)
-                height: scanningGalleryImage ? parent.height : (scanPage.isPortrait ? portraitHeight : landscapeHeight)
+                width: scanningGalleryImage ? parent.width : (thisPage.isPortrait ? portraitWidth : landscapeWidth)
+                height: scanningGalleryImage ? parent.height : (thisPage.isPortrait ? portraitHeight : landscapeHeight)
                 color: "#20000000"
                 opacity: markerImage.visible ? 0 : 1
                 Behavior on opacity { FadeAnimation { } }
@@ -520,7 +525,7 @@ Page {
 
                 anchors.centerIn: viewFinderContainer
                 z: 2
-                source: scanPage.showMarker ? markerImageProvider.source : ""
+                source: thisPage.showMarker ? markerImageProvider.source : ""
                 visible: status === Image.Ready
                 cache: false
             }
@@ -547,7 +552,7 @@ Page {
                 }
                 opacity: (TorchSupported && !scanningGalleryImage) ? 1.0 : 0.0
                 visible: TorchSupported && opacity > 0.0
-                Behavior on opacity { FadeAnimation { } }
+                Behavior on opacity { FadeAnimation { duration: toolIconFadeDuration } }
                 icon.source: viewFinder && viewFinder.flashOn ?
                         Qt.resolvedUrl("img/flash-on.svg") :
                         Qt.resolvedUrl("img/flash-off.svg")
@@ -555,8 +560,8 @@ Page {
                 //: Hint label
                 //% "Toggle flashlight"
                 hint: qsTrId("hint-toggle-flash")
-                onShowHint: scanPage.showHint(hint)
-                onHideHint: scanPage.hideHint()
+                onShowHint: thisPage.showHint(hint)
+                onHideHint: thisPage.hideHint()
             }
 
             Slider {
@@ -632,6 +637,7 @@ Page {
 
                 readonly property url icon_16_9: Qt.resolvedUrl("img/resolution_16_9.svg")
                 readonly property url icon_4_3: Qt.resolvedUrl("img/resolution_4_3.svg")
+                readonly property bool isNeeded: viewFinderContainer.canSwitchResolutions && scanner.scanState !== BarcodeScanner.Scanning
                 anchors {
                     right: parent.right
                     verticalCenter: parent.verticalCenter
@@ -641,9 +647,9 @@ Page {
                     sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
                     rotation: isLandscape ? 90 : 0
                 }
-                opacity: (scanningGalleryImage || !viewFinderContainer.canSwitchResolutions)? 0.0 : 1.0
+                opacity: isNeeded ? 1.0 : 0.0
                 visible: opacity > 0.0
-                Behavior on opacity { FadeAnimation { } }
+                Behavior on opacity { FadeAnimation { duration: toolIconFadeDuration } }
                 onClicked: AppSettings.wideMode = !AppSettings.wideMode
                 hint: isLandscape ?
                     //: Hint label
@@ -652,8 +658,27 @@ Page {
                     //: Hint label
                     //% "Switch the aspect ratio between 9:16 and 3:4"
                     qsTrId("hint-aspect-ratio")
-                onShowHint: scanPage.showHint(hint)
-                onHideHint: scanPage.hideHint()
+                onShowHint: thisPage.showHint(hint)
+                onHideHint: thisPage.hideHint()
+            }
+
+            HarbourHintIconButton {
+                id: invertButton
+
+                anchors {
+                    right: parent.right
+                    verticalCenter: parent.verticalCenter
+                }
+                icon {
+                    source: Qt.resolvedUrl("img/invert.svg")
+                    sourceSize: Qt.size(Theme.iconSizeMedium, Theme.iconSizeMedium)
+                    rotation: invertButton.down ? 180 : 0
+                }
+                opacity: ((viewFinder || galleryImage) && !ratioButton.isNeeded) ? 1.0 : 0.0
+                visible: opacity > 0.0
+                Behavior on opacity { FadeAnimation { duration: toolIconFadeDuration } }
+                Binding { target: viewFinder;  property: "invert"; value: invertButton.down }
+                Binding { target: galleryImage;  property: "invert"; value: invertButton.down }
             }
         }
 
@@ -725,7 +750,7 @@ Page {
                         } else {
                             var component = Qt.createComponent("../components/VCard.qml")
                             if (component.status === Component.Ready) {
-                                vcard = component.createObject(scanPage, { content: vcardText })
+                                vcard = component.createObject(thisPage, { content: vcardText })
                             }
                         }
                     } else {
@@ -783,11 +808,11 @@ Page {
                         //: Hint label
                         //% "Show EU digital COVID certificate"
                         hint: qsTrId("hint-covid_certificate")
-                        onShowHint: scanPage.showHint(hint)
-                        onHideHint: scanPage.hideHint()
+                        onShowHint: thisPage.showHint(hint)
+                        onHideHint: thisPage.hideHint()
                         onClicked: {
                             pageStack.push("CovidPage.qml", {
-                                allowedOrientations: scanPage.allowedOrientations,
+                                allowedOrientations: thisPage.allowedOrientations,
                                 text: dgCert.text
                             })
                         }
@@ -802,11 +827,11 @@ Page {
                         //: Hint label
                         //% "Open contact card"
                         hint: qsTrId("hint-open_contact_card")
-                        onShowHint: scanPage.showHint(hint)
-                        onHideHint: scanPage.hideHint()
+                        onShowHint: thisPage.showHint(hint)
+                        onHideHint: thisPage.hideHint()
                         onClicked: {
                             pageStack.push("VCardPage.qml", {
-                                allowedOrientations: scanPage.allowedOrientations,
+                                allowedOrientations: thisPage.allowedOrientations,
                                 contact: clickableResult.vcard.contact(),
                             }).saveContact.connect(function() {
                                 pageStack.pop()
@@ -832,8 +857,8 @@ Page {
                         //: Hint label
                         //% "Add event to calendar"
                         hint: qsTrId("hint-add_to_calendar")
-                        onShowHint: scanPage.showHint(hint)
-                        onHideHint: scanPage.hideHint()
+                        onShowHint: thisPage.showHint(hint)
+                        onHideHint: thisPage.hideHint()
                     }
 
                     HarbourHintIconButton {
@@ -855,8 +880,8 @@ Page {
                             //: Hint label
                             //% "Open URL in default application"
                             qsTrId("hint-open_url")
-                        onShowHint: scanPage.showHint(hint)
-                        onHideHint: scanPage.hideHint()
+                        onShowHint: thisPage.showHint(hint)
+                        onHideHint: thisPage.hideHint()
                         onClicked: {
                             console.log("opening", clickableResult.text)
                             Qt.openUrlExternally(clickableResult.text)
@@ -875,8 +900,8 @@ Page {
                         //: Hint label
                         //% "Copy to clipboard"
                         hint: qsTrId("hint-copy-clipboard")
-                        onShowHint: scanPage.showHint(hint)
-                        onHideHint: scanPage.hideHint()
+                        onShowHint: thisPage.showHint(hint)
+                        onHideHint: thisPage.hideHint()
                     }
 
                     Timer {
@@ -902,7 +927,7 @@ Page {
                     remorse.execute(resultItem, qsTrId("history-menu-delete_remorse"),
                         function() {
                             HistoryModel.remove(0)
-                            if (scanPage.status === PageStatus.Active) {
+                            if (thisPage.status === PageStatus.Active) {
                                 HistoryModel.commitChanges()
                             }
                             remorse.destroy()
@@ -933,7 +958,7 @@ Page {
 
                 onClicked: {
                     pageStack.push("TextPage.qml", {
-                        allowedOrientations: scanPage.allowedOrientations,
+                        allowedOrientations: thisPage.allowedOrientations,
                         hasImage: AppSettings.saveImages,
                         recordId: clickableResult.recordId,
                         text: clickableResult.text,

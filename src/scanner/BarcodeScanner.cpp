@@ -37,12 +37,23 @@ THE SOFTWARE.
 #include <QPainter>
 #include <QBrush>
 
-#if HARBOUR_DEBUG
+#define HARBOUR_BARCODE_DEBUG_IMAGES
+#ifdef HARBOUR_BARCODE_DEBUG_IMAGES
+// In debug build saving debug images is enabled by default, in release
+// if HARBOUR_BARCODE_DEBUG_IMAGES environment is set 1 (or anything
+// non-zero, actually)
+#  if HARBOUR_DEBUG
+#    define HARBOUR_BARCODE_DEBUG_IMAGES_ENABLED true
+#  else
+#    define HARBOUR_BARCODE_DEBUG_IMAGES_ENABLED \
+        (qgetenv("HARBOUR_BARCODE_DEBUG_IMAGES").toInt() > 0)
+#  endif // HARBOUR_DEBUG
 #include <QStandardPaths>
 static const QDir debugImageDir(QStandardPaths::writableLocation(QStandardPaths::PicturesLocation) + "/codereader");
+static const bool debugImageEnabled = HARBOUR_BARCODE_DEBUG_IMAGES_ENABLED;
 static void saveDebugImage(const QImage& aImage, const QString& aFileName)
 {
-    if (!aImage.isNull()) {
+    if (debugImageEnabled && debugImageDir.exists() && !aImage.isNull()) {
         QString path = debugImageDir.filePath(aFileName);
         if (aImage.save(path)) {
             HDEBUG("image saved:" << qPrintable(path));
@@ -57,7 +68,9 @@ static void saveDebugImage(const QImage& aImage, const QString& aFileName)
 // BarcodeScanner::Private
 // ==========================================================================
 
-class BarcodeScanner::Private : public QObject {
+class BarcodeScanner::Private :
+    public QObject
+{
     Q_OBJECT
 public:
     Private(BarcodeScanner* aParent);
@@ -65,11 +78,11 @@ public:
 
     BarcodeScanner* scanner();
 
-    bool setViewFinderRect(const QRect& aRect);
-    bool setViewFinderItem(QObject* aValue);
-    bool setMarkerColor(QString aValue);
-    bool setRotation(int aDegrees);
-    void startScanning(int aTimeout);
+    bool setViewFinderRect(const QRect&);
+    bool setViewFinderItem(QObject*);
+    bool setMarkerColor(QString);
+    bool setRotation(int);
+    void startScanning(int);
     void stopScanning();
     void grabImage();
     void decodingThread();
@@ -77,15 +90,16 @@ public:
 
 Q_SIGNALS:
     void needImage();
-    void decodingDone(QImage image, Decoder::Result result);
+    void decodingDone(QImage, Decoder::Result);
 
 public Q_SLOTS:
     void onScanningTimeout();
-    void onDecodingDone(QImage aImage, Decoder::Result aResult);
+    void onDecodingDone(QImage, Decoder::Result);
     void onGrabImage();
 
 public:
     bool iCanGrab;
+    bool iInverted;
     bool iGrabbing;
     bool iScanning;
     bool iNeedImage;
@@ -95,6 +109,7 @@ public:
     ScanState iLastKnownState;
 
     QImage iCaptureImage;
+    bool iCaptureImageInverted;
     QQuickItem* iViewFinderItem;
     QTimer* iScanTimeout;
 
@@ -110,6 +125,7 @@ public:
 BarcodeScanner::Private::Private(BarcodeScanner* aParent) :
     QObject(aParent),
     iCanGrab(true),
+    iInverted(false),
     iGrabbing(false),
     iScanning(false),
     iNeedImage(false),
@@ -117,6 +133,7 @@ BarcodeScanner::Private::Private(BarcodeScanner* aParent) :
     iTimedOut(false),
     iRotation(0),
     iLastKnownState(Idle),
+    iCaptureImageInverted(false),
     iViewFinderItem(NULL),
     iScanTimeout(new QTimer(this)),
     iMarkerColor(QColor(0, 255, 0)), // default green
@@ -142,12 +159,16 @@ BarcodeScanner::Private::~Private()
     iDecodingFuture.waitForFinished();
 }
 
-inline BarcodeScanner* BarcodeScanner::Private::scanner()
+inline
+BarcodeScanner*
+BarcodeScanner::Private::scanner()
 {
     return qobject_cast<BarcodeScanner*>(parent());
 }
 
-bool BarcodeScanner::Private::setViewFinderRect(const QRect& aRect)
+bool
+BarcodeScanner::Private::setViewFinderRect(
+    const QRect& aRect)
 {
     if (iViewFinderRect != aRect) {
         // iViewFinderRect is accessed by decodingThread() thread
@@ -159,7 +180,9 @@ bool BarcodeScanner::Private::setViewFinderRect(const QRect& aRect)
     return false;
 }
 
-bool BarcodeScanner::Private::setViewFinderItem(QObject* aItem)
+bool
+BarcodeScanner::Private::setViewFinderItem(
+    QObject* aItem)
 {
     QQuickItem* item = qobject_cast<QQuickItem*>(aItem);
     if (iViewFinderItem != item) {
@@ -169,7 +192,9 @@ bool BarcodeScanner::Private::setViewFinderItem(QObject* aItem)
     return false;
 }
 
-bool BarcodeScanner::Private::setMarkerColor(QString aValue)
+bool
+BarcodeScanner::Private::setMarkerColor(
+    QString aValue)
 {
     if (QColor::isValidColor(aValue)) {
         QColor color(aValue);
@@ -181,7 +206,9 @@ bool BarcodeScanner::Private::setMarkerColor(QString aValue)
     return false;
 }
 
-bool BarcodeScanner::Private::setRotation(int aDegrees)
+bool
+BarcodeScanner::Private::setRotation(
+    int aDegrees)
 {
     if (iRotation != aDegrees) {
         iDecodingMutex.lock();
@@ -192,7 +219,9 @@ bool BarcodeScanner::Private::setRotation(int aDegrees)
     return false;
 }
 
-void BarcodeScanner::Private::startScanning(int aTimeout)
+void
+BarcodeScanner::Private::startScanning(
+    int aTimeout)
 {
     if (!iScanning) {
         iScanning = true;
@@ -210,7 +239,8 @@ void BarcodeScanner::Private::startScanning(int aTimeout)
     }
 }
 
-void BarcodeScanner::Private::stopScanning()
+void
+BarcodeScanner::Private::stopScanning()
 {
     // stopping a running scanning process
     iDecodingMutex.lock();
@@ -223,7 +253,8 @@ void BarcodeScanner::Private::stopScanning()
     updateScanState();
 }
 
-void BarcodeScanner::Private::grabImage()
+void
+BarcodeScanner::Private::grabImage()
 {
     QQuickWindow* window = iViewFinderItem->window();
     if (window) {
@@ -239,13 +270,15 @@ void BarcodeScanner::Private::grabImage()
             HDEBUG(image);
             iDecodingMutex.lock();
             iCaptureImage = image;
+            iCaptureImageInverted = iInverted;
             iDecodingEvent.wakeAll();
             iDecodingMutex.unlock();
         }
     }
 }
 
-void BarcodeScanner::Private::onGrabImage()
+void
+BarcodeScanner::Private::onGrabImage()
 {
     if (iViewFinderItem && iScanning) {
         if (iCanGrab) {
@@ -257,7 +290,8 @@ void BarcodeScanner::Private::onGrabImage()
     }
 }
 
-void BarcodeScanner::Private::decodingThread()
+void
+BarcodeScanner::Private::decodingThread()
 {
     HDEBUG("decodingThread() is called from " << QThread::currentThread());
 
@@ -266,6 +300,7 @@ void BarcodeScanner::Private::decodingThread()
     QImage image;
     qreal scale = 1;
     bool rotated = false;
+    bool inverted = false;
     int scaledWidth = 0;
 
     const int maxSize = 800;
@@ -282,8 +317,10 @@ void BarcodeScanner::Private::decodingThread()
         }
         if (iAbortScan) {
             image = QImage();
+            inverted = false;
         } else {
             image = iCaptureImage;
+            inverted = iCaptureImageInverted;
             iCaptureImage = QImage();
         }
         viewFinderRect = iViewFinderRect;
@@ -341,7 +378,7 @@ void BarcodeScanner::Private::decodingThread()
             HDEBUG("extracted" << image);
             saveDebugImage(image, "debug_cropped.bmp");
 
-#if HARBOUR_DEBUG
+#ifdef HARBOUR_BARCODE_DEBUG_IMAGES
             // In debug build, ~/Pictures/codereader/debug_input.bmp gets
             // processed instead of the actual captured and cropped image,
             // if such file exists. Normally it doesn't exist. If you need
@@ -350,7 +387,7 @@ void BarcodeScanner::Private::decodingThread()
             //
             // $ mkdir ~/Pictures/codereader
             //
-            // try debuging the image, abort/finish the decoding the then
+            // try debuging the image, abort/finish the decoding, then
             //
             // $ cd ~/Pictures/codereader
             // $ cp debug_cropped.bmp debug_input.bmp
@@ -358,7 +395,7 @@ void BarcodeScanner::Private::decodingThread()
             // And then whenever you start capture this file will be picked
             // up instead of the actual input.
             //
-            if (debugImageDir.exists()) {
+            if (debugImageEnabled && debugImageDir.exists()) {
                 QImage debugImage;
                 QString filePath = debugImageDir.filePath("debug_input.bmp");
                 if (debugImage.load(filePath)) {
@@ -366,7 +403,7 @@ void BarcodeScanner::Private::decodingThread()
                     image = debugImage;
                 }
             }
-#endif // HARBOUR_DEBUG
+#endif // HARBOUR_BARCODE_DEBUG_IMAGES
 
             QImage scaledImage;
             if (image.width() > maxSize && image.height() > maxSize) {
@@ -426,6 +463,9 @@ void BarcodeScanner::Private::decodingThread()
 
     if (result.isValid()) {
         HDEBUG("decoding succeeded:" << result.getText() << result.getPoints());
+        if (inverted) {
+            image.invertPixels();
+        }
         if (scale > 1 || rotated) {
             // The image could be a) scaled and b) rotated. Convert
             // points to the original coordinate system
@@ -613,9 +653,27 @@ void BarcodeScanner::setCanGrab(bool aCanGrab)
     }
 }
 
-bool BarcodeScanner::grabbing() const
+bool
+BarcodeScanner::grabbing() const
 {
     return iPrivate->iGrabbing;
+}
+
+bool
+BarcodeScanner::inverted() const
+{
+    return iPrivate->iInverted;
+}
+
+void
+BarcodeScanner::setInverted(
+    bool aInverted)
+{
+    if (iPrivate->iInverted != aInverted) {
+        HDEBUG(aInverted);
+        iPrivate->iInverted = aInverted;
+        Q_EMIT invertedChanged();
+    }
 }
 
 uint BarcodeScanner::decodingHints() const

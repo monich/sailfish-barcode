@@ -2,21 +2,21 @@ import QtQuick 2.0
 import QtMultimedia 5.4
 import Sailfish.Silica 1.0
 
+import "../harbour"
+
 VideoOutput {
     id: viewFinder
 
-    layer.enabled: true
     anchors.fill: parent
     fillMode: VideoOutput.Stretch
 
     property alias beepSource: beep.source
     property size viewfinderResolution
-    property bool completed
     property bool showFocusArea: true
     property real digitalZoom: 1.0
+    property bool invert
 
     readonly property bool cameraActive: camera.cameraState === Camera.ActiveState
-    readonly property bool tapFocusActive: focusTimer.running
     readonly property bool flashOn: camera.flash.mode !== Camera.FlashOff
     // Not sure why not just camera.orientation but this makes the camera
     // behave similar to what it does for Jolla Camera
@@ -25,6 +25,15 @@ VideoOutput {
     // Camera doesn't know its maximumDigitalZoom until cameraStatus becomes
     // Camera.ActiveStatus and doesn't emit maximumDigitalZoomChanged signal
     signal maximumDigitalZoom(var value)
+
+    // Internal properties
+    readonly property bool _tapFocusActive: focusTimer.running
+    property bool _completed
+
+    layer.enabled: invert
+    layer.effect: HarbourInvertEffect {
+        source: viewFinder
+    }
 
     onOrientationChanged: {
         if (camera.cameraState !== Camera.UnloadedState) {
@@ -52,7 +61,7 @@ VideoOutput {
         if (viewfinderResolution) {
             camera.viewfinder.resolution = viewfinderResolution
         }
-        completed = true
+        _completed = true
     }
 
     function turnFlashOn() {
@@ -131,15 +140,15 @@ VideoOutput {
         imageProcessing.whiteBalanceMode: flashOn ?
             CameraImageProcessing.WhiteBalanceFlash :
             CameraImageProcessing.WhiteBalanceTungsten
-        cameraState: (completed && !reloadTimer.running) ?
+        cameraState: (_completed && !reloadTimer.running) ?
             Camera.ActiveState : Camera.UnloadedState
         exposure {
             exposureCompensation: 1.0
             exposureMode: Camera.ExposureAuto
         }
         focus {
-            focusMode: tapFocusActive ? Camera.FocusAuto : Camera.FocusContinuous
-            focusPointMode: tapFocusActive ? Camera.FocusPointCustom : Camera.FocusPointAuto
+            focusMode: _tapFocusActive ? Camera.FocusAuto : Camera.FocusContinuous
+            focusPointMode: _tapFocusActive ? Camera.FocusPointCustom : Camera.FocusPointAuto
         }
         onCameraStatusChanged: {
             if (cameraStatus === Camera.ActiveStatus) {
