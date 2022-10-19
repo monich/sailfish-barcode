@@ -66,7 +66,6 @@ SilicaFlickable {
         var h = transpose ? image.width : image.height
         var viewportWidth = isLandscape ? galleryImage.height : galleryImage.width
         var viewportHeight = isLandscape ? galleryImage.width : galleryImage.height
-        console.log(viewportWidth, w, viewportHeight, h, viewportWidth/w, viewportHeight/h)
         zoom = Math.min(viewportWidth/w, viewportHeight/h)
     }
 
