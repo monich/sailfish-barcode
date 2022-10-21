@@ -80,25 +80,6 @@ static void register_types(QQmlEngine* engine, const char* uri, int v1, int v2)
     qmlRegisterSingletonType<BarcodeUtils>(uri, v1, v2, "BarcodeUtils", BarcodeUtils::createSingleton);
 }
 
-static QSize toSize(QVariant var)
-{
-    // e.g. "1920x1080"
-    if (var.isValid()) {
-        QStringList values(var.toString().split('x'));
-        if (values.count() == 2) {
-            bool ok = false;
-            int width = values.at(0).toInt(&ok);
-            if (ok && width > 0) {
-                int height = values.at(1).toInt(&ok);
-                if (ok && height > 0) {
-                    return QSize(width, height);
-                }
-            }
-        }
-    }
-    return QSize();
-}
-
 int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
@@ -138,13 +119,6 @@ int main(int argc, char *argv[])
         }
     }
 
-    // Available 4/3 and 16/9 resolutions
-    QString key_4_3(CAMERA_DCONF_KEY("viewfinderResolution_4_3"));
-    QString key_16_9(CAMERA_DCONF_KEY("viewfinderResolution_16_9"));
-    QSize res_4_3(toSize(MGConfItem(key_4_3).value()));
-    QSize res_16_9(toSize(MGConfItem(key_16_9).value()));
-    HDEBUG("Resolutions" << res_4_3 << res_16_9);
-
     QLocale locale;
     QTranslator* translator = new QTranslator(app.data());
     QString transDir = SailfishApp::pathTo("translations").toLocalFile();
@@ -170,12 +144,6 @@ int main(int argc, char *argv[])
     root->setContextProperty("AppVersion", APP_VERSION);
     root->setContextProperty("AppSettings", settings);
     root->setContextProperty("TorchSupported", torchSupported);
-    if (res_4_3.isValid()) {
-        root->setContextProperty("ViewfinderResolution_4_3", res_4_3);
-    }
-    if (res_16_9.isValid()) {
-        root->setContextProperty("ViewfinderResolution_16_9", res_16_9);
-    }
 
     QOpenGLContext ctx;
     int maxTextureSize = 0;

@@ -16,6 +16,9 @@ VideoOutput {
     property real digitalZoom: 1.0
     property bool invert
 
+    property size supportedWideResolution: Qt.size(0,0) // 4:3
+    property size supportedNarrowResolution: Qt.size(0,0) // 16:9
+
     readonly property bool cameraActive: camera.cameraState === Camera.ActiveState
     readonly property bool flashOn: camera.flash.mode !== Camera.FlashOff
     // Not sure why not just camera.orientation but this makes the camera
@@ -28,6 +31,8 @@ VideoOutput {
 
     // Internal properties
     readonly property bool _tapFocusActive: focusTimer.running
+    readonly property real _ratio_4_3: 4./3.
+    readonly property real _ratio_16_9: 16./9.
     property bool _completed
 
     layer.enabled: invert
@@ -156,6 +161,7 @@ VideoOutput {
                 viewFinder.maximumDigitalZoom(maximumDigitalZoom)
                 digitalZoom = viewFinder.digitalZoom
             }
+            updateSupportedResolutions()
         }
         onCameraStateChanged: {
             if (cameraState === Camera.UnloadedState) {
@@ -163,6 +169,32 @@ VideoOutput {
                     viewFinder.viewfinderResolution !== viewfinder.resolution) {
                     viewfinder.resolution = viewFinder.viewfinderResolution
                 }
+            }
+        }
+        function updateSupportedResolutions() {
+            var list = camera.supportedViewfinderResolutions()
+            var max_4_3 = Qt.size(0,0)
+            var max_16_9 = Qt.size(0,0)
+            for (var i = 0; i < list.length; i++) {
+                var size = list[i]
+                var ratio = size.width / size.height
+                if (ratio === _ratio_4_3) {
+                    if (size.width > max_4_3.width) {
+                        max_4_3 = size
+                    }
+                } else if (ratio === _ratio_16_9) {
+                    if (size.width > max_16_9.width) {
+                        max_16_9 = size
+                    }
+                }
+            }
+            if (supportedWideResolution.width !== max_4_3.width &&
+                supportedWideResolution.height !== max_4_3.height) {
+                supportedWideResolution = Qt.size(max_4_3.width, max_4_3.height)
+            }
+            if (supportedNarrowResolution.width !== max_16_9.width &&
+                supportedNarrowResolution.height !== max_16_9.height) {
+                supportedNarrowResolution = Qt.size(max_16_9.width, max_16_9.height)
             }
         }
     }

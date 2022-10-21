@@ -25,9 +25,6 @@ THE SOFTWARE.
 #ifndef BARCODE_SETTINGS_H
 #define BARCODE_SETTINGS_H
 
-#include <QObject>
-#include <QString>
-
 #include <QtQml>
 
 #define SETTINGS_DCONF_PATH_(x)     "/apps/harbour-barcode/" x
@@ -42,7 +39,8 @@ THE SOFTWARE.
 #define KEY_HISTORY_SIZE            "history_size"
 #define KEY_SCAN_ON_START           "scan_on_start"
 
-class Settings : public QObject {
+class Settings : public QObject
+{
     Q_OBJECT
     Q_PROPERTY(bool sound READ sound WRITE setSound NOTIFY soundChanged)
     Q_PROPERTY(bool buzzOnScan READ buzzOnScan WRITE setBuzzOnScan NOTIFY buzzOnScanChanged)
@@ -56,6 +54,10 @@ class Settings : public QObject {
     Q_PROPERTY(bool saveImages READ saveImages WRITE setSaveImages NOTIFY saveImagesChanged)
     Q_PROPERTY(bool volumeZoom READ volumeZoom WRITE setVolumeZoom NOTIFY volumeZoomChanged)
     Q_PROPERTY(bool wideMode READ wideMode WRITE setWideMode NOTIFY wideModeChanged)
+    Q_PROPERTY(qreal wideRatio READ wideRatio CONSTANT)
+    Q_PROPERTY(qreal narrowRatio READ narrowRatio CONSTANT)
+    Q_PROPERTY(QSize wideResolution READ wideResolution WRITE setWideResolution NOTIFY wideResolutionChanged)
+    Q_PROPERTY(QSize narrowResolution READ narrowResolution WRITE setNarrowResolution NOTIFY narrowResolutionChanged)
     Q_PROPERTY(uint decodingHints READ decodingHints WRITE setDecodingHints NOTIFY decodingHintsChanged)
     Q_PROPERTY(Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
     Q_ENUMS(Orientation)
@@ -78,51 +80,59 @@ public:
     explicit Settings(QObject* aParent = Q_NULLPTR);
     ~Settings();
 
-    Q_INVOKABLE static QString hintKey(QString aHintName);
+    Q_INVOKABLE static QString hintKey(QString);
 
     bool sound() const;
-    void setSound(bool aValue);
+    void setSound(bool);
 
     bool buzzOnScan() const;
-    void setBuzzOnScan(bool aValue);
+    void setBuzzOnScan(bool);
 
     int digitalZoom() const;
-    void setDigitalZoom(int aValue);
+    void setDigitalZoom(int);
 
     int maxDigitalZoom() const;
-    void setMaxDigitalZoom(int aValue);
+    void setMaxDigitalZoom(int);
 
     int scanDuration() const;
-    void setScanDuration(int aValue);
+    void setScanDuration(int);
 
     int resultViewDuration() const;
-    void setResultViewDuration(int aValue);
+    void setResultViewDuration(int);
 
     QString markerColor() const;
-    void setMarkerColor(QString aValue);
+    void setMarkerColor(const QString);
 
     int historySize() const;
-    void setHistorySize(int aValue);
+    void setHistorySize(int);
 
     bool scanOnStart() const;
-    void setScanOnStart(bool aValue);
+    void setScanOnStart(bool);
 
     bool saveImages() const;
-    void setSaveImages(bool aValue);
+    void setSaveImages(bool);
 
     bool volumeZoom() const;
-    void setVolumeZoom(bool aValue);
+    void setVolumeZoom(bool);
 
     bool wideMode() const;
-    void setWideMode(bool aValue);
+    void setWideMode(bool);
+
+    qreal wideRatio() const;
+    QSize wideResolution() const;
+    void setWideResolution(QSize);
+
+    qreal narrowRatio() const;
+    QSize narrowResolution() const;
+    void setNarrowResolution(QSize);
 
     uint decodingHints() const;
-    void setDecodingHints(uint aValue);
-    Q_INVOKABLE void setDecodingHint(uint aValue);
-    Q_INVOKABLE void clearDecodingHint(uint aValue);
+    void setDecodingHints(uint);
+    Q_INVOKABLE void setDecodingHint(uint);
+    Q_INVOKABLE void clearDecodingHint(uint);
 
     Orientation orientation() const;
-    void setOrientation(Orientation aValue);
+    void setOrientation(Orientation);
 
 Q_SIGNALS:
     void soundChanged();
@@ -137,6 +147,8 @@ Q_SIGNALS:
     void saveImagesChanged();
     void volumeZoomChanged();
     void wideModeChanged();
+    void wideResolutionChanged();
+    void narrowResolutionChanged();
     void decodingHintsChanged();
     void orientationChanged();
 

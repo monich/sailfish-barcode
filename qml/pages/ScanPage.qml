@@ -214,6 +214,8 @@ Page {
             if (viewFinder.source.availability === Camera.Available) {
                 viewFinder.source.start()
             }
+            viewFinderContainer.updateSupportedResolution_4_3(viewFinder.supportedWideResolution)
+            viewFinderContainer.updateSupportedResolution_16_9(viewFinder.supportedNarrowResolution)
         }
     }
 
@@ -482,15 +484,17 @@ Page {
             Rectangle {
                 id: viewFinderContainer
 
-                readonly property real ratio_4_3: 4./3.
-                readonly property real ratio_16_9: 16./9.
-                readonly property bool canSwitchResolutions: typeof ViewfinderResolution_4_3 !== "undefined" &&
-                    typeof ViewfinderResolution_16_9 !== "undefined"
+                readonly property real defaultRatio: AppSettings.narrowRatio
+                readonly property bool canSwitchResolutions:
+                    AppSettings.wideResolution.width > 0 && AppSettings.wideResolution.height > 0 &&
+                    AppSettings.narrowResolution.width > 0 && AppSettings.narrowResolution.height > 0
                 readonly property size viewfinderResolution: canSwitchResolutions ?
-                    (AppSettings.wideMode ? ViewfinderResolution_4_3 : ViewfinderResolution_16_9) :
+                    (AppSettings.wideMode ? AppSettings.wideResolution : AppSettings.narrowResolution) :
                     Qt.size(0,0)
-                readonly property real ratio: canSwitchResolutions ? (AppSettings.wideMode ? ratio_4_3 : ratio_16_9) :
-                    typeof ViewfinderResolution_4_3 !== "undefined" ? ratio_4_3 : ratio_16_9
+                readonly property real ratio: canSwitchResolutions ?
+                    (AppSettings.wideMode ? AppSettings.wideRatio : AppSettings.narrowRatio) :
+                    (AppSettings.wideResolution.width > 0 && AppSettings.wideResolution.height > 0) ? AppSettings.wideRatio :
+                    AppSettings.narrowRatio
 
                 readonly property int portraitWidth: Math.floor((parent.height/parent.width > ratio) ? parent.width : parent.height/ratio)
                 readonly property int portraitHeight: Math.floor((parent.height/parent.width > ratio) ? (parent.width * ratio) : parent.height)
@@ -517,6 +521,24 @@ Page {
 
                 function updateViewFinderPosition() {
                     scanner.viewFinderRect = Qt.rect(x + parent.x, y + parent.y, width, height)
+                }
+
+                function updateSupportedResolution_4_3(res) {
+                    if (res.width > AppSettings.wideResolution.width) {
+                        AppSettings.wideResolution = res
+                    }
+                }
+
+                function updateSupportedResolution_16_9(res) {
+                    if (res.width > AppSettings.narrowResolution.width) {
+                        AppSettings.narrowResolution = res
+                    }
+                }
+
+                Connections {
+                    target: viewFinder
+                    onSupportedWideResolutionChanged: viewFinderContainer.updateSupportedResolution_4_3(viewFinder.supportedWideResolution)
+                    onSupportedNarrowResolutionChanged: viewFinderContainer.updateSupportedResolution_16_9(viewFinder.supportedNarrowResolution)
                 }
             }
 
