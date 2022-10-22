@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2021 Slava Monich
+Copyright (c) 2021-2022 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,8 @@ THE SOFTWARE.
 .pragma library
 
 // Value Sets for Digital Green Certificates
-// Version 1.0
-// 2021-04-21
+// Version 1.11
+// 2022-09-14
 
 var diseaseDisplayNames = {
     "840539006" : "COVID-19"
@@ -35,7 +35,10 @@ var diseaseDisplayNames = {
 var vaccineTypeDisplayNames = {
     "1119305005": "SARS-CoV-2 antigen vaccine",
     "1119349007": "SARS-CoV-2 mRNA vaccine",
-    "J07BX03": "COVID-19 vaccine"
+    "J07BX03": "COVID-19 vaccine",
+    "1162643001": "SARS-CoV-2 recombinant spike protein antigen vaccine",
+    "1157024006": "Inactivated whole SARS-CoV-2 antigen vaccine",
+    "29061000087103": "COVID-19 non-replicating viral vector vaccine"
 }
 
 var vaccineProductDisplayNames = {
@@ -51,7 +54,16 @@ var vaccineProductDisplayNames = {
     "BBIBP-CorV": "BBIBP-CorV (Sinopharm)",
     "Inactivated-SARS-CoV-2-Vero-Cell": "Inactivated SARS‑CoV‑2 (Sinopharm)",
     "CoronaVac": "CoronaVac (Sinovac)",
-    "Covaxin": "Covaxin (Bharat Biotech)"
+    "Covaxin": "Covaxin (Bharat Biotech)",
+    "Covid-19-recombinant": "Covid-19 (recombinant)",
+    "Sputnik-Light": "Sputnik Light",
+    "MVC-COV1901": "MVC COVID-19 vaccine",
+    "EU/1/21/1618": "Nuvaxovid",
+    "Sputnik-M": "Sputnik M",
+    "Covid-19-adsorvida-inativada": "Vacina adsorvida covid-19 (inativada)",
+    "Soberana-02": "Soberana 02",
+    "Soberana-Plus": "Soberana Plus",
+    "EU/1/21/1624": "COVID-19 Vaccine Valneva"
 }
 
 var vaccineManufacturerDisplayNames = {
@@ -68,7 +80,22 @@ var vaccineManufacturerDisplayNames = {
     "Gamaleya-Research-Institute": "Gamaleya Research Institute",
     "Vector-Institute": "Vector Institute",
     "Sinovac-Biotech": "Sinovac Biotech",
-    "Bharat-Biotech": "Bharat Biotech"
+    "Bharat-Biotech": "Bharat Biotech",
+    "ORG-100001981": "Serum Institute Of India Private Limited",
+    "ORG-100007893": "R-Pharm CJSC",
+    "Chumakov-Federal-Scientific-Center": "Chumakov Federal Scientific Center for Research and Development of Immune-and-Biological Products",
+    "ORG-100023050": "Gulf Pharmaceutical Industries",
+    "CIGB": "Center for Genetic Engineering and Biotechnology (CIGB)",
+    "Sinopharm-WIBP": "Sinopharm - Wuhan Institute of Biological Products",
+    "ORG-100033914": "Medigen Vaccine Biologics Corporation",
+    "ORG-100000788": "Sanofi Pasteur",
+    "ORG-100036422": "Valneva France",
+    "Instituto-Butantan": "Instituto Butantan",
+    "NVSI": "National Vaccine and Serum Institute, China",
+    "Yisheng-Biopharma": "Yisheng Biopharma",
+    "ORG-100026614": "Sinocelltech Ltd.",
+    "ORG-100008549": "Medicago Inc.",
+    "Finlay-Institute": "Finlay Institute of Vaccines"
 }
 
 // Result of the test
