@@ -65,7 +65,7 @@ Item {
 
     onIsVCardChanged: {
         if (isVCard && !vcard) {
-            var component = Qt.createComponent("../components/VCard.qml");
+            var component = Qt.createComponent("../components/VCard.qml")
             if (component.status === Component.Ready) {
                 vcard = component.createObject(codeItem, {
                     content: meCardConverter.vcard ? meCardConverter.vcard : normalizedText
@@ -305,18 +305,150 @@ Item {
                 }
             }
 
-            Image {
-                id: image
+            SilicaFlickable {
+                id: imageFlickable
 
-                readonly property bool isPortrait: sourceSize.height > sourceSize.width
-                readonly property bool rotate: image.isPortrait !== codeItem.isPortrait
-
+                visible: image.status === Image.Ready
+                width: image.implicitWidth
+                height: image.implicitHeight
+                contentWidth: imagePinchArea.width
+                contentHeight: imagePinchArea.height
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: (hasImage && recordId.length && AppSettings.saveImages) ?
-                    ("image://scanner/saved/" + (codeItem.isPortrait ? "portrait/" : "landscape/") + recordId) : ""
-                visible: status === Image.Ready
-                asynchronous: true
-                cache: false
+                flickableDirection: Flickable.HorizontalAndVerticalFlick
+                quickScrollEnabled: false
+                clip: true
+
+                PinchArea {
+                    id: imagePinchArea
+
+                    width:  Math.max(image.width * image.scale, imageFlickable.width)
+                    height: Math.max(image.height * image.scale, imageFlickable.height)
+
+                    property int centerX
+                    property int centerY
+                    property real prevScale: 1
+
+                    pinch {
+                        target: image
+                        minimumScale: 1
+                        maximumScale: 4
+                    }
+
+                    onPinchStarted: prevScale = image.scale
+                    onPinchUpdated: {
+                        centerX = pinch.center.x
+                        centerY = pinch.center.y
+                        imageFlickable.returnToBounds()
+                    }
+
+                    Connections {
+                        target: imagePinchArea.pinch.active ? image : null
+                        onScaleChanged: {
+                            var newWidth = image.width * image.scale
+                            var newHeight = image.height * image.scale
+                            var oldWidth = image.width * imagePinchArea.prevScale
+                            var oldHeight = image.height * imagePinchArea.prevScale
+                            var widthDifference = newWidth - oldWidth
+                            var heightDifference = newHeight - oldHeight
+
+                            if (oldWidth > imageFlickable.width || newWidth > imageFlickable.width) {
+                                imageFlickable.contentX += imagePinchArea.centerX / newWidth * widthDifference
+                            }
+                            if (oldHeight > imageFlickable.height || newHeight > imageFlickable.height) {
+                                imageFlickable.contentY += imagePinchArea.centerY / newHeight * heightDifference
+                            }
+                            imagePinchArea.prevScale = image.scale
+                        }
+                    }
+
+                    Image {
+                        id: image
+
+                        anchors.centerIn: parent
+                        source: (hasImage && recordId.length && AppSettings.saveImages) ?
+                            ("image://scanner/saved/" + (codeItem.isPortrait ? "portrait/" : "landscape/") + recordId) : ""
+                        fillMode: Image.PreserveAspectFit
+                        asynchronous: true
+                        cache: false
+                    }
+
+
+                    // Reset the zoom on double click with an animation
+                    MouseArea {
+                        anchors.fill: parent
+
+                        enabled: image.scale !== 1
+                        onClicked: {
+                            // doubleClick never arrives on Sailfish OS 2.x
+                            if (doubleClickTimer.running) {
+                                doubleClickTimer.stop()
+                                reset()
+                            } else {
+                                doubleClickTimer.start()
+                            }
+                        }
+
+                        onDoubleClicked: {
+                            doubleClickTimer.stop()
+                            reset()
+                        }
+
+                        Timer {
+                            id: doubleClickTimer
+
+                            interval: 200
+                        }
+
+                        function reset() {
+                            if (!resetAnimation.running) {
+                                imageScaleAnimation.from = image.scale
+                                flickableContentXAnimation.from = imageFlickable.contentX
+                                flickableContentYAnimation.from = imageFlickable.contentY
+                                resetAnimation.start()
+                            }
+                        }
+
+                        ParallelAnimation {
+                            id: resetAnimation
+
+                            alwaysRunToEnd: true
+
+                            readonly property int _duration: 200
+
+                            NumberAnimation {
+                                id: imageScaleAnimation
+
+                                target: image
+                                property: "scale"
+                                easing.type: Easing.InOutQuad
+                                duration: resetAnimation._duration
+                                to: 1
+                            }
+
+                            NumberAnimation {
+                                id: flickableContentXAnimation
+
+                                target: imageFlickable
+                                property: "contentX"
+                                easing.type: Easing.InOutQuad
+                                duration: resetAnimation._duration
+                                to: 0
+                            }
+
+                            NumberAnimation {
+                                id: flickableContentYAnimation
+
+                                target: imageFlickable
+                                property: "contentY"
+                                easing.type: Easing.InOutQuad
+                                duration: resetAnimation._duration
+                                to: 0
+                            }
+                        }
+                    }
+                }
+
+                ScrollDecorator { flickable: imageFlickable }
             }
 
             Item {
