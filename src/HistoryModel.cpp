@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
- Copyright (c) 2018-2020 Slava Monich
+ Copyright (c) 2018-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ THE SOFTWARE.
 #include <QSqlRecord>
 #include <QSqlTableModel>
 
-#define DEFAULT_MAX_COUNT (100)
+#include <limits.h>
 
 // ==========================================================================
 // HistoryModel::CleanupTask
@@ -230,7 +230,7 @@ HistoryModel::Private::Private(HistoryModel* aPublicModel) :
     iThreadPool(new QThreadPool(this)),
     iHaveImages(Maybe),
     iSaveImages(true),
-    iMaxCount(DEFAULT_MAX_COUNT),
+    iMaxCount(INT_MAX),
     iLastKnownCount(0)
 {
     iThreadPool->setMaxThreadCount(1);
@@ -420,10 +420,6 @@ HistoryModel::HistoryModel(QObject* aParent) :
 {
     setSourceModel(iPrivate);
     setDynamicSortFilter(true);
-    if (iPrivate->removeExtraRows()) {
-        invalidateFilter();
-        commitChanges();
-    }
     iPrivate->iLastKnownCount = rowCount();
     connect(this, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(checkCount()));
     connect(this, SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(checkCount()));
