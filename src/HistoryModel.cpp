@@ -45,10 +45,13 @@ THE SOFTWARE.
 // Removes image files not associated with any rows in the database
 // ==========================================================================
 
-class HistoryModel::CleanupTask : public HarbourTask {
+class HistoryModel::CleanupTask :
+    public HarbourTask
+{
     Q_OBJECT
+
 public:
-    CleanupTask(QThreadPool* aPool, QStringList aList);
+    CleanupTask(QThreadPool*, QStringList);
     void performTask() Q_DECL_OVERRIDE;
 
 public:
@@ -56,12 +59,17 @@ public:
     bool iHaveImages;
 };
 
-HistoryModel::CleanupTask::CleanupTask(QThreadPool* aPool, QStringList aList) :
-    HarbourTask(aPool), iList(aList), iHaveImages(false)
+HistoryModel::CleanupTask::CleanupTask(
+    QThreadPool* aPool,
+    QStringList aList) :
+    HarbourTask(aPool),
+    iList(aList),
+    iHaveImages(false)
 {
 }
 
-void HistoryModel::CleanupTask::performTask()
+void
+HistoryModel::CleanupTask::performTask()
 {
     QDirIterator it(Database::imageDir().path(), QDir::Files);
     while (it.hasNext()) {
@@ -90,31 +98,40 @@ void HistoryModel::CleanupTask::performTask()
 // HistoryModel::SaveTask
 // ==========================================================================
 
-class HistoryModel::SaveTask : public HarbourTask {
+class HistoryModel::SaveTask :
+    public HarbourTask
+{
     Q_OBJECT
+
 public:
-    SaveTask(QThreadPool* aPool, QImage aImage, QString aId);
+    SaveTask(QThreadPool*, QImage, QString);
     void performTask() Q_DECL_OVERRIDE;
 
 public:
-    QImage iImage;
-    QString iId;
-    QString iName;
+    const QImage iImage;
+    const QString iId;
+    const QString iName;
 };
 
-HistoryModel::SaveTask::SaveTask(QThreadPool* aPool, QImage aImage, QString aId) :
-    HarbourTask(aPool), iImage(aImage), iId(aId),
+HistoryModel::SaveTask::SaveTask(
+    QThreadPool* aPool,
+    QImage aImage,
+    QString aId) :
+    HarbourTask(aPool),
+    iImage(aImage),
+    iId(aId),
     iName(aId + HistoryImageProvider::IMAGE_EXT)
 {
 }
 
-void HistoryModel::SaveTask::performTask()
+void
+HistoryModel::SaveTask::performTask()
 {
     QDir dir(Database::imageDir());
     if (!dir.exists()) {
         dir.mkpath(".");
     }
-    const QString path(dir.path() + QDir::separator() + iName);
+    const QString path(dir.filePath(iName));
     HDEBUG(qPrintable(path));
     if (!iImage.save(path)) {
         HWARN("Fails to save" << qPrintable(path));
@@ -126,12 +143,15 @@ void HistoryModel::SaveTask::performTask()
 // HistoryModel::PurgeTask
 // ==========================================================================
 
-class HistoryModel::PurgeTask : public QRunnable {
+class HistoryModel::PurgeTask :
+    public QRunnable
+{
 public:
     void run() Q_DECL_OVERRIDE;
 };
 
-void HistoryModel::PurgeTask::run()
+void
+HistoryModel::PurgeTask::run()
 {
     QDirIterator it(Database::imageDir().path(), QDir::Files);
     while (it.hasNext()) {
@@ -158,8 +178,11 @@ void HistoryModel::PurgeTask::run()
 // HistoryModel::Private
 // ==========================================================================
 
-class HistoryModel::Private : public QSqlTableModel {
+class HistoryModel::Private :
+    public QSqlTableModel
+{
     Q_OBJECT
+
 public:
     enum {
         FIELD_ID,
@@ -168,6 +191,7 @@ public:
         FIELD_FORMAT,
         NUM_FIELDS
     };
+
     // Order of first NUM_FIELDS roles must match the order of fields:
     enum {
         FirstRole = Qt::UserRole,
@@ -178,6 +202,7 @@ public:
         HasImageRole,
         LastRole = HasImageRole
     };
+
     static const int DB_SORT_COLUMN = FIELD_TIMESTAMP;
     static const QString DB_TABLE;
     static const QString DB_FIELD[NUM_FIELDS];
@@ -190,18 +215,19 @@ public:
 
     enum TriState { No, Maybe, Yes };
 
-    Private(HistoryModel* aModel);
+    Private(HistoryModel*);
     ~Private();
 
     HistoryModel* historyModel() const;
-    QVariant valueAt(int aRow, int aField) const;
-    bool imageFileExistsAt(int aRow) const;
+    QVariant valueAt(int, int) const;
+    bool isEmpty() const;
+    bool imageFileExistsAt(int) const;
     bool removeExtraRows(int aReserve = 0);
     void commitChanges();
     void cleanupFiles();
 
     QHash<int,QByteArray> roleNames() const Q_DECL_OVERRIDE;
-    QVariant data(const QModelIndex& aIndex, int aRole) const Q_DECL_OVERRIDE;
+    QVariant data(const QModelIndex&, int) const Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void onSaveDone();
@@ -210,9 +236,11 @@ private Q_SLOTS:
 public:
     QThreadPool* iThreadPool;
     TriState iHaveImages;
+    QString iFilterString;
     bool iSaveImages;
     int iMaxCount;
     int iLastKnownCount;
+    bool iLastKnownEmpty;
     int iFieldIndex[NUM_FIELDS];
 };
 
@@ -225,7 +253,8 @@ const QString HistoryModel::Private::DB_FIELD[] = {
 };
 const QString HistoryModel::Private::HAS_IMAGE("hasImage");
 
-HistoryModel::Private::Private(HistoryModel* aPublicModel) :
+HistoryModel::Private::Private(
+    HistoryModel* aPublicModel) :
     QSqlTableModel(aPublicModel, Database::database()),
     iThreadPool(new QThreadPool(this)),
     iHaveImages(Maybe),
@@ -255,6 +284,7 @@ HistoryModel::Private::Private(HistoryModel* aPublicModel) :
         sort(sortColumn, Qt::DescendingOrder);
     }
     setEditStrategy(QSqlTableModel::OnManualSubmit);
+    iLastKnownEmpty = !rowCount(); // Nothing is dirty at startup
     // At startup we assume that images are being saved
     cleanupFiles();
 }
@@ -268,12 +298,14 @@ HistoryModel::Private::~Private()
     iThreadPool->waitForDone();
 }
 
-HistoryModel* HistoryModel::Private::historyModel() const
+HistoryModel*
+HistoryModel::Private::historyModel() const
 {
     return qobject_cast<HistoryModel*>(QObject::parent());
 }
 
-QHash<int,QByteArray> HistoryModel::Private::roleNames() const
+QHash<int,QByteArray>
+HistoryModel::Private::roleNames() const
 {
     QHash<int,QByteArray> roles;
     for (int i = 0; i < NUM_FIELDS; i++) {
@@ -283,7 +315,21 @@ QHash<int,QByteArray> HistoryModel::Private::roleNames() const
     return roles;
 }
 
-bool HistoryModel::Private::imageFileExistsAt(int aRow) const
+bool
+HistoryModel::Private::isEmpty() const
+{
+    const int n = rowCount();
+    for (int i = 0; i < n; i++) {
+        if (!isDirty(index(i, 0))) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool
+HistoryModel::Private::imageFileExistsAt(
+    int aRow) const
 {
     bool ok;
     int id = valueAt(aRow, FIELD_ID).toInt(&ok);
@@ -298,7 +344,10 @@ bool HistoryModel::Private::imageFileExistsAt(int aRow) const
     return false;
 }
 
-QVariant HistoryModel::Private::data(const QModelIndex& aIndex, int aRole) const
+QVariant
+HistoryModel::Private::data(
+    const QModelIndex& aIndex,
+    int aRole) const
 {
     if (aRole >= FirstRole) {
         const int i = aRole - FirstRole;
@@ -317,7 +366,10 @@ QVariant HistoryModel::Private::data(const QModelIndex& aIndex, int aRole) const
     }
 }
 
-QVariant HistoryModel::Private::valueAt(int aRow, int aField) const
+QVariant
+HistoryModel::Private::valueAt(
+    int aRow,
+    int aField) const
 {
     if (aField >= 0 && aField < NUM_FIELDS) {
         const int column = iFieldIndex[aField];
@@ -328,7 +380,9 @@ QVariant HistoryModel::Private::valueAt(int aRow, int aField) const
     return QVariant();
 }
 
-bool HistoryModel::Private::removeExtraRows(int aReserve)
+bool
+HistoryModel::Private::removeExtraRows(
+    int aReserve)
 {
     if (iMaxCount > 0) {
         HistoryModel* filter = historyModel();
@@ -347,7 +401,8 @@ bool HistoryModel::Private::removeExtraRows(int aReserve)
     return false;
 }
 
-void HistoryModel::Private::commitChanges()
+void
+HistoryModel::Private::commitChanges()
 {
     if (isDirty()) {
         QSqlDatabase db = database();
@@ -362,7 +417,8 @@ void HistoryModel::Private::commitChanges()
     }
 }
 
-void HistoryModel::Private::cleanupFiles()
+void
+HistoryModel::Private::cleanupFiles()
 {
     QSqlQuery query(database());
     query.prepare("SELECT " HISTORY_FIELD_ID " FROM " HISTORY_TABLE);
@@ -380,7 +436,8 @@ void HistoryModel::Private::cleanupFiles()
     }
 }
 
-void HistoryModel::Private::onSaveDone()
+void
+HistoryModel::Private::onSaveDone()
 {
     SaveTask* task = qobject_cast<SaveTask*>(sender());
     HASSERT(task);
@@ -392,7 +449,8 @@ void HistoryModel::Private::onSaveDone()
     }
 }
 
-void HistoryModel::Private::onCleanupDone()
+void
+HistoryModel::Private::onCleanupDone()
 {
     CleanupTask* task = qobject_cast<CleanupTask*>(sender());
     HASSERT(task);
@@ -414,45 +472,78 @@ void HistoryModel::Private::onCleanupDone()
 // HistoryModel
 // ==========================================================================
 
-HistoryModel::HistoryModel(QObject* aParent) :
+HistoryModel::HistoryModel(
+    QObject* aParent) :
     QSortFilterProxyModel(aParent),
     iPrivate(new Private(this))
 {
-    setSourceModel(iPrivate);
     setDynamicSortFilter(true);
+    setFilterRole(Private::ValueRole);
+    setFilterCaseSensitivity(Qt::CaseInsensitive);
+    setSourceModel(iPrivate);
     iPrivate->iLastKnownCount = rowCount();
-    connect(this, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(checkCount()));
-    connect(this, SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(checkCount()));
-    connect(this, SIGNAL(modelReset()), SLOT(checkCount()));
+    connect(iPrivate, SIGNAL(rowsInserted(QModelIndex,int,int)), SIGNAL(totalCountChanged()));
+    connect(iPrivate, SIGNAL(rowsRemoved(QModelIndex,int,int)), SIGNAL(totalCountChanged()));
+    connect(iPrivate, SIGNAL(modelReset()), SIGNAL(totalCountChanged()));
+    connect(this, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(updateCount()));
+    connect(this, SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(updateCount()));
+    connect(this, SIGNAL(modelReset()), SLOT(updateCount()));
 }
 
 // Callback for qmlRegisterSingletonType<HistoryModel>
-QObject* HistoryModel::createSingleton(QQmlEngine* aEngine, QJSEngine*)
+QObject*
+HistoryModel::createSingleton(
+    QQmlEngine*,
+    QJSEngine*)
 {
-    return new HistoryModel(aEngine);
+    return new HistoryModel();
 }
 
-bool HistoryModel::filterAcceptsRow(int aRow, const QModelIndex& aParent) const
+bool
+HistoryModel::filterAcceptsRow(
+    int aSourceRow,
+    const QModelIndex& aParent) const
 {
-    return !iPrivate->isDirty(iPrivate->index(aRow, 0, aParent));
+    return QSortFilterProxyModel::filterAcceptsRow(aSourceRow, aParent) &&
+        !iPrivate->isDirty(iPrivate->index(aSourceRow, 0, aParent));
 }
 
-void HistoryModel::checkCount()
+void
+HistoryModel::updateCount()
 {
     const int count = rowCount();
+    const bool empty = iPrivate->isEmpty();
+    const bool emptyChanged = empty != iPrivate->iLastKnownEmpty;
+
+    if (emptyChanged) {
+        HDEBUG("empty" << iPrivate->iLastKnownEmpty << "=>" << empty);
+        iPrivate->iLastKnownEmpty = empty;
+    }
     if (iPrivate->iLastKnownCount != count) {
         HDEBUG(iPrivate->iLastKnownCount << "=>" << count);
         iPrivate->iLastKnownCount = count;
         Q_EMIT countChanged();
     }
+    if (emptyChanged) {
+        Q_EMIT isEmptyChanged();
+    }
 }
 
-int HistoryModel::maxCount() const
+int
+HistoryModel::totalCount() const
+{
+    return iPrivate->rowCount();
+}
+
+int
+HistoryModel::maxCount() const
 {
     return iPrivate->iMaxCount;
 }
 
-void HistoryModel::setMaxCount(int aValue)
+void
+HistoryModel::setMaxCount(
+    int aValue)
 {
     if (iPrivate->iMaxCount != aValue) {
         iPrivate->iMaxCount = aValue;
@@ -466,17 +557,27 @@ void HistoryModel::setMaxCount(int aValue)
     }
 }
 
-bool HistoryModel::hasImages() const
+bool
+HistoryModel::isEmpty() const
+{
+    return iPrivate->iLastKnownEmpty;
+}
+
+bool
+HistoryModel::hasImages() const
 {
     return iPrivate->iHaveImages != Private::No;
 }
 
-bool HistoryModel::saveImages() const
+bool
+HistoryModel::saveImages() const
 {
     return iPrivate->iSaveImages;
 }
 
-void HistoryModel::setSaveImages(bool aValue)
+void
+HistoryModel::setSaveImages(
+    bool aValue)
 {
     if (iPrivate->iSaveImages != aValue) {
         HDEBUG(aValue);
@@ -524,33 +625,38 @@ void HistoryModel::setSaveImages(bool aValue)
     }
 }
 
-QVariantMap HistoryModel::get(int aRow)
+QString
+HistoryModel::filterString() const
 {
-    QString id;
-    QVariantMap map;
-    QModelIndex modelIndex = index(aRow, 0);
-    for (int i = 0; i < Private::NUM_FIELDS; i++) {
-        QVariant value = data(modelIndex, Private::FirstRole + i);
-        if (value.isValid()) {
-            map.insert(Private::DB_FIELD[i], value);
-            if (i == Private::FIELD_ID) {
-                id = value.toString();
-            }
-        }
-    }
-    map.insert(Private::HAS_IMAGE, data(modelIndex, Private::HasImageRole));
-    HDEBUG(aRow << map);
-    return map;
+    return iPrivate->iFilterString;
 }
 
-QString HistoryModel::getValue(int aRow)
+void
+HistoryModel::setFilterString(
+    QString aPattern)
+{
+    if (iPrivate->iFilterString != aPattern) {
+        iPrivate->iFilterString = aPattern;
+        HDEBUG(aPattern);
+        setFilterFixedString(aPattern);
+        Q_EMIT filterStringChanged();
+    }
+}
+
+QString
+HistoryModel::getValue(
+    int aRow)
 {
     return data(index(aRow, Private::FIELD_VALUE)).toString();
 }
 
-QString HistoryModel::insert(QImage aImage, QString aText, QString aFormat)
+int
+HistoryModel::insert(
+    QImage aImage,
+    QString aText,
+    QString aFormat)
 {
-    QString id;
+    int id = 0;
     QString timestamp(QDateTime::currentDateTime().toString(Qt::ISODate));
     HDEBUG(aText << aFormat << timestamp << aImage);
     QSqlRecord record(iPrivate->database().record(Private::DB_TABLE));
@@ -566,15 +672,16 @@ QString HistoryModel::insert(QImage aImage, QString aText, QString aFormat)
         invalidateFilter();
         // Just commit the changes, no need for cleanup:
         iPrivate->commitChanges();
-        id = iPrivate->valueAt(row, Private::FIELD_ID).toString();
+        id = iPrivate->valueAt(row, Private::FIELD_ID).toInt();
         HDEBUG(id << iPrivate->record(row));
-        if (iPrivate->iSaveImages) {
+        if (id && iPrivate->iSaveImages) {
             // Save the image on a separate thread. While we are saving
             // it, the image will remain cached by HistoryImageProvider.
             // It will be removed from the cache by Private::onSaveDone()
             HistoryImageProvider* ip = HistoryImageProvider::instance();
-            if (ip && ip->cacheImage(id, aImage)) {
-                (new SaveTask(iPrivate->iThreadPool, aImage, id))->
+            const QString idString(QString::number(id));
+            if (ip && ip->cacheImage(idString, aImage)) {
+                (new SaveTask(iPrivate->iThreadPool, aImage, idString))->
                     submit(iPrivate, SLOT(onSaveDone()));
             }
             // Assume that we do have images now
@@ -588,45 +695,69 @@ QString HistoryModel::insert(QImage aImage, QString aText, QString aFormat)
     return id;
 }
 
-QString HistoryModel::concatenateCodes(QList<int> aRows, QString aSeparator)
+void
+HistoryModel::remove(
+    int aRecordId)
 {
-    QString text;
-    const int n = aRows.count();
-    for (int i = 0; i < n; i++) {
-        const QString value(getValue(aRows.at(i)));
-        if (!value.isEmpty()) {
-            if (!text.isEmpty()) text += aSeparator;
-            text += value;
+    const int count = rowCount();
+    for (int row = 0; row < count; row++) {
+        bool ok;
+        const int id = data(index(row, 0), Private::IdRole).toInt(&ok);
+        if (ok && id == aRecordId) {
+            HDEBUG("removing record" << aRecordId << "at" << row);
+            removeRows(row, 1);
+            invalidateFilter();
+            return;
         }
     }
-    HDEBUG(text);
-    return text;
+    HDEBUG("record" << aRecordId << "not found");
 }
 
-void HistoryModel::remove(int aRow)
+void
+HistoryModel::removeAt(
+    int aRow)
 {
     HDEBUG(aRow << iPrivate->valueAt(aRow, Private::FIELD_ID).toString());
     removeRows(aRow, 1);
     invalidateFilter();
 }
 
-void HistoryModel::removeAll()
+void
+HistoryModel::removeAll()
 {
     HDEBUG("clearing history");
-    const int n = rowCount();
-    if (n > 0) {
-        removeRows(0, n);
+    if (!iPrivate->isEmpty()) {
+        iPrivate->removeRows(0, iPrivate->rowCount());
         invalidateFilter();
     }
 }
 
-void HistoryModel::removeMany(QList<int> aRows)
+void
+HistoryModel::removeMany(
+    QVariantList aIds)
 {
-    qSort(aRows);
-    HDEBUG(aRows);
+    QList<int> rows;
+    QVariantList ids(aIds);
+
+    // Collect the list of rows
+    rows.reserve(ids.count());
+    const int count = rowCount();
+    for (int row = 0; row < count && !ids.isEmpty(); row++) {
+        const QVariant var(data(index(row, 0), Private::IdRole));
+        if (ids.removeOne(var)) {
+            rows.append(row);
+        }
+    }
+
+    // Sort the rows
+    qSort(rows);
+    HDEBUG("ids" << aIds);
+    HDEBUG("rows" << rows);
+
+    // Remove the rows starting from the end of the list
     int start = -1, end = -1, removed = 0;
-    for (int i = aRows.count() - 1; i >= 0; i--) {
-        const int row = aRows.at(i);
+    for (int i = rows.count() - 1; i >= 0; i--) {
+        const int row = rows.at(i);
         if (start < 0) {
             start = end = row;
         } else if (row == start - 1) {
@@ -650,7 +781,8 @@ void HistoryModel::removeMany(QList<int> aRows)
     }
 }
 
-void HistoryModel::commitChanges()
+void
+HistoryModel::commitChanges()
 {
     iPrivate->commitChanges();
     if (iPrivate->iSaveImages) {
@@ -658,7 +790,9 @@ void HistoryModel::commitChanges()
     }
 }
 
-QString HistoryModel::formatTimestamp(QString aTimestamp)
+QString
+HistoryModel::formatTimestamp(
+    QString aTimestamp)
 {
     static const QString format("dd.MM.yyyy  hh:mm:ss");
     return QDateTime::fromString(aTimestamp, Qt::ISODate).toString(format);

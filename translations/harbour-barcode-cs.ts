@@ -247,9 +247,14 @@
         <translation type="unfinished">Vybrané kódy zkopírovány do schránky</translation>
     </message>
     <message id="history-empty">
-        <source>History is empty</source>
+        <source>The history is empty</source>
         <extracomment>Placeholder text</extracomment>
         <translation>Historie je prázdná</translation>
+    </message>
+    <message id="history-nothing_found">
+        <source>The search text is not found</source>
+        <extracomment>Placeholder text</extracomment>
+        <translation type="unfinished">Hledaný text nebyl nalezen</translation>
     </message>
     <message id="button-eu_covid_cert">
         <source>COVID Certificate</source>

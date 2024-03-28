@@ -243,9 +243,14 @@
         <translation>所选条码已复制到剪贴板</translation>
     </message>
     <message id="history-empty">
-        <source>History is empty</source>
+        <source>The history is empty</source>
         <extracomment>Placeholder text</extracomment>
         <translation>历史记录为空</translation>
+    </message>
+    <message id="history-nothing_found">
+        <source>The search text is not found</source>
+        <extracomment>Placeholder text</extracomment>
+        <translation type="unfinished">找不到搜索文本</translation>
     </message>
     <message id="button-eu_covid_cert">
         <source>COVID Certificate</source>

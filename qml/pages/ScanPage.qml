@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2022 Slava Monich
+Copyright (c) 2018-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -47,6 +47,7 @@ Page {
     property Item hint
 
     property bool showMarker
+    readonly property real screenHeight: isPortrait ? Screen.height : Screen.width
     readonly property bool mustShowViewFinder: (thisPage.status === PageStatus.Active) && Qt.application.active && !scanningGalleryImage && !showMarker
     readonly property bool hintActive: hint && hint.visible
     readonly property bool landscapeLayout: width > height
@@ -350,7 +351,8 @@ Page {
     SilicaFlickable {
         id: scanPageFlickable
 
-        anchors.fill: parent
+        width: parent.width
+        height: screenHeight
         interactive: !(invertButton.visible && invertButton.down)
 
         PullDownMenu {
@@ -948,7 +950,7 @@ Page {
                     //% "Deleting"
                     remorse.execute(resultItem, qsTrId("history-menu-delete_remorse"),
                         function() {
-                            HistoryModel.remove(0)
+                            HistoryModel.remove(clickableResult.recordId)
                             if (thisPage.status === PageStatus.Active) {
                                 HistoryModel.commitChanges()
                             }

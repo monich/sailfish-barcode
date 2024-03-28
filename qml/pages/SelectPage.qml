@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2019-2020 Slava Monich
+Copyright (c) 2019-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -85,8 +85,10 @@ Page {
                     rightMargin: Theme.paddingLarge
                     verticalCenter: header.extraContent.verticalCenter
                 }
+                // Show the badge only if nothing has been filtered out
+                visible: model.count === HistoryModel.totalCount
                 maxWidth: header.extraContent.width - anchors.rightMargin
-                text: model.count ? model.count : ""
+                text: model.count
             }
         }
 

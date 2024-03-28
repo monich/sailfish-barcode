@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018-2019 Slava Monich
+Copyright (c) 2018-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -35,49 +35,62 @@ THE SOFTWARE.
 #define HISTORY_FIELD_TIMESTAMP "timestamp"
 #define HISTORY_FIELD_FORMAT    "format"
 
-class HistoryModel: public QSortFilterProxyModel {
+class HistoryModel :
+    public QSortFilterProxyModel
+{
     Q_OBJECT
     Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
+    Q_PROPERTY(int totalCount READ totalCount NOTIFY totalCountChanged)
     Q_PROPERTY(int maxCount READ maxCount WRITE setMaxCount NOTIFY maxCountChanged)
     Q_PROPERTY(bool saveImages READ saveImages WRITE setSaveImages NOTIFY saveImagesChanged)
     Q_PROPERTY(bool hasImages READ hasImages NOTIFY hasImagesChanged)
+    Q_PROPERTY(bool isEmpty READ isEmpty NOTIFY isEmptyChanged)
+    Q_PROPERTY(QString filterString READ filterString WRITE setFilterString NOTIFY filterStringChanged)
 
 public:
-    HistoryModel(QObject* aParent = NULL);
+    HistoryModel(QObject* aParent = Q_NULLPTR);
+
+    int totalCount() const;
 
     int maxCount() const;
     void setMaxCount(int aValue);
 
+    bool isEmpty() const;
     bool hasImages() const;
     bool saveImages() const;
     void setSaveImages(bool aValue);
 
-    Q_INVOKABLE QVariantMap get(int row);
-    Q_INVOKABLE QString getValue(int row);
-    Q_INVOKABLE QString insert(QImage image, QString value, QString format);
-    Q_INVOKABLE QString concatenateCodes(QList<int> rows, QString separator);
-    Q_INVOKABLE void remove(int row);
+    QString filterString() const;
+    void setFilterString(QString);
+
+    Q_INVOKABLE QString getValue(int);
+    Q_INVOKABLE int insert(QImage, QString, QString);
+    Q_INVOKABLE void remove(int);
+    Q_INVOKABLE void removeAt(int);
     Q_INVOKABLE void removeAll();
-    Q_INVOKABLE void removeMany(QList<int> rows);
+    Q_INVOKABLE void removeMany(QVariantList);
     Q_INVOKABLE void commitChanges();
 
     // Utilities
-    Q_INVOKABLE static QString formatTimestamp(QString timestamp);
+    Q_INVOKABLE static QString formatTimestamp(QString);
 
     // Callback for qmlRegisterSingletonType<HistoryModel>
-    static QObject* createSingleton(QQmlEngine* aEngine, QJSEngine* aScript);
+    static QObject* createSingleton(QQmlEngine*, QJSEngine*);
 
 protected:
-    bool filterAcceptsRow(int aRow, const QModelIndex& aParent) const;
+    bool filterAcceptsRow(int, const QModelIndex&) const;
 
 private Q_SLOTS:
-    void checkCount();
+    void updateCount();
 
 Q_SIGNALS:
     void countChanged();
+    void totalCountChanged();
     void maxCountChanged();
-    void hasImagesChanged();
     void saveImagesChanged();
+    void hasImagesChanged();
+    void isEmptyChanged();
+    void filterStringChanged();
 
 private:
     class Private;

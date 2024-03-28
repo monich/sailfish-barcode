@@ -245,9 +245,14 @@
         <translation>Ausgewählte Codes in die Zwischenablage kopiert</translation>
     </message>
     <message id="history-empty">
-        <source>History is empty</source>
+        <source>The history is empty</source>
         <extracomment>Placeholder text</extracomment>
         <translation>Verlauf ist leer</translation>
+    </message>
+    <message id="history-nothing_found">
+        <source>The search text is not found</source>
+        <extracomment>Placeholder text</extracomment>
+        <translation type="unfinished">Der Suchtext nicht gefunden</translation>
     </message>
     <message id="button-eu_covid_cert">
         <source>COVID Certificate</source>

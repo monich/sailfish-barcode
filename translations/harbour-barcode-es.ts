@@ -245,9 +245,14 @@
         <translation type="unfinished">Códigos seleccionados copiados al portapapeles</translation>
     </message>
     <message id="history-empty">
-        <source>History is empty</source>
+        <source>The history is empty</source>
         <extracomment>Placeholder text</extracomment>
         <translation>El historial está vacío</translation>
+    </message>
+    <message id="history-nothing_found">
+        <source>The search text is not found</source>
+        <extracomment>Placeholder text</extracomment>
+        <translation type="unfinished">El texto buscado no se encuentra</translation>
     </message>
     <message id="button-eu_covid_cert">
         <source>COVID Certificate</source>

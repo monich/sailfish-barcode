@@ -233,9 +233,14 @@
         <translation type="unfinished">所選代碼已復製到剪貼板</translation>
     </message>
     <message id="history-empty">
-        <source>History is empty</source>
+        <source>The history is empty</source>
         <extracomment>Placeholder text</extracomment>
         <translation>無歷史紀錄</translation>
+    </message>
+    <message id="history-nothing_found">
+        <source>The search text is not found</source>
+        <extracomment>Placeholder text</extracomment>
+        <translation type="unfinished">找不到搜尋文本</translation>
     </message>
     <message id="settings-scan-section">
         <source>Scan</source>
