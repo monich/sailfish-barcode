@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2020-2022 Slava Monich
+Copyright (c) 2020-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,27 +37,25 @@ SilicaFlickable {
     property alias source: image.source
     property bool invert
 
-    readonly property real minZoomX: (implicitWidth > width) ? width/implicitWidth : 0.1
-    readonly property real minZoomY: (implicitHeight > height) ? height/implicitHeight : 0.1
-    readonly property real minZoom: Math.min(minZoomX, minZoomY)
-    readonly property real maxZoomX: (implicitWidth && MaxTextureSize) ? MaxTextureSize/implicitWidth : 10.0
-    readonly property real maxZoomY: (implicitHeight && MaxTextureSize) ? MaxTextureSize/implicitHeight : 10.0
-    readonly property real maxZoom: Math.min(maxZoomX, maxZoomY)
+    readonly property real minZoom: Math.min(1, width/implicitWidth, height/implicitHeight)
+    readonly property real maxZoom: MaxTextureSize ? Math.min(MaxTextureSize/implicitWidth, MaxTextureSize/implicitHeight) : 10.0
     readonly property real actualZoom: Math.min(Math.max(zoom, minZoom), maxZoom)
 
-    readonly property bool transpose: (orientation % 180) != 0
-    implicitWidth: transpose ? image.implicitHeight : image.implicitWidth
-    implicitHeight: transpose ? image.implicitWidth : image.implicitHeight
+    readonly property bool _transpose: (orientation % 180) != 0
+
+    property real _lastContentWidth
+    property real _lastContentHeight
+
+    signal requestZoom(var zoom)
 
     clip: true
     anchors.fill: parent
+    quickScrollEnabled: false
     flickableDirection: Flickable.HorizontalAndVerticalFlick
-    boundsBehavior: Flickable.StopAtBounds
-    contentWidth: container.width
-    contentHeight: container.height
-
-    property real lastContentWidth
-    property real lastContentHeight
+    contentWidth: imagePinchArea.width
+    contentHeight: imagePinchArea.height
+    implicitWidth: image.realWidth
+    implicitHeight: image.realHeight
 
     function centerContent() {
         contentX = originX + Math.ceil((contentHeight - height)/2.0)
@@ -65,25 +63,10 @@ SilicaFlickable {
     }
 
     function resetZoom() {
-        var w = transpose ? image.height : image.width
-        var h = transpose ? image.width : image.height
         var viewportWidth = isLandscape ? galleryImage.height : galleryImage.width
         var viewportHeight = isLandscape ? galleryImage.width : galleryImage.height
-        zoom = Math.min(viewportWidth/w, viewportHeight/h)
-    }
-
-    onContentWidthChanged: {
-        if (visible && !moving) {
-            contentX -= (lastContentWidth - contentWidth)/2
-        }
-        lastContentWidth = contentWidth
-    }
-
-    onContentHeightChanged: {
-        if (visible && !moving) {
-            contentY -= (lastContentHeight - contentHeight)/2
-        }
-        lastContentHeight = contentHeight
+        zoom = Math.max(imagePinchArea.pinch.minimumScale,
+            Math.min(imagePinchArea.pinch.maximumScale, viewportWidth/image.realWidth, viewportHeight/image.realHeight))
     }
 
     Behavior on angle {
@@ -93,31 +76,135 @@ SilicaFlickable {
         }
     }
 
-    Item {
-        id: container
+    PinchArea {
+        id: imagePinchArea
 
-        width: Math.max(galleryImage.width, (transpose ? image.ySize : image.xSize) * image.scale)
-        height: Math.max(galleryImage.height, (transpose ? image.xSize : image.ySize) * image.scale)
+        width:  Math.max(imageContainer.width * imageContainer.scale, galleryImage.width)
+        height: Math.max(imageContainer.height * imageContainer.scale, galleryImage.height)
 
-        Image {
-            id: image
+        property int _centerX
+        property int _centerY
+        property real _prevScale: 1
 
-            readonly property real r: galleryImage.angle * Math.PI / 180
-            readonly property real d: Math.sqrt(height * height + width * width)
-            readonly property real a: width ? Math.atan(height/width) : 0
-            readonly property real xSize: d * Math.max(Math.abs(Math.cos(r - a)), Math.abs(Math.cos(r + a)))
-            readonly property real ySize: d * Math.max(Math.abs(Math.sin(r - a)), Math.abs(Math.sin(r + a)))
+        pinch {
+            target: imageContainer
+            minimumScale: minZoom
+            maximumScale: maxZoom
+        }
 
-            layer.enabled: invert
-            layer.effect: HarbourInvertEffect {
-                source: image
+        onPinchStarted: _prevScale = imageContainer.scale
+        onPinchUpdated: {
+            _centerX = pinch.center.x
+            _centerY = pinch.center.y
+            galleryImage.returnToBounds()
+        }
+
+        Connections {
+            target: imagePinchArea.pinch.active ? imageContainer : null
+            onScaleChanged: {
+                var newWidth = imageContainer.width * imageContainer.scale
+                var newHeight = imageContainer.height * imageContainer.scale
+                var oldWidth = imageContainer.width * imagePinchArea._prevScale
+                var oldHeight = imageContainer.height * imagePinchArea._prevScale
+                var widthDifference = newWidth - oldWidth
+                var heightDifference = newHeight - oldHeight
+
+                if (oldWidth > galleryImage.width || newWidth > galleryImage.width) {
+                    galleryImage.contentX += imagePinchArea._centerX / newWidth * widthDifference
+                }
+                if (oldHeight > galleryImage.height || newHeight > galleryImage.height) {
+                    galleryImage.contentY += imagePinchArea._centerY / newHeight * heightDifference
+                }
+                imagePinchArea._prevScale = imageContainer.scale
             }
+        }
 
+        Item {
+            id: imageContainer
+
+            width: Math.max(galleryImage.width, _transpose ? image.ySize : image.xSize)
+            height: Math.max(galleryImage.height, _transpose ? image.xSize : image.ySize)
             anchors.centerIn: parent
             scale: actualZoom
-            smooth: true
-            rotation: (galleryImage.angle - galleryImage.orientation) % 360
-            transformOrigin: Item.Center
+
+            onScaleChanged: galleryImage.requestZoom(scale)
+
+            Image {
+                id: image
+
+                readonly property real realWidth: _transpose ? implicitHeight : implicitWidth
+                readonly property real realHeight: _transpose ? implicitWidth : implicitHeight
+                readonly property real r: galleryImage.angle * Math.PI / 180
+                readonly property real d: Math.sqrt(height * height + width * width)
+                readonly property real a: width ? Math.atan(height/width) : 0
+                readonly property real xSize: d * Math.max(Math.abs(Math.cos(r - a)), Math.abs(Math.cos(r + a)))
+                readonly property real ySize: d * Math.max(Math.abs(Math.sin(r - a)), Math.abs(Math.sin(r + a)))
+
+                layer.enabled: invert
+                layer.effect: HarbourInvertEffect {
+                    source: image
+                }
+
+                anchors.centerIn: parent
+                smooth: true
+                rotation: (galleryImage.angle - galleryImage.orientation) % 360
+                transformOrigin: Item.Center
+            }
+        }
+
+        // Reset the zoom on double click with an animation
+        HarbourDoubleClickableMouseArea {
+            anchors.fill: parent
+            enabled: imageContainer.scale !== 1
+
+            onDoubleClicked: resetScale()
+
+            function resetScale() {
+                if (!resetAnimation.running) {
+                    imageScaleAnimation.from = imageContainer.scale
+                    flickableContentXAnimation.from = galleryImage.contentX
+                    flickableContentYAnimation.from = galleryImage.contentY
+                    resetAnimation.start()
+                }
+            }
+
+            ParallelAnimation {
+                id: resetAnimation
+
+                alwaysRunToEnd: true
+
+                readonly property int _duration: 200
+
+                NumberAnimation {
+                    id: imageScaleAnimation
+
+                    target: imageContainer
+                    property: "scale"
+                    easing.type: Easing.InOutQuad
+                    duration: resetAnimation._duration
+                    to: minZoom
+                }
+
+                NumberAnimation {
+                    id: flickableContentXAnimation
+
+                    target: galleryImage
+                    property: "contentX"
+                    easing.type: Easing.InOutQuad
+                    duration: resetAnimation._duration
+                    to: 0
+                }
+
+                NumberAnimation {
+                    id: flickableContentYAnimation
+
+                    target: galleryImage
+                    property: "contentY"
+                    easing.type: Easing.InOutQuad
+                    duration: resetAnimation._duration
+                    to: 0
+                }
+            }
         }
     }
 }

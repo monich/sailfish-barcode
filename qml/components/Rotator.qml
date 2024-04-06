@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2020 Slava Monich
+Copyright (c) 2020-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -40,6 +40,7 @@ MouseArea {
     readonly property bool showPress: highlighted || pressTimer.running || drag.active
     readonly property real oneDegree: height / 360.
 
+    signal reset()
     signal rotateUp(var degrees)
     signal rotateDown(var degrees)
 
@@ -107,6 +108,11 @@ MouseArea {
         anchors.centerIn: parent
         rotation: inverted ? -90 : 90
         color: drag.active ? Theme.highlightColor : Theme.primaryColor
+
+        HarbourDoubleClickableMouseArea {
+            anchors.fill: parent
+            onDoubleClicked: rotator.reset()
+        }
     }
 
     HarbourHighlightIcon {

@@ -148,6 +148,7 @@ Page {
                 galleryImage.resetZoom()
                 galleryImage.centerContent()
                 zoomSlider.value = galleryImage.actualZoom
+                galleryImage.requestZoom.connect(function(zoom) { zoomSlider.value = zoom })
                 scanner.startScanning(0)
             }
         }
@@ -410,6 +411,7 @@ Page {
             Behavior on opacity { FadeAnimation { } }
             sourceComponent: Component {
                 Rotator {
+                    onReset: galleryImage.angle = 0
                     onRotateUp: galleryImage.angle += degrees
                     onRotateDown: galleryImage.angle -= degrees
                 }
@@ -427,6 +429,7 @@ Page {
             sourceComponent: Component {
                 Rotator {
                     inverted: true
+                    onReset: galleryImage.angle = 0
                     onRotateUp: galleryImage.angle -= degrees
                     onRotateDown: galleryImage.angle += degrees
                 }
@@ -605,7 +608,6 @@ Page {
                 minimumValue: scanningGalleryImage ? galleryImage.minZoom : 1.0
                 maximumValue: scanningGalleryImage ? galleryImage.maxZoom : AppSettings.maxDigitalZoom
                 value: 1
-                stepSize: scanningGalleryImage ? 0.1 : 1
                 //: Slider label
                 //% "Zoom"
                 label: qsTrId("scan-slider-zoom")
