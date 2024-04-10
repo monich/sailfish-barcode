@@ -281,36 +281,6 @@
         <extracomment>Button text</extracomment>
         <translation>Добавить в календарь</translation>
     </message>
-    <message id="button-fetch_receipt">
-        <source>Fetch receipt</source>
-        <extracomment>Button text</extracomment>
-        <translation>Загрузить чек</translation>
-    </message>
-    <message id="button-fetching_receipt">
-        <source>Fetching...</source>
-        <extracomment>Button text</extracomment>
-        <translation>Загрузка…</translation>
-    </message>
-    <message id="button-cancel_fetching">
-        <source>Cancel</source>
-        <extracomment>Button label (cancel network operation)</extracomment>
-        <translation>Стоп</translation>
-    </message>
-    <message id="text-fetch_contacting">
-        <source>Contacting %1...</source>
-        <extracomment>Progress label</extracomment>
-        <translation>Отправляем запрос на %1…</translation>
-    </message>
-    <message id="text-receipt_not_found">
-        <source>Receipt not found</source>
-        <extracomment>Status label</extracomment>
-        <translation>Чек не найден :(</translation>
-    </message>
-    <message id="text-network_error">
-        <source>Network error</source>
-        <extracomment>Status label</extracomment>
-        <translation>Не удалось связаться с сервером</translation>
-    </message>
     <message id="contact-menu-save_contact">
         <source>Save contact</source>
         <extracomment>Pulley menu item (saves contact)</extracomment>

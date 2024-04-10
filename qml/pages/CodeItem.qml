@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2022 Slava Monich
+Copyright (c) 2018-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,7 @@ import Sailfish.Silica 1.0
 import harbour.barcode 1.0
 
 import "../js/Utils.js" as Utils
+import "../components"
 
 Item {
     id: codeItem
@@ -92,12 +93,6 @@ Item {
 
         location: SystemInfo.osVersionCompare("4.0") >= 0 ? TemporaryFile.Downloads : TemporaryFile.Tmp
         fileTemplate: isVEvent ? "barcodeXXXXXX.vcs" : ""
-    }
-
-    ReceiptFetcher {
-        id: receiptFetcher
-
-        code: codeItem.text
     }
 
     SilicaFlickable {
@@ -170,18 +165,6 @@ Item {
                         //: Button text
                         //% "Add to calendar"
                         return qsTrId("button-add_to_calendar")
-                    } else if (receiptFetcher.state === ReceiptFetcher.StateChecking) {
-                        return holdOffTimer.running ?
-                            //: Button text
-                            //% "Fetching..."
-                            qsTrId("button-fetching_receipt") :
-                            //: Button label (cancel network operation)
-                            //% "Cancel"
-                            qsTrId("button-cancel_fetching")
-                    } else if (receiptFetcher.state !== ReceiptFetcher.StateIdle) {
-                        //: Button text
-                        //% "Fetch receipt"
-                        return qsTrId("button-fetch_receipt")
                     } else {
                         return ""
                     }
@@ -214,12 +197,6 @@ Item {
                            pageStack.pop()
                            codeItem.vcard.importContact()
                         })
-                    } else if (receiptFetcher.state === ReceiptFetcher.StateChecking) {
-                        receiptFetcher.cancel()
-                    } else {
-                        // Fetch Receipt
-                        holdOffTimer.restart()
-                        receiptFetcher.fetch()
                     }
                 }
                 Timer {
@@ -229,80 +206,9 @@ Item {
                 }
             }
 
-            Item {
-                readonly property bool isChecking: receiptFetcher.state === ReceiptFetcher.StateChecking
-                readonly property bool isError: receiptFetcher.state === ReceiptFetcher.StateFailure
-
-                visible: height > 0
-                height: (isChecking || isError) ? Theme.itemSizeSmall : (button.isNeeded > 0) ? Theme.paddingLarge : 0
-                width: parent.width
-
-                Row {
-                    anchors.centerIn: parent
-                    spacing: Theme.paddingMedium
-                    visible: opacity > 0
-                    opacity: parent.isChecking ? 1 : 0
-
-                    BusyIndicator {
-                        running: parent.opacity != 0
-                        size: BusyIndicatorSize.ExtraSmall
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        font.pixelSize: Theme.fontSizeSmall
-                        truncationMode: TruncationMode.Fade
-                        color: Theme.highlightColor
-                        //: Progress label
-                        //% "Contacting %1..."
-                        text: qsTrId("text-fetch_contacting").arg(receiptFetcher.host)
-                    }
-                    Behavior on opacity { FadeAnimation {} }
-                }
-
-                Label {
-                    anchors.centerIn: parent
-                    font.pixelSize: Theme.fontSizeSmall
-                    truncationMode: TruncationMode.Fade
-                    verticalAlignment: Text.AlignVCenter
-                    color: Theme.highlightColor
-                    visible: opacity > 0
-                    opacity: parent.isError ? 1 : 0
-                    text: {
-                        switch (receiptFetcher.error) {
-                        case ReceiptFetcher.ErrorNotFound:
-                            //: Status label
-                            //% "Receipt not found"
-                            return qsTrId("text-receipt_not_found")
-                        case ReceiptFetcher.ErrorNetwork:
-                            //: Status label
-                            //% "Network error"
-                            return qsTrId("text-network_error")
-                        }
-                        return ""
-                    }
-                    Behavior on opacity { FadeAnimation {} }
-                }
-
-                Behavior on height { SmoothedAnimation { duration: 100 } }
-            }
-
-            Item {
-                width: parent.width
-                height: receiptView.item ? (receiptView.item.height + Theme.paddingLarge) : 0
-                visible: receiptView.active
-
-                Loader {
-                    id: receiptView
-
-                    width: parent.width
-                    source: receiptFetcher.state === ReceiptFetcher.StateSuccess ? "../components/HtmlView.qml" : ""
-                    onStatusChanged: {
-                        if (status == Loader.Ready) {
-                            item.htmlBody = receiptFetcher.receipt
-                        }
-                    }
-                }
+            VerticalGap {
+                visible: button.visible
+                height: Theme.paddingLarge
             }
 
             SilicaFlickable {

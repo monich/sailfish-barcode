@@ -279,36 +279,6 @@
         <extracomment>Button text</extracomment>
         <translation>Lägg till i kalendern</translation>
     </message>
-    <message id="button-fetch_receipt">
-        <source>Fetch receipt</source>
-        <extracomment>Button text</extracomment>
-        <translation>Hämta kvitto</translation>
-    </message>
-    <message id="button-fetching_receipt">
-        <source>Fetching...</source>
-        <extracomment>Button text</extracomment>
-        <translation>Hämtar...</translation>
-    </message>
-    <message id="button-cancel_fetching">
-        <source>Cancel</source>
-        <extracomment>Button label (cancel network operation)</extracomment>
-        <translation>Avbryt</translation>
-    </message>
-    <message id="text-fetch_contacting">
-        <source>Contacting %1...</source>
-        <extracomment>Progress label</extracomment>
-        <translation>Kontaktar %1…</translation>
-    </message>
-    <message id="text-receipt_not_found">
-        <source>Receipt not found</source>
-        <extracomment>Status label</extracomment>
-        <translation>Inget kvitto hittades</translation>
-    </message>
-    <message id="text-network_error">
-        <source>Network error</source>
-        <extracomment>Status label</extracomment>
-        <translation>Nätverksproblem</translation>
-    </message>
     <message id="contact-menu-save_contact">
         <source>Save contact</source>
         <extracomment>Pulley menu item (saves contact)</extracomment>

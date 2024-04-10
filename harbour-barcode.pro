@@ -5,7 +5,7 @@ TARGET = $${PREFIX}-$${NAME}
 CONFIG += sailfishapp link_pkgconfig
 PKGCONFIG += sailfishapp mlite5 glib-2.0 zlib
 
-QT += multimedia concurrent sql network
+QT += multimedia concurrent sql
 
 LIBS += -ldl
 
@@ -41,7 +41,6 @@ SOURCES += \
     src/HistoryImageProvider.cpp \
     src/HistoryModel.cpp \
     src/MeCardConverter.cpp \
-    src/OfdReceiptFetcher.cpp \
     src/Settings.cpp \
     src/scanner/BarcodeScanner.cpp \
     src/scanner/Decoder.cpp \
@@ -57,7 +56,6 @@ HEADERS += \
     src/HistoryImageProvider.h \
     src/HistoryModel.h \
     src/MeCardConverter.h \
-    src/OfdReceiptFetcher.h \
     src/Settings.h \
     src/scanner/BarcodeScanner.h \
     src/scanner/Decoder.h \

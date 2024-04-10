@@ -281,36 +281,6 @@
         <extracomment>Button text</extracomment>
         <translation>Pridať do kalendára</translation>
     </message>
-    <message id="button-fetch_receipt">
-        <source>Fetch receipt</source>
-        <extracomment>Button text</extracomment>
-        <translation>Načítať bloček</translation>
-    </message>
-    <message id="button-fetching_receipt">
-        <source>Fetching...</source>
-        <extracomment>Button text</extracomment>
-        <translation>Načítanie…</translation>
-    </message>
-    <message id="button-cancel_fetching">
-        <source>Cancel</source>
-        <extracomment>Button label (cancel network operation)</extracomment>
-        <translation>Zrušiť</translation>
-    </message>
-    <message id="text-fetch_contacting">
-        <source>Contacting %1...</source>
-        <extracomment>Progress label</extracomment>
-        <translation>Pripájanie k %1…</translation>
-    </message>
-    <message id="text-receipt_not_found">
-        <source>Receipt not found</source>
-        <extracomment>Status label</extracomment>
-        <translation>Bloček nenájdený</translation>
-    </message>
-    <message id="text-network_error">
-        <source>Network error</source>
-        <extracomment>Status label</extracomment>
-        <translation>Chyba siete</translation>
-    </message>
     <message id="contact-menu-save_contact">
         <source>Save contact</source>
         <extracomment>Pulley menu item (saves contact)</extracomment>

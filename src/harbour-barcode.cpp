@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2022 Slava Monich
+Copyright (c) 2018-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -52,7 +52,6 @@ THE SOFTWARE.
 #include "HistoryImageProvider.h"
 #include "HistoryModel.h"
 #include "MeCardConverter.h"
-#include "OfdReceiptFetcher.h"
 #include "Settings.h"
 
 #ifndef APP_VERSION
@@ -73,7 +72,6 @@ static void register_types(QQmlEngine* engine, const char* uri, int v1, int v2)
     qmlRegisterType<BarcodeScanner>(uri, v1, v2, "BarcodeScanner");
     qmlRegisterType<DGCertModel>(uri, v1, v2, "DGCertModel");
     qmlRegisterType<DGCertRecognizer>(uri, v1, v2, "DGCertRecognizer");
-    qmlRegisterType<OfdReceiptFetcher>(uri, v1, v2, "ReceiptFetcher");
     qmlRegisterType<MeCardConverter>(uri, v1, v2, "MeCardConverter");
     qmlRegisterUncreatableType<Settings>(uri, v1, v2, "Settings", "Use AppSettings context property");
     qmlRegisterSingletonType<HistoryModel>(uri, v1, v2, "HistoryModel", HistoryModel::createSingleton);
