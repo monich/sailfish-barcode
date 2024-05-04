@@ -27,6 +27,10 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  zlib-devel
 BuildRequires:  qt5-qttools-linguist
 
+# Sailfish OS SDK 4.5 switches the default RPM compression method to zstd
+# and that's incompatible with earlier releases of Sailfish OS
+%define _binary_payload w6.xzdio
+
 %description
 Program for scanning 1D and 2D barcodes (e.g. QR codes).
 
