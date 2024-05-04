@@ -10,7 +10,6 @@ VideoOutput {
     anchors.fill: parent
     fillMode: VideoOutput.Stretch
 
-    property alias beepSource: beep.source
     property size viewfinderResolution
     property bool showFocusArea: true
     property real digitalZoom: 1.0
@@ -83,10 +82,6 @@ VideoOutput {
         } else {
             turnFlashOn()
         }
-    }
-
-    function playBeep() {
-        beep.play()
     }
 
     function viewfinderToFramePoint(vx, vy) {
@@ -244,9 +239,5 @@ VideoOutput {
 
         interval: 5000
         onTriggered: camera.unlock()
-    }
-
-    SoundEffect {
-        id: beep
     }
 }

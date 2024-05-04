@@ -264,6 +264,17 @@ Page {
         source: "../components/Buzz.qml"
     }
 
+    Loader {
+        id: beepLoader
+
+        active: AppSettings.sound
+        sourceComponent: Component {
+            SoundEffect {
+                source:  Qt.resolvedUrl("sound/beep.wav")
+            }
+        }
+    }
+
     BarcodeScanner {
         id: scanner
 
@@ -288,8 +299,8 @@ Page {
                 if (buzzLoader.item) {
                     buzzLoader.item.start()
                 }
-                if (AppSettings.sound && viewFinder) {
-                    viewFinder.playBeep()
+                if (beepLoader.item) {
+                    beepLoader.item.play()
                 }
             }
         }
@@ -333,7 +344,6 @@ Page {
         id: viewFinderComponent
 
         ViewFinder {
-            beepSource: "sound/beep.wav"
             onMaximumDigitalZoom: AppSettings.maxDigitalZoom = value
             showFocusArea: !scanner.grabbing
         }
