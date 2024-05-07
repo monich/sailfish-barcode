@@ -431,21 +431,6 @@
         <extracomment>Pulley menu item</extracomment>
         <translation>Skanuj z galerii</translation>
     </message>
-    <message id="gallery-title">
-        <source>Select image</source>
-        <extracomment>Page header</extracomment>
-        <translation>Wybierz obraz</translation>
-    </message>
-    <message id="gallery-empty">
-        <source>No images found in the gallery</source>
-        <extracomment>Placeholder text</extracomment>
-        <translation>Wydaje się, że w galerii nic nie ma</translation>
-    </message>
-    <message id="gallery-thumbnail-error">
-        <source>Error</source>
-        <extracomment>Thumbnail image loading failed</extracomment>
-        <translation>Błąd</translation>
-    </message>
     <message id="gallery-rotate">
         <source>Rotate</source>
         <extracomment>Rotation widget</extracomment>

@@ -431,21 +431,6 @@
         <extracomment>Pulley menu item</extracomment>
         <translation type="unfinished">Skenovat z galerie</translation>
     </message>
-    <message id="gallery-title">
-        <source>Select image</source>
-        <extracomment>Page header</extracomment>
-        <translation type="unfinished">Vyberte obrázek</translation>
-    </message>
-    <message id="gallery-empty">
-        <source>No images found in the gallery</source>
-        <extracomment>Placeholder text</extracomment>
-        <translation type="unfinished">Zdá se, že v galerii není nic</translation>
-    </message>
-    <message id="gallery-thumbnail-error">
-        <source>Error</source>
-        <extracomment>Thumbnail image loading failed</extracomment>
-        <translation type="unfinished">Chyba</translation>
-    </message>
     <message id="gallery-rotate">
         <source>Rotate</source>
         <extracomment>Rotation widget</extracomment>

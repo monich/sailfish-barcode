@@ -429,21 +429,6 @@
         <extracomment>Pulley menu item</extracomment>
         <translation>Skanna från Galleri</translation>
     </message>
-    <message id="gallery-title">
-        <source>Select image</source>
-        <extracomment>Page header</extracomment>
-        <translation>Välj bild</translation>
-    </message>
-    <message id="gallery-empty">
-        <source>No images found in the gallery</source>
-        <extracomment>Placeholder text</extracomment>
-        <translation>Inga bilder hittades i galleriet</translation>
-    </message>
-    <message id="gallery-thumbnail-error">
-        <source>Error</source>
-        <extracomment>Thumbnail image loading failed</extracomment>
-        <translation>Fel</translation>
-    </message>
     <message id="gallery-rotate">
         <source>Rotate</source>
         <extracomment>Rotation widget</extracomment>

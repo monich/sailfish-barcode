@@ -427,21 +427,6 @@
         <extracomment>Pulley menu item</extracomment>
         <translation>Szkennelés a Galériából</translation>
     </message>
-    <message id="gallery-title">
-        <source>Select image</source>
-        <extracomment>Page header</extracomment>
-        <translation>Kép kiválasztása</translation>
-    </message>
-    <message id="gallery-empty">
-        <source>No images found in the gallery</source>
-        <extracomment>Placeholder text</extracomment>
-        <translation>Nincs kép a galériában</translation>
-    </message>
-    <message id="gallery-thumbnail-error">
-        <source>Error</source>
-        <extracomment>Thumbnail image loading failed</extracomment>
-        <translation>Hiba</translation>
-    </message>
     <message id="gallery-rotate">
         <source>Rotate</source>
         <extracomment>Rotation widget</extracomment>

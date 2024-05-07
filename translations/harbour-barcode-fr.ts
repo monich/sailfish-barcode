@@ -429,21 +429,6 @@
         <extracomment>Pulley menu item</extracomment>
         <translation type="unfinished">Numériser depuis la galerie</translation>
     </message>
-    <message id="gallery-title">
-        <source>Select image</source>
-        <extracomment>Page header</extracomment>
-        <translation type="unfinished">Sélectionnez l&apos;image</translation>
-    </message>
-    <message id="gallery-empty">
-        <source>No images found in the gallery</source>
-        <extracomment>Placeholder text</extracomment>
-        <translation type="unfinished">Aucune image trouvée dans la galerie</translation>
-    </message>
-    <message id="gallery-thumbnail-error">
-        <source>Error</source>
-        <extracomment>Thumbnail image loading failed</extracomment>
-        <translation type="unfinished">Erreur</translation>
-    </message>
     <message id="gallery-rotate">
         <source>Rotate</source>
         <extracomment>Rotation widget</extracomment>

@@ -32,7 +32,6 @@ SilicaFlickable {
 
     property real zoom: 1.0
     property real angle
-    property real orientation
     property bool isLandscape
     property alias source: image.source
     property bool invert
@@ -40,8 +39,6 @@ SilicaFlickable {
     readonly property real minZoom: Math.min(1, width/implicitWidth, height/implicitHeight)
     readonly property real maxZoom: MaxTextureSize ? Math.min(MaxTextureSize/implicitWidth, MaxTextureSize/implicitHeight) : 10.0
     readonly property real actualZoom: Math.min(Math.max(zoom, minZoom), maxZoom)
-
-    readonly property bool _transpose: (orientation % 180) != 0
 
     property real _lastContentWidth
     property real _lastContentHeight
@@ -54,8 +51,8 @@ SilicaFlickable {
     flickableDirection: Flickable.HorizontalAndVerticalFlick
     contentWidth: imagePinchArea.width
     contentHeight: imagePinchArea.height
-    implicitWidth: image.realWidth
-    implicitHeight: image.realHeight
+    implicitWidth: image.implicitWidth
+    implicitHeight: image.implicitHeight
 
     function centerContent() {
         contentX = originX + Math.ceil((contentHeight - height)/2.0)
@@ -66,7 +63,7 @@ SilicaFlickable {
         var viewportWidth = isLandscape ? galleryImage.height : galleryImage.width
         var viewportHeight = isLandscape ? galleryImage.width : galleryImage.height
         zoom = Math.max(imagePinchArea.pinch.minimumScale,
-            Math.min(imagePinchArea.pinch.maximumScale, viewportWidth/image.realWidth, viewportHeight/image.realHeight))
+            Math.min(imagePinchArea.pinch.maximumScale, viewportWidth/image.implicitWidth, viewportHeight/image.implicitHeight))
     }
 
     Behavior on angle {
@@ -122,8 +119,8 @@ SilicaFlickable {
         Item {
             id: imageContainer
 
-            width: Math.max(galleryImage.width, _transpose ? image.ySize : image.xSize)
-            height: Math.max(galleryImage.height, _transpose ? image.xSize : image.ySize)
+            width: Math.max(galleryImage.width, image.xSize)
+            height: Math.max(galleryImage.height, image.ySize)
             anchors.centerIn: parent
             scale: actualZoom
 
@@ -132,8 +129,6 @@ SilicaFlickable {
             Image {
                 id: image
 
-                readonly property real realWidth: _transpose ? implicitHeight : implicitWidth
-                readonly property real realHeight: _transpose ? implicitWidth : implicitHeight
                 readonly property real r: galleryImage.angle * Math.PI / 180
                 readonly property real d: Math.sqrt(height * height + width * width)
                 readonly property real a: width ? Math.atan(height/width) : 0
@@ -147,8 +142,15 @@ SilicaFlickable {
 
                 anchors.centerIn: parent
                 smooth: true
-                rotation: (galleryImage.angle - galleryImage.orientation) % 360
+                rotation: galleryImage.angle% 360
                 transformOrigin: Item.Center
+            }
+
+            // "Image.autoTransform" is not available in QtQuick 2.0
+            Binding {
+                target: image
+                property: "autoTransform"
+                value: true
             }
         }
 

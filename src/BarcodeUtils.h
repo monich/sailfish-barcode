@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2020-2022 Slava Monich
+Copyright (c) 2020-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,15 +26,14 @@ THE SOFTWARE.
 #define BARCODE_UTILS_H
 
 #include <QObject>
-#include <QUrl>
 
 class QQmlEngine;
 class QJSEngine;
 
-class BarcodeUtils : public QObject {
+class BarcodeUtils :
+    public QObject
+{
     Q_OBJECT
-    Q_PROPERTY(QString documentGalleryModelQml READ documentGalleryModelQml CONSTANT)
-    Q_PROPERTY(QString thumbnailQml READ thumbnailQml CONSTANT)
     Q_PROPERTY(QString mediaKeyQml READ mediaKeyQml CONSTANT)
     Q_PROPERTY(QString permissionsQml READ permissionsQml CONSTANT)
     Q_PROPERTY(QString peopleVCardModelQml READ peopleVCardModelQml CONSTANT)
@@ -51,8 +50,8 @@ public:
     static QString permissionsQml();
     static QString peopleVCardModelQml();
 
-    Q_INVOKABLE static QString urlScheme(QString text);
-    Q_INVOKABLE static const QString barcodeFormatName(QString ident);
+    Q_INVOKABLE static QString urlScheme(QString);
+    Q_INVOKABLE static QString barcodeFormatName(QString);
 };
 
 #endif // BARCODE_UTILS_H

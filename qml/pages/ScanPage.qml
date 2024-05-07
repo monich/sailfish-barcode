@@ -26,6 +26,7 @@ THE SOFTWARE.
 import QtQuick 2.0
 import QtMultimedia 5.4
 import Sailfish.Silica 1.0
+import Sailfish.Pickers 1.0
 import org.nemomobile.notifications 1.0
 import harbour.barcode 1.0
 
@@ -131,7 +132,7 @@ Page {
         }
     }
 
-    function scanFromGallery(url, orientation) {
+    function scanFromGallery(url) {
         if (url) {
             console.log("Scanning", url)
             if (!galleryImage) {
@@ -140,7 +141,6 @@ Page {
             if (galleryImage) {
                 destroyViewFinder()
                 galleryImage.angle = 0
-                galleryImage.orientation = orientation ? orientation : 0
                 galleryImage.source = url
                 // Give user a chance to move the image before it gets scanned
                 galleryScanTimer.restart()
@@ -382,23 +382,18 @@ Page {
                 //% "Scan from Gallery"
                 text: qsTrId("scan-gallery-menu")
                 onClicked: {
-                    var picker = pageStack.push("GalleryPage.qml", {
-                        //: Page header
-                        //% "Select image"
-                        title: qsTrId("gallery-title"),
+                    var picker = pageStack.push("Sailfish.Pickers.ImagePickerPage", {
                         allowedOrientations: thisPage.allowedOrientations
                     })
-                    var imageUrl, imageOrientation
-                    picker.imageSelected.connect(function(url, orientation) {
-                        imageUrl = url
-                        imageOrientation = orientation
-                        pageStack.pop()
+                    var imageUrl
+                    picker.onSelectedContentChanged.connect(function() {
+                        imageUrl = picker.selectedContent
                     })
                     // Don't start scanning until the transition is finished
                     // to avoid scanning a code from a gallery page thumbnail.
                     picker.statusChanged.connect(function() {
                         if (picker.status === PageStatus.Inactive && imageUrl) {
-                            scanFromGallery(imageUrl, imageOrientation)
+                            scanFromGallery(imageUrl)
                         }
                     })
                 }
