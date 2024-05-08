@@ -36,8 +36,8 @@ SilicaFlickable {
     property alias source: image.source
     property bool invert
 
-    readonly property real minZoom: Math.min(1, width/implicitWidth, height/implicitHeight)
-    readonly property real maxZoom: MaxTextureSize ? Math.min(MaxTextureSize/implicitWidth, MaxTextureSize/implicitHeight) : 10.0
+    readonly property real minZoom: Math.min(1, width/image.scaledImplicitWidth, height/image.scaledImplicitHeight)
+    readonly property real maxZoom: MaxTextureSize ? Math.min(MaxTextureSize/image.scaledImplicitWidth, MaxTextureSize/image.scaledImplicitHeight) : 10.0
     readonly property real actualZoom: Math.min(Math.max(zoom, minZoom), maxZoom)
 
     property real _lastContentWidth
@@ -51,8 +51,6 @@ SilicaFlickable {
     flickableDirection: Flickable.HorizontalAndVerticalFlick
     contentWidth: imagePinchArea.width
     contentHeight: imagePinchArea.height
-    implicitWidth: image.implicitWidth
-    implicitHeight: image.implicitHeight
 
     function centerContent() {
         contentX = originX + Math.ceil((contentHeight - height)/2.0)
@@ -62,8 +60,7 @@ SilicaFlickable {
     function resetZoom() {
         var viewportWidth = isLandscape ? galleryImage.height : galleryImage.width
         var viewportHeight = isLandscape ? galleryImage.width : galleryImage.height
-        zoom = Math.max(imagePinchArea.pinch.minimumScale,
-            Math.min(imagePinchArea.pinch.maximumScale, viewportWidth/image.implicitWidth, viewportHeight/image.implicitHeight))
+        zoom = Math.max(minZoom, Math.min(maxZoom, viewportWidth/image.scaledImplicitWidth, viewportHeight/image.scaledImplicitHeight))
     }
 
     Behavior on angle {
@@ -119,8 +116,8 @@ SilicaFlickable {
         Item {
             id: imageContainer
 
-            width: Math.max(galleryImage.width, image.xSize)
-            height: Math.max(galleryImage.height, image.ySize)
+            width: image.xSize
+            height: image.ySize
             anchors.centerIn: parent
             scale: actualZoom
 
@@ -130,10 +127,14 @@ SilicaFlickable {
                 id: image
 
                 readonly property real r: galleryImage.angle * Math.PI / 180
-                readonly property real d: Math.sqrt(height * height + width * width)
                 readonly property real a: width ? Math.atan(height/width) : 0
+                readonly property real d: Math.sqrt(height * height + width * width) * scale
                 readonly property real xSize: d * Math.max(Math.abs(Math.cos(r - a)), Math.abs(Math.cos(r + a)))
                 readonly property real ySize: d * Math.max(Math.abs(Math.sin(r - a)), Math.abs(Math.sin(r + a)))
+                readonly property real implicitDiagonal: Math.sqrt(implicitWidth * implicitWidth + implicitHeight * implicitHeight)
+                readonly property real implicitScale: Math.max(implicitDiagonal ? Math.min(galleryImage.width, galleryImage.height)/implicitDiagonal : 0, 1)
+                readonly property real scaledImplicitWidth: implicitWidth * implicitScale
+                readonly property real scaledImplicitHeight: implicitHeight * implicitScale
 
                 layer.enabled: invert
                 layer.effect: HarbourInvertEffect {
@@ -142,7 +143,8 @@ SilicaFlickable {
 
                 anchors.centerIn: parent
                 smooth: true
-                rotation: galleryImage.angle% 360
+                scale: implicitScale
+                rotation: galleryImage.angle % 360
                 transformOrigin: Item.Center
             }
 
