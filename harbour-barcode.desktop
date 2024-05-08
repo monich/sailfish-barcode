@@ -10,4 +10,4 @@ BackupPathList=.local/share/harbour-barcode/
 BackupConfigList=/apps/harbour-barcode/
 
 [X-Sailjail]
-Permissions=Accounts;Audio;Calendar;Camera;Contacts;Documents;Downloads;MediaIndexing;Pictures;PublicDir;RemovableMedia;UserDirs
+Permissions=Audio;Camera;Documents;Downloads;MediaIndexing;Pictures;PublicDir;RemovableMedia;UserDirs
