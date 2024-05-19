@@ -119,13 +119,10 @@ Item {
         Column {
             id: column
 
-            x: Theme.horizontalPageMargin
-            width: parent.width - 2 * x
+            width: parent.width
             height: childrenRect.height
 
             PageHeader {
-                id: pageHeader
-
                 title: BarcodeUtils.barcodeFormatName(codeItem.format)
                 description: HistoryModel.formatTimestamp(codeItem.timestamp)
             }
@@ -135,7 +132,8 @@ Item {
 
                 width: parent.width
                 readOnly: false
-                wrapMode: TextEdit.Wrap
+                wrapMode: TextEdit.WrapAnywhere
+                backgroundStyle: TextEditor.FilledBackground
                 softwareInputPanelEnabled: false
             }
 
