@@ -26,6 +26,8 @@ THE SOFTWARE.
 .pragma library
 .import harbour.barcode 1.0 as App
 
+var frontCameraId
+
 function isVcard(text) {
     if (text.length > 11 && text.substring(0,11) === "BEGIN:VCARD") {
         var c = text.charAt(11)

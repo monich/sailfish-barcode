@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2022 Slava Monich
+Copyright (c) 2018-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,13 +26,13 @@ THE SOFTWARE.
 #ifndef BARCODESCANNER_H
 #define BARCODESCANNER_H
 
-#include <QObject>
-#include <QColor>
-#include <QImage>
-#include <QRect>
-#include <QVariantMap>
+#include <QtCore/QObject>
+#include <QtCore/QRect>
+#include <QtCore/QVariantMap>
+#include <QtGui/QImage>
 
-class BarcodeScanner : public QObject
+class BarcodeScanner :
+    public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QObject* viewFinderItem READ viewFinderItem WRITE setViewFinderItem NOTIFY viewFinderItemChanged)
@@ -43,10 +43,9 @@ class BarcodeScanner : public QObject
     Q_PROPERTY(bool canGrab READ canGrab WRITE setCanGrab NOTIFY canGrabChanged)
     Q_PROPERTY(bool grabbing READ grabbing NOTIFY grabbingChanged)
     Q_PROPERTY(bool inverted READ inverted WRITE setInverted NOTIFY invertedChanged)
+    Q_PROPERTY(bool mirrored READ mirrored WRITE setMirrored NOTIFY mirroredChanged)
     Q_PROPERTY(uint decodingHints READ decodingHints WRITE setDecodingHints NOTIFY decodingHintsChanged)
     Q_ENUMS(ScanState)
-
-    class Private;
 
 public:
     enum ScanState {
@@ -65,8 +64,8 @@ public:
     QObject* viewFinderItem() const;
     void setViewFinderItem(QObject*);
 
-    const QRect& viewFinderRect() const;
-    void setViewFinderRect(const QRect&);
+    QRect viewFinderRect() const;
+    void setViewFinderRect(QRect);
 
     QString markerColor() const;
     void setMarkerColor(QString);
@@ -84,6 +83,9 @@ public:
     bool inverted() const;
     void setInverted(bool);
 
+    bool mirrored() const;
+    void setMirrored(bool);
+
     uint decodingHints() const;
     void setDecodingHints(uint);
 
@@ -97,9 +99,11 @@ Q_SIGNALS:
     void canGrabChanged();
     void grabbingChanged();
     void invertedChanged();
+    void mirroredChanged();
     void decodingHintsChanged();
 
 private:
+    class Private;
     Private* iPrivate;
 };
 

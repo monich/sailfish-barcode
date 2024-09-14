@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018-2022 Slava Monich
+Copyright (c) 2018-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -54,6 +54,7 @@ class Settings : public QObject
     Q_PROPERTY(bool saveImages READ saveImages WRITE setSaveImages NOTIFY saveImagesChanged)
     Q_PROPERTY(bool volumeZoom READ volumeZoom WRITE setVolumeZoom NOTIFY volumeZoomChanged)
     Q_PROPERTY(bool wideMode READ wideMode WRITE setWideMode NOTIFY wideModeChanged)
+    Q_PROPERTY(bool frontCamera READ frontCamera WRITE setFrontCamera NOTIFY frontCameraChanged)
     Q_PROPERTY(qreal wideRatio READ wideRatio CONSTANT)
     Q_PROPERTY(qreal narrowRatio READ narrowRatio CONSTANT)
     Q_PROPERTY(QSize wideResolution READ wideResolution WRITE setWideResolution NOTIFY wideResolutionChanged)
@@ -118,6 +119,9 @@ public:
     bool wideMode() const;
     void setWideMode(bool);
 
+    bool frontCamera() const;
+    void setFrontCamera(bool);
+
     qreal wideRatio() const;
     QSize wideResolution() const;
     void setWideResolution(QSize);
@@ -147,6 +151,7 @@ Q_SIGNALS:
     void saveImagesChanged();
     void volumeZoomChanged();
     void wideModeChanged();
+    void frontCameraChanged();
     void wideResolutionChanged();
     void narrowResolutionChanged();
     void decodingHintsChanged();

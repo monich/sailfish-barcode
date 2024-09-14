@@ -123,15 +123,20 @@
         <extracomment>Switch button text</extracomment>
         <translation>Регулирование масштаба кнопками громкости</translation>
     </message>
+    <message id="settings-front_camera-label">
+        <source>Use the front camera</source>
+        <extracomment>Switch button text</extracomment>
+        <translation>Использовать фронтальную камеру</translation>
+    </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>
-        <translation>Сохранять снимки баркодов</translation>
+        <translation>Хранить снимки баркодов</translation>
     </message>
     <message id="settings-save_images-description">
         <source>This will delete all previously saved barcode images.</source>
         <extracomment>Switch button description (explanation)</extracomment>
-        <translation>Это удалит все ранее сохранённые снимки баркодов.</translation>
+        <translation>Это удалит все ранее сохранённые изображения.</translation>
     </message>
     <message id="settings-save_images-confirm_delete">
         <source>Confirm delete</source>

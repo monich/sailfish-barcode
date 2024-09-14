@@ -292,72 +292,84 @@ Page {
                     automaticCheck: false
                     onClicked: AppSettings.volumeZoom = !checked
                 }
-            }
 
-            IconTextSwitch {
-                id: saveImagesSwitch
+                IconTextSwitch {
+                    checked: AppSettings.frontCamera
+                    //: Switch button text
+                    //% "Use the front camera"
+                    text: qsTrId("settings-front_camera-label")
+                    icon.source: landscapeLayout ? "" : "image://theme/icon-m-camera"
+                    width: parent.columnWidth
+                    automaticCheck: false
+                    onClicked: AppSettings.frontCamera = !checked
+                }
 
-                checked: AppSettings.saveImages
-                //: Switch button text
-                //% "Save barcode images"
-                text: qsTrId("settings-save_images-label")
-                icon.source: landscapeLayout ? "" : "image://theme/icon-m-camera"
-                width: parent.width
-                automaticCheck: false
-                busy: picturesConfirmButtons.visible
-                onClicked: {
-                    if (checked) {
-                        if (picturesConfirmButtons.visible) {
-                            // Cancel the previous click
+                Column {
+                    width: parent.columnWidth
+
+                    IconTextSwitch {
+                        id: saveImagesSwitch
+
+                        checked: AppSettings.saveImages
+                        //: Switch button text
+                        //% "Save barcode images"
+                        text: qsTrId("settings-save_images-label")
+                        icon.source: landscapeLayout ? "" : "image://theme/icon-m-file-image"
+                        width: parent.width
+                        automaticCheck: false
+                        busy: picturesConfirmButtons.visible
+                        onClicked: {
+                            if (checked) {
+                                if (picturesConfirmButtons.visible) {
+                                    // Cancel the previous click
+                                    picturesConfirmButtons.visible = false
+                                    description = ""
+                                } else if (HistoryModel.hasImages) {
+                                    //: Switch button description (explanation)
+                                    //% "This will delete all previously saved barcode images."
+                                    description = qsTrId("settings-save_images-description")
+                                    picturesConfirmButtons.visible = true
+                                } else {
+                                    // No need to confirm
+                                    AppSettings.saveImages = false
+                                }
+                            } else {
+                                AppSettings.saveImages = true
+                            }
+                        }
+                        onCheckedChanged: {
                             picturesConfirmButtons.visible = false
                             description = ""
-                        } else if (HistoryModel.hasImages) {
-                            //: Switch button description (explanation)
-                            //% "This will delete all previously saved barcode images."
-                            description = qsTrId("settings-save_images-description")
-                            picturesConfirmButtons.visible = true
-                        } else {
-                            // No need to confirm
-                            AppSettings.saveImages = false
                         }
-                    } else {
-                        AppSettings.saveImages = true
                     }
-                }
-                onCheckedChanged: {
-                    picturesConfirmButtons.visible = false
-                    description = ""
-                }
-            }
 
-            Row {
-                id: picturesConfirmButtons
+                    Row {
+                        id: picturesConfirmButtons
 
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    leftMargin: Theme.horizontalPageMargin
-                    rightMargin: Theme.horizontalPageMargin
-                }
-                spacing: Theme.paddingMedium
-                visible: false
+                        x: Theme.horizontalPageMargin
+                        spacing: Theme.paddingMedium
+                        visible: false
 
-                Button {
-                    width: Math.round((parent.width - parent.spacing) / 2)
-                    //: Button label (confirm deletion of image files)
-                    //% "Confirm delete"
-                    text: qsTrId("settings-save_images-confirm_delete")
-                    onClicked: AppSettings.saveImages = false
-                }
+                        readonly property real _buttonWidth: Math.round((saveImagesSwitch.width - 2 * x - spacing) / 2)
 
-                Button {
-                    width: Math.round((parent.width - parent.spacing) / 2)
-                    //: Button label
-                    //% "Cancel"
-                    text: qsTrId("settings-history-cancel")
-                    onClicked: {
-                        saveImagesSwitch.description = ""
-                        picturesConfirmButtons.visible = false
+                        Button {
+                            width: parent._buttonWidth
+                            //: Button label (confirm deletion of image files)
+                            //% "Confirm delete"
+                            text: qsTrId("settings-save_images-confirm_delete")
+                            onClicked: AppSettings.saveImages = false
+                        }
+
+                        Button {
+                            width: parent._buttonWidth
+                            //: Button label
+                            //% "Cancel"
+                            text: qsTrId("settings-history-cancel")
+                            onClicked: {
+                                saveImagesSwitch.description = ""
+                                picturesConfirmButtons.visible = false
+                            }
+                        }
                     }
                 }
             }

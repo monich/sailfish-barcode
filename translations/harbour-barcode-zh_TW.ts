@@ -118,6 +118,11 @@
         <extracomment>Switch button text</extracomment>
         <translation type="unfinished">使用音量鍵縮放</translation>
     </message>
+    <message id="settings-front_camera-label">
+        <source>Use the front camera</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">使用前置鏡頭</translation>
+    </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>

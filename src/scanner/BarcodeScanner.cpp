@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2022 Slava Monich
+Copyright (c) 2018-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,18 +24,20 @@ THE SOFTWARE.
 */
 
 #include "BarcodeScanner.h"
-#include "ImageSource.h"
-#include "Decoder.h"
 
-#include <zxing/DecodeHints.h>
+#include "Decoder.h"
+#include "ImageSource.h"
 
 #include "HarbourDebug.h"
 
-#include <QtConcurrent>
-#include <QQuickWindow>
-#include <QQuickItem>
-#include <QPainter>
-#include <QBrush>
+#include <QtConcurrent/QtConcurrent>
+#include <QtGui/QBrush>
+#include <QtGui/QColor>
+#include <QtGui/QPainter>
+#include <QtQuick/QQuickItem>
+#include <QtQuick/QQuickWindow>
+
+#include <zxing/DecodeHints.h>
 
 #define HARBOUR_BARCODE_DEBUG_IMAGES
 #ifdef HARBOUR_BARCODE_DEBUG_IMAGES
@@ -80,7 +82,7 @@ public:
 
     bool setViewFinderRect(const QRect&);
     bool setViewFinderItem(QObject*);
-    bool setMarkerColor(QString);
+    bool setMarkerColor(const QString&);
     bool setRotation(int);
     void startScanning(int);
     void stopScanning();
@@ -100,6 +102,7 @@ public Q_SLOTS:
 public:
     bool iCanGrab;
     bool iInverted;
+    bool iMirrored;
     bool iGrabbing;
     bool iScanning;
     bool iNeedImage;
@@ -110,6 +113,7 @@ public:
 
     QImage iCaptureImage;
     bool iCaptureImageInverted;
+    bool iCaptureImageMirrored;
     QQuickItem* iViewFinderItem;
     QTimer* iScanTimeout;
 
@@ -126,6 +130,7 @@ BarcodeScanner::Private::Private(BarcodeScanner* aParent) :
     QObject(aParent),
     iCanGrab(true),
     iInverted(false),
+    iMirrored(false),
     iGrabbing(false),
     iScanning(false),
     iNeedImage(false),
@@ -134,7 +139,8 @@ BarcodeScanner::Private::Private(BarcodeScanner* aParent) :
     iRotation(0),
     iLastKnownState(Idle),
     iCaptureImageInverted(false),
-    iViewFinderItem(NULL),
+    iCaptureImageMirrored(false),
+    iViewFinderItem(Q_NULLPTR),
     iScanTimeout(new QTimer(this)),
     iMarkerColor(QColor(0, 255, 0)), // default green
     iDecodingHints(zxing::DecodeHints::DEFAULT_HINT.getHints())
@@ -194,7 +200,7 @@ BarcodeScanner::Private::setViewFinderItem(
 
 bool
 BarcodeScanner::Private::setMarkerColor(
-    QString aValue)
+    const QString& aValue)
 {
     if (QColor::isValidColor(aValue)) {
         QColor color(aValue);
@@ -271,6 +277,7 @@ BarcodeScanner::Private::grabImage()
             iDecodingMutex.lock();
             iCaptureImage = image;
             iCaptureImageInverted = iInverted;
+            iCaptureImageMirrored = iMirrored;
             iDecodingEvent.wakeAll();
             iDecodingMutex.unlock();
         }
@@ -301,6 +308,7 @@ BarcodeScanner::Private::decodingThread()
     qreal scale = 1;
     bool rotated = false;
     bool inverted = false;
+    bool mirrored = false;
     int scaledWidth = 0;
 
     const int maxSize = 800;
@@ -318,9 +326,11 @@ BarcodeScanner::Private::decodingThread()
         if (iAbortScan) {
             image = QImage();
             inverted = false;
+            mirrored = false;
         } else {
             image = iCaptureImage;
             inverted = iCaptureImageInverted;
+            mirrored = iCaptureImageMirrored;
             iCaptureImage = QImage();
         }
         viewFinderRect = iViewFinderRect;
@@ -377,6 +387,10 @@ BarcodeScanner::Private::decodingThread()
 
             HDEBUG("extracted" << image);
             saveDebugImage(image, "debug_cropped.bmp");
+            if (mirrored) {
+                image = image.mirrored(true, false);
+                saveDebugImage(image, "debug_screenshot_transformed.bmp");
+            }
 
 #ifdef HARBOUR_BARCODE_DEBUG_IMAGES
             // In debug build, ~/Pictures/codereader/debug_input.bmp gets
@@ -491,7 +505,10 @@ BarcodeScanner::Private::decodingThread()
     Q_EMIT decodingDone(image, result);
 }
 
-void BarcodeScanner::Private::onDecodingDone(QImage aImage, Decoder::Result aResult)
+void
+BarcodeScanner::Private::onDecodingDone(
+    QImage aImage,
+    Decoder::Result aResult)
 {
     HDEBUG(aResult.getText());
     if (!aImage.isNull()) {
@@ -530,7 +547,8 @@ void BarcodeScanner::Private::onDecodingDone(QImage aImage, Decoder::Result aRes
     updateScanState();
 }
 
-void BarcodeScanner::Private::onScanningTimeout()
+void
+BarcodeScanner::Private::onScanningTimeout()
 {
     iDecodingMutex.lock();
     iAbortScan = true;
@@ -541,7 +559,8 @@ void BarcodeScanner::Private::onScanningTimeout()
     updateScanState();
 }
 
-void BarcodeScanner::Private::updateScanState()
+void
+BarcodeScanner::Private::updateScanState()
 {
     const ScanState state = iScanning ?
         (iAbortScan ? Aborting : Scanning) :
@@ -557,7 +576,8 @@ void BarcodeScanner::Private::updateScanState()
 // BarcodeScanner
 // ==========================================================================
 
-BarcodeScanner::BarcodeScanner(QObject* parent) :
+BarcodeScanner::BarcodeScanner(
+    QObject* parent) :
     QObject(parent),
     iPrivate(new Private(this))
 {
@@ -569,36 +589,45 @@ BarcodeScanner::~BarcodeScanner()
     HDEBUG("destroyed");
 }
 
-const QRect& BarcodeScanner::viewFinderRect() const
+QRect
+BarcodeScanner::viewFinderRect() const
 {
     return iPrivate->iViewFinderRect;
 }
 
-void BarcodeScanner::setViewFinderRect(const QRect& aRect)
+void
+BarcodeScanner::setViewFinderRect(
+    QRect aRect)
 {
     if (iPrivate->setViewFinderRect(aRect)) {
         HDEBUG(aRect);
     }
 }
 
-QObject* BarcodeScanner::viewFinderItem() const
+QObject*
+BarcodeScanner::viewFinderItem() const
 {
     return iPrivate->iViewFinderItem;
 }
 
-void BarcodeScanner::setViewFinderItem(QObject* aItem)
+void
+BarcodeScanner::setViewFinderItem(
+    QObject* aItem)
 {
     if (iPrivate->setViewFinderItem(aItem)) {
         Q_EMIT viewFinderItemChanged();
     }
 }
 
-QString BarcodeScanner::markerColor() const
+QString
+BarcodeScanner::markerColor() const
 {
     return iPrivate->iMarkerColor.name();
 }
 
-void BarcodeScanner::setMarkerColor(QString aValue)
+void
+BarcodeScanner::setMarkerColor(
+    QString aValue)
 {
     if (iPrivate->setMarkerColor(aValue)) {
         HDEBUG(aValue);
@@ -606,12 +635,15 @@ void BarcodeScanner::setMarkerColor(QString aValue)
     }
 }
 
-int BarcodeScanner::rotation() const
+int
+BarcodeScanner::rotation() const
 {
     return iPrivate->iRotation;
 }
 
-void BarcodeScanner::setRotation(int aDegrees)
+void
+BarcodeScanner::setRotation(
+    int aDegrees)
 {
     if (iPrivate->setRotation(aDegrees)) {
         HDEBUG(aDegrees);
@@ -619,27 +651,33 @@ void BarcodeScanner::setRotation(int aDegrees)
     }
 }
 
-void BarcodeScanner::startScanning(int aTimeout)
+void
+BarcodeScanner::startScanning(int aTimeout)
 {
     iPrivate->startScanning(aTimeout);
 }
 
-void BarcodeScanner::stopScanning()
+void
+BarcodeScanner::stopScanning()
 {
     iPrivate->stopScanning();
 }
 
-BarcodeScanner::ScanState BarcodeScanner::scanState() const
+BarcodeScanner::ScanState
+BarcodeScanner::scanState() const
 {
     return iPrivate->iLastKnownState;
 }
 
-bool BarcodeScanner::canGrab() const
+bool
+BarcodeScanner::canGrab() const
 {
     return iPrivate->iCanGrab;
 }
 
-void BarcodeScanner::setCanGrab(bool aCanGrab)
+void
+BarcodeScanner::setCanGrab(
+    bool aCanGrab)
 {
     if (iPrivate->iCanGrab != aCanGrab) {
         iPrivate->iCanGrab = aCanGrab;
@@ -676,12 +714,32 @@ BarcodeScanner::setInverted(
     }
 }
 
-uint BarcodeScanner::decodingHints() const
+bool
+BarcodeScanner::mirrored() const
+{
+    return iPrivate->iMirrored;
+}
+
+void
+BarcodeScanner::setMirrored(
+    bool aMirrored)
+{
+    if (iPrivate->iMirrored!= aMirrored) {
+        HDEBUG(aMirrored);
+        iPrivate->iMirrored = aMirrored;
+        Q_EMIT mirroredChanged();
+    }
+}
+
+uint
+BarcodeScanner::decodingHints() const
 {
     return iPrivate->iDecodingHints;
 }
 
-void BarcodeScanner::setDecodingHints(uint aValue)
+void
+BarcodeScanner::setDecodingHints(
+    uint aValue)
 {
     if (iPrivate->iDecodingHints != aValue) {
         iPrivate->iDecodingMutex.lock();

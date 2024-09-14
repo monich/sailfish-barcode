@@ -210,6 +210,7 @@ Page {
             console.log("creating viewfinder ...")
             viewFinder = viewFinderComponent.createObject(viewFinderContainer, {
                 viewfinderResolution: viewFinderContainer.viewfinderResolution,
+                frontCamera: AppSettings.frontCamera,
                 digitalZoom: AppSettings.digitalZoom,
                 orientation: orientationAngle()
             })
@@ -286,6 +287,7 @@ Page {
         rotation: orientationAngle()
         canGrab: (!galleryImage || !galleryImage.moving) && !galleryScanTimer.running
         inverted: invertButton.down
+        mirrored: viewFinder && viewFinder.mirrored
         decodingHints: AppSettings.decodingHints
 
         onDecodingFinished: {
@@ -331,6 +333,8 @@ Page {
 
     SingleImageProvider {
         id: markerImageProvider
+
+        mirrorHorizontally: AppSettings.frontCamera
     }
 
     Timer {
@@ -413,7 +417,7 @@ Page {
             active: opacity > 0
             opacity: isNeeded ? 1 : 0
             readonly property bool isNeeded: scanningGalleryImage && scanner.scanState === BarcodeScanner.Scanning
-            Behavior on opacity { FadeAnimation { } }
+            FadeAnimation on opacity { }
             sourceComponent: Component {
                 Rotator {
                     onReset: galleryImage.angle = 0
@@ -430,7 +434,7 @@ Page {
             active: opacity > 0
             opacity: isNeeded ? 1 : 0
             readonly property bool isNeeded: scanningGalleryImage && scanner.scanState === BarcodeScanner.Scanning
-            Behavior on opacity { FadeAnimation { } }
+            FadeAnimation on opacity { }
             sourceComponent: Component {
                 Rotator {
                     inverted: true
@@ -516,7 +520,7 @@ Page {
                 height: scanningGalleryImage ? parent.height : (thisPage.isPortrait ? portraitHeight : landscapeHeight)
                 color: "#20000000"
                 opacity: markerImage.visible ? 0 : 1
-                Behavior on opacity { FadeAnimation { } }
+                FadeAnimation on opacity { }
 
                 onWidthChanged: updateViewFinderPosition()
                 onHeightChanged: updateViewFinderPosition()
@@ -582,9 +586,9 @@ Page {
                     left: parent.left
                     verticalCenter: parent.verticalCenter
                 }
-                opacity: (TorchSupported && !scanningGalleryImage) ? 1.0 : 0.0
+                enabled: TorchSupported && !scanningGalleryImage && !AppSettings.frontCamera
+                opacity: enabled ? 1.0 : 0.0
                 visible: TorchSupported && opacity > 0.0
-                Behavior on opacity { FadeAnimation { duration: toolIconFadeDuration } }
                 icon.source: viewFinder && viewFinder.flashOn ?
                         Qt.resolvedUrl("img/flash-on.svg") :
                         Qt.resolvedUrl("img/flash-off.svg")
@@ -594,6 +598,7 @@ Page {
                 hint: qsTrId("hint-toggle-flash")
                 onShowHint: thisPage.showHint(hint)
                 onHideHint: thisPage.hideHint()
+                FadeAnimation on opacity { duration: toolIconFadeDuration }
             }
 
             Slider {
@@ -680,7 +685,7 @@ Page {
                 }
                 opacity: isNeeded ? 1.0 : 0.0
                 visible: opacity > 0.0
-                Behavior on opacity { FadeAnimation { duration: toolIconFadeDuration } }
+                FadeAnimation on opacity { duration: toolIconFadeDuration }
                 onClicked: AppSettings.wideMode = !AppSettings.wideMode
                 hint: isLandscape ?
                     //: Hint label
@@ -707,7 +712,7 @@ Page {
                 }
                 opacity: ((viewFinder || galleryImage) && !ratioButton.isNeeded) ? 1.0 : 0.0
                 visible: opacity > 0.0
-                Behavior on opacity { FadeAnimation { duration: toolIconFadeDuration } }
+                FadeAnimation on opacity { duration: toolIconFadeDuration }
                 Binding { target: viewFinder;  property: "invert"; value: invertButton.down }
                 Binding { target: galleryImage;  property: "invert"; value: invertButton.down }
             }
@@ -796,7 +801,7 @@ Page {
                 width: parent.width
                 visible: opacity > 0.0
 
-                Behavior on opacity { FadeAnimation { } }
+                FadeAnimation on opacity { }
 
                 MeCardConverter {
                     id: meCardConverter

@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2018-2022 Slava Monich
+Copyright (c) 2018-2024 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,6 +36,7 @@ THE SOFTWARE.
 #define KEY_BUZZ_ON_SCAN               "buzz_on_scan"
 #define KEY_SAVE_IMAGES                "save_images"
 #define KEY_WIDE_MODE                  "wide_mode"
+#define KEY_FRONT_CAMERA               "front_camera"
 #define KEY_ORIENTATION                "orientation"
 #define KEY_MAX_DIGITAL_ZOOM           "max_digital_zoom"
 #define KEY_VOLUME_ZOOM                "volume_zoom"
@@ -55,6 +56,7 @@ THE SOFTWARE.
 #define DEFAULT_SAVE_IMAGES             true
 #define DEFAULT_VOLUME_ZOOM             true
 #define DEFAULT_WIDE_MODE               false
+#define DEFAULT_FRONT_CAMERA            false
 #define DEFAULT_DECODING_HINTS          zxing::DecodeHints::DEFAULT_HINT.getHints()
 #define DEFAULT_ORIENTATION             Settings::OrientationAny
 
@@ -95,6 +97,7 @@ public:
     MGConfItem* iSaveImages;
     MGConfItem* iVolumeZoom;
     MGConfItem* iWideMode;
+    MGConfItem* iFrontCamera;
     MGConfItem* iDecodingHints;
     MGConfItem* iOrientation;
     MGConfItem* iResolution_4_3;
@@ -119,6 +122,7 @@ Settings::Private::Private(
     iSaveImages(new MGConfItem(DCONF_PATH_(KEY_SAVE_IMAGES), aSettings)),
     iVolumeZoom(new MGConfItem(DCONF_PATH_(KEY_VOLUME_ZOOM), aSettings)),
     iWideMode(new MGConfItem(DCONF_PATH_(KEY_WIDE_MODE), aSettings)),
+    iFrontCamera(new MGConfItem(DCONF_PATH_(KEY_FRONT_CAMERA), aSettings)),
     iDecodingHints(new MGConfItem(DCONF_PATH_(KEY_DECODING_HINTS), aSettings)),
     iOrientation(new MGConfItem(DCONF_PATH_(KEY_ORIENTATION), aSettings)),
     iResolution_4_3(new MGConfItem(DCONF_PATH_(KEY_RESOLUTION_4_3), aSettings)),
@@ -136,6 +140,7 @@ Settings::Private::Private(
     connect(iSaveImages, SIGNAL(valueChanged()), aSettings, SIGNAL(saveImagesChanged()));
     connect(iVolumeZoom, SIGNAL(valueChanged()), aSettings, SIGNAL(volumeZoomChanged()));
     connect(iWideMode, SIGNAL(valueChanged()), aSettings, SIGNAL(wideModeChanged()));
+    connect(iFrontCamera, SIGNAL(valueChanged()), aSettings, SIGNAL(frontCameraChanged()));
     connect(iDecodingHints, SIGNAL(valueChanged()), aSettings, SIGNAL(decodingHintsChanged()));
     connect(iOrientation, SIGNAL(valueChanged()), aSettings, SIGNAL(orientationChanged()));
     connect(iResolution_4_3, SIGNAL(valueChanged()), aSettings, SIGNAL(wideResolutionChanged()));
@@ -368,6 +373,19 @@ Settings::setWideMode(
     bool aValue)
 {
     iPrivate->iWideMode->set(aValue);
+}
+
+bool
+Settings::frontCamera() const
+{
+    return iPrivate->iFrontCamera->value(DEFAULT_FRONT_CAMERA).toBool();
+}
+
+void
+Settings::setFrontCamera(
+    bool aValue)
+{
+    iPrivate->iFrontCamera->set(aValue);
 }
 
 uint

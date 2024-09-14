@@ -123,6 +123,11 @@
         <extracomment>Switch button text</extracomment>
         <translation>Zooma med volymknapparna</translation>
     </message>
+    <message id="settings-front_camera-label">
+        <source>Use the front camera</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">Använd den främre kameran</translation>
+    </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>

@@ -123,6 +123,11 @@
         <extracomment>Switch button text</extracomment>
         <translation>Nagyítás hangerő-szabályzó gombokkal</translation>
     </message>
+    <message id="settings-front_camera-label">
+        <source>Use the front camera</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">Használja az előlapi kamerát</translation>
+    </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>

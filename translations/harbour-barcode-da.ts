@@ -123,6 +123,11 @@
         <extracomment>Switch button text</extracomment>
         <translation type="unfinished">Brug lydstyrketasterne til at zoome</translation>
     </message>
+    <message id="settings-front_camera-label">
+        <source>Use the front camera</source>
+        <extracomment>Switch button text</extracomment>
+        <translation type="unfinished">Brug frontkameraet</translation>
+    </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
         <extracomment>Switch button text</extracomment>
