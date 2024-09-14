@@ -133,8 +133,13 @@ Item {
                 width: parent.width
                 readOnly: false
                 wrapMode: TextEdit.WrapAnywhere
-                backgroundStyle: TextEditor.FilledBackground
                 softwareInputPanelEnabled: false
+
+                Component.onCompleted: {
+                    if ('backgroundStyle' in textArea) {
+                        textArea.backgroundStyle = TextEditor.FilledBackground
+                    }
+                }
             }
 
             Button {
