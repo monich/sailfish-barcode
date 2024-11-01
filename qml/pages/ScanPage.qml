@@ -334,7 +334,7 @@ Page {
     SingleImageProvider {
         id: markerImageProvider
 
-        mirrorHorizontally: AppSettings.frontCamera
+        mirrorHorizontally: AppSettings.frontCamera && !scanningGalleryImage
     }
 
     Timer {
