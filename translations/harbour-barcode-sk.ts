@@ -126,7 +126,7 @@
     <message id="settings-front_camera-label">
         <source>Use the front camera</source>
         <extracomment>Switch button text</extracomment>
-        <translation type="unfinished">Použite prednú kameru</translation>
+        <translation>Použite prednú kameru</translation>
     </message>
     <message id="settings-save_images-label">
         <source>Save barcode images</source>
@@ -259,7 +259,7 @@
     <message id="history-nothing_found">
         <source>The search text is not found</source>
         <extracomment>Placeholder text</extracomment>
-        <translation type="unfinished">Hľadaný text nebol nájdený</translation>
+        <translation>Hľadaný text nebol nájdený</translation>
     </message>
     <message id="button-eu_covid_cert">
         <source>COVID Certificate</source>
@@ -394,7 +394,7 @@
     <message id="settings-display-orientation-allow_inverted">
         <source>Allow inverted orientation</source>
         <extracomment>Text switch label</extracomment>
-        <translation>Povolit obrátenú orientáciu</translation>
+        <translation>Povoliť obrátenú orientáciu</translation>
     </message>
     <message id="settings-display-orientation-allow_inverted-description">
         <source>If enabled, allows both primary and inverted landscape or portrait orientation.</source>
@@ -494,7 +494,7 @@
     <message id="dgcert-vaccination-tg">
         <source>Disease or agent targeted</source>
         <extracomment>Detail label (vaccination group)</extracomment>
-        <translation>Infekcia</translation>
+        <translation>Choroba alebo pôvodca</translation>
     </message>
     <message id="dgcert-vaccination-vp">
         <source>Type of the vaccine</source>
@@ -544,7 +544,7 @@
     <message id="dgcert-test-tg">
         <source>Disease or agent</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation>Infekcia</translation>
+        <translation>Choroba alebo pôvodca</translation>
     </message>
     <message id="dgcert-test-tt">
         <source>The type of test</source>
@@ -599,7 +599,7 @@
     <message id="dgcert-recovery-tg">
         <source>Disease or agent</source>
         <extracomment>Detail label (test group)</extracomment>
-        <translation>Infekcia</translation>
+        <translation>Choroba alebo pôvodca</translation>
     </message>
     <message id="dgcert-recovery-fr">
         <source>Date of the first positive test</source>
