@@ -617,6 +617,7 @@ Page {
                 rightMargin: 0
                 minimumValue: scanningGalleryImage ? galleryImage.minZoom : 1.0
                 maximumValue: scanningGalleryImage ? galleryImage.maxZoom : AppSettings.maxDigitalZoom
+                stepSize: (maximumValue - minimumValue)/100
                 value: 1
                 //: Slider label
                 //% "Zoom"
