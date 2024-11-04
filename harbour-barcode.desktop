@@ -9,5 +9,14 @@ Name=CodeReader
 BackupPathList=.local/share/harbour-barcode/
 BackupConfigList=/apps/harbour-barcode/
 
-[X-Sailjail]
-Permissions=Audio;Camera;Documents;Downloads;MediaIndexing;Pictures;PublicDir;RemovableMedia;UserDirs
+# It appears that the ~/.local/share/harbour-barcode directory only gets
+# created in the so-called compatibility mode. And if that directory doesn't
+# exist (and mapped into the sadbox), then the history database doesn't
+# get preserved between the runs - the app starts from scratch every time,
+# that's a huge loss of functionality.
+#
+# Getting rid of the X-Sailjail section seems to be the only way to turn
+# that compatibility mode on. So be it.
+
+#[X-Sailjail]
+#Permissions=Audio;Camera;Documents;Downloads;MediaIndexing;Pictures;PublicDir;RemovableMedia;UserDirs
