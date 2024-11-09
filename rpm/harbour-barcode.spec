@@ -4,7 +4,7 @@ Name:       harbour-barcode
 %{!?qtc_make:%define qtc_make make}
 
 Summary:    Bar code reader for Sailfish OS
-Version:    1.0.53
+Version:    1.0.54
 Release:    1
 Group:      Applications/Productivity
 License:    Mixed
