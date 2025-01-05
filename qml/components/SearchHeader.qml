@@ -44,7 +44,7 @@ PageHeader {
         anchors {
             right: header.extraContent.right
             rightMargin: Theme.paddingLarge
-            verticalCenter: header.extraContent.verticalCenter
+            verticalCenter: '_titleItem' in header ? header._titleItem.verticalCenter : header.extraContent.verticalCenter
         }
         maxWidth: header.extraContent.width - anchors.rightMargin
     }
@@ -57,7 +57,7 @@ PageHeader {
             right: header.extraContent.right
             // Try to position the "clear" button right over the badge
             rightMargin: Theme.paddingLarge - Theme.horizontalPageMargin - Theme.paddingMedium
-            verticalCenter: header.extraContent.verticalCenter
+            verticalCenter: '_titleItem' in header ? header._titleItem.verticalCenter : header.extraContent.verticalCenter
         }
 
         autoScrollEnabled: false
