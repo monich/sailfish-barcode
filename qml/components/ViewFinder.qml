@@ -158,21 +158,46 @@ VideoOutput {
             if (cameraStatus === Camera.ActiveStatus) {
                 if (!_cameraSelected) {
                     _cameraSelected = true
-                    // Normally we use the default camera
-                    if (frontCamera) {
-                        for (var i = 0; i < QtMultimedia.availableCameras.length; i++) {
-                            var device = QtMultimedia.availableCameras[i]
-                            if (device.position === Camera.FrontFace) {
+
+                    // Check all the available cameras
+                    var defaultCameraId
+                    for (var i = 0; i < QtMultimedia.availableCameras.length; i++) {
+                        var device = QtMultimedia.availableCameras[i]
+                        switch (device.position) {
+                        case Camera.FrontFace:
+                            if (!Utils.frontCameraId) {
                                 Utils.frontCameraId = device.deviceId
-                                if (camera.deviceId !== device.deviceId) {
-                                    camera.deviceId = device.deviceId
-                                    reloadTimer.restart()
-                                }
-                                break
+                                console.log("Front camera", Utils.frontCameraId)
                             }
+                            break
+                        case Camera.BackFace:
+                            if (!Utils.backCameraId) {
+                                Utils.backCameraId = defaultCameraId = device.deviceId
+                                console.log("Back camera", Utils.backCameraId)
+                            }
+                            break
+                        default: // Unspecified or unknown position
+                            if (!defaultCameraId) {
+                                defaultCameraId = device.deviceId
+                            }
+                            break
                         }
                     }
+
+                    // If there's no back camera, use the default one (if there is any)
+                    if (!Utils.backCameraId && defaultCameraId) {
+                        console.log("Default camera", Utils.defaultCameraId)
+                        Utils.backCameraId = defaultCameraId
+                    }
+
+                    // Choose the camera
+                    var deviceId = frontCamera ? Utils.frontCameraId : Utils.backCameraId
+                    if (deviceId && camera.deviceId !== deviceId) {
+                        camera.deviceId = deviceId
+                        reloadTimer.restart()
+                    }
                 }
+
                 // Camera doesn't emit maximumDigitalZoomChanged signal
                 viewFinder.maximumDigitalZoom(maximumDigitalZoom)
                 digitalZoom = viewFinder.digitalZoom
@@ -187,9 +212,17 @@ VideoOutput {
                 }
             }
         }
+        onError: {
+            console.log(errorString)
+            reloadTimer.restart()
+        }
         Component.onCompleted: {
-            if (frontCamera && Utils.frontCameraId) {
-                deviceId = Utils.frontCameraId
+            if (frontCamera) {
+                if (Utils.frontCameraId) {
+                    deviceId = Utils.frontCameraId
+                }
+            } else if (Utils.backCameraId) {
+                deviceId = Utils.backCameraId
             }
         }
         function updateSupportedResolutions() {
