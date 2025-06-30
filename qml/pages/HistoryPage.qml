@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2024 Slava Monich
+Copyright (c) 2018-2025 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -71,6 +71,12 @@ Page {
 
         anchors.fill: parent
         contentHeight: content.height
+
+        onContentYChanged: {
+            if (contentY >= header.height) {
+                header.loseFocus()
+            }
+        }
 
         PullDownMenu {
             visible: historyList.model.count > 0
