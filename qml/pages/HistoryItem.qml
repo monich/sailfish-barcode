@@ -47,6 +47,7 @@ ListItem {
             color: item.highlighted ? Theme.highlightColor : Theme.primaryColor
             font.pixelSize: Theme.fontSizeSmall
             maximumLineCount: 1
+            textFormat: Text.StyledText
             truncationMode: TruncationMode.Fade
             text: Utils.getValueText(item.value)
         }
