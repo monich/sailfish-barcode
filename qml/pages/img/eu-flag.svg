@@ -1,6 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="810" height="540"><desc>European flag</desc>
-<defs><g id="s"><g id="c"><path id="t" d="M0,0v1h0.5z" transform="translate(0,-1)rotate(18)"/><use xlink:href="#t" transform="scale(-1,1)"/></g><g id="a"><use xlink:href="#c" transform="rotate(72)"/><use xlink:href="#c" transform="rotate(144)"/></g><use xlink:href="#a" transform="scale(-1,1)"/></g></defs>
-<rect fill="#039" width="810" height="540"/><g fill="#fc0" transform="scale(30)translate(13.5,9)"><use xlink:href="#s" y="-6"/><use xlink:href="#s" y="6"/><g id="l"><use xlink:href="#s" x="-6"/><use xlink:href="#s" transform="rotate(150)translate(0,6)rotate(66)"/><use xlink:href="#s" transform="rotate(120)translate(0,6)rotate(24)"/><use xlink:href="#s" transform="rotate(60)translate(0,6)rotate(12)"/><use xlink:href="#s" transform="rotate(30)translate(0,6)rotate(42)"/></g><use xlink:href="#l" transform="scale(-1,1)"/></g>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<svg version="1.0" width="810" height="540" xmlns="http://www.w3.org/2000/svg">
+  <rect fill="#039" width="810" height="540"/>
+  <g style="fill:#fc0">
+    <path d="m 405,60 -6.74,20.73 h -21.79 l 17.63,12.81 -6.73,20.73 17.63,-12.81 17.63,12.81 -6.73,-20.73 17.63,-12.81 h -21.79 z"/>
+    <path d="m 495,84.12 -6.74,20.73 h -21.79 l 17.63,12.81 -6.73,20.73 17.63,-12.81 17.63,12.81 -6.73,-20.73 17.63,-12.81 h -21.79 z"/>
+    <path d="M 560.88 150 L 554.15 170.73 L 532.35 170.73 L 549.99 183.54 L 543.25 204.27 L 560.88 191.46 L 578.52 204.27 L 571.78 183.54 L 589.42 170.73 L 567.62 170.73 L 560.88 150 z"/>
+    <path d="m 585,240 6.74,20.73 h 21.79 l -17.63,12.81 6.73,20.73 L 585,281.46 l -17.63,12.81 6.73,-20.73 -17.63,-12.81 h 21.79 z"/>
+    <path d="M 560.88 330 L 554.15 350.73 L 532.35 350.73 L 549.99 363.54 L 543.25 384.27 L 560.88 371.46 L 578.52 384.27 L 571.78 363.54 L 589.42 350.73 L 567.62 350.73 L 560.88 330 z"/>
+    <path d="M 495 395.88 L 488.26 416.61 L 466.47 416.61 L 484.1 429.43 L 477.37 450.15 L 495 437.34 L 512.63 450.15 L 505.9 429.43 L 523.53 416.61 L 501.74 416.61 L 495 395.88 z"/>
+    <path d="m 405,420 -6.73,20.73 h -21.8 l 17.63,12.81 -6.73,20.73 17.63,-12.81 17.63,12.81 -6.73,-20.73 17.63,-12.81 h -21.79 z"/>
+    <path d="M 315 395.88 L 308.26 416.61 L 286.47 416.61 L 304.1 429.43 L 297.37 450.15 L 315 437.34 L 332.63 450.15 L 325.9 429.43 L 343.53 416.61 L 321.74 416.61 L 315 395.88 z"/>
+    <path d="m 225,240 -6.74,20.73 h -21.79 l 17.63,12.81 -6.73,20.73 17.63,-12.81 17.63,12.81 -6.73,-20.73 17.63,-12.81 h -21.79 z"/>
+    <path d="M 249.12 330 L 242.38 350.73 L 220.58 350.73 L 238.22 363.54 L 231.48 384.27 L 249.12 371.46 L 266.75 384.27 L 260.01 363.54 L 277.65 350.73 L 255.85 350.73 L 249.12 330 z"/>
+    <path d="M 249.12 150 L 242.38 170.73 L 220.58 170.73 L 238.22 183.54 L 231.48 204.27 L 249.12 191.46 L 266.75 204.27 L 260.01 183.54 L 277.65 170.73 L 255.85 170.73 L 249.12 150 z"/>
+    <path d="M 315 84.12 L 308.26 104.85 L 286.47 104.85 L 304.1 117.66 L 297.37 138.39 L 315 125.57 L 332.63 138.39 L 325.9 117.66 L 343.53 104.85 L 321.74 104.85 L 315 84.12 z"/>
+  </g>
 </svg>
