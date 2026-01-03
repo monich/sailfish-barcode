@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2024 Slava Monich
+Copyright (c) 2018-2026 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,7 @@ THE SOFTWARE.
 
 #include <MGConfItem>
 
+#include "scanner/BarcodeImageGrabber.h"
 #include "scanner/BarcodeScanner.h"
 
 #include "HarbourDebug.h"
@@ -60,22 +61,32 @@ THE SOFTWARE.
 
 #define CAMERA_DCONF_KEY(name) "/apps/jolla-camera/primary/image/" name
 
+#define REGISTER_TYPE(uri, v1, v2, Class) \
+    qmlRegisterType<Class>(uri, v1, v2, #Class)
+#define REGISTER_SINGLETON_TYPE(uri, v1, v2, Class) \
+    qmlRegisterSingletonType<Class>(uri, v1, v2, #Class, \
+    Class::createSingleton)
+#define REGISTER_UNCREATABLE_TYPE(uri, v1, v2, Class) \
+    qmlRegisterUncreatableType<Class>(uri, v1, v2, #Class, \
+    QString())
+
 static void register_types(QQmlEngine* engine, const char* uri, int v1, int v2)
 {
-    qmlRegisterType<HarbourSelectionListModel>(uri, v1, v2, "HarbourSelectionListModel");
     qmlRegisterType<HarbourSingleImageProvider>(uri, v1, v2, "SingleImageProvider");
     qmlRegisterType<HarbourDisplayBlanking>(uri, v1, v2, "DisplayBlanking");
     qmlRegisterType<HarbourTemporaryFile>(uri, v1, v2, "TemporaryFile");
     qmlRegisterSingletonType<HarbourSystemInfo>(uri, v1, v2, "SystemInfo", HarbourSystemInfo::createSingleton);
     qmlRegisterSingletonType<HarbourProcessState>(uri, v1, v2, "ProcessState", HarbourProcessState::createSingleton);
-    qmlRegisterType<BarcodeFormatModel>(uri, v1, v2, "BarcodeFormatModel");
-    qmlRegisterType<BarcodeScanner>(uri, v1, v2, "BarcodeScanner");
-    qmlRegisterType<DGCertModel>(uri, v1, v2, "DGCertModel");
-    qmlRegisterType<DGCertRecognizer>(uri, v1, v2, "DGCertRecognizer");
-    qmlRegisterType<MeCardConverter>(uri, v1, v2, "MeCardConverter");
-    qmlRegisterUncreatableType<Settings>(uri, v1, v2, "Settings", "Use AppSettings context property");
-    qmlRegisterSingletonType<HistoryModel>(uri, v1, v2, "HistoryModel", HistoryModel::createSingleton);
-    qmlRegisterSingletonType<BarcodeUtils>(uri, v1, v2, "BarcodeUtils", BarcodeUtils::createSingleton);
+    REGISTER_TYPE(uri, v1, v2, HarbourSelectionListModel);
+    REGISTER_TYPE(uri, v1, v2, BarcodeFormatModel);
+    REGISTER_TYPE(uri, v1, v2, BarcodeImageGrabber);
+    REGISTER_TYPE(uri, v1, v2, BarcodeScanner);
+    REGISTER_TYPE(uri, v1, v2, DGCertModel);
+    REGISTER_TYPE(uri, v1, v2, DGCertRecognizer);
+    REGISTER_TYPE(uri, v1, v2, MeCardConverter);
+    REGISTER_SINGLETON_TYPE(uri, v1, v2, HistoryModel);
+    REGISTER_SINGLETON_TYPE(uri, v1, v2, BarcodeUtils);
+    REGISTER_UNCREATABLE_TYPE(uri, v1, v2, Settings);
 }
 
 int main(int argc, char *argv[])

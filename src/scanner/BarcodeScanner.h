@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2024 Slava Monich
+Copyright (c) 2018-2026 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -35,13 +35,9 @@ class BarcodeScanner :
     public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QObject* viewFinderItem READ viewFinderItem WRITE setViewFinderItem NOTIFY viewFinderItemChanged)
-    Q_PROPERTY(QRect viewFinderRect READ viewFinderRect WRITE setViewFinderRect NOTIFY viewFinderRectChanged)
     Q_PROPERTY(QString markerColor READ markerColor WRITE setMarkerColor NOTIFY markerColorChanged)
     Q_PROPERTY(int rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
     Q_PROPERTY(ScanState scanState READ scanState NOTIFY scanStateChanged)
-    Q_PROPERTY(bool canGrab READ canGrab WRITE setCanGrab NOTIFY canGrabChanged)
-    Q_PROPERTY(bool grabbing READ grabbing NOTIFY grabbingChanged)
     Q_PROPERTY(bool inverted READ inverted WRITE setInverted NOTIFY invertedChanged)
     Q_PROPERTY(bool mirrored READ mirrored WRITE setMirrored NOTIFY mirroredChanged)
     Q_PROPERTY(uint decodingHints READ decodingHints WRITE setDecodingHints NOTIFY decodingHintsChanged)
@@ -61,12 +57,6 @@ public:
     Q_INVOKABLE void startScanning(int);
     Q_INVOKABLE void stopScanning();
 
-    QObject* viewFinderItem() const;
-    void setViewFinderItem(QObject*);
-
-    QRect viewFinderRect() const;
-    void setViewFinderRect(QRect);
-
     QString markerColor() const;
     void setMarkerColor(QString);
 
@@ -74,11 +64,6 @@ public:
     void setRotation(int);
 
     ScanState scanState() const;
-
-    bool canGrab() const;
-    void setCanGrab(bool);
-
-    bool grabbing() const;
 
     bool inverted() const;
     void setInverted(bool);
@@ -89,15 +74,15 @@ public:
     uint decodingHints() const;
     void setDecodingHints(uint);
 
+public Q_SLOTS:
+    void scanImage(QImage, QRect);
+
 Q_SIGNALS:
+    void needImage();
     void decodingFinished(QImage image, QVariantMap result);
-    void viewFinderItemChanged();
-    void viewFinderRectChanged();
     void markerColorChanged();
     void rotationChanged();
     void scanStateChanged();
-    void canGrabChanged();
-    void grabbingChanged();
     void invertedChanged();
     void mirroredChanged();
     void decodingHintsChanged();

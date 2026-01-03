@@ -42,6 +42,7 @@ SOURCES += \
     src/HistoryModel.cpp \
     src/MeCardConverter.cpp \
     src/Settings.cpp \
+    src/scanner/BarcodeImageGrabber.cpp \
     src/scanner/BarcodeScanner.cpp \
     src/scanner/Decoder.cpp \
     src/scanner/ImageSource.cpp
@@ -57,6 +58,7 @@ HEADERS += \
     src/HistoryModel.h \
     src/MeCardConverter.h \
     src/Settings.h \
+    src/scanner/BarcodeImageGrabber.h \
     src/scanner/BarcodeScanner.h \
     src/scanner/Decoder.h \
     src/scanner/ImageSource.h

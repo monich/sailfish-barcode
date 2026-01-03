@@ -282,14 +282,13 @@ Page {
         readonly property bool idle: scanState === BarcodeScanner.Idle ||
                                      scanState === BarcodeScanner.TimedOut
 
-        viewFinderItem: viewFinderContainer
         markerColor: AppSettings.markerColor
         rotation: orientationAngle()
-        canGrab: (!galleryImage || !galleryImage.moving) && !galleryScanTimer.running
         inverted: invertButton.down
         mirrored: viewFinder && viewFinder.mirrored
         decodingHints: AppSettings.decodingHints
 
+        onNeedImage: grabber.requestImage()
         onDecodingFinished: {
             if (result.ok) {
                 statusText.text = ""
@@ -331,6 +330,14 @@ Page {
         }
     }
 
+    BarcodeImageGrabber {
+        id: grabber
+
+        canGrab: (!galleryImage || !galleryImage.moving) && !galleryScanTimer.running
+        viewFinderItem: viewFinderContainer
+        onImageGrabbed: scanner.scanImage(image, viewPort)
+    }
+
     SingleImageProvider {
         id: markerImageProvider
 
@@ -349,7 +356,7 @@ Page {
 
         ViewFinder {
             onMaximumDigitalZoom: AppSettings.maxDigitalZoom = value
-            showFocusArea: !scanner.grabbing
+            showFocusArea: !grabber.grabbing
         }
     }
 
@@ -534,7 +541,7 @@ Page {
                 }
 
                 function updateViewFinderPosition() {
-                    scanner.viewFinderRect = Qt.rect(x + parent.x, y + parent.y, width, height)
+                    grabber.viewFinderRect = Qt.rect(x + parent.x, y + parent.y, width, height)
                 }
 
                 function updateSupportedResolution_4_3(res) {
