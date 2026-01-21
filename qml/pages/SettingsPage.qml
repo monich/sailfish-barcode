@@ -381,7 +381,7 @@ Page {
             Slider {
                 id: historySizeSlider
 
-                readonly property int currentCount: HistoryModel.count
+                readonly property int currentCount: HistoryModel.totalCount
 
                 width: parent.width
                 minimumValue: 0
