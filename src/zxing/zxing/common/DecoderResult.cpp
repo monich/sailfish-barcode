@@ -22,7 +22,7 @@
 #include <zxing/common/DecoderResult.h>
 
 using namespace std;
-using namespace zxing;
+namespace zxing {
 
 DecoderResult::DecoderResult(ArrayRef<byte> rawBytes,
                              Ref<String> text,
@@ -49,3 +49,5 @@ string DecoderResult::charSet()
 {
     return charSet_;
 }
+
+} // namespace zxing
