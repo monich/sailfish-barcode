@@ -83,7 +83,7 @@ Page {
                 anchors {
                     right: header.extraContent.right
                     rightMargin: Theme.paddingLarge
-                    verticalCenter: header.extraContent.verticalCenter
+                    verticalCenter: '_titleItem' in header ? header._titleItem.verticalCenter : header.extraContent.verticalCenter
                 }
                 // Show the badge only if nothing has been filtered out
                 visible: model.count === HistoryModel.totalCount
