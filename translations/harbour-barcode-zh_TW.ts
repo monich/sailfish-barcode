@@ -367,11 +367,6 @@
         <extracomment>Combo box label</extracomment>
         <translation type="unfinished">定向</translation>
     </message>
-    <message id="settings-display-orientation-primary">
-        <source>Primary</source>
-        <extracomment>Combo box value for primary orientation</extracomment>
-        <translation type="unfinished">主</translation>
-    </message>
     <message id="settings-display-orientation-portrait">
         <source>Portrait</source>
         <extracomment>Combo box value for portrait orientation</extracomment>
@@ -386,16 +381,6 @@
         <source>Dynamic</source>
         <extracomment>Combo box value for dynamic orientation</extracomment>
         <translation type="unfinished">動態</translation>
-    </message>
-    <message id="settings-display-orientation-allow_inverted">
-        <source>Allow inverted orientation</source>
-        <extracomment>Text switch label</extracomment>
-        <translation type="unfinished">允許反轉方向</translation>
-    </message>
-    <message id="settings-display-orientation-allow_inverted-description">
-        <source>If enabled, allows both primary and inverted landscape or portrait orientation.</source>
-        <extracomment>Text switch description</extracomment>
-        <translation type="unfinished"></translation>
     </message>
     <message id="select-title">
         <source>Select codes</source>

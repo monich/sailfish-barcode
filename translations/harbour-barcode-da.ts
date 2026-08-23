@@ -369,11 +369,6 @@
         <extracomment>Combo box label</extracomment>
         <translation type="unfinished">Retning</translation>
     </message>
-    <message id="settings-display-orientation-primary">
-        <source>Primary</source>
-        <extracomment>Combo box value for primary orientation</extracomment>
-        <translation type="unfinished">Primær</translation>
-    </message>
     <message id="settings-display-orientation-portrait">
         <source>Portrait</source>
         <extracomment>Combo box value for portrait orientation</extracomment>
@@ -388,16 +383,6 @@
         <source>Dynamic</source>
         <extracomment>Combo box value for dynamic orientation</extracomment>
         <translation type="unfinished">Dynamisk</translation>
-    </message>
-    <message id="settings-display-orientation-allow_inverted">
-        <source>Allow inverted orientation</source>
-        <extracomment>Text switch label</extracomment>
-        <translation type="unfinished">Tillad omvendt retning</translation>
-    </message>
-    <message id="settings-display-orientation-allow_inverted-description">
-        <source>If enabled, allows both primary and inverted landscape or portrait orientation.</source>
-        <extracomment>Text switch description</extracomment>
-        <translation type="unfinished">Hvis det er aktiveret, tillader det både primært og inverteret liggende eller portrætorientering.</translation>
     </message>
     <message id="select-title">
         <source>Select codes</source>

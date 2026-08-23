@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2019 Slava Monich
+Copyright (c) 2018-2026 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,13 +36,13 @@ ApplicationWindow {
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: {
         switch (AppSettings.orientation) {
-        case Settings.OrientationPortrait: return Orientation.Portrait
-        case Settings.OrientationPortraitAny: return Orientation.PortraitMask
-        case Settings.OrientationLandscape: return Orientation.Landscape
+        default:
+        case Settings.OrientationPrimary:
+        case Settings.OrientationAny: return Orientation.Portrait | Orientation.LandscapeMask
+        case Settings.OrientationPortrait:
+        case Settings.OrientationPortraitAny: return Orientation.Portrait
+        case Settings.OrientationLandscape:
         case Settings.OrientationLandscapeAny: return Orientation.LandscapeMask
-        case Settings.OrientationAny: return Orientation.All
-        default: return (Screen.sizeCategory !== undefined && Screen.sizeCategory >= Screen.Large) ?
-                    Orientation.Landscape : Orientation.Portrait
         }
     }
 

@@ -371,11 +371,6 @@
         <extracomment>Combo box label</extracomment>
         <translation>Ориентация</translation>
     </message>
-    <message id="settings-display-orientation-primary">
-        <source>Primary</source>
-        <extracomment>Combo box value for primary orientation</extracomment>
-        <translation>Основная</translation>
-    </message>
     <message id="settings-display-orientation-portrait">
         <source>Portrait</source>
         <extracomment>Combo box value for portrait orientation</extracomment>
@@ -390,16 +385,6 @@
         <source>Dynamic</source>
         <extracomment>Combo box value for dynamic orientation</extracomment>
         <translation>Динамическая</translation>
-    </message>
-    <message id="settings-display-orientation-allow_inverted">
-        <source>Allow inverted orientation</source>
-        <extracomment>Text switch label</extracomment>
-        <translation>Разрешить обратную ориентацию</translation>
-    </message>
-    <message id="settings-display-orientation-allow_inverted-description">
-        <source>If enabled, allows both primary and inverted landscape or portrait orientation.</source>
-        <extracomment>Text switch description</extracomment>
-        <translation>Разрешает как основную, так и обратную портретную или альбомную ориентацию.</translation>
     </message>
     <message id="select-title">
         <source>Select codes</source>

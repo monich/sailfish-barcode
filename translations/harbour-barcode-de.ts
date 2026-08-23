@@ -369,11 +369,6 @@
         <extracomment>Combo box label</extracomment>
         <translation>Orientierung</translation>
     </message>
-    <message id="settings-display-orientation-primary">
-        <source>Primary</source>
-        <extracomment>Combo box value for primary orientation</extracomment>
-        <translation type="unfinished">Primärer</translation>
-    </message>
     <message id="settings-display-orientation-portrait">
         <source>Portrait</source>
         <extracomment>Combo box value for portrait orientation</extracomment>
@@ -388,16 +383,6 @@
         <source>Dynamic</source>
         <extracomment>Combo box value for dynamic orientation</extracomment>
         <translation>Dynamisch</translation>
-    </message>
-    <message id="settings-display-orientation-allow_inverted">
-        <source>Allow inverted orientation</source>
-        <extracomment>Text switch label</extracomment>
-        <translation>Invertierte Ausrichtung erlauben</translation>
-    </message>
-    <message id="settings-display-orientation-allow_inverted-description">
-        <source>If enabled, allows both primary and inverted landscape or portrait orientation.</source>
-        <extracomment>Text switch description</extracomment>
-        <translation type="unfinished">Wenn aktiviert, wird sowohl die primäre als auch die invertierte Quer- oder Hochformatausrichtung zugelassen.</translation>
     </message>
     <message id="select-title">
         <source>Select codes</source>

@@ -2,7 +2,7 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 Steffen Förster
-Copyright (c) 2018-2022 Slava Monich
+Copyright (c) 2018-2026 Slava Monich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -52,32 +52,17 @@ Page {
         return 0
     }
 
-    function applyOrientation() {
-        var item = orientationComboBox.currentItem
-        if (item) {
-            AppSettings.orientation = orientationInvertSwitch.checked ? item.invertable : item.primary
-        }
-    }
-
     function updateOrientation() {
         var value = AppSettings.orientation
         var n = orientationMenu.children.length
         for (var i = 0; i < n; i++) {
             var item = orientationMenu.children[i]
-            if (item.isMenuItem && (value === item.primary || value === item.invertable)) {
+            if (item.isMenuItem && value === item.value) {
                 orientationComboBox.currentIndex = item.index
-                orientationInvertSwitch.enabled = (item.primary !== item.invertable)
-                if (orientationInvertSwitch.enabled) {
-                    orientationInvertSwitch.checked = (value === item.invertable)
-                } else {
-                    orientationInvertSwitch.checked = item.canInvert
-                }
                 return
             }
         }
         orientationComboBox.currentIndex = orientationMenu.defaultIndex
-        orientationInvertSwitch.checked = false
-        orientationInvertSwitch.enabled = false
     }
 
     Component.onCompleted: updateOrientation()
@@ -153,84 +138,50 @@ Page {
             //% "Display"
             SectionHeader { text: qsTrId("settings-display-section") }
 
-            Grid {
-                width: parent.width
-                columns: landscapeLayout ? 2 : 1
+            ComboBox {
+                id: orientationComboBox
 
-                readonly property real columnWidth: width/columns
+                //: Combo box label
+                //% "Orientation"
+                label: qsTrId("settings-display-orientation-label")
+                value: currentItem ? currentItem.text : ""
+                menu: ContextMenu {
+                    id: orientationMenu
 
-                ComboBox {
-                    id: orientationComboBox
-
-                    //: Combo box label
-                    //% "Orientation"
-                    label: qsTrId("settings-display-orientation-label")
-                    width: parent.columnWidth
-                    value: currentItem ? currentItem.text : ""
-                    menu: ContextMenu {
-                        id: orientationMenu
-
-                        readonly property int defaultIndex: 0
-                        x: 0
-                        width: orientationComboBox.width
-                        MenuItem {
-                            //: Combo box value for primary orientation
-                            //% "Primary"
-                            text: qsTrId("settings-display-orientation-primary")
-                            readonly property int index: 0
-                            readonly property int primary: Settings.OrientationPrimary
-                            readonly property int invertable: primary
-                            readonly property bool canInvert: false
-                            readonly property bool isMenuItem: true
-                        }
-                        MenuItem {
-                            //: Combo box value for portrait orientation
-                            //% "Portrait"
-                            text: qsTrId("settings-display-orientation-portrait")
-                            readonly property int index: 1
-                            readonly property int primary: Settings.OrientationPortrait
-                            readonly property int invertable: Settings.OrientationPortraitAny
-                            readonly property bool canInvert: true
-                            readonly property bool isMenuItem: true
-                        }
-                        MenuItem {
-                            //: Combo box value for landscape orientation
-                            //% "Landscape"
-                            text: qsTrId("settings-display-orientation-landscape")
-                            readonly property int index: 2
-                            readonly property int primary: Settings.OrientationLandscape
-                            readonly property int invertable: Settings.OrientationLandscapeAny
-                            readonly property bool canInvert: true
-                            readonly property bool isMenuItem: true
-                        }
-                        MenuItem {
-                            //: Combo box value for dynamic orientation
-                            //% "Dynamic"
-                            text: qsTrId("settings-display-orientation-dynamic")
-                            readonly property int index: 3
-                            readonly property int primary: Settings.OrientationAny
-                            readonly property int invertable: primary
-                            readonly property bool canInvert: true
-                            readonly property bool isMenuItem: true
-                        }
-                        onActivated: {
-                            orientationComboBox.currentIndex = index
-                            settingsPage.applyOrientation()
+                    readonly property int defaultIndex: 0
+                    x: 0
+                    width: orientationComboBox.width
+                    MenuItem {
+                        //: Combo box value for dynamic orientation
+                        //% "Dynamic"
+                        text: qsTrId("settings-display-orientation-dynamic")
+                        readonly property int index: 0
+                        readonly property int value: Settings.OrientationAny
+                        readonly property bool isMenuItem: true
+                    }
+                    MenuItem {
+                        //: Combo box value for portrait orientation
+                        //% "Portrait"
+                        text: qsTrId("settings-display-orientation-portrait")
+                        readonly property int index: 1
+                        readonly property int value: Settings.OrientationPortrait
+                        readonly property bool isMenuItem: true
+                    }
+                    MenuItem {
+                        //: Combo box value for landscape orientation
+                        //% "Landscape"
+                        text: qsTrId("settings-display-orientation-landscape")
+                        readonly property int index: 2
+                        readonly property int value: Settings.OrientationLandscapeAny
+                        readonly property bool isMenuItem: true
+                    }
+                    onActivated: {
+                        orientationComboBox.currentIndex = index
+                        var item = orientationComboBox.currentItem
+                        if (item) {
+                            AppSettings.orientation = item.value
                         }
                     }
-                }
-
-                TextSwitch {
-                    id: orientationInvertSwitch
-
-                    //: Text switch label
-                    //% "Allow inverted orientation"
-                    text: qsTrId("settings-display-orientation-allow_inverted")
-                    //: Text switch description
-                    //% "If enabled, allows both primary and inverted landscape or portrait orientation."
-                    description: qsTrId("settings-display-orientation-allow_inverted-description")
-                    width: parent.columnWidth
-                    onClicked: settingsPage.applyOrientation()
                 }
             }
 
