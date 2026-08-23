@@ -20,3 +20,4 @@ BackupConfigList=/apps/harbour-barcode/
 
 #[X-Sailjail]
 #Permissions=Audio;Camera;Documents;Downloads;MediaIndexing;Pictures;PublicDir;RemovableMedia;UserDirs
+#Sandboxing=Disabled
