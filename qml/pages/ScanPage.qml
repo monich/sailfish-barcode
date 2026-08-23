@@ -457,7 +457,7 @@ Page {
 
             anchors {
                 top: parent.top
-                topMargin: Theme.paddingLarge
+                topMargin: Math.max(Theme.paddingLarge, (orientation === Orientation.Portrait) ? Utils.topNotchHeight : 0)
                 bottom: cameraControls.top
                 bottomMargin: Theme.paddingLarge
                 left: parent.left

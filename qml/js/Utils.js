@@ -24,10 +24,12 @@ THE SOFTWARE.
 */
 
 .pragma library
+.import Sailfish.Silica 1.0 as Silica
 .import harbour.barcode 1.0 as App
 
 var frontCameraId
 var backCameraId
+var topNotchHeight = ('topCutout' in Silica.Screen) ? Silica.Screen.topCutout.height : 0
 
 function isVcard(text) {
     if (text.length > 11 && text.substring(0,11) === "BEGIN:VCARD") {
